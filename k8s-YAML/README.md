@@ -3,7 +3,7 @@
 
 ```YAML
 apiVersion: 
-kind: Service
+kind:
 metadata:
 spec:
 ```
