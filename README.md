@@ -43,6 +43,18 @@ kubectl create namespace <name>
 kubectl create namespace dev
 ```
 
+#### Lables and selectors
+
+Lables are for identification
+
+
+
+#### Pod Lifecycle
+
+![Pod-Lifecycle](https://user-images.githubusercontent.com/51878265/197347032-cb45f52d-bfae-4ce4-838c-4c3ba9b10fa3.PNG)
+
+
+
 #### To see K8s config file
 
 ```sh
