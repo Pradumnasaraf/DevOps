@@ -32,8 +32,8 @@ This repo contains all my learning realted to **Kubernetes**. It will consist re
 
 - Declrative - Creating deployment though YAML file. 
 
-- To see K8s config file
+#### To see K8s config file
 
-```
+```sh
 ~/.kube/config
 ```
