@@ -1,0 +1,328 @@
+## Kubernetes Learnings 
+
+## Playground (environment to test out Kubernetes)
+
+- [labs.play-with-k8s.com](https://labs.play-with-k8s.com/)
+- [killercoda.com/playgrounds](https://killercoda.com/playgrounds)
+
+## Resources 
+
+- [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
+- [BretFisher/udemy-docker-mastery](https://github.com/BretFisher/udemy-docker-mastery) GitHub repo.
+- Kubernetes official [docs](https://kubernetes.io/docs/home/)
+
+
+## Kubernetes Components - architecture
+
+![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
+
+<details>
+  <summary>Simpler Image</summary>
+
+<img width="872" alt="20200328170549" src="https://user-images.githubusercontent.com/51878265/197317783-ef595279-520d-4354-b995-96bff072485e.png">
+
+</details>
+
+## Master Node
+
+- **API Server**: 
+- **Etcd**: It stores the current state of the cluster. It's like a cluster brain.
+- **Scheduler**: Decide which worker node will be best to deploy the next pods, after examining the resources and other paras. It does not schedule it.
+- **Controller Manager**: Detect the current state of the cluster and keep the desired state of pods running
+
+Follow requests when some things need to change/added to a worker node
+
+    `Conroller Manager`
+
+
+## Worker Node
+
+- **Kubelet**: It is the entry point to the Kubernetes cluster. Help us communicate with different objects in the Cluster
+- **Kube Proxy**: Maintains network rules on the node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
+- **Container Runtime** - Like Docker, ContainerD, etc. Which runs the container
+
+## Imperative Vs Declarative
+
+- Imperative - When we give a command through CLI to run pod/deployment. For eg: `kubectl run nginx --image=nginx`
+
+- Declarative - Creating deployment through YAML file. 
+
+## Namespaces
+
+- Isolated environment, we can group resources separately like a database. Also, great for running different versions of the app.
+
+We can add namespace attribute in YAMl file to specify with one it belongs to
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configmap
+  namespace: my-namespace
+data:
+  database_url: mongodb-service
+```
+
+We can create a namespace by
+
+```
+kubectl create namespace <name>
+kubectl create namespace dev
+```
+
+## Pod Lifecycle
+
+![Pod-Lifecycle](https://user-images.githubusercontent.com/51878265/197347032-cb45f52d-bfae-4ce4-838c-4c3ba9b10fa3.PNG)
+
+
+## Configuration files
+
+Generally, A K8s YAML config file contains 4 properties
+
+```YAML
+apiVersion: 
+kind:
+metadata:
+spec:
+```
+
+#### Labels and selectors
+
+Labels are for identification
+
+### Deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secrets
+                  key: mongo-root-username  
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                  name: mongodb-secrets
+                  key: mongo-root-password
+```
+
+### Services
+
+Services are for internal communication of pods. It also helps give a pop static IP address. Contains routing rules.
+
+
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb //Deployment app label
+  ports:
+    - protocol: TCP
+      port: 27017 // Service Port
+      targetPort: 27017 // Pod/Container Port
+```
+
+### Ingress
+
+It is use for an external trafic/request, which can be accessed by an URL instaed of `IP-PORT - 17.28.55.44.5:7800`. For that we need an ingress controller to make work of ingress.
+
+![Ingress](https://user-images.githubusercontent.com/51878265/201585224-eca055af-eeb6-473c-bd96-33af9b5f6c55.png)
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-ingress
+  namespace: kubernetes-dashboard
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port: 
+              number: 80
+
+```
+
+TLS
+
+<img width="1512" alt="Screenshot 2022-11-14 at 1 17 55 PM" src="https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png">
+
+
+
+### ConfigMap
+
+Use to store external configurations like database URLs. We put it in simple text format unlike [Secrets](#secrets)
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configmap
+data:
+  database_url: mongodb-service
+```
+
+### Secrets
+
+We use secrets to pass environment variables inside the pods.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secrets
+type: Opaque
+data:
+  mongo-root-username: cHJhZHVtbmE= //pradumna
+  mongo-root-password: c2FyYWYxMjM= //saraf123
+```
+
+> Note: the secret value should be `base64` encoded, like `cHJhZHVtbmE` 
+
+```bash
+echo -n "value" | base64
+```
+
+## Secret and ConfigMap as volume
+
+We can mount Config and Secret as a volume 
+
+**depployment.yaml**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:1.6.2
+          ports:
+          - containerPort: 1883
+          volumeMounts:
+          - name: mosquitto-config # Volume name which is defined below and need to mounted
+            mountPath: /mosquitto/config
+            
+      volumes: # List of volumes to mount into the container's filesystem.
+        - name: mosquitto-config # This is the name of the volume
+          configMap: #This is type of volume
+            name: mosquitto-config-file
+```
+
+**config.yaml**
+```Yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config-file
+data:
+  mosquitto.conf: |
+    log_dest stdout
+    log_type all
+    log_timestamp_format %Y-%m-%dT%H:%M:%S
+    listener 9001
+
+```
+
+
+### Volume VS using it as a ENV.
+
+![Env vs Volume mount](https://user-images.githubusercontent.com/51878265/202616618-c536bbd6-e221-4df9-b57d-8969dc1504a8.png)
+
+
+## Cluster Config file
+
+All the Cluster info is stored in the file name `config` with the path:
+
+```bash
+~/.kube/config
+```
+
+## Networking
+
+Container communication - The container inside a pod communicate via localhost shares the same networking namespace. To test it out, `Curl` the other conatiner by exec into the 1st container.
+
+Steps
+
+1) Create a deploymeny with the config file below 
+ 
+```YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      - name: sidecar
+        image: curlimages/curl
+        command: ["bin/sh"]
+        args: ["-c", "echo Hello from the sidecar container! && sleep 3600"]
+```
+
+2) Get inside the `sidecar` conatiner in the pod myapp and access the terminal by:
+
+```bash
+kubectl exec -it <pod-name> -c sidecar -- /bin/sh
+```
+
+3) Curl the localhost with the respective port of other container.
+
+```bash
+curl localhost:80
+```
+

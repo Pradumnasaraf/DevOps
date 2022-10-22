@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:1.6.2
+          ports:
+          - containerPort: 1883
+          volumeMounts:
+          - name: mosquitto-config # Volume name which is defined below and need to mounted
+            mountPath: /mosquitto/config
+          # - name: mosquitto-secret 
+          #   mountPath: /mosquitto/secret
+          #   readOnly: true
+      volumes: # List of volumes to mount into the container's filesystem.
+        - name: mosquitto-config # This is the name of the volume
+          configMap: #This is type of volume
+            name: mosquitto-config-file
+        - name: mosquitto-secret
+          secret:
+            secretName: mosquitto-secret-file

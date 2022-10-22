@@ -47,6 +47,19 @@ kubectl scale deployment mynginx --replicas 2
 kubectl get all
 ```
 
+- To get the get details from the a particular namespace
+
+```bash
+kubectl get all -n <namespace name>
+```
+
+- To get the internal components running
+
+```bash
+kubectl get pods -A 
+kubectl get pods -A -owide
+```
+
 - To check all the running services
 
 ```bash
@@ -82,6 +95,12 @@ kubectl get replicaset
 kubectl get namespaces
 ```
 
+- To get all the API resources
+
+```
+kubectl api-resources
+```
+
 - To delete the deployment
 
 ```bash
@@ -100,6 +119,22 @@ kubectl delete pod <pod-name>
 kubectl logs <pod-name>
 ```
 
+- To check logs or sh/bash of a container inside a pod. That if pods have multiple container an we have enter inside a container
+
+```bash
+kube exec -it <pod-name> -c <container-name> -- <bash command>
+kube exec -it multi-container -c nginx-container -- curl localhost
+kube exec -it multi-container -c nginx-container -- sh
+kubectl logs multi-container -c nginx-container
+```
+
+- To get inside the pod
+
+```
+kubectl exec -it <pod name> -- sh
+kubectl exec -it nginx -- sh
+```
+
 - Get a deep details/state chnages about a pod 
 
 ```bash
@@ -107,7 +142,6 @@ kube describe pod <pod -name>
 ```
 
 - To watch the pods (watch refresh every few seconds)
-
 ```bash
 kubectl get pods -w
 ```
@@ -118,6 +152,39 @@ kubectl get pods -w
 kube config get-contexts
 ```
 
+- We can create namespace by
+
+```bash
+kubectl create namespace <name>
+kubectl create namespace dev
+```
+
+- To do a dry nun and get the output as Yaml
+
+```bash
+kubectl create namespace test-name --dry-run=client -oyaml
+```
+
+- To edit the deployment (deployment file)
+
+```bash
+kubectl edit deployment <deployment name>
+```
+
+- To delete all the pods
+```
+kubectl delete pods --all
+```
+
+- Apply to a particular namespace
+
+```yaml
+kubectl apply -f <config file name> --namespace=<namespace name>
+
+```
+
+- To chnage default/active namespace
+
 - `kubectl create deployment <deployment-name> --image=<image-name> ` - cteate a deplyment (pod inside it, you can't directly created pods)
     - `kubectl create deployment ngni-dep --image=ngnix` 
 - `kubectl edit deployment ngnix` - Edit the config file.
@@ -125,8 +192,8 @@ kube config get-contexts
 - `kubectl get pod -o wide` - get more details about the pods
 
 - `kubectl create namespace <insert-namespace-name-here>` - create a namespace
-- `kubectl apply -f <config file name> --namespace=<namespace name>`
     - Eg: `kub apply -f mongo-configmap.yaml --namespace=my-namespace`
 - `kub get configmap -n my-namespace`
     - Eg: `kub get configmap -n my-namespace`
     
+
