@@ -32,6 +32,17 @@ This repo contains all my learning realted to **Kubernetes**. It will consist re
 
 - Declrative - Creating deployment though YAML file. 
 
+#### Namespaces
+
+- Isolated environment to the tems. In this we can group resouces seprately like database. Also, great for running different versions of the app.
+
+We can create namespace by
+
+```
+kubectl create namespace <name>
+kubectl create namespace dev
+```
+
 #### To see K8s config file
 
 ```sh
