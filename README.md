@@ -15,7 +15,7 @@ This repo contains all my learning realted to **Kubernetes**. It will consist re
 
 ## Concepts
 
-- Kubernetes Components - architecture
+#### Kubernetes Components - architecture
 
 ![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
 
@@ -26,6 +26,11 @@ This repo contains all my learning realted to **Kubernetes**. It will consist re
 
 </details>
 
+#### Imperative Vs Declarative
+
+- Imperative - When we give command though CLI to run pod/deplyment. For eg: `kubectl run nginx --image=nginx`
+
+- Declrative - Creating deployment though YAML file. 
 
 - To see K8s config file
 
