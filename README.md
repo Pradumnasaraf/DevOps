@@ -13,7 +13,19 @@ This repo contains all my learning realted to **Kubernetes**. It will consist re
 - [BretFisher/udemy-docker-mastery](https://github.com/BretFisher/udemy-docker-mastery) GitHub repo.
 - Kubernetes official [docs](https://kubernetes.io/docs/home/)
 
-### Concepts
+## Concepts
+
+- Kubernetes Components - architecture
+
+![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
+
+<details>
+  <summary>Simpler Image</summary>
+
+<img width="872" alt="20200328170549" src="https://user-images.githubusercontent.com/51878265/197317783-ef595279-520d-4354-b995-96bff072485e.png">
+
+</details>
+
 
 - To see K8s config file
 
