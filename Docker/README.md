@@ -11,10 +11,30 @@
 
 ### Dockerfile
 
-> Common Commands:
+> Commands:
 
 - `FROM` (base image)
+- `COPY` (copy files from local to conatiner)
+- `ARG` (pass arrugments)
 - `ENV` (environment variable)
 - `RUN` (any arbitrary shell command)
 - `EXPOSE` (open port from container to virtual network)
 - `CMD` (command to run when container starts) 
+- `WORKDIR` (Create a dir where all the file will be copy and used.)
+
+To build an image from the **Dockerfile**, use this command
+
+```bash
+docker build <path> 
+// docker build .
+```
+
+#### Good Practice
+
+- Copy the dependencies 1st and then copy rest of the files.
+
+```Dockerfile
+COPY package.json ./
+RUN npm install
+COPY . ./
+```
