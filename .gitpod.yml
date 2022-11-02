@@ -1,0 +1,16 @@
+tasks:
+  - name: Start web server
+    init: python -m http.server 8000
+ports:
+  - port: 8000
+    onOpen: open-browser
+    
+github:
+  prebuilds:
+    master: true
+    addBadge: true
+    addCheck: true
+    branches: true
+    addComment: false
+    pullRequests: true
+    pullRequestsFromForks: true
