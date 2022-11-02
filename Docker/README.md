@@ -1,7 +1,7 @@
 # Concepts
 
 
-## Docker Images
+## ⚫ Docker Images
 
 - Images are made up of app binaries, dependencies, and metadata. Don't contain a full OS.
 - Images are combination of mutiple layers.
@@ -9,7 +9,7 @@
 
 ![Screenshot from 2022-11-02 11-57-19](https://user-images.githubusercontent.com/51878265/199414178-d59e8780-c140-4bf1-b27e-7e8f1c723afb.png)
 
-## Dockerfile
+## ⚫ Dockerfile
 
 > Commands:
 
@@ -39,10 +39,10 @@ RUN npm install
 COPY . ./
 ```
 
-## .dockerignore
+## ⚫ .dockerignore
 
 
-## Docker Volumes
+## ⚫ Docker Volumes
 
 We need volume to Persist our data, like databases and user info, because conatiner can go up and down, and we need some way preserve our data.
 
@@ -66,6 +66,12 @@ docker run -v myvolume:/src/public nginx
 docker run -v <path to your local sytem>:<conatiner path>
 $ docker run -v /app/content:/usr/share/nginx/html  nginx
 ```
+
+## ⚫ Docker Compose
+
+- Compose help us defining and running multi-container Docker applications and configure relationships between containers 
+- It also save hassel from entering the commands from the CLI.
+- We have to write the configs in the YAML file, by default the file name is `docker-compose.yml`. We can run/stop by `docker compose up/down`
 
 
 
