@@ -29,7 +29,7 @@ docker build <path>
 // docker build .
 ```
 
-#### Good Practice
+**Good Practice**
 
 - Copy the dependencies 1st and then copy rest of the files.
 
@@ -38,3 +38,27 @@ COPY package.json ./
 RUN npm install
 COPY . ./
 ```
+
+### .dockerignore
+
+
+### Docker Volumes
+
+We need volume to Persist our data, like databases and user info, because conatiner can go up and down, and we need some way preserve our data.
+
+#### Volumes
+
+We attach volume during run time
+
+```bash
+docker run -v /path/in/container
+```
+
+**Named Volume**
+We can also name the volume otherwise it will generate the ID and hard to track
+
+```bash
+docker run -v <volume name>:</path in container> <image name>
+docker run -v myvolume:/src/public nginx
+```
+
