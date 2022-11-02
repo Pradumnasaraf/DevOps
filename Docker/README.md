@@ -1,7 +1,7 @@
-## Concepts
+# Concepts
 
 
-### Docker Images
+## Docker Images
 
 - Images are made up of app binaries, dependencies, and metadata. Don't contain a full OS.
 - Images are combination of mutiple layers.
@@ -9,7 +9,7 @@
 
 ![Screenshot from 2022-11-02 11-57-19](https://user-images.githubusercontent.com/51878265/199414178-d59e8780-c140-4bf1-b27e-7e8f1c723afb.png)
 
-### Dockerfile
+## Dockerfile
 
 > Commands:
 
@@ -39,14 +39,14 @@ RUN npm install
 COPY . ./
 ```
 
-### .dockerignore
+## .dockerignore
 
 
-### Docker Volumes
+## Docker Volumes
 
 We need volume to Persist our data, like databases and user info, because conatiner can go up and down, and we need some way preserve our data.
 
-#### Volumes
+### Volumes
 
 We attach volume during run time
 
