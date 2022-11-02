@@ -46,8 +46,6 @@ COPY . ./
 
 We need volume to Persist our data, like databases and user info, because conatiner can go up and down, and we need some way preserve our data.
 
-### Volumes
-
 We attach volume during run time
 
 ```bash
@@ -61,4 +59,13 @@ We can also name the volume otherwise it will generate the ID and hard to track
 docker run -v <volume name>:</path in container> <image name>
 docker run -v myvolume:/src/public nginx
 ```
+
+### Bind Mounting
+
+```
+docker run -v <path to your local sytem>:<conatiner path>
+$ docker run -v /app/content:/usr/share/nginx/html  nginx
+```
+
+
 
