@@ -74,22 +74,23 @@ docker run -v $(pwd):/user/html nginx
 - It also save hassel from entering the commands from the CLI.
 - We have to write the configs in the YAML file, by default the file name is `docker-compose.yml`. We can run/stop by `docker compose up/down`
 
-**Sample docker-compose.yaml**
+Skeleton of Docker compose
 
 ```yaml
-version: '3.7'
+services:  # containers. same as docker run
+  servicename: # a friendly name. this is also DNS name inside network
+    image: # Optional if you use build:
+    command: # Optional, replace the default CMD specified by the image
+    environment: # Optional, same as -e in docker run
+    volumes: # Optional, same as -v in docker run
+  servicename2:
 
-services:
-  devops-website:
-    container_name: devops-website
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    image: devops-website
-    ports:
-      - 8080:80
+volumes: # Optional, same as docker volume create
+
+networks: # Optional, same as docker network create
 ```
-- Adding named volume and network
+
+Sample:
 
 ```yaml
   mongo:
