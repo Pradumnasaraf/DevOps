@@ -109,6 +109,13 @@ networks:
         driver: bridge
 ```
 
+If any container depends on another container
+
+```
+depends_on:
+  - mysql-primary
+```
+
 ## ⚫ Docker Swarm
 
 Docker Swarm is an orchestration management tool that runs on Docker applications.
