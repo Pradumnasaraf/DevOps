@@ -64,7 +64,8 @@ docker run -v myvolume:/src/public nginx
 
 ```
 docker run -v <path to your local sytem>:<conatiner path>
-$ docker run -v /app/content:/usr/share/nginx/html  nginx
+docker run -v /app/content:/usr/share/nginx/html  nginx
+docker run -v $(pwd):/user/html nginx
 ```
 
 ## ⚫ Docker Compose
