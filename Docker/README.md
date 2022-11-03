@@ -89,6 +89,16 @@ services:
     ports:
       - 8080:80
 ```
+- Adding named volume
 
-
+```yaml
+  mongo:
+    container_name: mongo
+    image: mongo:4.0
+    volumes:
+      - mongo-db:/data/db
+      
+volumes:
+  mongo-db: # named volume
+```
 
