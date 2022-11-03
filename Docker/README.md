@@ -89,7 +89,7 @@ services:
     ports:
       - 8080:80
 ```
-- Adding named volume
+- Adding named volume and network
 
 ```yaml
   mongo:
@@ -97,8 +97,14 @@ services:
     image: mongo:4.0
     volumes:
       - mongo-db:/data/db
+    networks: 
+      - my-net
       
 volumes:
   mongo-db: # named volume
+  
+networks:
+    my-net:
+        driver: bridge
 ```
 
