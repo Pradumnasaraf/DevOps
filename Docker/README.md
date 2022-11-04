@@ -118,7 +118,13 @@ depends_on:
 
 ## ⚫ Docker Swarm
 
-Docker Swarm is an orchestration management tool that runs on Docker applications.
+Docker Swarm is an orchestration management tool that runs on Docker applications.Container orchestration automates the deployment, management, scaling, and networking of containers
+
+- Docker Swarm is not enabled by deafult, we have enbaled by
+
+```bash
+docker swarm init
+```
 
 ![Screenshot from 2022-11-03 10-10-37](https://user-images.githubusercontent.com/51878265/199648859-29effd56-1eba-4633-b424-20f3b9381a5f.png)
 
