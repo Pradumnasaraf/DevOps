@@ -126,8 +126,10 @@ Docker Swarm is an orchestration management tool that runs on Docker application
 docker swarm init
 ```
 
+
 ![Screenshot from 2022-11-03 10-10-37](https://user-images.githubusercontent.com/51878265/199648859-29effd56-1eba-4633-b424-20f3b9381a5f.png)
 
+![Screenshot from 2022-11-04 13-34-28](https://user-images.githubusercontent.com/51878265/199923225-83fe75fc-406a-4d51-b2d4-15fb5ec6b4ee.png)
 
 
 
