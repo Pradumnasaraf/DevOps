@@ -134,6 +134,12 @@ docker swarm init
 ### Docker Stack
 
 When we have mutiple services and to establish the relation between them we use stack, it is same as compose file.
+Here we don't use `build:` object and there is new `deploy:` specfic to swarm to like replicas, secrets.
+
+```yaml
+    deploy:
+      replicas: 3
+```
 
 
 ![Screenshot from 2022-11-04 13-34-28](https://user-images.githubusercontent.com/51878265/199923225-83fe75fc-406a-4d51-b2d4-15fb5ec6b4ee.png)
