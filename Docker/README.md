@@ -41,6 +41,8 @@ COPY . ./
 
 ## ⚫ .dockerignore
 
+We a file `..dockerignore` which are not required when we copy files into the container.
+
 
 ## ⚫ Docker Volumes
 
@@ -130,6 +132,8 @@ docker swarm init
 
 ### Docker service
 
+In swarm we don't create create containers directly, instead we create service and that creates container for us.
+
 
 ### Docker Stack
 
@@ -139,6 +143,32 @@ Here we don't use `build:` object and there is new `deploy:` specfic to swarm to
 ```yaml
     deploy:
       replicas: 3
+```
+
+- It also supports secrets
+
+- To create a secret from the terminal
+
+```bash
+echo "<pw>" | docker secret create psql-pw -
+```
+
+```
+services:
+  psql:
+    image: postgres
+    secrets:
+      - psql_user
+      - psql_password
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/psql_password
+      POSTGRES_USER_FILE: /run/secrets/psql_user
+
+secrets:
+  psql_user:
+    file: ./psql_user.txt
+  psql_password:
+    file: ./psql_password.txt
 ```
 
 
