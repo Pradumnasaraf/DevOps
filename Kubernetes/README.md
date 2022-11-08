@@ -1,7 +1,5 @@
 
-## Kubernetes Learnings
-
-This repo contains all my learning realted to **Kubernetes**. It will consist resources, code, commands, and configuration files.
+## Kubernetes Learnings 
 
 #### Playground (Envirnoment to test out Kubernetes)
 
