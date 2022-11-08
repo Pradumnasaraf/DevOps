@@ -145,32 +145,39 @@ Here we don't use `build:` object and there is new `deploy:` specfic to swarm to
       replicas: 3
 ```
 
-- It also supports secrets
 
-- To create a secret from the terminal
+### Docker Secrets
+
+Docker Swarm supports secrets. We can pass ENV variables with help of that. We can pass secrets from the file or saved Docker secret.
+
+-  We can create Docker secrets though CLI `external:`
+
 
 ```bash
-echo "<pw>" | docker secret create psql-pw -
+echo "<password text>" | docker secret create psql-pw -
 ```
+
+or
+
+- Create a password file and then pass the path in the stack file. `file:`
 
 ```
 services:
-  psql:
-    image: postgres
-    secrets:
-      - psql_user
-      - psql_password
-    environment:
-      POSTGRES_PASSWORD_FILE: /run/secrets/psql_password
-      POSTGRES_USER_FILE: /run/secrets/psql_user
-
+    postgres:
+      image: postgres
+      secrets:
+        - post-pass
+        - post-user
+      environment:
+          POSTGRES_PASSWORD_FILE: /run/secrets/post-pass
+          POSTGRES_USER_FILE: /run/secrets/post-user
+      
 secrets:
-  psql_user:
-    file: ./psql_user.txt
-  psql_password:
-    file: ./psql_password.txt
+    post-pass:
+      external: true
+    post-user:
+        file: ./post-user.txt
 ```
-
 
 ![Screenshot from 2022-11-04 13-34-28](https://user-images.githubusercontent.com/51878265/199923225-83fe75fc-406a-4d51-b2d4-15fb5ec6b4ee.png)
 
