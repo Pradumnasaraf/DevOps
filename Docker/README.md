@@ -161,7 +161,7 @@ or
 
 - Create a password file and then pass the path in the stack file. `file:`
 
-```
+```yaml
 services:
     postgres:
       image: postgres
