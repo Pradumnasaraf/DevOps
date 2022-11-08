@@ -132,23 +132,30 @@ docker swarm init
 
 ### Docker service
 
-In swarm we don't create create containers directly, instead we create service and that creates container for us.
+In swarm we don't create create containers directly, instead we create service and that creates container for us. A service can run multiple node on sevral nodes.
 
+![Screenshot from 2022-11-08 13-07-01](https://user-images.githubusercontent.com/51878265/200502631-b574f4fc-8a0c-4e6f-8493-6d666ec1db2e.png)
 
 ### Docker Stack
 
 When we have mutiple services and to establish the relation between them we use stack, it is same as compose file.
 Here we don't use `build:` object and there is new `deploy:` specfic to swarm to like replicas, secrets.
 
+![Screenshot from 2022-11-04 13-34-28](https://user-images.githubusercontent.com/51878265/199923225-83fe75fc-406a-4d51-b2d4-15fb5ec6b4ee.png)
+
 ```yaml
     deploy:
       replicas: 3
 ```
+We deploy stack file with this command
 
+```bash
+docker stack deploy -c file.yml <stackname>
+```
 
 ### Docker Secrets
 
-Docker Swarm supports secrets. We can pass ENV variables with help of that. We can pass secrets from the file or saved Docker secret.
+Docker Swarm supports secrets. We can pass ENV variables like SSH keys, Usernames and passwords with help of that. We can pass secrets from the file or saved Docker secret.
 
 -  We can create Docker secrets though CLI `external:`
 
@@ -178,7 +185,6 @@ secrets:
         file: ./post-user.txt
 ```
 
-![Screenshot from 2022-11-04 13-34-28](https://user-images.githubusercontent.com/51878265/199923225-83fe75fc-406a-4d51-b2d4-15fb5ec6b4ee.png)
 
 
 
