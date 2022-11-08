@@ -152,14 +152,13 @@ Docker Swarm supports secrets. We can pass ENV variables with help of that. We c
 
 -  We can create Docker secrets though CLI `external:`
 
-
 ```bash
 echo "<password text>" | docker secret create psql-pw -
 ```
 
 or
 
-- Create a password file and then pass the path in the stack file. `file:`
+- Create a file with password and then pass the path in the stack `file:`
 
 ```yaml
 services:
