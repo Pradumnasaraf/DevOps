@@ -84,7 +84,7 @@ docker exec -it <container ID/name> bash/sh
 - To check which ports has been exposed and forwarded
 
 ```bash
-docker port <image name>
+docker port <container name>
 ```
 
 - Check all the stopped container
