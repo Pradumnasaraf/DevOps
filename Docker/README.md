@@ -41,7 +41,7 @@ COPY . ./
 
 ## ⚫ .dockerignore
 
-We a file `..dockerignore` which are not required when we copy files into the container.
+We a file `.dockerignore` which are not required when we copy files into the container.
 
 
 ## ⚫ Docker Volumes
