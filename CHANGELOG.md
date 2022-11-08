@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.1.0...v1.2.0) (2022-11-08)
+
+
+### Features
+
+* Added docs for Docker + Dockerize the app ([cfb3913](https://github.com/Pradumnasaraf/DevOps/commit/cfb3913176b72d562fdc10c7b5c8961feb0d6a10))
+
+
+
 # [1.1.0](https://github.com/Pradumnasaraf/DevOps/compare/v0.1.0...v1.1.0) (2022-11-02)
 
 
