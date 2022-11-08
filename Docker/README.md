@@ -64,6 +64,8 @@ docker run -v myvolume:/src/public nginx
 
 ### Bind Mounting
 
+A file or directory on the host machine is mounted into a container, i.e it will match the condition of the file syestem inside a conatiner.
+
 ```bash
 docker run -v <path to your local sytem>:<conatiner path>
 docker run -v /app/content:/usr/share/nginx/html  nginx
