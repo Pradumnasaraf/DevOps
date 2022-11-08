@@ -201,9 +201,9 @@ We can create a reg with the offical [Registry image](https://hub.docker.com/_/r
     ![Screenshot from 2022-11-08 14-14-18](https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png)
 
     
-  <summary>
+  </summary>
   
-<details>
+</details>
 
 
 
