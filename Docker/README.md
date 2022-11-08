@@ -195,15 +195,6 @@ CMD curl -f http://localhost/ || exit 1
 
 We can create a reg with the offical [Registry image](https://hub.docker.com/_/registry)
 
-<details>
-  <summary> Process to create a private reg
-
-    ![Screenshot from 2022-11-08 14-14-18](https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png)
-
-    
-  </summary>
-  
-</details>
-
+ <img src="https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png">
 
 
