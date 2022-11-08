@@ -184,7 +184,26 @@ secrets:
     post-user:
         file: ./post-user.txt
 ```
+## Docker Healthcheck
 
+```dockerfile
+HEALTHCHECK --interval=30s --timeout=3s \
+CMD curl -f http://localhost/ || exit 1
+```
+
+## Private Docker Registry
+
+We can create a reg with the offical [Registry image](https://hub.docker.com/_/registry)
+
+<details>
+  <summary> Process to create a private reg
+
+    ![Screenshot from 2022-11-08 14-14-18](https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png)
+
+    
+  <summary>
+  
+<details>
 
 
 
