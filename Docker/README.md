@@ -64,7 +64,7 @@ docker run -v myvolume:/src/public nginx
 
 ### Bind Mounting
 
-```
+```bash
 docker run -v <path to your local sytem>:<conatiner path>
 docker run -v /app/content:/usr/share/nginx/html  nginx
 docker run -v $(pwd):/user/html nginx
@@ -113,7 +113,7 @@ networks:
 
 If any container depends on another container
 
-```
+```yaml
 depends_on:
   - mysql-primary
 ```
