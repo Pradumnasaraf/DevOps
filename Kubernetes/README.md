@@ -52,12 +52,20 @@ Lables are for identification
 ![Pod-Lifecycle](https://user-images.githubusercontent.com/51878265/197347032-cb45f52d-bfae-4ce4-838c-4c3ba9b10fa3.PNG)
 
 
-#### To see K8s config file
+## Configuration files
+
+- Generally A K8s YAML config file contain 4 properties
+
+```YAML
+apiVersion: 
+kind:
+metadata:
+spec:
+```
 
 ### Secrets
 
 We use secrets to pass envirnoment variables inside the pods:
-
 
 ```yaml
 apiVersion: v1
@@ -70,14 +78,7 @@ data:
   mongo-root-password: saraf123
 ```
 
-- Generally A K8s YAML config file contain 4 properties
 
-```YAML
-apiVersion: 
-kind:
-metadata:
-spec:
-```
 
 
 > Note: the serect value should be `base64` encoded
