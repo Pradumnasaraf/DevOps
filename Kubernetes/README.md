@@ -54,8 +54,29 @@ Lables are for identification
 
 #### To see K8s config file
 
-```sh
-~/.kube/config
+### Secrets
+
+We use secrets to pass envirnoment variables inside the pods:
+
+```yaml
+```
+
+
+> Note: the serect value should be `base64` encoded
+
+```bash
+echo -n "value" | base64
+```
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secrets
+type: Opaque
+data:
+  mongo-root-username: pradumna
+  mongo-root-password: saraf123
 ```
 
 - Generally A K8s YAML config file contain 4 properties
@@ -65,4 +86,9 @@ apiVersion:
 kind:
 metadata:
 spec:
+```
+
+
+```sh
+~/.kube/config
 ```
