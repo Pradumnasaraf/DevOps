@@ -1,12 +1,12 @@
 
 ## Kubernetes Learnings 
 
-#### Playground (Envirnoment to test out Kubernetes)
+## Playground (Envirnoment to test out Kubernetes)
 
 - [labs.play-with-k8s.com](https://labs.play-with-k8s.com/)
 - [killercoda.com/playgrounds](https://killercoda.com/playgrounds)
 
-#### Resources 
+## Resources 
 
 - [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
 - [BretFisher/udemy-docker-mastery](https://github.com/BretFisher/udemy-docker-mastery) GitHub repo.
@@ -14,7 +14,7 @@
 
 ## Concepts
 
-#### Kubernetes Components - architecture
+## Kubernetes Components - architecture
 
 ![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
 
@@ -58,15 +58,6 @@ Lables are for identification
 
 We use secrets to pass envirnoment variables inside the pods:
 
-```yaml
-```
-
-
-> Note: the serect value should be `base64` encoded
-
-```bash
-echo -n "value" | base64
-```
 
 ```yaml
 apiVersion: v1
@@ -89,6 +80,16 @@ spec:
 ```
 
 
-```sh
+> Note: the serect value should be `base64` encoded
+
+```bash
+echo -n "value" | base64
+```
+
+### Cluster Config file
+
+All the Cluster info are stored in file name `config` with the path:
+
+```bash
 ~/.kube/config
 ```
