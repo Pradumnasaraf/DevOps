@@ -54,7 +54,7 @@ Lables are for identification
 
 ## Configuration files
 
-Use to store external configurations like database URL
+
 
 
 
@@ -125,6 +125,7 @@ spec:
 
 ### ConfigMap
 
+Use to store external configurations like database URL
 
 ```yaml
 apiVersion: v1
