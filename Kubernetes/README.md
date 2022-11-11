@@ -54,12 +54,7 @@ Lables are for identification
 
 ## Configuration files
 
-
-
-
-
-
-- Generally A K8s YAML config file contain 4 properties
+Generally A K8s YAML config file contain 4 properties
 
 ```YAML
 apiVersion: 
@@ -125,7 +120,7 @@ spec:
 
 ### ConfigMap
 
-Use to store external configurations like database URL
+Use to store external configurations like database URL. We put in simple text forrmat unlike [Secrets](#secrets)
 
 ```yaml
 apiVersion: v1
