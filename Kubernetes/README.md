@@ -25,6 +25,27 @@
 
 </details>
 
+### Master Node
+
+- **API Server**: 
+- **Etcd**: 
+- **Scheduler**: Decide which worker node will be best to deploy next pods, after examin the resources and other para. It does not schedule it.
+- **Controller Manager**: Detect current state of the cluster and keep the desrire state of pods running
+
+Here is a simple flow chart:
+
+```mermaid
+graph TD;
+    a[Conroller Manager]-->b[Scheduler];
+    b-->c[Kublet];
+```
+
+### Worker Node
+
+- **Kubelet**:
+- **Kube Proxy**
+- **Container Runtime** 
+
 #### Imperative Vs Declarative
 
 - Imperative - When we give command though CLI to run pod/deplyment. For eg: `kubectl run nginx --image=nginx`
