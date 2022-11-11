@@ -28,7 +28,7 @@
 ### Master Node
 
 - **API Server**: 
-- **Etcd**: 
+- **Etcd**: Its store current state of the cluster. It's like cluster brain.
 - **Scheduler**: Decide which worker node will be best to deploy next pods, after examin the resources and other para. It does not schedule it.
 - **Controller Manager**: Detect current state of the cluster and keep the desrire state of pods running
 
@@ -42,9 +42,9 @@ graph TD;
 
 ### Worker Node
 
-- **Kubelet**:
-- **Kube Proxy**
-- **Container Runtime** 
+- **Kubelet**: It is the entry point to the Kubernetes cluster. Help us comunicating with diffent objects in the Cluster
+- **Kube Proxy**: Maintains network rules on node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
+- **Container Runtime** - Like Docker, ContainerD, etc. Which actually runns the container
 
 #### Imperative Vs Declarative
 
