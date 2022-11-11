@@ -1,7 +1,6 @@
-
 ## Kubernetes Learnings 
 
-## Playground (Envirnoment to test out Kubernetes)
+## Playground (environment to test out Kubernetes)
 
 - [labs.play-with-k8s.com](https://labs.play-with-k8s.com/)
 - [killercoda.com/playgrounds](https://killercoda.com/playgrounds)
@@ -28,11 +27,11 @@
 ### Master Node
 
 - **API Server**: 
-- **Etcd**: Its store current state of the cluster. It's like cluster brain.
-- **Scheduler**: Decide which worker node will be best to deploy next pods, after examin the resources and other para. It does not schedule it.
-- **Controller Manager**: Detect current state of the cluster and keep the desrire state of pods running
+- **Etcd**: It stores the current state of the cluster. It's like a cluster brain.
+- **Scheduler**: Decide which worker node will be best to deploy the next pods, after examining the resources and other paras. It does not schedule it.
+- **Controller Manager**: Detect the current state of the cluster and keep the desired state of pods running
 
-Folow of request when somethings need to chnage/added on worker node
+Follow requests when some things need to change/added to a worker node
 
 ```mermaid
 graph TD;
@@ -42,30 +41,30 @@ graph TD;
 
 ### Worker Node
 
-- **Kubelet**: It is the entry point to the Kubernetes cluster. Help us comunicating with diffent objects in the Cluster
-- **Kube Proxy**: Maintains network rules on node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
-- **Container Runtime** - Like Docker, ContainerD, etc. Which actually runns the container
+- **Kubelet**: It is the entry point to the Kubernetes cluster. Help us communicate with different objects in the Cluster
+- **Kube Proxy**: Maintains network rules on the node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
+- **Container Runtime** - Like Docker, ContainerD, etc. Which runs the container
 
 #### Imperative Vs Declarative
 
-- Imperative - When we give command though CLI to run pod/deplyment. For eg: `kubectl run nginx --image=nginx`
+- Imperative - When we give a command through CLI to run pod/deployment. For eg: `kubectl run nginx --image=nginx`
 
-- Declrative - Creating deployment though YAML file. 
+- Declarative - Creating deployment through YAML file. 
 
 #### Namespaces
 
-- Isolated environment to the tems. In this we can group resouces seprately like database. Also, great for running different versions of the app.
+- Isolated environment for the teams. In this, we can group resources separately like a database. Also, great for running different versions of the app.
 
-We can create namespace by
+We can create a namespace by
 
 ```
 kubectl create namespace <name>
 kubectl create namespace dev
 ```
 
-#### Lables and selectors
+#### Labels and selectors
 
-Lables are for identification
+Labels are for identification
 
 
 #### Pod Lifecycle
@@ -75,7 +74,7 @@ Lables are for identification
 
 ## Configuration files
 
-Generally A K8s YAML config file contain 4 properties
+Generally, A K8s YAML config file contains 4 properties
 
 ```YAML
 apiVersion: 
@@ -123,7 +122,7 @@ spec:
 
 ### Services
 
-Servies are for internal communtion of pods. It also help giving a pop static IP address
+Services are for internal communication of pods. It also helps give a pop static IP address
 
 ```yaml
 apiVersion: v1
@@ -132,7 +131,7 @@ metadata:
   name: mongodb-service
 spec:
   selector:
-    app: mongodb //Deployment app lable
+    app: mongodb //Deployment app label
   ports:
     - protocol: TCP
       port: 27017 // Service Port
@@ -141,7 +140,7 @@ spec:
 
 ### ConfigMap
 
-Use to store external configurations like database URL. We put in simple text forrmat unlike [Secrets](#secrets)
+Use to store external configurations like database URLs. We put it in simple text format unlike [Secrets](#secrets)
 
 ```yaml
 apiVersion: v1
@@ -154,7 +153,7 @@ data:
 
 ### Secrets
 
-We use secrets to pass envirnoment variables inside the pods.
+We use secrets to pass environment variables inside the pods.
 
 ```yaml
 apiVersion: v1
@@ -167,7 +166,7 @@ data:
   mongo-root-password: c2FyYWYxMjM= //saraf123
 ```
 
-> Note: the serect value should be `base64` encoded, like `cHJhZHVtbmE` 
+> Note: the secret value should be `base64` encoded, like `cHJhZHVtbmE` 
 
 ```bash
 echo -n "value" | base64
@@ -175,7 +174,7 @@ echo -n "value" | base64
 
 ### Cluster Config file
 
-All the Cluster info are stored in file name `config` with the path:
+All the Cluster info is stored in the file name `config` with the path:
 
 ```bash
 ~/.kube/config
