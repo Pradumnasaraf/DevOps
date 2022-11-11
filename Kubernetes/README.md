@@ -63,9 +63,27 @@ metadata:
 spec:
 ```
 
+### Services
+
+Servies are for internal communtion of pods. It also help giving a pop static IP address
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb //Deployment app lable
+  ports:
+    - protocol: TCP
+      port: 27017 // Service Port
+      targetPort: 27017 // Pod/Container Port
+```
+
 ### Secrets
 
-We use secrets to pass envirnoment variables inside the pods:
+We use secrets to pass envirnoment variables inside the pods
 
 ```yaml
 apiVersion: v1
@@ -74,9 +92,15 @@ metadata:
   name: mongodb-secrets
 type: Opaque
 data:
-  mongo-root-username: pradumna
-  mongo-root-password: saraf123
+  mongo-root-username: cHJhZHVtbmE= //pradumna
+  mongo-root-password: c2FyYWYxMjM= //saraf123
 ```
+
+### ConfigMap
+
+
+
+
 
 
 
