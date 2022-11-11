@@ -54,6 +54,11 @@ Lables are for identification
 
 ## Configuration files
 
+Use to store external configurations like database URL
+
+
+
+
 - Generally A K8s YAML config file contain 4 properties
 
 ```YAML
@@ -63,11 +68,48 @@ metadata:
 spec:
 ```
 
+### Deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secrets
+                  key: mongo-root-username  
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                  name: mongodb-secrets
+                  key: mongo-root-password
+```
+
 ### Services
 
 Servies are for internal communtion of pods. It also help giving a pop static IP address
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -81,9 +123,21 @@ spec:
       targetPort: 27017 // Pod/Container Port
 ```
 
+### ConfigMap
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configmap
+data:
+  database_url: mongodb-service
+```
+
 ### Secrets
 
-We use secrets to pass envirnoment variables inside the pods
+We use secrets to pass envirnoment variables inside the pods.
 
 ```yaml
 apiVersion: v1
@@ -96,16 +150,7 @@ data:
   mongo-root-password: c2FyYWYxMjM= //saraf123
 ```
 
-### ConfigMap
-
-
-
-
-
-
-
-
-> Note: the serect value should be `base64` encoded
+> Note: the serect value should be `base64` encoded, like `cHJhZHVtbmE` 
 
 ```bash
 echo -n "value" | base64
