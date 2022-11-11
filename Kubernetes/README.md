@@ -32,7 +32,7 @@
 - **Scheduler**: Decide which worker node will be best to deploy next pods, after examin the resources and other para. It does not schedule it.
 - **Controller Manager**: Detect current state of the cluster and keep the desrire state of pods running
 
-Here is a simple flow chart:
+Folow of request when somethings need to chnage/added on worker node
 
 ```mermaid
 graph TD;
