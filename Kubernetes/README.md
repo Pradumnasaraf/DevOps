@@ -50,7 +50,20 @@ Follow requests when some things need to change/added to a worker node
 
 #### Namespaces
 
-- Isolated environment for the teams. In this, we can group resources separately like a database. Also, great for running different versions of the app.
+- Isolated environment, we can group resources separately like a database. Also, great for running different versions of the app.
+
+We can add namespace attribute in YAMl file to specify with one it belongs to
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configmap
+  namespace: my-namespace
+data:
+  database_url: mongodb-service
+```
 
 We can create a namespace by
 
@@ -119,7 +132,9 @@ spec:
 
 ### Services
 
-Services are for internal communication of pods. It also helps give a pop static IP address
+Services are for internal communication of pods. It also helps give a pop static IP address. Contains routing rules.
+
+
 
 ```yaml
 apiVersion: v1
@@ -137,7 +152,36 @@ spec:
 
 ### Ingress
 
-It is use for an external service, which can be accessed by an URL instaed of IP-PORT
+It is use for an external trafic/request, which can be accessed by an URL instaed of `IP-PORT - 17.28.55.44.5:7800`. For that we need an ingress controller to make work of ingress.
+
+![Ingress](https://user-images.githubusercontent.com/51878265/201585224-eca055af-eeb6-473c-bd96-33af9b5f6c55.png)
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-ingress
+  namespace: kubernetes-dashboard
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port: 
+              number: 80
+
+```
+
+TLS
+
+<img width="1512" alt="Screenshot 2022-11-14 at 1 17 55 PM" src="https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png">
+
+
 
 ### ConfigMap
 
@@ -180,3 +224,5 @@ All the Cluster info is stored in the file name `config` with the path:
 ```bash
 ~/.kube/config
 ```
+
+

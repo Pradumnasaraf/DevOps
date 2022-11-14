@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-website-deployment
+  labels:
+    app: devops-website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-website
+  template:
+    metadata:
+      labels:
+        app: devops-website
+    spec:
+      containers:
+      - name: devops-website
+        image: pradumnasaraf/devops-website:latest
+        ports:
+        - containerPort: 80

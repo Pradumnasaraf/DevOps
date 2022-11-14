@@ -26,10 +26,18 @@ docker pull <image name>
      - `-p <Hot port:container port>`- To fowrad the port.
      - `-d` - To run in detached mode
      - `-it` - For interactive envirnoment
+     - `-e` - For environment variable
 
 ```bash
 docker run <image name>
 //Eg: docker run nginx
+```
+
+- We can aslo pass a complete `.env` file
+
+```bash
+--env-file <path-to-env-file>
+Eg: --env-file ./.env
 ```
 
 ### Docker Container
@@ -84,7 +92,7 @@ docker exec -it <container ID/name> bash/sh
 - To check which ports has been exposed and forwarded
 
 ```bash
-docker port <container name>
+docker port <image name>
 ```
 
 - Check all the stopped container
@@ -117,12 +125,21 @@ docker container prune -f
 docker network ls
 ```
 
-- Inspect a network components
+- Inspect a network components, like which container are attached to that network.
 
 ```bash
 docker network inspect <network name>
 ```
 
+- Run a container on a certian network/own careted network 
+
+```
+docker run --network <network-name> <image-name>
+```
+
+```
+docker inspect --format "{{.NetworkSettings.IPAddress}}" <conatiner-name>
+```
 
 ### Docker Images
 
@@ -144,6 +161,19 @@ docker rmi $(docker images -q)
 docker inspect  <image name/id>
 ```
 
+- Check the image layers formation
+
+```bash 
+docker history <image-name>
+```
+
+- Create a our own image with an existing image.
+
+```
+docker image tag <image-name with tag> <new-image name with tag>
+docker image tag nginx pradumna/nginx:hello
+```
+
 ### Docker Volume
 
 - Create bind mount
@@ -163,19 +193,10 @@ docker run -v <path-on-folder-loacl-machine>:<path-to-folder-on-container> -v <p
 ```
 To make it read only so that when you add some files inside it the container and it will not get created on you local machine use `-v port:port:ro`
 
+### Docker Compose
 
-- To override the and ENV of a docker container, here PORT
-```
--e PORT=3500
-```
-or file
-
-```bash
---env-file <path-to-env-file>
-Eg: --env-file ./.env
-```
-
-TO run docker compose file
+- Run docker compose file.
+  Note: By default it finds for the file name `docker-compose.yaml`, to give file with other naming use `-f <file-name.yaml>` command
 
 ```bash
 docker compose up -d
@@ -184,93 +205,22 @@ docker compose up -d
 ```bash
 docker compose down
 ```
-- When we run docker compose while with the existing image it will not create build the image even tho there is some changes. It runs the stale version.
 
-```
+- To rebuilt the new Image with thew new changes
+
+```bash
 docker compose up --build
 ```
 
-To override the existing config:
+- Override the existing of compose file
 
 ```bash
 docker compose -f docker-compose.yaml  -f docker-compose.dev.yaml
 ```
 
-- To list all the networks
+###  Docker Swam and Services
 
-```bash
-docker network ls
-```
-
-To inspect a particular network
-
-```bash
-docker inspect <network-id>
-```
-
-to check which port are exposed in a container
-
-```bash
-docker container port <Container-name>
-````
-
-```
-docker inspect --format "{{.NetworkSettings.IPAddress}}" <conatiner-name>
-```
-
-- To inspect which conatiners are attached to the a particalr newtork
-
-```
-docker network inspect <network-name>
-docker network inspect bridge
-```
-
-- To create a network (It will create a bridge)
-
-```
-docker network create <network-name>
-```
-
-- To run a container on a certian network/own careted network 
-
-```
-docker run --network <network-name> <image-name>
-```
-
-- To connect a conatanier to a another network
-
-```
-docker connect network <network-name> <conatiner-name>
-```
-
-- To disconnect a conatanier from another network
-
-```
-docker disconnect network <network-name> <conatiner-name>
-```
-
-- Check the image layers formation
-
-```bash 
-docker history <image-name>
-```
-
-- Inspect the meta data of an image
-
-```
-docker inspect <image-name>
-```
-
-- To create a our own tag with some image
-
-```
-docker image tag <image-name with tag> <new-image name with tag>
-docker image tag nginx pradumna/nginx:hello
-```
-
-> DOCKER SWARM and SERVICE
-
-- To initalize swarm
+- Initalize swarm
 
 ```bash
 docker swarm init
@@ -294,13 +244,13 @@ docker node update --role manager <node-name>
 docker network create -d overlay backend
 ```
 
-- To craete a service
+- Create a service. Also we can add flags for further customiztaion.
 
     - `--name` - to give a service name
     - `--replicas` - to define how many running instance of the same image.
     - `-p` - for port forwarding
 
-```
+```bash
 docker service create -p 8080:80 --name vote --replicas 2 nginx
 ```
 
@@ -335,7 +285,7 @@ docker service update --publish-rm 8080 --publish-add 808180 <service name>
 docker service update --publish-rm 8080 --publish-add 808180 mynginx
 ```
 
-> DOCKER STACK
+### Docker Stack
 
 - To deploy a stack file
 

@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-ingress
+  namespace: kubernetes-dashboard
+spec:
+  rules:
+  - host: example.com # This is the domain name that you want to use for your website
+    http:
+      paths:
+      - pathType: Prefix 
+        path: "/"
+        backend:
+          service:
+            name: kubernetes-dashboard # This is the name of the service
+            port: 
+              number: 80 # This is the port of the service
+      # Have different paths for different services
+      - pathType: Prefix
+        path: "/app"
+        backend:
+          service:
+            name: app-service
+            port: 
+              number: 3000
+# Multiple most by creating subdomains
+  - host: blog.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: blog-service
+            port: 
+              number: 8080 
