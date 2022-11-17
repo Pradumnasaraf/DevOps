@@ -24,7 +24,7 @@
 
 </details>
 
-### Master Node
+## Master Node
 
 - **API Server**: 
 - **Etcd**: It stores the current state of the cluster. It's like a cluster brain.
@@ -36,19 +36,19 @@ Follow requests when some things need to change/added to a worker node
     `Conroller Manager`
 
 
-### Worker Node
+## Worker Node
 
 - **Kubelet**: It is the entry point to the Kubernetes cluster. Help us communicate with different objects in the Cluster
 - **Kube Proxy**: Maintains network rules on the node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
 - **Container Runtime** - Like Docker, ContainerD, etc. Which runs the container
 
-#### Imperative Vs Declarative
+## Imperative Vs Declarative
 
 - Imperative - When we give a command through CLI to run pod/deployment. For eg: `kubectl run nginx --image=nginx`
 
 - Declarative - Creating deployment through YAML file. 
 
-#### Namespaces
+## Namespaces
 
 - Isolated environment, we can group resources separately like a database. Also, great for running different versions of the app.
 
@@ -72,12 +72,7 @@ kubectl create namespace <name>
 kubectl create namespace dev
 ```
 
-#### Labels and selectors
-
-Labels are for identification
-
-
-#### Pod Lifecycle
+## Pod Lifecycle
 
 ![Pod-Lifecycle](https://user-images.githubusercontent.com/51878265/197347032-cb45f52d-bfae-4ce4-838c-4c3ba9b10fa3.PNG)
 
@@ -92,6 +87,10 @@ kind:
 metadata:
 spec:
 ```
+
+#### Labels and selectors
+
+Labels are for identification
 
 ### Deployment
 
@@ -217,7 +216,11 @@ data:
 echo -n "value" | base64
 ```
 
-### Cluster Config file
+## Secret and ConfigMap as volume
+
+
+
+## Cluster Config file
 
 All the Cluster info is stored in the file name `config` with the path:
 
@@ -225,4 +228,50 @@ All the Cluster info is stored in the file name `config` with the path:
 ~/.kube/config
 ```
 
+## Networking
+
+Container communication - The container inside a pod communicate via localhost shares the same networking namespace. To test it out, `Curl` the other conatiner by exec into the 1st container.
+
+Steps
+
+1) Create a deploymeny with the config file below 
+ 
+```YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      - name: sidecar
+        image: curlimages/curl
+        command: ["bin/sh"]
+        args: ["-c", "echo Hello from the sidecar container! && sleep 3600"]
+```
+
+2) Get inside the `sidecar` conatiner in the pod myapp and access the terminal by:
+
+```bash
+kubectl exec -it <pod-name> -c sidecar -- /bin/sh
+```
+
+3) Curl the localhost with the respective port of other container.
+
+```bash
+curl localhost:80
+```
 
