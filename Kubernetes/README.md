@@ -215,6 +215,11 @@ data:
 echo -n "value" | base64
 ```
 
+## StatefulSet
+
+- Any application that stores data to keep it state, like database. In this the name and endpoint stays same when the pods restarted.
+
+
 ## Secret and ConfigMap as volume
 
 We can mount Config and Secret as a volume 

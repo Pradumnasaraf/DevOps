@@ -34,7 +34,7 @@ Contains all my learning related to DevOps tools and tech.
 <br>
 <br>
 
-## Bash Scripting
+## Bash
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="120" alt="bash"> 
 
@@ -47,9 +47,20 @@ Contains all my learning related to DevOps tools and tech.
 
 ## Git 
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/200594978-178d2d30-7ef7-45c6-b4db-e24a95c7a067.png" height="120" alt="git"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/202784470-2c813581-7160-4aaf-b96c-35187795d05b.png" height="120" alt="git"> 
 
 - [Notes](Git/README.md)
 - [Commands](Git/commands/README.md)
+
+<br>
+<br>
+<br>
+
+## YAML
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/202765143-55758916-b631-4c18-aaad-718b42507d67.png" height="120" alt="YAML"> 
+
+- [Notes](YAML/README.md)
+- [Syntax](YAML/syntax/README.md)
 
 <br>
