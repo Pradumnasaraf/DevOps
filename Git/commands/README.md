@@ -20,13 +20,13 @@ git add [file-name]
 ```bash
 git reset [commit-hash]
 ```
-- To change the date and time of last commit
+- Change the date and time of last commit
 
 ```bash
 git commit --amend --date="YYYY-MM-DD HH:MM:SS
 ```
 
-- To remove/reset all the commits
+- Remove/reset all the commits
 
 ```bash
 git update-ref -d HEAD
@@ -37,13 +37,13 @@ git update-ref -d HEAD
 ```bash
 git config --list
 ```
-- To craete a new brach
+- Create a new brach
 
 ```bash
 git branch <branch-name>
 ```
 
-- To checkout a branch
+- Checkout a branch
 
 ```bash
 git checkout <branch-name>
