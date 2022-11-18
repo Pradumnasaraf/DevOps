@@ -48,3 +48,9 @@ git branch <branch-name>
 ```bash
 git checkout <branch-name>
 ```
+
+- Create and Checkout branch with a single command
+
+```bash
+git checkout -b <branch-name>
+```
