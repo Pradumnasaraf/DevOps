@@ -32,7 +32,6 @@ Contains all my learning related to DevOps tools and tech.
 
 <br>
 <br>
-<br>
 
 ## Bash
 
@@ -43,7 +42,6 @@ Contains all my learning related to DevOps tools and tech.
 
 <br>
 <br>
-<br>
 
 ## Git 
 
@@ -52,7 +50,6 @@ Contains all my learning related to DevOps tools and tech.
 - [Notes](Git/README.md)
 - [Commands](Git/commands/README.md)
 
-<br>
 <br>
 <br>
 
