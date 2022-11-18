@@ -3,4 +3,3 @@ Git is free and open source software for distributed version control. Official [
 ## Resources
 
 - [learngitbranching.js.org](https://learngitbranching.js.org/)
-- 
