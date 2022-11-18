@@ -34,7 +34,7 @@ Contains all my learning related to DevOps tools and tech.
 <br>
 <br>
 
-## Bash Scripting
+## Bash
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="120" alt="bash"> 
 
@@ -60,8 +60,7 @@ Contains all my learning related to DevOps tools and tech.
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/202765143-55758916-b631-4c18-aaad-718b42507d67.png" height="120" alt="YAML"> 
 
-- [Notes](Kubernetes/README.md)
-- [Commands](Kubernetes/commands/README.md)
-- [Manifest Files](Kubernetes/YAML)
+- [Notes](YAML/README.md)
+- [Syntax](YAML/syntax/README.md)
 
 <br>
