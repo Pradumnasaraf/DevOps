@@ -32,6 +32,19 @@ git commit --amend --date="YYYY-MM-DD HH:MM:SS
 git update-ref -d HEAD
 ```
 
-- `git config --list`
-- `git branch <branch-name>` - Create a new branch
-- `git checkout <branch-name>` - Navigate among the created branches
+- Check the git config
+
+```bash
+git config --list
+```
+- To craete a new brach
+
+```bash
+git branch <branch-name>
+```
+
+- To checkout a branch
+
+```bash
+git checkout <branch-name>
+```
