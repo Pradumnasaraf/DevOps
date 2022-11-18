@@ -21,7 +21,7 @@ cities: [new delhi, patna,gujrat]
 
 ### String and Variables
 
-```
+```yaml
 name: Pradumna Saraf
 fruit: "Mango"
 job: 'Advocate'
@@ -59,6 +59,7 @@ role:
 
 ### Nested Sequence
 
+```yaml
 -
   - mango
   - apple
@@ -66,6 +67,7 @@ role:
 -
   - marks
   - roll
+```
 
 ##### Specify the data type
 
@@ -98,8 +100,3 @@ date: !!timestamp 2002-01-02
 no Time zone: 2012-12-15T02:59:43
 India Time: 2012-12-15T02:59:43 +5:30
 ```
-
-
-
-  
- 
