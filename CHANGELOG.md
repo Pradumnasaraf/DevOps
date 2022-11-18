@@ -1,10 +1,9 @@
-# [1.3.0](https://github.com/Pradumnasaraf/DevOps/compare/v0.1.0...v1.3.0) (2022-11-18)
+## [1.3.1](https://github.com/Pradumnasaraf/DevOps/compare/v0.1.0...v1.3.1) (2022-11-18)
 
 
-### Features
+### Bug Fixes
 
-* Added docs for Docker + Dockerize the app ([01b3c41](https://github.com/Pradumnasaraf/DevOps/commit/01b3c4146d3c0a62b067567b7052f134898ab76b))
-* converted into a website ([f0625d9](https://github.com/Pradumnasaraf/DevOps/commit/f0625d9b8b96bffafb725feb35cf78655593bdfd))
+* extra spacing ([18360a9](https://github.com/Pradumnasaraf/DevOps/commit/18360a9b9371aeb78ff22bbb92443520d5dd2365))
 
 
 
