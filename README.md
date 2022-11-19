@@ -71,3 +71,13 @@ Contains all my learning related to DevOps tools and tech.
 
 <br>
 <br>
+
+## Prometheus
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/202859485-eba6809e-1cb8-4bbc-ab22-efa3c91d6463.png" height="120" alt="YAML"> 
+
+- [Notes](Prometheus/README.md)
+
+<br>
+<br>
+
