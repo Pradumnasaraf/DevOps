@@ -28,11 +28,7 @@
 - **API Server**: 
 - **Etcd**: It stores the current state of the cluster. It's like a cluster brain.
 - **Scheduler**: Decide which worker node will be best to deploy the next pods, after examining the resources and other paras. It does not schedule it.
-- **Controller Manager**: Detect the current state of the cluster and keep the desired state of pods running
-
-Follow requests when some things need to change/added to a worker node
-
-    `Conroller Manager`
+- **Controller Manager**: Detect the current state of the cluster and keep the desired state of pods running. Follow requests when some things need to change/added to a worker node
 
 
 ## Worker Node
@@ -130,9 +126,35 @@ spec:
 
 ### Services
 
-Services are for internal communication of pods. It also helps give a pop static IP address. Contains routing rules.
+Services are for internal communication of pods. It also helps give a pop static IP address. Contains routing rules. It also provide loadbalancing.
 
+#### Types of Services
 
+- **ClusterIP**: For inter communication of pods  
+
+- **HeadLess**: It is a direct communication with a pod. No load blancing is required. So in this ClusterIp is none
+
+```yaml
+spec:
+  clusterIP: None 
+```
+
+- **NodePort**: It allow external traffic to a fix port on each worker node.
+
+> By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+
+```yaml
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007  # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
+```
+
+- **LoadBalancer**: Becomes accessile externally through cloud provider LoadBalancer.
+
+General service file.
 
 ```yaml
 apiVersion: v1
@@ -146,6 +168,21 @@ spec:
     - protocol: TCP
       port: 27017 // Service Port
       targetPort: 27017 // Pod/Container Port
+```
+
+Multi-port service - In this we have to name the ports
+
+```
+  ports:
+    - name: mongogb
+      protocol: TCP
+      port: 27017 // Service Port
+      targetPort: 27017 // Pod/Container Port
+    - name: mongodb-exporter
+      protocol: TCP
+      port: 9216
+      targetPort: 9216 
+      
 ```
 
 ### Ingress
