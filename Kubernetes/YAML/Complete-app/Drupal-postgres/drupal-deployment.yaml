@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drupal-app
+  template:
+    metadata:
+      labels:
+        app: drupal-app
+    spec:
+      containers:
+      - name: drupal
+        image: drupal:9.4.5
+        ports:
+        - containerPort: 80

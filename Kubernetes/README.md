@@ -252,6 +252,12 @@ data:
 echo -n "value" | base64
 ```
 
+We can decode it by
+
+```bash 
+echo cHJhZHVtbmE | base64 --decode
+```
+
 ## StatefulSet
 
 - Any application that stores data to keep it state, like database. In this the name and endpoint stays same when the pods restarted.
