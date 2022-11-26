@@ -34,7 +34,7 @@ kubectl create deployment <name> --image <image name>
 kubectl create deployment mynginx --image nginx
 ```
 
-- To scale the deployment (increase replicas)
+- To sacle the deployment (increase replicas)
 
 ```
 kubectl scale deployment <deployment name> --replicas <no of replicas>
@@ -178,22 +178,32 @@ kubectl delete pods --all
 
 - Apply to a particular namespace
 
-```yaml
+```bash
 kubectl apply -f <config file name> --namespace=<namespace name>
+```
 
+## Persistent Volume
+
+- Get all the PersistentVolume
+
+```bash 
+kubectl get pv
+```
+
+- Get all the PersistentVolumeClaim (tied to a namespace)
+
+```bash 
+kubectl get pvc
 ```
 
 - To chnage default/active namespace
 
-- `kubectl create deployment <deployment-name> --image=<image-name> ` - cteate a deplyment (pod inside it, you can't directly created pods)
-    - `kubectl create deployment ngni-dep --image=ngnix` 
-- `kubectl edit deployment ngnix` - Edit the config file.
-- `kubectl exec -it <pod-name> -- bin/bash` - open the shell for that pod
-- `kubectl get pod -o wide` - get more details about the pods
+```bash
+kubectl config set-context --current --namespace=<namespace name>
+```
 
-- `kubectl create namespace <insert-namespace-name-here>` - create a namespace
-    - Eg: `kub apply -f mongo-configmap.yaml --namespace=my-namespace`
-- `kub get configmap -n my-namespace`
-    - Eg: `kub get configmap -n my-namespace`
-    
+- To get the details of a particular namespace
 
+```bash 
+kubectl get all -n <namespace name>
+```

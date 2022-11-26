@@ -7,10 +7,14 @@
 
 ## Resources 
 
+
 - [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
 - [BretFisher/udemy-docker-mastery](https://github.com/BretFisher/udemy-docker-mastery) GitHub repo.
 - Kubernetes official [docs](https://kubernetes.io/docs/home/)
 
+## Tools arround k8s
+
+- [Validkube](https://validkube.com/) - Kubernetes Manifest file validator (check security, structure).
 
 ## Kubernetes Components - architecture
 
@@ -318,6 +322,12 @@ data:
 
 ![Env vs Volume mount](https://user-images.githubusercontent.com/51878265/202616618-c536bbd6-e221-4df9-b57d-8969dc1504a8.png)
 
+
+## Persistent Volume
+
+First we create the Persistent Volume(PV) and then we claim it by creating Persistent Volume Claim (PVC). Then that claim is mounted to the pod. But when we use cloud provides we can claim the storage directly from the cloud provider.
+
+- Note: Persistent volume is indepent of the namespace, but Persistent Volume Claim is bound to a specfic.
 
 ## Cluster Config file
 
