@@ -189,6 +189,22 @@ Multi-port service - In this we have to name the ports
       
 ```
 
+- Port forwarding
+
+We can forward a port from a pod to our local machine
+
+```bash
+kubectl port-forward <pod-name> <localhost-port>:<pod-port>
+```
+
+or
+
+Note: In this case pod port is same as localhost port
+
+```bash
+kubectl port-forward <pod-name> <localhost-port>
+```
+
 ### Ingress
 
 It is use for an external trafic/request, which can be accessed by an URL instaed of `IP-PORT - 17.28.55.44.5:7800`. For that we need an ingress controller to make work of ingress.
