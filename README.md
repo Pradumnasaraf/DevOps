@@ -25,7 +25,7 @@
 
 ## Networking
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/202643166-b83085dd-ab38-444c-b5de-c08b83f4cd2b.png" height="120" alt="network"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/204347251-efd0e271-5d3c-4008-bdab-6f6ce5b2195f.png" height="120" alt="network"> 
 
 - [Notes](Networking/README.md)
 - [Commands](Networking/commands/README.md)
@@ -98,3 +98,4 @@
 
 <br>
 <br>
+
