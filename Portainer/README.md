@@ -33,5 +33,4 @@ helm install -n portainer portainer portainer/portainer
 kubectl -n portainer port-forward svc/portainer 9000:9000
 ```
 
-
-
+Dashboard will be available at http://localhost:9000. Preview
