@@ -176,7 +176,7 @@ spec:
 
 Multi-port service - In this we have to name the ports
 
-```
+```yaml
   ports:
     - name: mongogb
       protocol: TCP
@@ -188,6 +188,9 @@ Multi-port service - In this we have to name the ports
       targetPort: 9216 
       
 ```
+
+<img width="626" alt="Screenshot 2022-11-28 at 2 15 57 PM" src="https://user-images.githubusercontent.com/51878265/204233963-c7bde7da-f631-49f3-b9db-1750ed55a37f.png">
+
 
 - Port forwarding
 
