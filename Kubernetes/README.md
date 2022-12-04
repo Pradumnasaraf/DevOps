@@ -176,7 +176,7 @@ spec:
 
 Multi-port service - In this we have to name the ports
 
-```
+```yaml
   ports:
     - name: mongogb
       protocol: TCP
@@ -187,6 +187,24 @@ Multi-port service - In this we have to name the ports
       port: 9216
       targetPort: 9216 
       
+```
+
+<p align="center" ><img width="626" alt="Screenshot 2022-11-28 at 2 15 57 PM" src="https://user-images.githubusercontent.com/51878265/204233963-c7bde7da-f631-49f3-b9db-1750ed55a37f.png"></p>
+
+- Port forwarding
+
+We can forward a port from a pod to our local machine
+
+```bash
+kubectl port-forward <pod-name> <localhost-port>:<pod-port>
+```
+
+or
+
+Note: In this case pod port is same as localhost port
+
+```bash
+kubectl port-forward <pod-name> <localhost-port>
 ```
 
 ### Ingress

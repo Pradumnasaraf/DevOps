@@ -43,6 +43,11 @@ COPY . ./
 
 We have a file `.dockerignore` which is not required when we copy files into the container.
 
+## ⚫ Docker Network
+
+- We need create custom bridge network to enable dns resolution between containers. It doesn't work with the default bridge network.
+
+- Host: Use the host network stack inside the container. The container will use the host's network interfaces. We don't need to expose ports.
 
 ## ⚫ Docker Volumes
 

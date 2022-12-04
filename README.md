@@ -1,6 +1,6 @@
 <h1 align="center"> DevOps </h1>
 
-Contains all my learning related to DevOps tools and tech.
+<p align="center"> Contains all my learning related to DevOps tools and tech.</p>
 
 ## Kubernetes
 
@@ -25,7 +25,7 @@ Contains all my learning related to DevOps tools and tech.
 
 ## Networking
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/202643166-b83085dd-ab38-444c-b5de-c08b83f4cd2b.png" height="120" alt="network"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/204347251-efd0e271-5d3c-4008-bdab-6f6ce5b2195f.png" height="120" alt="network"> 
 
 - [Notes](Networking/README.md)
 - [Commands](Networking/commands/README.md)
@@ -77,6 +77,24 @@ Contains all my learning related to DevOps tools and tech.
 <img align="right" src="https://user-images.githubusercontent.com/51878265/202859485-eba6809e-1cb8-4bbc-ab22-efa3c91d6463.png" height="120" alt="YAML"> 
 
 - [Notes](Prometheus/README.md)
+
+<br>
+<br>
+
+## Portainer
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/204345912-dee5ddf4-4a91-4b4f-aeb3-5a429de5a7f7.png" height="122" alt="YAML"> 
+
+- [Notes](Portainer/README.md)
+
+<br>
+<br>
+
+## ArgoCD + GitOps
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="120" alt="YAML"> 
+
+- [Notes](ArgoCD/README.md)
 
 <br>
 <br>
