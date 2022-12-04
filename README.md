@@ -90,11 +90,11 @@
 <br>
 <br>
 
-## Rancher
+## ArgoCD + GitOps
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/204346422-5c0cf072-d8f6-400a-adfa-ca5540e45863.png" height="120" alt="YAML"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="120" alt="YAML"> 
 
-- [Notes](Rancher/README.md)
+- [Notes](Argo/README.md)
 
 <br>
 <br>
