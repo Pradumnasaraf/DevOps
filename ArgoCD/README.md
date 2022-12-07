@@ -1,3 +1,13 @@
+## GitOps
+
+
+### Benefits of GitOps
+
+- History of changes to the cluster is stored in Git 
+- Rollback to a previous version of the cluster is easy
+-
+
+
 ## ArgoCD
 
 - [ArgoCD](https://argoproj.github.io/cd)

@@ -34,3 +34,5 @@ kubectl -n portainer port-forward svc/portainer 9000:9000
 ```
 
 Dashboard will be available at http://localhost:9000. Preview
+
+- For business edition, follow this [guide](https://install.portainer.io/).
