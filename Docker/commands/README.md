@@ -23,7 +23,7 @@ docker pull <image name>
   - NOTE: When we just provide the name of the image it will pull the lastest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
   - Additioanly we can use flags
      - `--name <name> `- To give a name to the conatiner.
-     - `-p <Hot port:container port>`- To fowrad the port.
+     - `-p <Host port:container port>`- To fowrad the port.
      - `-d` - To run in detached mode
      - `-it` - For interactive envirnoment
      - `-e` - For environment variable
