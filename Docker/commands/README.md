@@ -81,7 +81,7 @@ or
 docker container ls
 ```
 
-- To start and interactive session and get inide the container.
+- To start and interactive session and get inside the container.
 
   - NOTE: every image does not support `bash` so we use `sh`
 
