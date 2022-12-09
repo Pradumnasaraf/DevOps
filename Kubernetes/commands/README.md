@@ -1,11 +1,4 @@
-- `minikube start` - Creating a cluster
-- `minikube status` - Running Status of cluster
-- `minikube dashboard` - 
-- `minikube docker-env` -
-- `minikube SSH` -
-
-> KUBECTL
-
+> KUBECTL COMMANDS
 
 - To check the version:
 
