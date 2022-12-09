@@ -27,6 +27,14 @@ helm update
 helm install -n portainer portainer portainer/portainer 
 ```
 
+> To install the business edition, use the following command
+
+```bash
+helm install --create-namespace -n portainer portainer portainer/portainer \
+    --set enterpriseEdition.enabled=true \
+    --set tls.force=true
+```
+
 - To access the portainer dashboard, run the following command
 
 ```bash

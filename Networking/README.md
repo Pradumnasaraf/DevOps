@@ -43,4 +43,13 @@ A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS
 
 ## IP Address
 
-<p align="center"><img alt="IP Address" src="https://user-images.githubusercontent.com/51878265/206245742-5b660f3d-5d22-421f-ab35-56faf05b0532.png"></p
+<p align="center"><img alt="IP Address" src="https://user-images.githubusercontent.com/51878265/206245742-5b660f3d-5d22-421f-ab35-56faf05b0532.png"></p>
+
+
+### IP Address classes
+
+
+<p align="center"><img alt="IP Address classes" src="https://user-images.githubusercontent.com/51878265/206355697-45304b89-eaba-42ba-b55d-0385c271ec9b.png"></p>
+
+
+<!--<p align="center"><img alt="" src=""></p> -->

@@ -33,12 +33,12 @@
 <br>
 <br>
 
-## Bash
+## Linux
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="120" alt="bash"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="120" alt="linux"> 
 
-- [Notes](Bash/README.md)
-- [Commands](Bash/commands/README.md)
+- [Notes](Linux/README.md)
+- [Commands](Linux/commands/README.md)
 
 <br>
 <br>
@@ -90,7 +90,18 @@
 <br>
 <br>
 
-## ArgoCD + GitOps
+
+## GitOps
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/206730962-b20f94c1-17af-48b2-b62c-b6c02dbeeb77.png" height="120" alt="YAML"> 
+
+- [Notes](GitOps/README.md)
+
+<br>
+<br>
+
+
+## ArgoCD
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="120" alt="YAML"> 
 
@@ -99,3 +110,10 @@
 <br>
 <br>
 
+<!-- ### Topic to cover
+- Jenkins
+- Ansible
+- Terraform
+- CI/CD
+- Advanced Networking
+ -->

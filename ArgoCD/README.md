@@ -1,13 +1,3 @@
-## GitOps
-
-
-### Benefits of GitOps
-
-- History of changes to the cluster is stored in Git 
-- Rollback to a previous version of the cluster is easy
--
-
-
 ## ArgoCD
 
 - [ArgoCD](https://argoproj.github.io/cd)
@@ -21,6 +11,23 @@ Argo CD is a popular GitOps controller. It is used to deploy applications to Kub
 
 <p align="center"><img width="1014" alt="Screenshot 2022-11-29 at 11 44 57 PM" src="https://user-images.githubusercontent.com/51878265/204613004-e5dace25-7502-487d-acea-86d63c70cc2a.png"></p>
 
+### Installation
+
+- By applying the manifests . Refrence: [ArgoCD Installation](https://argoproj.github.io/argo-cd/getting_started/#1-install-argo-cd)
+
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+Default credentials:
+
+- Username: admin
+- Password : It can be found by running the following command
+
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
 
 ## Sync Policy - Features
 
