@@ -22,8 +22,9 @@ docker pull <image name>
 - To run an container (It will 1st pull the image if not present in the local sytem)
   - NOTE: When we just provide the name of the image it will pull the lastest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
   - Additioanly we can use flags
-     - `--name <name> `- To give a name to the conatiner.
-     - `-p <Hot port:container port>`- To fowrad the port.
+  
+     - `--name <name> `- To give a name to the container.
+     - `-p <Host port:container port>`- To fowrad the port.
      - `-d` - To run in detached mode
      - `-it` - For interactive envirnoment
      - `-e` - For environment variable
@@ -42,13 +43,13 @@ Eg: --env-file ./.env
 
 ### Docker Container
 
-- To stop a running conatiner
+- To stop a running container
 
 ```bash
 docker stop <container ID/name>
 ``` 
 
-- To resume a stopped conatiner
+- To resume a stopped container
 
 ```bash
 docker start <container ID/name>
@@ -66,7 +67,7 @@ docker top <container name/id>
 docker stats <container name/id>
 ```
 
-- Check the config and info of a conatiner.
+- Check the config and info of a container.
 
 ```bash
 docker stats <container name/id>
@@ -107,7 +108,7 @@ docker ps -a
 docker logs <container ID/name>
 ```
 
-- Delete all the stopped conatiner
+- Delete all the stopped container
 
 ```bash
 docker container prune -f
@@ -138,7 +139,7 @@ docker run --network <network-name> <image-name>
 ```
 
 ```
-docker inspect --format "{{.NetworkSettings.IPAddress}}" <conatiner-name>
+docker inspect --format "{{.NetworkSettings.IPAddress}}" <container-name>
 ```
 
 ### Docker Images
@@ -189,7 +190,7 @@ docker
 ```
 
 ```bash
-docker run -v <path-on-folder-loacl-machine>:<path-to-folder-on-container> -v <path-to-file/folder-on-conatiner> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
+docker run -v <path-on-folder-loacl-machine>:<path-to-folder-on-container> -v <path-to-file/folder-on-container> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
 ```
 To make it read only so that when you add some files inside it the container and it will not get created on you local machine use `-v port:port:ro`
 
