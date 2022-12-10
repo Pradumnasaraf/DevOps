@@ -199,3 +199,17 @@
   ```bash
   git checkout <branch name> <path to file> --patch
   ```
+
+## **Modify**
+
+- last/latest commit message
+  
+  ```bash
+  git commit --amend
+  ```
+
+- Repo's remote url
+  
+  ```bash
+  git remote set-url <alias> <url> # <alias> is your remote name e.g origin
+  ```
