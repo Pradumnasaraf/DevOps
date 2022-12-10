@@ -299,3 +299,44 @@
   git add .
   git commit -m <message>
   ```
+
+## **Stash**
+
+- Create stash (Tracked and Untracked files)
+
+  ```bash
+  git stash
+  ```
+  
+- Create a new branch and apply stash
+
+  ```bash
+  git stash branch <branch name> <stash id>
+  ```
+
+- Delete
+
+  ```bash
+  git stash clear # all stashed changes
+  git stash drop <stash id> # specific stash
+  ```
+
+- View the contents of a stash
+
+  ```bash
+  git stash show -p <stash id> #Leave stash ID to see the latest stash
+  ```
+
+- Apply
+
+  ```bash
+  git stash apply
+  git stash apply <stash id> # stash id can be gotten when you run git stash list
+  git stash pop <stash id> # Stash id optional. Add it if you want to apply and delete a specific stash otherwise leave to pop the latest stash
+  ```
+
+- View list of stashed changes
+
+  ```bash
+  git stash list
+  ```
