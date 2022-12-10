@@ -185,3 +185,17 @@
   git remote prune <remote-name>
 
   ```
+
+## **Merge**
+
+- Another branch to current branch
+  
+  ```bash
+  git merge <branch-name>
+  ```
+
+- Merge a single file from one branch to another.
+  
+  ```bash
+  git checkout <branch name> <path to file> --patch
+  ```
