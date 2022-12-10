@@ -257,3 +257,30 @@
   ```bash
   git remote rename <oldname> <newname>
   ```
+
+## **Reset**
+
+- a specific commit
+
+ ```bash
+  git revert <commit-hash> # Get a commit hash by using `git log`
+  ```
+
+- a specific file
+
+ ```bash
+  git checkout <repo>/<branch> <filename>
+  ```
+
+- To last commit
+
+ ```bash
+  git reset --hard
+  ```
+
+- To last commit on remote branch
+
+ ```bash
+  git reset --hard <repo>/<branch>
+  ```
+
