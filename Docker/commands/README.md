@@ -117,6 +117,7 @@ docker container prune -f
 
 ```
  docker container run —rm
+```
 
 ### Docker Network
 
