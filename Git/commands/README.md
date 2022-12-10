@@ -213,3 +213,25 @@
   ```bash
   git remote set-url <alias> <url> # <alias> is your remote name e.g origin
   ```
+
+## **Rebase**
+
+- An origin branch into working branch
+  
+  ```bash
+  git pull --rebase origin <branch name>
+  ```
+
+- Local branch into my working branch
+  
+  ```bash
+  git rebase <branch name>
+  ```
+
+- And skip commits
+  
+  ```bash
+  git rebase --skip
+  # In case of conflicts use this command to discard of your own changes in the current commit
+  # and apply the changes from an incoming branch
+  ```
