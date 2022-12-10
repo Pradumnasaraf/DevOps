@@ -262,25 +262,40 @@
 
 - a specific commit
 
- ```bash
+  ```bash
   git revert <commit-hash> # Get a commit hash by using `git log`
   ```
 
 - a specific file
 
- ```bash
+  ```bash
   git checkout <repo>/<branch> <filename>
   ```
 
 - To last commit
 
- ```bash
+  ```bash
   git reset --hard
   ```
 
 - To last commit on remote branch
 
- ```bash
+  ```bash
   git reset --hard <repo>/<branch>
   ```
 
+## **Squash**
+
+- commits in pull request into single commit
+
+  ```bash
+  git rebase -i <branch name>
+  ```
+
+- last n number of commit into one
+
+  ```bash
+  git reset --soft HEAD~N # N for number of commits you want to squash
+  git add .
+  git commit -m <message>
+  ```
