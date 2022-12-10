@@ -140,3 +140,48 @@
   git config --global user.signingkey <your-secret-gpg-key>
   # If you’re taking work from others on the internet and want to verify that commits are actually from a trusted source.
   ```
+
+## **Delete**
+
+- Branch
+  
+  ```bash
+  git branch -D <branch name>
+  ```
+
+- Tag
+  
+  ```bash
+  git tag -d v<tag version>
+  ```
+
+- Remote
+  
+  ```bash
+  git remote rm <remote>
+  ```
+
+- Untracked files
+  
+  ```bash
+  git clean -<flag>
+  # replace -<flag> with:
+  # -i for interactive command
+  # -n to preview what will be removed
+  # -f to remove forcefully
+  # -d to remove directories
+  # -X to remove ignored files
+  ```
+
+- Files from index
+  
+  ```bash
+  git rm --cached <file or dir>
+  ```
+
+- Local branches that don't exist at remote
+  
+  ```bash
+  git remote prune <remote-name>
+
+  ```
