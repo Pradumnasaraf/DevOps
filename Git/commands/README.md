@@ -1,3 +1,5 @@
+# Git commands
+
 - Show commit log history
 
 ```bash
@@ -15,11 +17,13 @@ git status
 ```bash
 git add [file-name]
 ```
+
 - Make the repo chnages according to that commit
 
 ```bash
 git reset [commit-hash]
 ```
+
 - Change the date and time of last commit
 
 ```bash
@@ -37,6 +41,7 @@ git update-ref -d HEAD
 ```bash
 git config --list
 ```
+
 - Create a new brach
 
 ```bash
