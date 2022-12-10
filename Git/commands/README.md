@@ -235,3 +235,25 @@
   # In case of conflicts use this command to discard of your own changes in the current commit
   # and apply the changes from an incoming branch
   ```
+
+- And continue after resolving conflicts
+  
+  ```bash
+  git rebase --continue
+  # Use it whenever conflicts detected therefore you can resolve these conflicts manually and use this command to continue your rebase operation
+  ```
+
+## **Rename**
+
+- Branch
+  
+  ```bash
+  git branch -m <new name> # while working in the branch
+  git branch -m <old name> <new name> # from outside the branch
+  ```
+
+- Remote
+  
+  ```bash
+  git remote rename <oldname> <newname>
+  ```
