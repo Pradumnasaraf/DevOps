@@ -307,7 +307,7 @@
   ```bash
   git stash
   ```
-  
+
 - Create a new branch and apply stash
 
   ```bash
@@ -339,4 +339,50 @@
 
   ```bash
   git stash list
+  ```
+
+## **View**
+
+- Status of project
+
+  ```bash
+  git status
+  ```
+
+- Commit(s) log
+
+  ```bash
+  git log    # View all logs
+  git log -n # for last n number of commits
+  # to exit you have to press (q)
+  ```
+
+- uncommitted changes
+
+  ```bash
+  git diff
+  ```
+
+- Committed changes
+
+  ```bash
+  git diff
+  ```
+
+- repo's remote url
+
+  ```bash
+  git remote -v
+  ```
+
+- repo's remote url
+
+  ```bash
+  git branch # The active branch is prefixed with *
+  ```
+
+- repo's remote url
+
+  ```bash
+  git tag
   ```
