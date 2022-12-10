@@ -1,8 +1,8 @@
 # Git commands
 
-###  **Add**
+## **Add**
 
-  - New changes
+- New changes
   
   ```bash
   git add <file.ext> # To add a specific file
@@ -10,7 +10,7 @@
   git add . # To add all the files in the current directory
   ```
 
-  - New branch
+- New branch
   
   ```bash
   git branch <new name> # and remain in the current branch 
@@ -21,30 +21,30 @@
 
   ```
 
-  - New remote repository
+- New remote repository
   
   ```bash
   git remote add <shortname> <url>
   ```
 
-  - Annotated tag
+- Annotated tag
   
   ```bash
   git tag -a v1.4 -m "my version 1.4"
   git push --tags
   ```
 
-### **Cherry-pick**
+## **Cherry-pick**
 
-  - An commit from the origin branch into my working branch
+- An commit from the origin branch into my working branch
   
   ```bash
   git cherry-pick <commit-hash> <commit-hash>
   ```
 
-### **Clone**
+## **Clone**
 
-  - Existing repo into a new directory
+- Existing repo into a new directory
   
   ```bash
   git clone <repo-url> <directory> # Replace "directory" with the directory you want
@@ -68,6 +68,34 @@
   git submodule update --init --recursive 
   ```
 
+## **Commit**
+
+- commit all local changes in tracked files
+  
+  ```bash
+  git commit -a
+  ```
+
+- commit all staged changes
+  
+  ```bash
+  git commit -m <message> # Replace <message> with your commit message.
+  ```
+
+## **Compare two commits**
+
+- and output results in the terminal
+  
+  ```bash
+  git diff <sha1> <sha2> # the sha hash of the commits you want to compare.
+
+  ```
+
+- and output result to a file
+  
+  ```bash
+  git diff <sha1> <sha2> > diff.txt
+  ```
 
 - Show which file git is tracking and are stagged/unstagged
 
