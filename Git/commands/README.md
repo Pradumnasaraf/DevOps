@@ -1,6 +1,6 @@
 # Git commands
 
-- **Add**
+###  **Add**
 
   - New changes
   
@@ -34,12 +34,38 @@
   git push --tags
   ```
 
-- **Cherry-pick**
+### **Cherry-pick**
 
-  - An commit from origin branch into my working branch
+  - An commit from the origin branch into my working branch
   
   ```bash
   git cherry-pick <commit-hash> <commit-hash>
+  ```
+
+### **Clone**
+
+  - Existing repo into a new directory
+  
+  ```bash
+  git clone <repo-url> <directory> # Replace "directory" with the directory you want
+  ```
+
+- Existing repo into the current directory
+  
+ ```bash
+  git clone <repo-url> . # The current directory is represented with a "."
+  ```
+
+- existing repo along with submodules into the current directory
+  
+ ```bash
+  git clone --recurse-submodules <repo-url> . 
+  ```
+
+- submodules after cloning the existing repo
+  
+ ```bash
+  git submodule update --init --recursive 
   ```
 
 
