@@ -8,7 +8,7 @@
 
 - [Notes](Kubernetes/README.md)
 - [Commands](Kubernetes/commands/README.md)
-- [Manifest Files](Kubernetes/YAML)
+- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/Kubernetes/YAML)
 
 <br>
 
@@ -18,8 +18,8 @@
 
 - [Notes](Docker/README.md)
 - [Commands](Docker/commands/README.md)
-- [Compose/Stack Files](Docker/YAML)
-- [Dockerfile](Docker/Dockerfile)
+- [Compose/Stack Files](https://github.com/Pradumnasaraf/DevOps/tree/main/Docker/YAML)
+- [Dockerfile](https://github.com/Pradumnasaraf/DevOps/tree/main/Docker/Dockerfile)
 
 <br>
 
