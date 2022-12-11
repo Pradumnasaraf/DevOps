@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.1...v1.3.2) (2022-12-11)
+
+
+### Bug Fixes
+
+* the broken path on hosted website ([f3494ae](https://github.com/Pradumnasaraf/DevOps/commit/f3494ae339ecc1473387942dfbc9862624c70c7a))
+
+
+
 ## [1.3.1](https://github.com/Pradumnasaraf/DevOps/compare/v0.1.0...v1.3.1) (2022-11-18)
 
 

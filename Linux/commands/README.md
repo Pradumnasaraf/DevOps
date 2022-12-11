@@ -20,6 +20,7 @@
 - `pwd` - Present working directory.
 - `cat <filename>` - Display file content.
 - `cat > <new-file-name>` - Create a file.
+- `dd if=/dev/zero of=bos_dosya bs=4G count=1`- create empty file with zeros
 - `cat >> <filename>` - Append the file.
 - `cat <filename> <filename2> ` - Display 2 files at a time.
 - `cat <filename> <filename2> > <newfile-name>` - Merge both of file content in a single one.
