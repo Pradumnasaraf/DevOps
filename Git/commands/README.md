@@ -214,6 +214,12 @@
   git remote set-url <alias> <url> # <alias> is your remote name e.g origin
   ```
 
+- Change date and time of the commit
+
+  ```bash
+  git commit --amend --date="YYYY-MM-DD HH:MM:SS
+  ```
+
 ## **Rebase**
 
 - An origin branch into working branch
@@ -283,6 +289,12 @@
   ```bash
   git reset --hard <repo>/<branch>
   ```
+
+- Remove/reset all the commits
+
+```bash
+git update-ref -d HEAD
+```
 
 ## **Squash**
 
