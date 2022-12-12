@@ -42,6 +42,26 @@
   git cherry-pick <commit-hash> <commit-hash>
   ```
 
+## **Push**
+
+- Push chnages to remote repo
+  
+  ```bash
+  git push <remote> <branch>
+  ```
+  
+- force the push even if it results in a non-fast-forward merge
+  
+  ```bash
+  git push <remote> --force # Use the flag in case you know what you’re doing.
+  ```
+
+- Push all of your local branches to the specified remote.
+  
+  ```bash
+  git push <remote> --all
+  ```
+
 ## **Clone**
 
 - Existing repo into a new directory
@@ -220,6 +240,26 @@
   git commit --amend --date="YYYY-MM-DD HH:MM:SS
   ```
 
+## **Pull**
+
+- Pull the specified remote’s copy of the current branch and merge it into local
+  
+  ```bash
+  git pull <remote>
+  ```
+
+- Gives output during a pull (displays the pulled content and the merge details)
+  
+  ```bash
+  git pull --verbose
+  ```
+
+- Pull changes and prevent merge conflicts
+
+  ```bash
+  git pull --ff-only # applies the remote changes only if they can be fast-forwarded
+  ```
+
 ## **Rebase**
 
 - An origin branch into working branch
@@ -289,4 +329,106 @@
   ```bash
   git reset --hard <repo>/<branch>
   ```
-  
+
+## **Squash**
+
+- commits in pull request into single commit
+
+  ```bash
+  git rebase -i <branch name>
+  ```
+
+- last n number of commit into one
+
+  ```bash
+  git reset --soft HEAD~N # N for number of commits you want to squash
+  git add .
+  git commit -m <message>
+  ```
+
+## **Stash**
+
+- Create stash (Tracked and Untracked files)
+
+  ```bash
+  git stash
+  ```
+
+- Create a new branch and apply stash
+
+  ```bash
+  git stash branch <branch name> <stash id>
+  ```
+
+- Delete
+
+  ```bash
+  git stash clear # all stashed changes
+  git stash drop <stash id> # specific stash
+  ```
+
+- View the contents of a stash
+
+  ```bash
+  git stash show -p <stash id> #Leave stash ID to see the latest stash
+  ```
+
+- Apply
+
+  ```bash
+  git stash apply
+  git stash apply <stash id> # stash id can be gotten when you run git stash list
+  git stash pop <stash id> # Stash id optional. Add it if you want to apply and delete a specific stash otherwise leave to pop the latest stash
+  ```
+
+- View list of stashed changes
+
+  ```bash
+  git stash list
+  ```
+
+## **View**
+
+- Status of project
+
+  ```bash
+  git status
+  ```
+
+- Commit(s) log
+
+  ```bash
+  git log    # View all logs
+  git log -n # for last n number of commits
+  # to exit you have to press (q)
+  ```
+
+- uncommitted changes
+
+  ```bash
+  git diff
+  ```
+
+- Committed changes
+
+  ```bash
+  git diff
+  ```
+
+- repo's remote url
+
+  ```bash
+  git remote -v
+  ```
+
+- repo's remote url
+
+  ```bash
+  git branch # The active branch is prefixed with *
+  ```
+
+- repo's remote url
+
+  ```bash
+  git tag
+  ```
