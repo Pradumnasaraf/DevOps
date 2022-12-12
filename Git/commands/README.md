@@ -42,6 +42,26 @@
   git cherry-pick <commit-hash> <commit-hash>
   ```
 
+## **Push**
+
+- Push chnages to remote repo
+  
+  ```bash
+  git push <remote> <branch>
+  ```
+  
+- force the push even if it results in a non-fast-forward merge
+  
+  ```bash
+  git push <remote> --force # Use the flag in case you know what you’re doing.
+  ```
+
+- Push all of your local branches to the specified remote.
+  
+  ```bash
+  git push <remote> --all
+  ```
+
 ## **Clone**
 
 - Existing repo into a new directory
@@ -218,6 +238,26 @@
 
   ```bash
   git commit --amend --date="YYYY-MM-DD HH:MM:SS
+  ```
+
+## **Pull**
+
+- Pull the specified remote’s copy of the current branch and merge it into local
+  
+  ```bash
+  git pull <remote>
+  ```
+
+- Gives output during a pull (displays the pulled content and the merge details)
+  
+  ```bash
+  git pull --verbose
+  ```
+
+- Pull changes and prevent merge conflicts
+
+  ```bash
+  git pull --ff-only # applies the remote changes only if they can be fast-forwarded
   ```
 
 ## **Rebase**
