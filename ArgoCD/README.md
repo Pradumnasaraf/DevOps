@@ -46,3 +46,33 @@ Progressive Delivery is the practice of deploying an application in a gradual ma
 - **Blue/Green** - Deploy the new version of the application to a new environment and then switch the traffic to the new environment. This is the most common form of progressive delivery. It is also the most complex to implement. It requires a lot of infrastructure and a lot of testing.
 
 - **Canary** - Deploy the new version of the application to a small subset of users. If the new version is working fine, then deploy it to the rest of the users. This is the most common form of progressive delivery. It is also the most complex to implement. It requires a lot of infrastructure and a lot of testing.
+
+- To make the whole setup declaritive way and make it infrastructure as we deploy ArgoCD Argo CD applications just like any other Kubernetes resource. This is also managed through a git repository.
+
+[Docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/) for reference.
+
+Samle YAML:
+
+```YAML
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-app # This is the name of the application
+  namespace: argocd 
+spec:
+    destination:
+        namespace: argocd # This is the namespace where the application will be deployed
+        server: https://kubernetes.default.svc # This is the default server
+    project: default
+    source:
+        path: ./manifest # This is the path where the manifest is present
+        repoURL: https://github.com/sarafpradumna/argo-test # This is the repo where the manifest is present
+        targetRevision: HEAD
+    syncPolicy:
+        automated:
+            prune: true
+            selfHeal: true
+            allowEmpty: false #By default it is false
+        syncOptions:
+        - CreateNamespace=true # This will create namespace if not present
+```

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-app # This is the name of the application
+  namespace: argocd 
+spec:
+    destination:
+        namespace: argocd # This is the namespace where the application will be deployed
+        server: https://kubernetes.default.svc # This is the default server
+    project: default
+    source:
+        path: ./manifest # This is the path where the manifest is present
+        repoURL: https://github.com/sarafpradumna/argo-test # This is the repo where the manifest is present
+        targetRevision: HEAD
+    syncPolicy:
+        automated:
+            prune: true
+            selfHeal: true
+        syncOptions:
+        - CreateNamespace=true # This will create namespace if not present
+
