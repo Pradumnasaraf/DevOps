@@ -330,6 +330,12 @@
   git reset --hard <repo>/<branch>
   ```
 
+- Remove/reset all commits
+
+  ```bash
+  git update-ref -d HEAD
+  ```
+
 ## **Squash**
 
 - commits in pull request into single commit
