@@ -115,8 +115,9 @@ docker container prune -f
 ```
 - Auto cleanup when t
 
-```
+```bash
  docker container run —rm
+```
 
 ### Docker Network
 
