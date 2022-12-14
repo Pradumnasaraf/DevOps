@@ -7,7 +7,6 @@
 
 ## Resources 
 
-
 - [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
 - [BretFisher/udemy-docker-mastery](https://github.com/BretFisher/udemy-docker-mastery) GitHub repo.
 - Kubernetes official [docs](https://kubernetes.io/docs/home/)
@@ -54,7 +53,6 @@
 
 We can add namespace attribute in YAMl file to specify with one it belongs to
 
-
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -82,10 +80,10 @@ kubectl create namespace dev
 Generally, A K8s YAML config file contains 4 properties
 
 ```YAML
-apiVersion: 
-kind:
-metadata:
-spec:
+apiVersion: # Which version of the API you are using
+kind: # What kind of object you are creating
+metadata: # Data about the object
+spec: # What you want the object to look like
 ```
 
 #### Labels and selectors
@@ -239,8 +237,6 @@ TLS
 
 <img width="1512" alt="Screenshot 2022-11-14 at 1 17 55 PM" src="https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png">
 
-
-
 ### ConfigMap
 
 Use to store external configurations like database URLs. We put it in simple text format unlike [Secrets](#secrets)
@@ -284,7 +280,6 @@ echo cHJhZHVtbmE | base64 --decode
 ## StatefulSet
 
 - Any application that stores data to keep it state, like database. In this the name and endpoint stays same when the pods restarted.
-
 
 ## Secret and ConfigMap as volume
 
@@ -333,9 +328,7 @@ data:
     log_type all
     log_timestamp_format %Y-%m-%dT%H:%M:%S
     listener 9001
-
 ```
-
 
 ### Volume VS using it as a ENV.
 
@@ -402,4 +395,66 @@ kubectl exec -it <pod-name> -c sidecar -- /bin/sh
 ```bash
 curl localhost:80
 ```
+## Updating Strategy
 
+Updating means chnaging the image of the pod.
+
+### Rolling Update
+
+The pods are updated one by one, so the service is not down. But the new pods are created with the new image and then the old pods are deleted.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1 # 1 pod can be created above the desired number of pods. By default it is 25%
+      maxUnavailable: 1 # 1 pod can be unavailable during the update. By default it is 25%
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: myapp
+        image: nginx:1.23.2
+        ports:
+        - containerPort: 80
+```
+
+
+### Recreate
+
+The pods are deleted and then new pods are created. So the service is down for a while.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 5
+  strategy:
+    type: Recreate # It will delete all the pods and then create new ones
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: myapp
+        image: nginx:1.23.3
+        ports:
+        - containerPort: 80
+```

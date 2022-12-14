@@ -106,6 +106,7 @@
 <img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="120" alt="YAML"> 
 
 - [Notes](ArgoCD/README.md)
+- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/ArgoCD/YAML)
 
 <br>
 <br>
