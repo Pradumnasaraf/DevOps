@@ -65,7 +65,7 @@
 
 ## Helm
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/202859249-b90ac510-d8e8-408d-9c07-0d2bd8e1b092.png" height="120" alt="YAML"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/202859249-b90ac510-d8e8-408d-9c07-0d2bd8e1b092.png" height="120" alt="Helm"> 
 
 - [Notes](Helm/README.md)
 
@@ -74,18 +74,9 @@
 
 ## Prometheus
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/202859485-eba6809e-1cb8-4bbc-ab22-efa3c91d6463.png" height="120" alt="YAML"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/202859485-eba6809e-1cb8-4bbc-ab22-efa3c91d6463.png" height="120" alt="Prometheus"> 
 
 - [Notes](Prometheus/README.md)
-
-<br>
-<br>
-
-## Portainer
-
-<img align="right" src="https://user-images.githubusercontent.com/51878265/204345912-dee5ddf4-4a91-4b4f-aeb3-5a429de5a7f7.png" height="122" alt="YAML"> 
-
-- [Notes](Portainer/README.md)
 
 <br>
 <br>
@@ -93,7 +84,7 @@
 
 ## GitOps
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/206730962-b20f94c1-17af-48b2-b62c-b6c02dbeeb77.png" height="120" alt="YAML"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/206730962-b20f94c1-17af-48b2-b62c-b6c02dbeeb77.png" height="120" alt="Gitops"> 
 
 - [Notes](GitOps/README.md)
 
@@ -103,10 +94,47 @@
 
 ## ArgoCD
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="120" alt="YAML"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="120" alt="Argo"> 
 
 - [Notes](ArgoCD/README.md)
 - [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/ArgoCD/YAML)
+
+<br>
+<br>
+
+## Portainer
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/204345912-dee5ddf4-4a91-4b4f-aeb3-5a429de5a7f7.png" height="122" alt="portainer"> 
+
+- [Notes](Portainer/README.md)
+
+<br>
+<br>
+
+## Lens IDE
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/208243882-9c4f03fe-7aa3-4f42-84c4-ab90047e056b.png" height="120" alt="Lens"> 
+
+- [Notes](Lens/README.md)
+
+
+<br>
+<br>
+
+## Kubescape 
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/208244012-919ce817-32c1-40fe-b31f-44dba72655da.png" height="120" alt="Kubescape"> 
+
+- [Notes](Kubescape/README.md)
+
+<br>
+<br>
+
+## ValidKube 
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/208244291-3e43c1aa-cee1-4943-8775-21189cab3dcd.png" height="55" alt="ValidKube"> 
+
+- [Notes](Validkube/README.md)
 
 <br>
 <br>

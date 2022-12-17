@@ -2,10 +2,9 @@ version: '3.9'
 
 services:
   devops-website:
-    container_name: devops-website
+    container_name: website
     build: 
       context: .
       dockerfile: Dockerfile
-    image: devops-website
     ports:
       - 8000:80
