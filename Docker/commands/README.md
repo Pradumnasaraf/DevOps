@@ -6,7 +6,7 @@
 docker version
 ```
 
-- To check all the images available
+- To check all the available images
 
 ```bash
 docker images
@@ -82,7 +82,7 @@ or
 docker container ls
 ```
 
-- To start and interactive session and get inide the container.
+- To start and interactive session and get inside the container.
 
   - NOTE: every image does not support `bash` so we use `sh`
 
@@ -96,7 +96,7 @@ docker exec -it <container ID/name> bash/sh
 docker port <image name>
 ```
 
-- Check all the stopped container
+- To check all the stopped container
 
 ```bash
 docker ps -a
@@ -182,7 +182,7 @@ docker image tag nginx pradumna/nginx:hello
   - Help to sync our local files with help of Docker container.
   
 
-- To sync our local machine chnages with help of Docker volume (Bind mount)
+- To sync our local machine changes with help of Docker volume (Bind mount)
     - `- v` is use to define volume, aslo we give another `-v` flag to override the changes so that it will not chnage in container.
 
 ```bash
@@ -193,7 +193,7 @@ docker
 ```bash
 docker run -v <path-on-folder-loacl-machine>:<path-to-folder-on-container> -v <path-to-file/folder-on-container> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
 ```
-To make it read only so that when you add some files inside it the container and it will not get created on you local machine use `-v port:port:ro`
+To make it read only so that when you add some files inside it, the container will not get created on your local machine use `-v port:port:ro`
 
 ### Docker Compose
 
@@ -280,7 +280,7 @@ docker service update --image mynginx:1.13.6  web
 
 - To update the port
 
-We ca't direclty update the port We have to add and remove the ports
+We can't direclty update the port We have to add and remove the ports
 
 ```
 docker service update --publish-rm 8080 --publish-add 808180 <service name>
