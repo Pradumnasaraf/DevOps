@@ -10,3 +10,8 @@ body:
       description: Provide a clear and concise explanation of your issue.
     validations:
       required: true
+  - type: textarea
+    id: extra_information
+    attributes:
+      label: Additional information
+      description: Is there anything else we should know about this report?
