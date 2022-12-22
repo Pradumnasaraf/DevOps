@@ -35,7 +35,7 @@
 
 ## Linux
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="120" alt="linux"> 
+<img align="right" src="https://user-images.githubusercontent.com/51878265/209197882-51406a8f-04ff-4c53-a362-ac32ae8566ad.png" height="120" alt="linux"> 
 
 - [Notes](Linux/README.md)
 - [Commands](Linux/commands/README.md)
@@ -81,7 +81,6 @@
 <br>
 <br>
 
-
 ## GitOps
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/206730962-b20f94c1-17af-48b2-b62c-b6c02dbeeb77.png" height="120" alt="Gitops"> 
@@ -90,7 +89,6 @@
 
 <br>
 <br>
-
 
 ## ArgoCD
 
@@ -107,6 +105,25 @@
 <img align="right" src="https://user-images.githubusercontent.com/51878265/204345912-dee5ddf4-4a91-4b4f-aeb3-5a429de5a7f7.png" height="122" alt="portainer"> 
 
 - [Notes](Portainer/README.md)
+
+<br>
+<br>
+
+## Jenkins 
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/209197795-570330e6-fbee-4bf3-a42e-b8609e3afc46.png" height="120" alt="Jenkins"> 
+
+- [Notes](Jenkins/README.md)
+
+<br>
+<br>
+
+## Bash Scripting 
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="120" alt="Bash"> 
+
+- [Notes](Bash-Scripting/README.md)
+- [Script](https://github.com/Pradumnasaraf/DevOps/tree/main/Bash-Scripting/Scripts)
 
 <br>
 <br>
@@ -140,7 +157,6 @@
 <br>
 
 <!-- ### Topic to cover
-- Jenkins
 - Ansible
 - Terraform
 - CI/CD
