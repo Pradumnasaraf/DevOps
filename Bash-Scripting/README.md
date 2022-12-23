@@ -36,6 +36,10 @@ echo "My name is $NAME"
 echo "My name is ${NAME}"
 ```
 
+NOTE: We can create variables by `NAME="John"` through CLI, we can't use in the script beacuse it is not exported. We can export it by `export NAME="John"`. Now we can use it in the script.
+
+But here is one more catch. If we exit the terminal and open a new one, the variable will be gone. To make it permanent, we can add it to the `.bashrc` file. It is a hidden file in the home directory. We can open it by `vi ~/.bashrc` or any other editor. We can add the variable to the file. Eg: `export NAME="John"`.
+
 ### User Input
 
 We can take input from the user using the `read` command.
@@ -60,7 +64,29 @@ Eg: `bash script.sh arg1 arg2`
 echo "First Argument: $1"
 ```
 
-### If Statement
+### Arthemetic Operations
+
+We can do arthemetic operations in bash. We use the `(( ))` to do arthemetic operations.
+
+```bash
+
+```bash
+#!/bin/bash
+
+echo $(( 5 + 5 ))
+```
+
+#### Arthemetic Operators
+
+- `+` - Addition
+- `-` - Subtraction
+- `*` - Multiplication
+- `/` - Division
+- `%` - Modulus
+
+### Conditional Statements
+
+We can use the `if` statement to check for a condition. The syntax is:
 
 ```bash
 #!/bin/bash
@@ -68,6 +94,7 @@ echo "First Argument: $1"
 if [ "$1" == "John" ]
 then
     echo "Hello John"
+    exit 1
 elif [ "$1" == "Doe" ]
 then
     echo "Hello Doe"
@@ -76,7 +103,29 @@ else
 fi
 ```
 
+```bash
+if [$1 == "hello"],then echo "Hello World", fi
+```
 
+#### Comparison Operators
 
+- `==` - Equal to
+- `>` - Greater than
+- `<` - Less than
+- `>=` - Greater than or equal to
+- `<=` - Less than or equal to
+- `!=` - Not equal to
 
+#### Boolean Operators
+
+- `-a` - And
+- `-o` - Or
+- `!` - Not
+
+- `exit 1` - Exit the script with an error (non-zero exit code).
+
+- $RANDOM gives a random number between 0 and 32767.
+- $SHELL gives the path of the shell.
+- $USER gives the username of the user.
+- $HOSTNAME gives the hostname of the machine.
 
