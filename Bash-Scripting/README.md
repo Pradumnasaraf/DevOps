@@ -115,6 +115,8 @@ if [$1 == "hello"],then echo "Hello World", fi
 - `>=` - Greater than or equal to
 - `<=` - Less than or equal to
 - `!=` - Not equal to
+- '-ge' - Greater than or equal to
+- '-le' - Less than or equal to
 
 #### Boolean Operators
 
@@ -122,10 +124,69 @@ if [$1 == "hello"],then echo "Hello World", fi
 - `-o` - Or
 - `!` - Not
 
+### Loops
+
+We can use loops to repeat a set of commands. There are two types of loops in bash. `for` and `while`. The the body is enclosed in `do` and `done`.
+
+#### For Loop
+
+```bash
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+    echo $i
+done
+```
+
+#### While Loop
+
+```bash
+
+#!/bin/bash
+
+i=1
+while [ $i -le 5 ]
+do
+    echo $i
+    (( i++ ))
+done
+```
+
+#### Break and Continue
+
+We can use `break` and `continue` in loops. `break` will break the loop and `continue` will skip the current iteration.
+
+```bash
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+    if [ $i -eq 3 ]
+    then
+        continue
+    fi
+    echo $i
+done
+```
+
+### Functions  
+
+We can create functions in bash. The syntax is:
+
+```bash
+#!/bin/bash
+
+function sayHello() {
+    echo "Hello World"
+}
+
+sayHello
+```
+
 - `exit 1` - Exit the script with an error (non-zero exit code).
 
 - $RANDOM gives a random number between 0 and 32767.
 - $SHELL gives the path of the shell.
 - $USER gives the username of the user.
 - $HOSTNAME gives the hostname of the machine.
-

@@ -28,10 +28,6 @@
 - `cut -c  1-2 <filename>` - cut the file with colum wise
 - `echo "Hello" >> <file-name>`
 
-
-
-
-+
 ### 
 - `man <commad name>` - Know about the command usages and options.
 - `man <commad name>` - know about the command.
