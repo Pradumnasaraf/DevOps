@@ -44,7 +44,7 @@
 
 ## **Push**
 
-- Push chnages to remote repo
+- Push changes to remote repo
   
   ```bash
   git push <remote> <branch>
