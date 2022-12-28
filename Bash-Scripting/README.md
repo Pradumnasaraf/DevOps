@@ -3,6 +3,8 @@
 ### Resources
 
 - [Chmod Calculator](https://chmodcommand.com/)
+- [devhints](https://devhints.io/)
+- [jq](https://stedolan.github.io/jq/)
 
 We start by creating a file with the `.sh` extension. For example `script.sh`. Then we write the script in it. For example:
 
@@ -115,8 +117,8 @@ if [$1 == "hello"],then echo "Hello World", fi
 - `>=` - Greater than or equal to
 - `<=` - Less than or equal to
 - `!=` - Not equal to
-- '-ge' - Greater than or equal to
-- '-le' - Less than or equal to
+- `-ge` - Greater than or equal to
+- `-le` - Less than or equal to
 
 #### Boolean Operators
 
@@ -184,9 +186,36 @@ function sayHello() {
 sayHello
 ```
 
-- `exit 1` - Exit the script with an error (non-zero exit code).
 
+- `exit 1` - Exit the script with an error (non-zero exit code).
 - $RANDOM gives a random number between 0 and 32767.
 - $SHELL gives the path of the shell.
 - $USER gives the username of the user.
 - $HOSTNAME gives the hostname of the machine.
+
+
+### jq
+
+jq is a command-line JSON processor. It is used to parse JSON. It is used to extract data from JSON. It is used to transform JSON. It is used to generate JSON.
+
+#### Installation
+
+```bash
+sudo apt install jq
+```
+
+#### Usage
+
+Format in JSON.
+
+```bash
+echo '{"name": "John", "age": 30}' | jq
+```
+
+Will print out the the specified key.
+
+```bash
+echo '{"name": "John", "age": 30}' | jq '.name'
+```
+
+

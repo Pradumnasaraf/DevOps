@@ -1,7 +1,6 @@
 #!/bin/bash
 
-echo "Enter the IP address to ping: "
-read ip
+read -p "Enter the IP address to ping: " ip
 
 while true
 do
