@@ -3,7 +3,7 @@
 ### List operation
 - `ls` - Shows list.
     - `-a` - Hidden file.
-    - `-l` - Persmission.
+    - `-l` - Permission.
     - `-R` - Show sub dir.
 
 ### Changing dir operation
@@ -26,7 +26,7 @@
 - `cat <filename> <filename2> ` - Display 2 files at a time.
 - `cat <filename> <filename2> > <newfile-name>` - Merge both of file content in a single one.
 - `cat <file-name> | tr > <new-file-name>` - Translate the file.
-- `cut -c  1-2 <filename>` - cut the file with colum wise
+- `cut -c  1-2 <filename>` - cut the file column wise
 - `echo "Hello" >> <file-name>`
 
 ### 
@@ -35,10 +35,10 @@
 
 ### File/Folder operation
 - `cp <file-name> <new-fie-name>` - Make a copy of a file in the current location.
-- `mv <file-name> <dir-path>` - Move a file from a one dir to a another.
+- `mv <file-name> <dir-path>` - Move a file from one dir to another.
 - `mv <file-name> <new-fie-name>` - Rename a file.
 - `mv -R <dir-name> <dir-path>` - Move Dir
-- `rm <file-name>` - Remove a file
+- `rm <file-name>` - Remove a file permanently.
 - `rm -R <file-name>` - Delete a folder with dir included.
 - `head <file-name>` - Will display first 10 lines of a file.
 - `tail <file-name>` - Will display last 10 lines of a file.
@@ -48,9 +48,9 @@
 - `find <file/folder-name>` - Find a file/folder.
 - `find <dir-name>` - Find files inside the dir
 - `find .-type d` - Show only dir.
-    - `.-type f` -Sshow only files.
-    - `.-type f -name "*.txt"` - Show only files with that specfic name.
-    - `.-type f -iname "*.txt"` - Show only files with that specfic name - not case sentive (i)
+    - `.-type f` - show only files.
+    - `.-type f -name "*.txt"` - Show only files with that specific name.
+    - `.-type f -iname "*.txt"` - Show only files with that specific name - not case sensitive (i)
     - `.-type f -mmin -20` - Show files which modify less than 20 min ago.
     - `.-type f -mmin +20` - show files which modify more than 20 min ago.
     - `.-type f -maxdepth 2` - Will only show 1 folder deep.
@@ -60,16 +60,16 @@
 ### System commands
 - `ps aux` - processes which are running
 - `df` - Check the capacity and storage details.
-    - `m` - In megabyte)  or 
-    - `hg` - (gigabyte).
+    - `m` - In megabyte  or 
+    - `hg` - In gigabyte.
 - `du` - Disk usages capcity 
     - `-h` (human readable)
 - `echo` - Get a output of a string
-- `echo $PATH` - Check the path varibale
+- `echo $PATH` - Check the path variable
 - `sudo` - Admin command
-- `sudo chown root text.txt` - chnage owner
-- `!<command-name>` - Run the pevious command
-- `git add .; git commit -m "message"` - Run mutiple commands at a time
+- `sudo chown root text.txt` - change owner
+- `!<command-name>` - Run the previous command
+- `git add .; git commit -m "message"` - Run multiple commands at a time
 - `sort <file-name>"` - sort the file
 - `job`
 - `wget <url>` - download the file from the URL
@@ -103,23 +103,23 @@
 - `chmod 777 <file-name>` - 4- Read, 2- Write, 1 - Execute
 - `find . -perm 777 ` - will only show file/folder with size of 1kb
 - `grep <keyword> <file-name>` - To search if the keyword is presnt in the file or not
-- `grep -w <keyword> <file-name>` - To search if the keyword is presnt in the file or not (complete word)
-- `grep -i <keyword> <file-name>` - To search if the keyword is presnt in the file or not (not case sens)
-- `grep -n <keyword> <file-name>` - To search if the keyword is presnt in the file or not (Line number)
+- `grep -w <keyword> <file-name>` - To search if the keyword is present in the file or not (complete word)
+- `grep -i <keyword> <file-name>` - To search if the keyword is present in the file or not (not case sens)
+- `grep -n <keyword> <file-name>` - To search if the keyword is present in the file or not (Line number)
 - `grep -B <keyword> <file-name>` - Show Line before that keyword
-- `grep -win <keyword> ./*.txt` - To search if the keyword is presnt in the file in current dir
+- `grep -win <keyword> ./*.txt` - To search if the keyword is present in the file in current dir
 - `grep -win -r <keyword> .*` 
 - `history | grep "ls -l"` - Piping, we filter out the things
 
 ```
-histroy
+history
 !<number-from-history>
 ```
 
 # Operators
 
 - `ping google.com & pingfacebook.com`
-- `echo "google.com" && echo "facebook.com"` - second will only run if first is sucessful
+- `echo "google.com" && echo "facebook.com"` - second will only run if first is successful
 - `echo "google.com" && {echo "facebook.com"; eco "pradumnasaraf.co"}`
 - `echo "google.com" || echo "pingfacebook.com"` 
 - `echo "google.com" || echo "pingfacebook.com"` 
