@@ -15,13 +15,14 @@
 
 ### File/Folder Ope.
 - `mkdir <new-dir-name>` - Create a new folder.
-- `mkdir -p test/test1/test2` - Craete a dir between two directories.
+- `mkdir -p test/test1/test2` - Create a dir between two directories.
 - `touch <new-file-name>` - create a blank file.
 - `pwd` - Present working directory.
 - `cat <filename>` - Display file content.
 - `cat > <new-file-name>` - Create a file.
 - `dd if=/dev/zero of=bos_dosya bs=4G count=1`- create empty file with zeros
-- `cat >> <filename>` - Append the file.
+- `cat >> <filename>` - Append the file
+- `cat  <filename1> >> <filename2>` - Append the content of the file filename1 at the end of the file <filename2>.
 - `cat <filename> <filename2> ` - Display 2 files at a time.
 - `cat <filename> <filename2> > <newfile-name>` - Merge both of file content in a single one.
 - `cat <file-name> | tr > <new-file-name>` - Translate the file.
@@ -108,7 +109,7 @@
 - `grep -B <keyword> <file-name>` - Show Line before that keyword
 - `grep -win <keyword> ./*.txt` - To search if the keyword is presnt in the file in current dir
 - `grep -win -r <keyword> .*` 
-- `history | grep "ls -l"` - Pipping, we filter out the things
+- `history | grep "ls -l"` - Piping, we filter out the things
 
 ```
 histroy
@@ -118,7 +119,7 @@ histroy
 # Operators
 
 - `ping google.com & pingfacebook.com`
-- `echo "google.com" && echo "facebook.com"` - second will oly run if first is sucessful
+- `echo "google.com" && echo "facebook.com"` - second will only run if first is sucessful
 - `echo "google.com" && {echo "facebook.com"; eco "pradumnasaraf.co"}`
 - `echo "google.com" || echo "pingfacebook.com"` 
 - `echo "google.com" || echo "pingfacebook.com"` 
