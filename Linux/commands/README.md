@@ -101,7 +101,7 @@
 ### Permissions
 - `chmod u=rwx,g=rxw,o=rwx <file-name>` READ, WRITE AND EXECUTE
 - `chmod 777 <file-name>` - 4- Read, 2- Write, 1 - Execute
-- `find . -perm 777 ` - will only show file/folder with size of 1kb
+- `find . -perm 777 ` - shows files with all permissions(rwx)
 - `grep <keyword> <file-name>` - To search if the keyword is presnt in the file or not
 - `grep -w <keyword> <file-name>` - To search if the keyword is present in the file or not (complete word)
 - `grep -i <keyword> <file-name>` - To search if the keyword is present in the file or not (not case sens)
