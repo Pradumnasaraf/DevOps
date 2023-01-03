@@ -28,8 +28,6 @@
 - `cat <file-name> | tr > <new-file-name>` - Translate the file.
 - `cut -c  1-2 <filename>` - cut the file column wise
 - `echo "Hello" >> <file-name>`
-
-### 
 - `man <commad name>` - Know about the command usages and options.
 - `man <commad name>` - know about the command.
 
@@ -71,15 +69,15 @@
 - `!<command-name>` - Run the previous command
 - `git add .; git commit -m "message"` - Run multiple commands at a time
 - `sort <file-name>"` - sort the file
-- `job`
+- `job` - show the jobs
 - `wget <url>` - download the file from the URL
 - `top` - what processes are running
 - `kill <process-id>` -stop that process
-- `Uname` -
+- `Uname` - show the system info
 - `zip <file-1> <file-2>` - Zip Two or more files
 - `Unzip <file-name>` - Unzip files
-- `useradd <name>`
-- `passwd <name>`
+- `useradd <name>` - add a user
+- `passwd <name>` - set a password for the user
 - `uname -<flag>` -o -m -r
 - `lscpu` - get cpu details
 - `free` - free memory 
@@ -88,14 +86,15 @@
 - `xdg-open <file-fath>` - open the folder (graphical window) of a file/folder with path.
 - `xdg-open .` - open the folder of the current directory.
 - `vi ~/.bashrc` - set your Alias
-- `echo -n 'username' | base64` 
+- `echo -n 'username' | base64` - encode the username to base64
+- `echo -n 'encoded' | base64 -d` - decode the username to base64
 
 ### Networking
-- `nslookup google.com` 
-- `netstat` - 
-- `hostname` - 
-- `whoami` - 
-- `ping google.com`
+- `nslookup google.com` - To check the IP address of the domain.
+- `netstat` - To check the network status.
+- `hostname` - To check the hostname.
+- `whoami` -  To check the current user.
+- `ping google.com` - To check the connectivity.
 
 
 ### Permissions
@@ -118,11 +117,9 @@ history
 
 # Operators
 
-- `ping google.com & pingfacebook.com`
+- `ping google.com & pingfacebook.com` - run both the commands at the same time
 - `echo "google.com" && echo "facebook.com"` - second will only run if first is successful
-- `echo "google.com" && {echo "facebook.com"; eco "pradumnasaraf.co"}`
-- `echo "google.com" || echo "pingfacebook.com"` 
-- `echo "google.com" || echo "pingfacebook.com"` 
-- `rm -r !(file.txt)`
-
+- `echo "google.com" && {echo "facebook.com"; eco "pradumnasaraf.co"}` 
+- `echo "google.com" || echo "pingfacebook.com"` - second will only run if first is not successful
+- `rm -r !(file.txt)` - delete all files except file.txt
 - `printevnv` - to print all th env.
