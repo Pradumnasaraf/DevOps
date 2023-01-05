@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t jenkins-docker .'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'docker run jenkins-docker'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker push jenkins-docker'
+            }
+        }
+    }
+    
+}
