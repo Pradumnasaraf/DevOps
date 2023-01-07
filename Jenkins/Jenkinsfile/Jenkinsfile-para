@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+    parameters{ // Parameters are defined here
+        booleanParam(name: 'executeTest', defaultValue: true, description: 'Execute Test?')
+    }
+    stages{
+        stage('Check'){
+            stage {
+                expression(){
+                    params.executeTest == true
+                }
+            }
+            steps{
+                echo "Execute Test: ${params.executeTest}" // Accessing the parameters by params.{parameter_name}
+                sh 'docker run jenkins-docker'
+            }
+        }
+    }
+}

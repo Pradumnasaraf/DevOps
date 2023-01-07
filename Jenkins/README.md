@@ -9,20 +9,20 @@ Jenkins is an open source automation server. It helps automate the parts of soft
 - [Jenkins Docker Image](https://hub.docker.com/r/jenkins/jenkins)
 - [Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
 
-##### Learning Resources
+#### Learning Resources
 
 - [Jenkins Docker Installation (docs)](https://www.jenkins.io/doc/book/installing/docker/)
 - [Jenkins Tutorial - TechWorld with Nana (video)](https://www.youtube.com/playlist?list=PLy7NrYWoggjw_LIiDK1LXdNN82uYuuuiC)
 - [Jenkins FreeCodeCamp (video)](https://youtu.be/f4idgaq2VqA)
 - [Jenkins Tutorial - Guru99 (video)](https://youtu.be/5XQOK0v_YRE)
 
-### Jenkisfile - Pipeline as Code
+## Jenkisfile - Pipeline as Code
 
 Insted of configuring the pipeline in the Jenkins UI, we can define the entire pipeline in a Jenkinsfile and check it into source control. The the file name is case sensitive and must be named `Jenkinsfile`.
 
 **This pipeline can be written in two ways:**
 
-#### Scripted Pipeline
+### Scripted Pipeline
 
 Scripted Pipeline is based on Groovy syntax. It is a general-purpose programming language with a syntax similar to Java, but with additional features that support common programming idioms.
 
@@ -41,7 +41,7 @@ node {
 }
 ```
 
-#### Declarative Pipeline
+### Declarative Pipeline
 
 Declarative Pipeline is a new way of defining the entire pipeline using a simple and easy to understand structure.
 
@@ -115,7 +115,7 @@ stage('Building the image') {
 }
 ```
 
-### Environment Variables
+### Environment Variables and Credentials
 
 To check default environment variables in Jenkins, we can use the following URL:
 
@@ -125,9 +125,36 @@ http://localhost:8080/env-vars.html
 ```
 
 
+### Tools
 
+The tools directive is used to define the tools required for the pipeline. It can be used to define the JDK, Maven, Gradle, etc.
 
+```jenkinsfile
+tools {
+    maven 'maven-3.6.3'
+    jdk 'jdk-11'
+}
+```
 
+Note: The tools must be installed in Jenkins. To install the tools, go to `Manage Jenkins > Global Tool Configuration`. 
 
+### Parameters
+
+The parameters directive is used to define the parameters required for the pipeline. It can be used to define the parameters like string, boolean, choice, etc.
+
+```jenkinsfile
+parameters {
+    string(name: 'NAME', defaultValue: 'pradumnasaraf', description: 'Enter your name')
+    booleanParam(name: 'DEBUG', defaultValue: true, description: 'Enable debug mode')
+    choice(name: 'VERSION', choices: ['1.0', '2.0', '3.0'], description: 'Select version')
+}
+stage('Build') { 
+    steps {
+        echo "Hello ${params.NAME}" //Accessing the parameters by params.{parameter_name}
+        echo "Debug mode is ${params.DEBUG}"
+        echo "Version is ${params.VERSION}"
+    }
+}
+```
 
 

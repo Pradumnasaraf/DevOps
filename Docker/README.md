@@ -1,7 +1,11 @@
-# Concepts
+## Docker
 
+### Learning Resources
 
-## ⚫ Docker Images
+- [Docker Mastery (Course)](https://www.udemy.com/course/docker-mastery/)
+- [FreeCodeCamp Docker (Video)](https://youtu.be/kTp5xUtcalw)
+
+### ⚫ Docker Images
 
 - Images are made up of app binaries, dependencies, and metadata. Don't contain a full OS.
 - Images are a combination of multiple layers.
@@ -9,7 +13,7 @@
 
 ![Screenshot from 2022-11-02 11-57-19](https://user-images.githubusercontent.com/51878265/199414178-d59e8780-c140-4bf1-b27e-7e8f1c723afb.png)
 
-## ⚫ Dockerfile
+### ⚫ Dockerfile
 
 > Commands:
 
@@ -39,17 +43,17 @@ RUN npm install
 COPY . ./
 ```
 
-## ⚫ .dockerignore
+### ⚫ .dockerignore
 
 We have a file `.dockerignore` which is not required when we copy files into the container.
 
-## ⚫ Docker Network
+### ⚫ Docker Network
 
 - We need create custom bridge network to enable dns resolution between containers. It doesn't work with the default bridge network.
 
 - Host: Use the host network stack inside the container. The container will use the host's network interfaces. We don't need to expose ports.
 
-## ⚫ Docker Volumes
+### ⚫ Docker Volumes
 
 We need volume to Persist our data, like databases and user info, because containers can go up and down, and we need some way to preserve our data.
 
@@ -84,7 +88,7 @@ docker run -v $(pwd):/user/html nginx
       - ./app:/usr/share/nginx/html/app:ro 
  ```
 
-## ⚫ Docker Compose
+### ⚫ Docker Compose
 
 - Compose help us define and running multi-container Docker applications and configure relationships between containers 
 - It also saves the hassle from entering the commands from the CLI.
