@@ -124,10 +124,11 @@ http://<host>/env-vars.html
 http://localhost:8080/env-vars.html
 ```
 
+### Buils Tools
 
-### Tools
+The tools directive is used to define the tools required for the pipeline. It can be used to define the JDK, Maven and Gradle tools.
 
-The tools directive is used to define the tools required for the pipeline. It can be used to define the JDK, Maven, Gradle, etc.
+With the 1st approach we can directly use the tools and its commands in the pipeline.
 
 ```jenkinsfile
 tools {
@@ -136,11 +137,31 @@ tools {
 }
 ```
 
+We can also follow wrapper approach to define the tools.
+
+```jenkinsfile
+stage('Build') {
+    steps {
+        withMaven(maven: 'maven-3.6.3') {
+            sh 'mvn clean install'
+        }
+    }
+}
+stage('Build') {
+    steps {
+        nodejs('node-12.18.3') { // nodejs is the name of the tool
+            sh 'npm install'
+        }
+    }
+}
+```
+
+
 Note: The tools must be installed in Jenkins. To install the tools, go to `Manage Jenkins > Global Tool Configuration`. 
 
 ### Parameters
 
-The parameters directive is used to define the parameters required for the pipeline. It can be used to define the parameters like string, boolean, choice, etc.
+The parameters directive is used to define the parameters required for the pipeline. It can be used to define the parameters like string, boolean, choice, etc. we can check the parameters in the UI by clicking on the `Build with Parameters` button.
 
 ```jenkinsfile
 parameters {
@@ -157,4 +178,20 @@ stage('Build') {
 }
 ```
 
+<img width="1512" alt="Screenshot 2023-01-07 at 1 31 11 PM" src="https://user-images.githubusercontent.com/51878265/211166915-b8e92fad-c5a7-4210-bc20-90b60127e2df.png">
+
+
+### Triggers
+
+The triggers directive is used to define the triggers for the pipeline. Common way are, poll, github webhooks, etc.
+
+<img width="1486" alt="Screenshot 2023-01-08 at 12 40 23 AM" src="https://user-images.githubusercontent.com/51878265/211166876-04dfe987-20ae-4a76-8314-27ccf3e636e4.png">
+
+
+
+#### Replay
+
+The replay option is used to re-run the pipeline. It is useful to test withou making/committing any changes to the code.
+
+<img width="1511" alt="Screenshot 2023-01-07 at 2 18 28 PM" src="https://user-images.githubusercontent.com/51878265/211167100-f413eff3-d984-4ef2-a4a5-996b43051d04.png">
 
