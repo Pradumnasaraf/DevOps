@@ -22,6 +22,14 @@
 - [Dockerfile](https://github.com/Pradumnasaraf/DevOps/tree/main/Docker/Dockerfile)
 
 <br>
+
+## GitHub Actions
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/211621722-c2ddc389-6e4e-4769-9dac-f18f8e71fed3.png" height="120" alt="GitHub Action"> 
+
+- [Notes](GitHub-Actions/README.md)
+- [Workflows](https://github.com/Pradumnasaraf/DevOps/tree/main/GitHub-Actions/Workflows)
+
 <br>
 
 ## Networking
@@ -57,15 +65,6 @@
 
 - [Notes](YAML/README.md)
 - [Syntax](YAML/syntax/README.md)
-
-<br>
-
-## GitHub Actions
-
-<img align="right" src="https://user-images.githubusercontent.com/51878265/211621722-c2ddc389-6e4e-4769-9dac-f18f8e71fed3.png" height="120" alt="GitHub Action"> 
-
-- [Notes](GitHub-Actions/README.md)
-- [Workflows](https://github.com/Pradumnasaraf/DevOps/tree/main/GitHub-Actions/Workflows)
 
 <br>
 
