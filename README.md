@@ -22,6 +22,7 @@
 - [Dockerfile](https://github.com/Pradumnasaraf/DevOps/tree/main/Docker/Dockerfile)
 
 <br>
+<br>
 
 ## Networking
 
@@ -30,7 +31,6 @@
 - [Notes](Networking/README.md)
 - [Commands](Networking/commands/README.md)
 
-<br>
 <br>
 
 ## Linux
@@ -41,7 +41,6 @@
 - [Commands](Linux/commands/README.md)
 
 <br>
-<br>
 
 ## Git 
 
@@ -50,7 +49,6 @@
 - [Notes](Git/README.md)
 - [Commands](Git/commands/README.md)
 
-<br>
 <br>
 
 ## YAML
@@ -61,6 +59,14 @@
 - [Syntax](YAML/syntax/README.md)
 
 <br>
+
+## GitHub Actions
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/211621722-c2ddc389-6e4e-4769-9dac-f18f8e71fed3.png" height="120" alt="GitHub Action"> 
+
+- [Notes](GitHub-Actions/README.md)
+- [Workflows](https://github.com/Pradumnasaraf/DevOps/tree/main/GitHub-Actions/Workflows)
+
 <br>
 
 ## Helm
@@ -70,7 +76,6 @@
 - [Notes](Helm/README.md)
 
 <br>
-<br>
 
 ## Prometheus
 
@@ -79,7 +84,6 @@
 - [Notes](Prometheus/README.md)
 
 <br>
-<br>
 
 ## GitOps
 
@@ -87,7 +91,6 @@
 
 - [Notes](GitOps/README.md)
 
-<br>
 <br>
 
 ## ArgoCD
@@ -98,7 +101,6 @@
 - [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/ArgoCD/YAML)
 
 <br>
-<br>
 
 ## Portainer
 
@@ -107,15 +109,14 @@
 - [Notes](Portainer/README.md)
 
 <br>
-<br>
 
 ## Jenkins 
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/209197795-570330e6-fbee-4bf3-a42e-b8609e3afc46.png" height="120" alt="Jenkins"> 
 
 - [Notes](Jenkins/README.md)
+- [Jenkinsfile](https://github.com/Pradumnasaraf/DevOps/tree/main/Jenkins/Jenkinsfile)
 
-<br>
 <br>
 
 ## Bash Scripting 
@@ -126,7 +127,6 @@
 - [Script](https://github.com/Pradumnasaraf/DevOps/tree/main/Bash-Scripting/Scripts)
 
 <br>
-<br>
 
 ## Lens IDE
 
@@ -134,8 +134,6 @@
 
 - [Notes](Lens/README.md)
 
-
-<br>
 <br>
 
 ## Kubescape 
@@ -145,7 +143,6 @@
 - [Notes](Kubescape/README.md)
 
 <br>
-<br>
 
 ## ValidKube 
 
@@ -153,7 +150,6 @@
 
 - [Notes](Validkube/README.md)
 
-<br>
 <br>
 
 <!-- ### Topic to cover
