@@ -1,8 +1,14 @@
-Monitoring tool for Kubernetes
+## Prometheus
+
+Prometheus is an open-source systems monitoring and alerting toolkit.
+
+### Learning Resources
+
+- [Prometheus Playlist - TechWorld with Nana](https://youtube.com/playlist?list=PLy7NrYWoggjxCF3av5JKwyG7FFF9eLeL4)
 
 ## Installation using Helm
 
-It is collection of Promethus + Grafana + Alertmanager + Node Exporter + Kube State Metrics + Pushgateway + Blackbox Exporter
+We will isntall Prometheus Operator using Helm. It is collection of Promethus + Grafana + Alertmanager + Node Exporter + Kube State Metrics + Pushgateway + Blackbox Exporter
 
 
 Step 1: Create a Kubernetes Namespace

@@ -5,11 +5,12 @@
 - [labs.play-with-k8s.com](https://labs.play-with-k8s.com/)
 - [killercoda.com/playgrounds](https://killercoda.com/playgrounds)
 
-## Resources 
+## Learning Resources 
 
+- [Kubernetes 101 Kubesimplify](https://www.youtube.com/live/PN3VqbZqmD8?feature=share)
 - [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
-- [BretFisher/udemy-docker-mastery](https://github.com/BretFisher/udemy-docker-mastery) GitHub repo.
-- Kubernetes official [docs](https://kubernetes.io/docs/home/)
+- [BretFisher/udemy-docker-mastery GitHub repo](https://github.com/BretFisher/udemy-docker-mastery)
+- [Kubernetes official docs](https://kubernetes.io/docs/home/)
 
 ## Tools arround k8s
 

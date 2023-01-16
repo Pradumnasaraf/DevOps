@@ -2,6 +2,10 @@
 
 GitOps is a way of managing Kubernetes clusters using Git as the source of truth.
 
+### Learning Resources
+
+- [What is GitOps - TechWorld with Nana](https://youtu.be/f5EpcWp0THw)
+
 ### Benefits of GitOps
 
 - History of changes to the cluster is stored in Git 

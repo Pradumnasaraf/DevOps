@@ -6,7 +6,7 @@ GitHub Actions is a feature that allows you to automate your software developmen
 
 - [GitHub Actions]( https://docs.github.com/en/actions )
 - [GitHub Actions: Getting Started]( https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions )
-
+- [GitHub Action Tutorial - Tech World With Nana](https://youtu.be/R8_veQiYBjI) 
 
 ### Overview
 

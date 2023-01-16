@@ -1,17 +1,23 @@
-## OSI Layer
+## Networking
+
+### Learning Resources
+
+- [Computer Networking](https://youtu.be/IPvYjXCsTg8)
+
+### OSI Layer
 
 <p align="center"><img alt="OSI" src="https://user-images.githubusercontent.com/51878265/206166710-cafe1502-ea85-433d-b4bd-6124f8110992.png"></p>
 
-## TCP
+### TCP
 
 TCP is a connection-oriented protocol. This means that it first establishes a link between the source and destination before it sends data. CP is a preferred protocol when data integrity is critical, such as in any transactional system. Eg: email and file transfer
 
-## UDP
+### UDP
 
 UDP in turn is not connection-oriented. UDP starts transmitting data immediately, without waiting for connection confirmation from the receiving side. Even though some data loss can happen, UDP is most often used in cases where speed is more important than perfect transmissions, such as in voice or video streaming.
 
 
-## Ports
+### Ports
 
 A virtual point where network connections start and end. So that multiple applications can communicate easily.
 
@@ -30,7 +36,7 @@ To check which ports the system are using
 netstat -a -b
 ```
 
-## URL (Uniform Resource Locator)
+### URL (Uniform Resource Locator)
 
 A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS files.
 
@@ -41,7 +47,7 @@ A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS
 - Generally, the URL dosen't contains a port number in the string because it is by default. For eg, `google.com` or `google.com:443`
 
 
-## IP Address
+### IP Address
 
 <p align="center"><img alt="IP Address" src="https://user-images.githubusercontent.com/51878265/206245742-5b660f3d-5d22-421f-ab35-56faf05b0532.png"></p>
 

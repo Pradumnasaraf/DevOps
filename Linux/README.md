@@ -1,3 +1,9 @@
+## Linux
+
+### Learning resources
+
+- [Linux & Docker Fundamentals - Kubesimplify](https://www.youtube.com/live/EUu1E_YKGTw?feature=share)
+
 ## Concepts
 Linux is an operating system like windows and macOS. It is the most popular open source operating system and powers the vast majority of servers that compose the internet. 
 

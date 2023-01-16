@@ -9,8 +9,6 @@
 [You need to learn Bash Scripting right now playlist - NetworkChuck (Video)](https://youtube.com/playlist?list=PLIhvC56v63IKioClkSNDjW7iz-6TFvLwS)
 - [Devhints Bash Cheat Sheet](https://devhints.io/bash)
 
-
-
 We start by creating a file with the `.sh` extension. For example `script.sh`. Then we write the script in it. For example:
 
 Basic Script
