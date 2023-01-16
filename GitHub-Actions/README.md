@@ -43,28 +43,92 @@ jobs:
 
 ### Triggers
 
-The `on` keyword is used to trigger the workflow. You can use the following events to trigger a workflow.
+The `on` keyword is used to trigger the workflow. It can be triggered by a push, pull request, or a schedule. 
 
 - [Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows)
 
 ```yaml
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 ```
+
+#### Trigger Filters
+
+- We can trigger the workflow when only when certain files are changed.
+
+```yaml
+on:
+  push:
+    paths:
+      - 'src/index.js'
+```
+
+- We can trigger the workflow when only when certain files with an extension are changed.
+
+```yaml
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.css'
+  pull_request:
+    paths:
+      - '**.js'
+```
+
+- We can trigger the workflow when only when certain files in a directory are changed.
+
+```yaml
+on:
+  push:
+    paths:
+      - 'src/**'
+```
+
+### Services
+
+Services are external resources that can be used in a workflow. We can use services like `redis` or `postgres` in our workflow. We can run a service in a container and use it in our workflow. We can also use custom images.
+
+```yaml
+services:
+  redis:
+    image: redis # Docker image
+    ports:
+      - 6379:6379 # port mapping
+  
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  sqlite:
+    image: sqlite
+    ports:
+      - 3306:3306
+```
+
+### Using ouput from one step in another step
+
+We can use the output from one step in another step using the `id` keyword.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=version::1.0.0
+
+      - name: Use the version
+        run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
+```
+
 
 ### GitHub context
 
 The `github` context is available to you in any workflow or action you create on GitHub. You can use the context to get information about the workflow run, the repository, the event that triggered the workflow run, and more.
-
-
-
-
-
-
-
-
-
 
