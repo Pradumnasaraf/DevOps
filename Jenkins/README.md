@@ -14,7 +14,6 @@ Jenkins is an open source automation server. It helps automate the parts of soft
 - [Jenkins Docker Installation (docs)](https://www.jenkins.io/doc/book/installing/docker/)
 - [Jenkins Tutorial - TechWorld with Nana (video)](https://www.youtube.com/playlist?list=PLy7NrYWoggjw_LIiDK1LXdNN82uYuuuiC)
 - [Jenkins FreeCodeCamp (video)](https://youtu.be/f4idgaq2VqA)
-- [Jenkins Tutorial - Guru99 (video)](https://youtu.be/5XQOK0v_YRE)
 
 ## Jenkisfile - Pipeline as Code
 
