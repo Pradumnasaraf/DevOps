@@ -73,7 +73,7 @@
 <img align="right" src="https://user-images.githubusercontent.com/51878265/213385507-52f03107-388c-4992-9b5e-c89de6906e37.png" height="100" alt="network"> 
 
 - [Notes](Go/README.md)
-- [Concepts](https://github.com/Pradumnasaraf/DevOps/tree/main/Go/concepts)
+- [Concepts](https://github.com/Pradumnasaraf/DevOps/tree/main/Go/Concepts)
 - [Practice App](https://github.com/Pradumnasaraf/DevOps/tree/main/Go/App)
 
 <br>

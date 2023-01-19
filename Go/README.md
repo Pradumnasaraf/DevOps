@@ -39,6 +39,8 @@ package main // package declaration
 
 import "fmt" // import fmt package
 
+import ( "fmt" "os") // import multiple packages
+
 func main() {
     fmt.Println("Hello, World!")
 }
@@ -115,4 +117,64 @@ var name = "John"
 fmt.Println(&name) // it will print the memory address of the variable name
 ```
 
+### Arrays
 
+An array is a numbered sequence of elements of a single type with a fixed length.
+
+We declare an array as follows:
+```go
+var arr [5]int  // array of 5 integers
+```
+
+### Sclice
+
+A slice is a segment of an array. It is a dynamically-sized, flexible view into the elements of an array. In practice, slices are much more common than arrays.
+
+We declare a slice as follows:
+
+```go
+var names []int  // slice of integers
+
+names = append(names, 1) // append is a built-in function to add an element to the slice
+
+```
+
+### Loops
+
+In Go, there is only one looping construct, the `for` loop.
+
+```go
+for i := 0; i < 5; i++ {
+    fmt.Println(i)
+}
+```
+
+- `range` - The range form of the for loop iterates over a slice or map.
+
+```go
+for i, name := range names {
+    fmt.Println(i, name)
+}
+```
+
+- `_` - The blank identifier is a special identifier that is used to ignore values when multiple values are returned from a function. It is used to ignore the index in the above example.
+
+```go
+for _, name := range names {
+    fmt.Println(name)
+}
+``` 
+
+### if else
+
+
+
+```go
+if num > 0 {
+    fmt.Println("Positive")
+} else if num < 0 {
+    fmt.Println("Negative")
+} else {
+    fmt.Println("Zero")
+}
+```
