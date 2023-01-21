@@ -2,7 +2,7 @@
 
 Go is statically typed, compiled programming language designed at Google. It is syntactically similar to C, but with memory safety, garbage collection, structural typing, and CSP-style concurrency.
 
-In Go, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library. 
+In Go, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library.
 
 ### Installation
 
@@ -15,6 +15,7 @@ In Go, everything is a package. A package is a collection of source files in the
 - [Go Playground](https://play.golang.org/)
 - [Go Documentation](https://golang.org/doc/)
 - [Codeacademy Free course](https://www.codecademy.com/learn/learn-go)
+- [Golang Tutorial TechWorld with Nana](https://youtu.be/yyUHQIec83I)
 
 ### Features
 
@@ -31,6 +32,11 @@ In Go, everything is a package. A package is a collection of source files in the
 - math - provides basic constants and mathematical functions.
 - net/http - provides HTTP client and server implementations.
 - encoding/json - implements encoding and decoding of JSON.
+
+#### Strings
+
+- strings.Contains(s, substr) - checks whether a substring exists within a string.
+- strings.Fields(s) - splits a string into an array of substrings separated by spaces.
 
 ### Hello World - Running a program
 
@@ -52,9 +58,9 @@ We can run and compile the program using the following command:
 $ go run hello.go
 ```
 
-### Print 
+### Print
 
-Placeholders for `printf` : 
+Placeholders for `printf` :
 
 - %v - value in default format
 - %T - type of value
@@ -78,14 +84,13 @@ Escape sequences:
 - `const` - declares a constant value. Can't be updated.
 - `:=` - short variable declaration. Can be used only inside a function. Called Syntax sugar.
 
-
 > Examples in `Concepts/2) variables.go`
 
 ### Data Types
 
 When we declare with a value we don't need to specify the type. Go will infer the type from the value. But when we declare without a value we need to specify the type.
 
-Eg: 
+Eg:
 
 ```go
 var name string
@@ -122,6 +127,7 @@ fmt.Println(&name) // it will print the memory address of the variable name
 An array is a numbered sequence of elements of a single type with a fixed length.
 
 We declare an array as follows:
+
 ```go
 var arr [5]int  // array of 5 integers
 ```
@@ -163,18 +169,68 @@ for i, name := range names {
 for _, name := range names {
     fmt.Println(name)
 }
-``` 
+```
 
 ### if else
 
-
-
 ```go
-if num > 0 {
+if num > 0 { // this condition will only be true if num is greater than 0
     fmt.Println("Positive")
-} else if num < 0 {
+} else if num == 0 { // this condition will only be true if num is equal to 0
+    fmt.Println("Equal to zero")
+} else {   // this condition will only be true if num is less than 0
     fmt.Println("Negative")
-} else {
-    fmt.Println("Zero")
 }
 ```
+
+We can check also write `data == false` or `!data`
+
+#### Break and Continue
+
+- `break` - The break statement terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
+
+  ```go
+
+  for i := 0; i < 5; i++ {
+      if i == 3 {
+          break
+      }
+      fmt.Println(i)
+  }
+  ```
+
+- `continue` - The continue statement terminates the current iteration of the loop, and resumes execution at the next iteration. It can be used only within an iterative or switch statement and only within the body of that statement.
+
+  ```go
+    for i := 0; i < 5; i++ {
+        if i == 3 {
+            continue
+        }
+        fmt.Println(i)
+    }
+  ```
+
+  ### Switch
+
+  The switch statement is a shorter way to write a sequence of if - else statements. It runs the first case whose value is equal to the condition expression.
+
+  ```go
+  switch num {
+  case 1:
+      fmt.Println("One")
+  case 2:
+      fmt.Println("Two")
+  default:
+      fmt.Println("Other")
+  }
+  ```
+
+  ### Functions
+
+  A function is a block of code that performs a specific task. It is a reusable piece of code.
+
+  ```go
+  func add(x int, y int) int {
+      return x + y
+  }
+  ```

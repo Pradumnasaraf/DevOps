@@ -17,3 +17,4 @@ func main() {
 		fmt.Println("Your number is less than 10")
 	}
 }
+
