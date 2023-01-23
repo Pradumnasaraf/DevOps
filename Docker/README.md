@@ -30,7 +30,7 @@ To build an image from the **Dockerfile**, use this command
 
 ```bash
 docker build <path> 
-// docker build.
+// docker build .
 ```
 
 **Good Practice**
