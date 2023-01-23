@@ -113,6 +113,7 @@ networks: # Optional, same as docker network create
 Sample:
 
 ```yaml
+services:
   mongo:
     container_name: mongo
     image: mongo:4.0
