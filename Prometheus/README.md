@@ -8,7 +8,7 @@ Prometheus is an open-source systems monitoring and alerting toolkit.
 
 ## Installation using Helm
 
-We will isntall Prometheus Operator using Helm. It is collection of Promethus + Grafana + Alertmanager + Node Exporter + Kube State Metrics + Pushgateway + Blackbox Exporter
+We will install Prometheus Operator using Helm. It is collection of Promethus + Grafana + Alertmanager + Node Exporter + Kube State Metrics + Pushgateway + Blackbox Exporter
 
 
 Step 1: Create a Kubernetes Namespace
