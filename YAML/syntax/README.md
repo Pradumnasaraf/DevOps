@@ -27,7 +27,7 @@ fruit: "Mango"
 job: 'Advocate'
 age: 65
 marks: 10.33
-booleanValue: No, N, fasle, Fasle, FALSE 
+booleanValue: No, N, false, False, FALSE 
 ```
 
 ### Multiline String
@@ -75,7 +75,7 @@ role:
 
 # Integer
 Zero: !!int 0
-postiveNumber: !!int 45
+positiveNumber: !!int 45
 negativeNumber: !!int -45
 hexa: !!int 0x45
 
@@ -89,7 +89,7 @@ itNot: !!bool false
 string: !!str "hello"
 
 # Null
-surnmae: !!null #null or NULL ~ 
+surname: !!null #null or NULL ~ 
 ~: this a null key
 
 # Exponential Numbers

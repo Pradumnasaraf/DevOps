@@ -1,4 +1,4 @@
-## YAML - YAML Ain't Markup Langugae
+## YAML - YAML Ain't Markup Language
 
 ## Learning Resources
 
@@ -6,7 +6,7 @@
 - [Yaml Tutorial - TechWorld with Nana](https://youtu.be/1uFVr15xDGg)
 - [Complete YAML Course](https://youtu.be/IA90BTozdow)
 
-- Data format used to exchnage data.
+- Data format used to exchange data.
 - Similar to XML & JSON.
 - We can't add commands.
 - Simple and easy to read.
