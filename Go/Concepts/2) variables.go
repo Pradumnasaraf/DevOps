@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main(){
-	var temp = 20 // tempparature can change 
+	var temp = 20 // temperature can change
 	const myCity = "Mumbai" // name of the city is constant
 	name := "Pradumna" // := is a shortcut for declaring and initializing a variable
 
