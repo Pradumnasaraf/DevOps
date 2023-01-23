@@ -6,12 +6,12 @@ import (
 )
 
 func main() {
-	var confrenceName = "Go Confrence"
-	const confrenceTickets = 50
+	var conferenceName = "Go Conference"
+	const conferenceTickets = 50
 	var remainingTickets uint = 50
 	var bookings []string
 
-	greetUser(confrenceName, confrenceTickets, remainingTickets)
+	greetUser(conferenceName, conferenceTickets, remainingTickets)
 
 	for {
 		var firstName string
@@ -33,14 +33,14 @@ func main() {
 
 		isValidName := len(firstName) >= 2 && len(lastName) >= 2
 		isValidEmail := strings.Contains(email, "@")
-		isVaildTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
 
-		if isValidName && isValidEmail && isVaildTicketNumber {
+		if isValidName && isValidEmail && isValidTicketNumber {
 			remainingTickets = remainingTickets - userTickets
 			bookings = append(bookings, firstName+" "+lastName)
 
 			fmt.Printf("Thank you, %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
-			fmt.Printf("%v remaining tickets for %v\n", remainingTickets, confrenceName)
+			fmt.Printf("%v remaining tickets for %v\n", remainingTickets, conferenceName)
 
 			firstNames := getFirstNames(bookings)
 			fmt.Printf("The First names of booking are: %v\n", firstNames)
@@ -52,13 +52,13 @@ func main() {
 
 		} else {
 			if !isValidName {
-				fmt.Println("You name is too short. Try entring at least 3 char for first and last name")
+				fmt.Println("You name is too short. Try entered at least 3 char for first and last name")
 			}
 			if !isValidEmail {
-				fmt.Println("You have entred a wrong email ID")
+				fmt.Println("You have entered a wrong email ID")
 			}
-			if !isVaildTicketNumber {
-				fmt.Println("Try enterning correct number of tickets.")
+			if !isValidTicketNumber {
+				fmt.Println("Try entering correct number of tickets.")
 			}
 		}
 	}
