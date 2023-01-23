@@ -30,7 +30,7 @@ To build an image from the **Dockerfile**, use this command
 
 ```bash
 docker build <path> 
-// docker build.
+// docker build .
 ```
 
 **Good Practice**
@@ -76,11 +76,11 @@ docker run -v myvolume:/src/public nginx
 A file or directory on the host machine is mounted into a container, i.e it will match the condition of the file system inside a container.
 
 ```bash
-docker run -v <path to your local sytem>:<conatiner path>
+docker run -v <path to your local system>:<container path>
 docker run -v /app/content:/usr/share/nginx/html  nginx
 docker run -v $(pwd):/user/html nginx
 ```
- In compose, we dont have to give the `pwd`
+ In compose, we don't have to give the `pwd`
  
  ```yaml
      volumes:
@@ -113,6 +113,7 @@ networks: # Optional, same as docker network create
 Sample:
 
 ```yaml
+services:
   mongo:
     container_name: mongo
     image: mongo:4.0

@@ -44,7 +44,7 @@ A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS
 
 <p align="center"><img src="https://user-images.githubusercontent.com/51878265/206189760-ea426560-0d3c-4c5f-a8c4-b4f7c9d6f106.png"></p>
 
-- Generally, the URL dosen't contains a port number in the string because it is by default. For eg, `google.com` or `google.com:443`
+- Generally, the URL doesn't contains a port number in the string because it is by default. For eg, `google.com` or `google.com:443`
 
 
 ### IP Address

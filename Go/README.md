@@ -132,7 +132,7 @@ We declare an array as follows:
 var arr [5]int  // array of 5 integers
 ```
 
-### Sclice
+### Slice
 
 A slice is a segment of an array. It is a dynamically-sized, flexible view into the elements of an array. In practice, slices are much more common than arrays.
 
