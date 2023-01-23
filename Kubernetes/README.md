@@ -286,7 +286,7 @@ echo cHJhZHVtbmE | base64 --decode
 
 We can mount Config and Secret as a volume 
 
-**depployment.yaml**
+**deployment.yaml**
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -356,7 +356,7 @@ Container communication - The container inside a pod communicate via localhost s
 
 Steps
 
-1) Create a deploymeny with the config file below 
+1) Create a deployment with the config file below 
  
 ```YAML
 apiVersion: apps/v1
@@ -385,7 +385,7 @@ spec:
         args: ["-c", "echo Hello from the sidecar container! && sleep 3600"]
 ```
 
-2) Get inside the `sidecar` conatiner in the pod myapp and access the terminal by:
+2) Get inside the `sidecar` container in the pod myapp and access the terminal by:
 
 ```bash
 kubectl exec -it <pod-name> -c sidecar -- /bin/sh
@@ -398,7 +398,7 @@ curl localhost:80
 ```
 ## Updating Strategy
 
-Updating means chnaging the image of the pod.
+Updating means changing the image of the pod.
 
 ### Rolling Update
 
