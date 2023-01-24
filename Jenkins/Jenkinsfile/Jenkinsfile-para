@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters{ // Parameters are defined here
-        booleanParam(name: 'executeTest', defaultValue: true, description: 'Execute Test?')
+        booleanParam(name: 'executeTest', defaultValue: true, description: 'Execute Test?')      
     }
     stages{
         stage('Check'){
