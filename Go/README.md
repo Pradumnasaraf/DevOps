@@ -289,6 +289,17 @@ var Name string = "John"
 
 ### Maps
 
-- A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python.
+- A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python. The limitation of maps is that the key should be of the same type and the value should be of the same type. The key and value can be of any type.
 
 
+
+### Structs
+
+- A struct is a collection of fields. It is a data structure that lets us bundle together related data and behavior. We can use structs to represent real-world objects. It can handle multiple data types. It is similar to classes in other languages.
+
+```go
+type Person struct {
+    name string
+    age int
+}
+```
