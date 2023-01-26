@@ -6,10 +6,9 @@ import (
 )
 
 func main() {
-	var bookings = make([]map[string]string, 0)
+	var bookings = make([]map[string]string, 0) // make() is used to create a slice, map, or chan with initial values
 
 	for i := 0; i < 1; i++ {
-
 
 		name := "John"
 		age := 32
@@ -26,7 +25,7 @@ func main() {
 
 		fmt.Println(bookings)
 		for _, booking := range bookings {
-			fmt.Println(booking["name"])
+			fmt.Println(booking["name"]) // access the value of a key
 		}
 	}
 }

@@ -261,14 +261,13 @@ func main() {
 }
 ```
 
-### Code Organization 
+### Code Organization
 
 We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
 
 Also, we can have multiple packages in a single directory.
 
-
-### Expoting and Importing 
+### Expoting and Importing
 
 - We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
 
@@ -286,12 +285,9 @@ var Name string = "John"
 - `Package level variables` are scoped to the package in which they are declared. They are visible to all the functions in the package.
 - `Exported variables` are scoped to the package in which they are declared. They are visible to all the functions in the package and other packages that import the package.
 
-
 ### Maps
 
 - A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python. The limitation of maps is that the key should be of the same type and the value should be of the same type. The key and value can be of any type.
-
-
 
 ### Structs
 
@@ -303,3 +299,37 @@ type Person struct {
     age int
 }
 ```
+
+### Go routines
+
+- A goroutine is a lightweight thread managed by the Go runtime. We can create a goroutine using the keyword `go`. It is similar to threads in other languages.
+
+The purpose of a goroutine is to run a function concurrently with other functions. It is a function that is capable of running concurrently with other functions. It will not wait for the function to complete. It will execute the function concurrently.
+
+```go
+go func() {
+    fmt.Println("Hello")
+}()
+```
+
+- If the main function exits, the program will exit immediately even if the goroutine is still running. To prevent this, we can use the `WaitGroup` type. For Eg:
+
+```go
+
+#### WaitGroup
+
+var wg sync.WaitGroup
+
+func main() {
+    wg.Add(1) // We are adding 1 to the WaitGroup
+    go sayHello()
+    wg.Wait() // We are waiting for the WaitGroup to become zero
+
+}
+func sayHello() {
+    fmt.Println("Hello")
+    wg.Done() // We are decrementing the WaitGroup by 1
+}
+```
+
+`Add()` increments the WaitGroup counter by 1 and `Done()` decrements the WaitGroup counter by 1.

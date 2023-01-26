@@ -3,6 +3,8 @@ package main
 import (
 	"booking-app/validator"
 	"fmt"
+	"time"
+	"sync"
 )
 
 const conferenceTickets = 50
@@ -18,6 +20,8 @@ type UserData struct {
 	tickets   uint
 }
 
+var wg = sync.WaitGroup{}
+
 func main() {
 
 	greetUser()
@@ -30,6 +34,8 @@ func main() {
 		if isValidName && isValidEmail && isVaildTicketNumber {
 
 			bookTicket(userTickets, firstName, lastName, email)
+			wg.Add(1) 
+			go sendEmail(firstName, lastName, userTickets, email)
 
 			firstNames := getFirstNames()
 			fmt.Printf("The First names of booking are: %v\n", firstNames)
@@ -51,6 +57,7 @@ func main() {
 			}
 		}
 	}
+	wg.Wait()
 }
 
 func greetUser() {
@@ -103,4 +110,12 @@ func bookTicket(userTickets uint, firstName string, lastName string, email strin
 
 	fmt.Printf("Thank you, %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v remaining tickets for %v\n", remainingTickets, conferenceName)
+}
+
+func sendEmail(firstName string, lastName string, userTickets uint, email string) {
+	time.Sleep(10 * time.Second)
+	var ticket = fmt.Sprintf("%v tickets %v %v\n", userTickets, firstName, lastName)
+	fmt.Printf("####################\n")
+	fmt.Printf("Sending ticket %v to %v\n", ticket, email)
+	fmt.Printf("####################\n")
 }
