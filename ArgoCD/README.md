@@ -56,7 +56,7 @@ Progressive Delivery is the practice of deploying an application in a gradual ma
 
 [Docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/) for reference.
 
-Samle YAML:
+Sample YAML:
 
 ```YAML
 apiVersion: argoproj.io/v1alpha1
