@@ -60,11 +60,47 @@ We can run and compile the program using the following command:
 $ go run hello.go
 ```
 
+### Mod
+
+We can create a module using the following command. It will create a `go.mod` file. The use of `go.mod` is to track dependencies.
+
+```bash
+$ go mod init github.com/username/repo
+```
+
+### Build
+
+We can build a program using the following command:
+
+```bash
+$ go build hello.go
+```
+
+we can also build for different platforms using the following command:
+
+```bash
+$ GOOS=linux GOARCH=amd64 go build hello.go
+```
+
+### Memory Allocation
+
+- new() - It allocates memory. The size of the memory is equal to the size of the type. It returns a pointer to the memory.
+- make() - It creates slices, maps, and channels only. It returns an initialized (not zeroed) value of type. It is used to create dynamically sized objects.
+
+Garbage collection is a form of automatic memory management. The garbage collector frees the memory occupied by objects that are no longer in use by the program.
+
 ### Print
 
-Placeholders for `printf` :
+There are serveral ways to print in Go. We can use `fmt` package to print.
+
+- `fmt.Println` - prints a line
+- `fmt.Print` - prints without a new line
+- `fmt.Printf` - prints with formatting
+
+#### Placeholders for `printf` :
 
 - %v - value in default format
+- %+v - value in default format with field names
 - %T - type of value
 - %t - boolean
 - %d - decimal integer
@@ -78,15 +114,11 @@ Escape sequences:
 - \n - newline
 - \t - tab
 
-> Examples in `Concepts/1) print.go`
-
 ### Variables
 
 - `var` - variables with initializers.
 - `const` - declares a constant value. Can't be updated.
-- `:=` - short variable declaration. Can be used only inside a function. Called Syntax sugar.
-
-> Examples in `Concepts/2) variables.go`
+- `:=` - short variable declaration. Can be used only inside a function. Called Syntax sugar. We can't use it to declare a global variable.
 
 ### Data Types
 
@@ -107,6 +139,10 @@ name = "John"
 - `uint` - unsigned integer. Example: `42`
 - `byte` - alias for uint8. Example: `42`
 
+- When we declare a variable without a value, Go will assign a default value to it. Eg: `0` for `int`, `false` for `bool` etc.
+
+- If we don't put a variable type go will automatically assign the type based on the value.-
+
 ### Scan
 
 `fmt.Scan` reads text from standard input, scanning the text read into successive arguments. Newlines count as space. It returns the number of items successfully scanned. If that is less than the number of arguments, err will report why.
@@ -115,9 +151,52 @@ name = "John"
 fmt.Scan(&name)
 ```
 
+#### Scanning though bufio
+
+`bufio` package implements a buffered reader that may be useful both for its efficiency with many small reads and because of the additional reading methods it provides.
+
+```go
+func main() {
+
+reader := bufio.NewReader(os.Stdin)
+fmt.Print("Enter text: ")
+text, _ := reader.ReadString('\n') // It is text, err syntax. We put _ to ignore the error.
+fmt.Println(text)
+}
+```
+
+#### "text , err syntax"
+
+In the above example we used `text, err` syntax. It is a common way to handle errors in Go. If we don't want to handle the error we can use `_` to ignore it.
+
+```go
+text, err := reader.ReadString('\n')
+```
+
+### Conversion
+
+We can convert a value from one type to another. The expression T(v) converts the value v to the type T. We can use `strconv` package to convert a data type to another.
+
+### Time
+
+We can use `time` package to get the current time.
+
+```go
+t := time.Now()
+fmt.Println(t)
+```
+
 ### Pointers
 
 A pointer holds the memory address of a value.
+
+we can declare a pointer as follows:
+
+```go
+var p *int
+```
+
+We can get the memory address of a variable using `&` operator.
 
 ```go
 var name = "John"
@@ -126,25 +205,30 @@ fmt.Println(&name) // it will print the memory address of the variable name
 
 ### Arrays
 
-An array is a numbered sequence of elements of a single type with a fixed length.
+An array is a numbered sequence of elements of a single type with a fixed length. We can store a fixed size collection of elements of the same type.
 
 We declare an array as follows:
 
 ```go
 var arr [5]int  // array of 5 integers
+
+arr[0] = 1
+arr[1] = 2
 ```
 
 ### Slice
 
-A slice is a segment of an array. It is a dynamically-sized, flexible view into the elements of an array. In practice, slices are much more common than arrays.
-
-We declare a slice as follows:
+In this we don't need to specify the size of the array. It is a dynamically sized, flexible view into the elements of an array.
 
 ```go
 var names []int  // slice of integers
+```
 
-names = append(names, 1) // append is a built-in function to add an element to the slice
+Unlink arrays, we don't add elements to a slice using `arr[index] = value`. We use `append` function to add elements to a slice.
 
+```go
+names = append(names, 1)
+names = append(names, 2)
 ```
 
 ### Loops
@@ -289,6 +373,14 @@ var Name string = "John"
 
 - A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python. The limitation of maps is that the key should be of the same type and the value should be of the same type. The key and value can be of any type.
 
+```go
+var cars = make(map[string]string, 0) // map of string to string
+
+cars["Toyota"] = "Camry" // adding a key-value pair
+
+delete(cars, "Toyota") // deleting a key-value pair
+```
+
 ### Structs
 
 - A struct is a collection of fields. It is a data structure that lets us bundle together related data and behavior. We can use structs to represent real-world objects. It can handle multiple data types. It is similar to classes in other languages.
@@ -333,3 +425,4 @@ func sayHello() {
 ```
 
 `Add()` increments the WaitGroup counter by 1 and `Done()` decrements the WaitGroup counter by 1.
+

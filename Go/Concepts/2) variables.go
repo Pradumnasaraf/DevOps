@@ -9,4 +9,7 @@ func main(){
 
 	fmt.Println("The temperature in", myCity, "is", temp, "degrees")
 	fmt.Println("My name is", name)
+
+	var name2 string
+	fmt.Println(name2)
 }

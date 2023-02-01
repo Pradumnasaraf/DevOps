@@ -15,4 +15,8 @@ func main() {
 		sum += i
 	}
 	fmt.Println(sum)
+
+	for key, value := range map[string]string{"a": "apple", "b": "banana"} {
+		fmt.Println(key, value)
+	}
 }

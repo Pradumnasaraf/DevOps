@@ -1,16 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
-	var name []string // or name := []string{} 
+	var fruits []string // or name := []string{} - We don't need to specify the size of the array
+	// fruit := make([]string, 2) - We can also use make function to create a slice
 
-	var firstName = "Pradumna"
-	var lastName = "Saraf"
+	fruits = append(fruits, "Apple")
+	fruits = append(fruits, "Orange")
+	fruits = append(fruits, "Banana")
+	fruits = append(fruits, "Grapes")
 
-	name = append(name, firstName + " " + lastName) // Wll add element to the index 0 
-	name = append(name, firstName + " " + lastName) // Wll add element to the index 1 and so on
-	name = append(name, firstName + " " + lastName)
+	fmt.Println(fruits)
+	fmt.Println(len(fruits)) // length of the array
+	fmt.Println(fruits[1:])  // from index 1 to end
+	fmt.Println(fruits[:3])  // from index 0 to 3 , 3 is not included.
+	fmt.Println(fruits[1:3]) // from index 1 to 3 , 3 is not included.
 
-	fmt.Println(len(name))
+	fmt.Println(sort.StringsAreSorted(fruits)) // check if the array is sorted
+
+	sort.Strings(fruits) // sort the array
+	fmt.Println(fruits)
+
+	fmt.Println(sort.StringsAreSorted(fruits)) 
 }
