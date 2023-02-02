@@ -14,8 +14,9 @@ In Go, everything is a package. A package is a collection of source files in the
 - [Go Tour](https://tour.golang.org/welcome/1)
 - [Go Playground](https://play.golang.org/)
 - [Go Documentation](https://golang.org/doc/)
-- [Codeacademy Free course](https://www.codecademy.com/learn/learn-go)
+- [Let's go with golang](https://youtube.com/playlist?list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa) - Recommended
 - [Golang Tutorial TechWorld with Nana](https://youtu.be/yyUHQIec83I)
+- [Codeacademy Free course](https://www.codecademy.com/learn/learn-go)
 
 ### Features
 
@@ -171,11 +172,20 @@ In the above example we used `text, err` syntax. It is a common way to handle er
 
 ```go
 text, err := reader.ReadString('\n')
+
+if err != nil {
+    panic(err)
+}
 ```
+
+- `panic` - It
+
+
 
 ### Conversion
 
 We can convert a value from one type to another. The expression T(v) converts the value v to the type T. We can use `strconv` package to convert a data type to another.
+
 
 ### Time
 
@@ -244,6 +254,8 @@ fmt.Println(i)
 - `range` - The range form of the for loop iterates over a slice or map.
 
 ```go
+names := []string{"John", "Paul", "George", "Ringo"}
+
 for i, name := range names {
 fmt.Println(i, name)
 }
@@ -311,6 +323,20 @@ default:
 }
 ```
 
+- In Go, we don't need to write `break` after each case. It will automatically break after each case. If we want to execute the next case we can use `fallthrough` keyword.
+
+```go
+switch num {
+case 1:
+    fmt.Println("One")
+    fallthrough // it will execute the next case
+case 2:
+    fmt.Println("Two")
+default:
+    fmt.Println("Other")
+}
+```
+
 ### Functions
 
 - A function is a block of code that performs a specific task. It is a reusable piece of code.
@@ -318,6 +344,10 @@ default:
 ```go
 func add(x int, y int) int { // We can specify the type of the parameters
     return x + y
+}
+
+func main() {
+    fmt.Println(add(1, 2)) // We can call the function by passing the arguments
 }
 ```
 
@@ -329,6 +359,47 @@ return y, x
 }
 
 a, b := swap("hello", "world") // We can get the return values using multiple assignment
+```
+
+#### Anonymous functions
+
+- We can declare a function without a name. Such functions are called anonymous functions.
+
+```go
+func(x, y int) int {
+    return x + y
+}
+```
+
+### Methods
+
+- A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name.
+
+```go
+type Person struct {
+    name string
+}
+
+func (p Person) getName() string { // We can use the receiver argument to access the fields of the struct
+    return p.name
+}
+
+func main() {
+    p := Person{name: "John"}
+    fmt.Println(p.getName())
+}
+```
+
+### Defer
+
+- A defer statement defers the execution of a function until the surrounding function returns.
+
+```go
+func main() {
+    defer fmt.Println("world") // It will print "world" after the main function returns
+
+    fmt.Println("hello")
+}
 ```
 
 ### Package level variables
@@ -425,4 +496,18 @@ func sayHello() {
 ```
 
 `Add()` increments the WaitGroup counter by 1 and `Done()` decrements the WaitGroup counter by 1.
+
+
+### goto
+
+- The goto statement transfers control to the labeled statement. It is similar to the break statement in other languages.
+
+
+### Math
+
+- rand.Seed() - It is used to initialize the default Source to a deterministic state. If Seed is not called, the generator behaves as if seeded by Seed(1). It should only be called once. It is usually called before the first call to Intn or Float64.
+
+```go
+rand.Seed(time.Now().UnixNano())
+```
 
