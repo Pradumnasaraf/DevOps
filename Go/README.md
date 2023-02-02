@@ -109,6 +109,7 @@ There are serveral ways to print in Go. We can use `fmt` package to print.
 - %c - character
 - %x - hexadecimal integer
 - %f - floating point number
+- %s - string
 
 Escape sequences:
 
@@ -511,3 +512,20 @@ func sayHello() {
 rand.Seed(time.Now().UnixNano())
 ```
 
+### Json
+
+- We can use the `json` package to encode and decode JSON data.
+
+- `json.Marshal()` - It is used to encode a value to JSON. It returns a byte slice and an error.
+- `json.MarshalIndent()` - It is used to encode a value to JSON with indentation. It returns a byte slice and an error.
+- `json.Unmarshal()` - It is used to decode a JSON-encoded value. It returns an error.
+
+In the Structs we can use the `json` tag to specify the name of the field in the JSON. I
+
+```go
+
+type Person struct {
+    Name string `json:"name"`
+    Age int `json:"age"`
+}    
+``` 
