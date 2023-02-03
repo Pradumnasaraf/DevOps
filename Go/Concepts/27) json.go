@@ -15,7 +15,9 @@ type course struct {
 
 func main() {
 
-	encodeJson()
+	//encodeJson()
+	//decodeJson()
+	extractJsonData()
 
 
 }
@@ -28,7 +30,7 @@ func encodeJson() {
 		{"Golang", 300, "yt", "jh1234", nil},
 	}
 
-	finalJson, err := json.MarshalIndent(cources, "", "\t")
+	finalJson, err := json.MarshalIndent(cources, "", "\t") // json.Marshal() will return byte array
 
 	if err != nil {
 		panic(err)
@@ -37,7 +39,49 @@ func encodeJson() {
 	fmt.Print(string(finalJson))
 	// or
 	fmt.Printf("%s",finalJson)
+}
+
+func decodeJson() {
+
+	jsonData := []byte(`
+		{
+			"coursename": "Mern",
+			"price": 200,
+			"website": "yt",
+			"tags": [ "full-stack", "js" ]
+		},
+	`)
+
+	var myCourse course 
+	
+	checkValid := json.Valid(jsonData)
+	if checkValid {
+		json.Unmarshal(jsonData, &myCourse)
+		fmt.Printf("%#v\n", myCourse)
+	} else{
+		fmt.Println("JSON NOT VALID")
+	}
+
+}
 
 
+func extractJsonData(){
+
+	jsonData := []byte(`
+		{
+			"coursename": "Mern",
+			"price": 200,
+			"website": "yt",
+			"tags": [ "full-stack", "js" ]
+		}
+	`)
+
+	var myData map[string]interface{}
+	json.Unmarshal(jsonData, &myData)
+	fmt.Printf("%#v\n", myData)
+
+	for k, v := range myData{
+		fmt.Printf("Key is %v with the value %v and type is: %T\n", k, v, v)
+	}
 
 }
