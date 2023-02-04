@@ -219,15 +219,31 @@ fmt.Println(t)
 
 ### Pointers
 
-A pointer holds the memory address of a value.
-
-we can declare a pointer as follows:
+A pointer is a variable that stores the memory address of another variable. We can declare a pointer by using `*` operator. Eg:
 
 ```go
 var p *int
 ```
 
 We can get the memory address of a variable using `&` operator.
+
+```go
+var name = "John"
+fmt.Println(&name) // it will print the memory address of the variable name
+```
+
+We can get the value of a pointer using `*` operator. Called dereferencing.
+
+```go
+
+var name = "John"
+var myName = &name
+
+fmt.Println(*myName) // it will print the value of the variable name
+```
+
+- `*int` - the type `*int` is a pointer to an `int`.
+
 
 ```go
 var name = "John"
