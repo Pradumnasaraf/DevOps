@@ -15,7 +15,7 @@ Jenkins is an open source automation server. It helps automate the parts of soft
 - [Jenkins Tutorial - TechWorld with Nana (video)](https://www.youtube.com/playlist?list=PLy7NrYWoggjw_LIiDK1LXdNN82uYuuuiC)
 - [Jenkins FreeCodeCamp (video)](https://youtu.be/f4idgaq2VqA)
 
-## Jenkisfile - Pipeline as Code
+## Jenkinsfile - Pipeline as Code
 
 Insted of configuring the pipeline in the Jenkins UI, we can define the entire pipeline in a Jenkinsfile and check it into source control. The file name is case sensitive and must be named `Jenkinsfile`.
 
