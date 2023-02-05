@@ -61,13 +61,34 @@ We can run and compile the program using the following command:
 $ go run hello.go
 ```
 
-### Mod
+### Go Mod 
 
-We can create a module using the following command. It will create a `go.mod` file. The use of `go.mod` is to track dependencies.
+Go modules are a dependency management system that makes dependency version information explicit and easier to manage. Go modules are the future of dependency management in Go.
 
-```bash
-$ go mod init github.com/username/repo
-```
+`go mod init github.com/username/repo` - creates a new module, initializing the go.mod file that describes it.
+
+- `go mod tidy` - command will add any missing modules necessary to build the current module's packages and dependencies. It will also remove any unused modules that don't provide any relevant packages. It will update the go.mod file and the go.sum file.
+
+- `go mod verify` - command will verify dependencies have expected content.
+
+- `go list -m all` - command will list all modules needed to build the current module, as well as indirect and test dependencies.
+
+- `go get` - command will add dependencies to current module and install them.
+
+- `go list -m -versions <module name>` - command will list all available versions of a module.
+
+- `go mod edit -go 1.16` - command will update the go directive in the go.mod file to the specified version.
+
+- `go mod vendor` - command will copy all dependencies into a vendor directory.
+
+### Sum (go.sum)
+
+It is a file that contains the expected cryptographic checksums of the content of specific module versions. It ensures that dependencies have not been modified.
+
+### Go Path
+
+Go path is an environment variable that specifies the location of your workspace. It is used to find the location of your Go code.
+
 
 ### Build
 
@@ -109,6 +130,7 @@ There are serveral ways to print in Go. We can use `fmt` package to print.
 - %c - character
 - %x - hexadecimal integer
 - %f - floating point number
+- %s - string
 
 Escape sequences:
 
@@ -178,8 +200,7 @@ if err != nil {
 }
 ```
 
-- `panic` - It
-
+- `panic` - It is a built-in function that stops the ordinary flow of control and begins panicking. When the function F calls panic, execution of F stops, any deferred functions in F are executed normally, and then F returns to its caller.
 
 
 ### Conversion
@@ -198,15 +219,31 @@ fmt.Println(t)
 
 ### Pointers
 
-A pointer holds the memory address of a value.
-
-we can declare a pointer as follows:
+A pointer is a variable that stores the memory address of another variable. We can declare a pointer by using `*` operator. Eg:
 
 ```go
 var p *int
 ```
 
 We can get the memory address of a variable using `&` operator.
+
+```go
+var name = "John"
+fmt.Println(&name) // it will print the memory address of the variable name
+```
+
+We can get the value of a pointer using `*` operator. Called dereferencing.
+
+```go
+
+var name = "John"
+var myName = &name
+
+fmt.Println(*myName) // it will print the value of the variable name
+```
+
+- `*int` - the type `*int` is a pointer to an `int`.
+
 
 ```go
 var name = "John"
@@ -511,3 +548,20 @@ func sayHello() {
 rand.Seed(time.Now().UnixNano())
 ```
 
+### Json
+
+- We can use the `json` package to encode and decode JSON data.
+
+- `json.Marshal()` - It is used to encode a value to JSON. It returns a byte slice and an error.
+- `json.MarshalIndent()` - It is used to encode a value to JSON with indentation. It returns a byte slice and an error.
+- `json.Unmarshal()` - It is used to decode a JSON-encoded value. It returns an error.
+
+In the Structs we can use the `json` tag to specify the name of the field in the JSON. I
+
+```go
+
+type Person struct {
+    Name string `json:"name"`
+    Age int `json:"age"`
+}    
+``` 
