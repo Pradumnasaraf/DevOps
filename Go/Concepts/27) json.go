@@ -78,7 +78,7 @@ func extractJsonData(){
 
 	var myData map[string]interface{}
 	json.Unmarshal(jsonData, &myData)
-	fmt.Printf("%#v\n", myData)
+	fmt.Printf("%#v\n", myData) // 
 
 	for k, v := range myData{
 		fmt.Printf("Key is %v with the value %v and type is: %T\n", k, v, v)

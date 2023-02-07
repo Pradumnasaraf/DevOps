@@ -3,11 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
-
 	"github.com/gorilla/mux"
 )
 
@@ -26,6 +26,35 @@ type Author struct {
 
 func main() {
 
+	fmt.Println("Server is running")
+	r := mux.NewRouter()
+
+	myCourses := Course{
+		CourseId: "2",
+		CourseName: "ReactJs",
+		CoursePrice: 299,
+		Author: &Author{Fullname: "Pradumna", Website: "test.com"},
+	}
+	myCourses1 := Course{
+		CourseId: "4",
+		CourseName: "NodeJs",
+		CoursePrice: 199,
+		Author: &Author{Fullname: "Jack", Website: "test.com"},
+	}
+	courses = append(courses, myCourses)
+	courses = append(courses, myCourses1)
+
+	//routing
+
+	r.HandleFunc("/", serveHome).Methods("GET")
+	r.HandleFunc("/courses", getAllCourses).Methods("GET")
+	r.HandleFunc("/courses/{id}", getOneCourse).Methods("GET")
+	r.HandleFunc("/courses", createOneCourse).Methods("POST")
+	r.HandleFunc("/courses/{id}", updateOneCouse).Methods("PUT")
+	r.HandleFunc("/courses/{id}", deleteOneCouse).Methods("DELETE")
+
+	// Listen to a port
+	log.Fatal(http.ListenAndServe(":4002", r))
 }
 
 // fake DB
@@ -135,7 +164,8 @@ func deleteOneCouse(w http.ResponseWriter, r *http.Request) {
 	for index, course := range courses {
 		if course.CourseId == params["id"] {
 			courses = append(courses[:index], courses[index+1:]...) // remove the element at index 2. :index is from 0 to index-1, index+1: is from index+1 to end
-			json.NewEncoder(w).Encode("Id has been been found")
+			json.NewEncoder(w).Encode("Data with ID deleted")
+			return
 		}
 	}
 	json.NewEncoder(w).Encode("Id is not found")
