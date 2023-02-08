@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"time"
-
 	"github.com/gorilla/mux"
 	"github.com/pradumnasaraf/mongo-api/model"
 	"go.mongodb.org/mongo-driver/bson"
@@ -30,55 +29,87 @@ func init() {
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURL))
 	checkNilErr(err)
 
-	fmt.Print("MongoDB Connected sucessfully")
+	fmt.Println("MongoDB Connected sucessfully")
 
 	collection = client.Database(databaseName).Collection(collectionName)
-	fmt.Print("Collection instance is ready")
+	fmt.Println("Collection instance is ready")
 
 }
 
 // MONGODB HELPERS
 
-func insertOneMovie(movie model.Neflix){
+func insertOneMovie(movie model.Netflix) {
 	result, err := collection.InsertOne(context.Background(), movie)
 
 	checkNilErr(err)
-	fmt.Print("Inserted 1 movie in DB with id:", result.InsertedID)
+	fmt.Println("Inserted 1 movie in DB with id:", result.InsertedID)
 }
 
-func updateOneMovie(movieId string){
+func updateOneMovie(movieId string) {
 	id, _ := primitive.ObjectIDFromHex(movieId)
 	filter := bson.M{"_id": id}
-	update := bson.M{"$sey": bson.M{"watched": true}}
+	update := bson.M{"$set": bson.M{"watched": true}}
 	result, err := collection.UpdateOne(context.Background(), filter, update)
 
 	checkNilErr(err)
-	fmt.Print("Modified count:", result.UpsertedCount)
+	fmt.Println("Modified count:", result.UpsertedCount)
 }
 
-func deleteOneMovie(movieId string){
-	id, _ := primitive.ObjectIDFromHex(movieId) 
+func deleteOneMovie(movieId string) {
+	id, _ := primitive.ObjectIDFromHex(movieId)
 	filter := bson.M{"_id": id}
-	result, err := collection.DeleteOne(context.Background(), filter) 
+	result, err := collection.DeleteOne(context.Background(), filter)
 
 	checkNilErr(err)
-	fmt.Print("Modified count:", result.DeletedCount)
+	fmt.Println("Modified count:", result.DeletedCount)
 }
 
-func deleteAllMovies(movieId string){
+func deleteAllMovies() int64 {
 	filter := bson.D{{}}
-	result, err := collection.DeleteMany(context.Background(), filter) 
+	result, err := collection.DeleteMany(context.Background(), filter)
 
 	checkNilErr(err)
-	fmt.Print("Modified count:", result.DeletedCount)
+	fmt.Println("Modified count:", result.DeletedCount)
+	return result.DeletedCount
 }
 
-func getAllMovies() []primitive.M{
+func CreateMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var movie model.Netflix
+	_ = json.NewDecoder(r.Body).Decode(&movie)
+	insertOneMovie(movie)
+	json.NewEncoder(w).Encode(movie)
+}
+func MarkAsWatched(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	params := mux.Vars(r)
+	updateOneMovie(params["id"])
+	json.NewEncoder(w).Encode(params["id"])
+}
+func DeleteAMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	params := mux.Vars(r)
+	deleteOneMovie(params["id"])
+	json.NewEncoder(w).Encode(params["id"])
+}
+func DeleteMyAllMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	deltedCount := deleteAllMovies()
+	json.NewEncoder(w).Encode(deltedCount)
+}
+func ServeHomepage(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("API is working fine 🚀."))
+}
+func getAllMovies() []primitive.M {
 	cursor, err := collection.Find(context.Background(), bson.D{{}})
 	checkNilErr(err)
 	var movies []primitive.M
 
-	for cursor.Next(context.Background()){
+	for cursor.Next(context.Background()) {
 		var movie bson.M
 		err := cursor.Decode(&movie)
 		checkNilErr(err)
@@ -89,30 +120,26 @@ func getAllMovies() []primitive.M{
 	return movies
 
 }
-
-func GetMyAllMovie(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+func GetMyAllMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	allMovies := getAllMovies()
 	json.NewEncoder(w).Encode(allMovies)
 }
 
-func CreateMovie(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Allow-Control-Allow-Methods", "POST")
-
-	var movie model.Neflix
-	_ = json.NewDecoder(r.Body).Decode(&movie)
-	insertOneMovie(movie)
-	json.NewEncoder(w).Encode(movie)
+func getOneMovies(movieId string) model.Netflix {
+	id, _ := primitive.ObjectIDFromHex(movieId)
+	filter := bson.M{"_id": id}
+	var movie model.Netflix
+	err := collection.FindOne(context.Background(), filter).Decode(&movie)
+	checkNilErr(err)
+	return movie
 }
 
-func MarkAsWatched(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Allow-Control-Allow-Methods", "POST")
-
+func GetAMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	updateOneMovie(params[params["id"]])
-	json.NewEncoder(w).Encode(params["id"])
+	movie := getOneMovies(params["id"])
+	json.NewEncoder(w).Encode(movie)
 }
 
 func checkNilErr(err error) {
