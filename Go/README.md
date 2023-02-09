@@ -439,6 +439,29 @@ func main() {
 }
 ```
 
+### Mutex 
+
+- Mutex is a mutual exclusion lock. The zero value for a Mutex is an unlocked mutex.
+
+```go
+var mutex sync.Mutex
+
+mutex.Lock() // It will lock the mutex
+mutex.Unlock() // It will unlock the mutex
+```
+
+- RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. When a writer is active, no readers can be active. 
+
+```go
+var rwMutex sync.RWMutex
+
+rwMutex.RLock() // It will lock the mutex for reading
+rwMutex.RUnlock() // It will unlock the mutex for reading
+
+rwMutex.Lock() // It will lock the mutex for writing
+rwMutex.Unlock() // It will unlock the mutex for writing
+```
+
 ### Package level variables
 
 - We can declare variables at the package level. They are called package level variables.
@@ -565,3 +588,41 @@ type Person struct {
     Age int `json:"age"`
 }    
 ``` 
+
+### Channels
+
+- A channel is a communication mechanism that allows one goroutine to pass values of a specified type to another goroutine. It is communication between goroutines. It is similar to pipes in other languages.
+
+- `make()` - It is used to create a channel. It takes the type of the channel as an argument.
+
+We can create a buffered channel by passing the buffer size as the second argument to the `make()` function. By default, the channel is unbuffered and can only hold one value. So, if we try to send multiple value to the channel it will give an error.
+
+```go
+var ch = make(chan int) // unbuffered channel
+
+var ch = make(chan int, 10) // buffered channel
+```
+
+```go
+ch := make(chan int)
+
+ch <- 10 // It will send 10 to the channel
+
+<- ch // It will receive from the channel
+val, ok := <- ch // It will receive from the channel and check if the channel is closed or not
+```
+
+- `close()` - It is used to close a channel. It takes the channel as an argument.
+
+
+#### Send Only Channel
+
+```go
+var ch = make(chan<- int) // send only channel
+```
+
+Receive Only Channel
+
+```go
+var ch = make(<-chan int) // receive only channel
+```
