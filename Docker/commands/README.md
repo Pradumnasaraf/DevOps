@@ -12,15 +12,15 @@ docker version
 docker images
 ```
 
-- Pull/Downlaod the image from the Docker registry to local machine.
+- Pull/Download the image from the Docker registry to local machine.
 
 ```bash
 docker pull <image name>
-//Eg: docker run nginx
+//Eg: docker pull nginx
 ```
 
 - To run an container (It will 1st pull the image if not present in the local sytem)
-  - NOTE: When we just provide the name of the image it will pull the lastest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
+  - NOTE: When we just provide the name of the image it will pull the latest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
   - Additioanly we can use flags
   
      - `--name <name> `- To give a name to the container.
@@ -30,11 +30,11 @@ docker pull <image name>
      - `-e` - For environment variable
 
 ```bash
-docker run <image name>
+docker run <image-name>
 //Eg: docker run nginx
 ```
 
-- We can aslo pass a complete `.env` file
+- We can also pass a complete `.env` file
 
 ```bash
 --env-file <path-to-env-file>
@@ -46,31 +46,31 @@ Eg: --env-file ./.env
 - To stop a running container
 
 ```bash
-docker stop <container ID/name>
+docker stop <container-ID/name>
 ``` 
 
 - To resume a stopped container
 
 ```bash
-docker start <container ID/name>
+docker start <container-ID/name>
 ```
 
 - To check the running processes inside a container.
 
 ```bash
-docker top <container name/id>
+docker top <container-name/id>
 ```
 
 - To check stats of running container.
 
 ```bash
-docker stats <container name/id>
+docker stats <container-name/id>
 ```
 
 - Check the config and info of a container.
 
 ```bash
-docker stats <container name/id>
+docker inspect <container-name/id>
 //Eg: docker inspect mynginx
 ```
 
@@ -82,21 +82,21 @@ or
 docker container ls
 ```
 
-- To start and interactive session and get inside the container.
+- To start and interactive session and attach terminal with the container.
 
-  - NOTE: every image does not support `bash` so we use `sh`
+  - NOTE: every image does not support `bash` so we should use `sh`
 
 ```
-docker exec -it <container ID/name> bash/sh
+docker exec -it <container-ID/name> bash/sh
 ```
 
 - To check which ports has been exposed and forwarded
 
 ```bash
-docker port <image name>
+docker port <image-name>
 ```
 
-- To check all the stopped container
+- To check all the containers (stopped, paused and running)
 
 ```bash
 docker ps -a
@@ -105,18 +105,24 @@ docker ps -a
 - Check logs of a container
 
 ```bash
-docker logs <container ID/name>
+docker logs <container-ID/name>
 ```
 
-- Delete all the stopped container
+- Delete all the stopped containers
 
 ```bash
 docker container prune -f
 ```
-- Auto cleanup when t
+
+- Delete all the containers (stopped, paused and running)
+```bash
+docker rm -f $(docker ps -aq)
+```
+
+- Auto cleanup when the container exits
 
 ```bash
- docker container run —rm
+ docker container run —rm <image-name>
 ```
 
 ### Docker Network
@@ -130,7 +136,7 @@ docker network ls
 - Inspect a network components, like which container are attached to that network.
 
 ```bash
-docker network inspect <network name>
+docker network inspect <network-name>
 ```
 
 - Run a container on a certian network/own careted network 
@@ -160,20 +166,21 @@ docker rmi $(docker images -q)
 - To inspect an image layers and other info
 
 ```bash
-docker inspect  <image name/id>
+docker inspect  <image-name/id>
 ```
 
 - Check the image layers formation
 
 ```bash 
-docker history <image-name>
+docker history <image-name/id>
 ```
 
 - Create a our own image with an existing image.
 
 ```
-docker image tag <image-name with tag> <new-image name with tag>
+docker image tag <image-name:tag> <new-image-name:tag>
 docker image tag nginx pradumna/nginx:hello
+docker image tag ubuntu:18.04 pradumna/ubuntu:example
 ```
 
 ### Docker Volume
@@ -183,15 +190,15 @@ docker image tag nginx pradumna/nginx:hello
   
 
 - To sync our local machine changes with help of Docker volume (Bind mount)
-    - `- v` is use to define volume, aslo we give another `-v` flag to override the changes so that it will not chnage in container.
+    - `- v` is use to define volume, also we give another `-v` flag to override the changes so that it will not chnage in container.
 
 ```bash
-docker run -v <path-on-folder-loacl-machine>:<path-to-folder-on-container> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
+docker run -v <path-to-folder-on-local-machine>:<path-to-folder-on-container> -p <host-port>:<container-port> -d --name docker-node docker-node
 docker
 ```
 
 ```bash
-docker run -v <path-on-folder-loacl-machine>:<path-to-folder-on-container> -v <path-to-file/folder-on-container> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
+docker run -v <path-to-folder-on-local-machine>:<path-to-folder-on-container> -v <path-to-file/folder-on-container> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
 ```
 To make it read only so that when you add some files inside it, the container will not get created on your local machine use `-v port:port:ro`
 
@@ -220,7 +227,7 @@ docker compose up --build
 docker compose -f docker-compose.yaml  -f docker-compose.dev.yaml
 ```
 
-###  Docker Swam and Services
+###  Docker Swarm and Services
 
 - Initalize swarm
 
@@ -341,6 +348,6 @@ doc run <image-name> <command>
 
 ```
 Step 1 - create Dockerfile
-Step 2 - docker build -t myimage:1.0 <location> (-t for tag)
-Step 3 - docker run
+Step 2 - docker build -t myimage:1.0 <path-of-dockerfile> (-t for tag)
+Step 3 - docker run myimage:1.0
 ```
