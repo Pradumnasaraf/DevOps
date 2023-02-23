@@ -1,0 +1,123 @@
+---
+# tasks file for nginx-role
+    - name: Check OS distribution
+      block:
+        - name: Install epel-release on CentOS
+          yum:
+            name: epel-release
+            state: present
+          when: ansible_os_family == "RedHat"
+
+        - name: Install software-properties-common on Ubuntu
+          apt:
+            name: software-properties-common
+            state: present
+          when: ansible_os_family == "Debian"
+
+    - name: Install Nginx
+      block:
+        - name: Install Nginx on CentOS
+          yum:
+            name: nginx
+            state: present
+          when: ansible_os_family == "RedHat"
+
+        - name: Install Nginx on Ubuntu
+          apt:
+            name: nginx
+            state: present
+          when: ansible_os_family == "Debian"
+
+    - name: Configure Nginx
+      block:
+        - name: Remove default Nginx configuration on CentOS
+          file:
+            path: /etc/nginx/conf.d/default.conf
+            state: absent
+          when: ansible_os_family == "RedHat"
+
+        - name: Remove default Nginx configuration on Ubuntu
+          file:
+            path: /etc/nginx/sites-enabled/default
+            state: absent
+          when: ansible_os_family == "Debian"
+
+        - name: Configure Nginx on CentOS
+          template:
+            src: templates/nginx.conf.j2
+            dest: /etc/nginx/nginx.conf
+            group: 'ansible'
+            owner: 'ansible'
+            mode: '0644'
+          when: ansible_os_family == "RedHat"
+
+        - name: Configure Nginx on Ubuntu
+          template:
+            src: templates/nginx.conf.j2
+            dest: /etc/nginx/nginx.conf
+            group: 'ansible'
+            owner: 'ansible'
+            mode: '0644'
+          when: ansible_os_family == "Debian"
+
+    # - name: Generate self-signed SSL certificate
+    #   command: >
+    #     openssl req -x509 -nodes -days 365
+    #     -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key
+    #     -out /etc/ssl/certs/nginx-selfsigned.crt
+    #     -subj "/C=US/ST=New York/L=New York/O=Sify Technologies Ltd./OU=Sify DevOps/CN=example.sify.net"
+    #   args:
+    #     creates: /etc/ssl/private/nginx-selfsigned.key
+
+    # - name: Configure SSL
+    #   template:
+    #     src: nginx_ssl.conf.j2
+    #     dest: /etc/nginx/conf.d/ssl.conf
+    #   notify: Reload Nginx
+
+    - name: Create style.css
+      file:
+        path: /usr/share/nginx/html/style.css
+        state: touch
+        mode: '0644'
+
+    - name: Update style.css file
+      template:
+        src: style.css.j2
+        dest: /usr/share/nginx/html/style.css
+
+    - name: Create script.js
+      file:
+        path: /usr/share/nginx/html/script.js
+        state: touch
+        mode: '0644'
+
+    - name: Update script.js file 
+      template:
+        src: script.js.j2
+        dest: /usr/share/nginx/html/script.js
+
+    - name: Update index.html file
+      template:
+        src: index.html.j2
+        dest: /usr/share/nginx/html/index.html
+
+    - name: Restart Nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: Start and enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    # - name: Ensure Nginx Firewall Rule is Added
+    #   firewalld:
+    #     service: http
+    #     permanent: true
+    #     state: enabled
+    #     immediate: yes
+    #   notify:
+    #     - Reload Firewall

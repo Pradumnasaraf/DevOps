@@ -1,0 +1,9 @@
+---
+- name: Install and Configure Nginx
+  hosts: nginx
+  become: true
+  remote_user: ansible
+
+  roles:
+    - nginx-role
+

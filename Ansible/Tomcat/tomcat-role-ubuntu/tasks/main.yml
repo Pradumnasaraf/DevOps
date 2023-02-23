@@ -1,0 +1,85 @@
+---
+# tasks file for tomcat-role-ubuntu
+    - name: Install Java 8 in Ubuntu
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Add group for Tomcat
+      group:
+        name: tomcat
+
+    - name: Add user for Tomcat
+      user:
+        name: tomcat
+        group: tomcat
+        home: /usr/share/tomcat
+        createhome: no
+        system: yes
+
+    - name: Download Tomcat
+      get_url:
+        url: "{{ tomcat_archive_url }}"
+        dest: "{{ tomcat_archive_dest }}"
+
+    - name: Create a directory for Tomcat 
+      file:
+        path: /usr/share/tomcat
+        state: directory
+        owner: tomcat
+        group: tomcat
+
+    - name: Extract Tomcat archive
+      unarchive:
+        src: "{{ tomcat_archive_dest }}"
+        dest: /usr/share/tomcat
+        owner: tomcat
+        group: tomcat
+        remote_src: yes
+        extra_opts: "--strip-components=1"
+        creates: /usr/share/tomcat/bin
+
+    - name: Copy Tomcat service file
+      template:
+        src: templates/tomcat.service.j2
+        dest: /etc/systemd/system/tomcat.service
+      when: ansible_service_mgr == "systemd"
+
+    - name: Start and enable Tomcat
+      service:
+        daemon_reload: yes
+        name: tomcat
+        state: started
+        enabled: yes
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+
+    - name: Start and enable UFW
+      service:
+        name: ufw
+        state: restarted
+        enabled: yes
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+
+    - name: Open Tomcat port on the firewall
+      ufw:
+        rule: allow
+        port: 8080
+        proto: tcp
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+
+    - name: Set UI access credentials
+      template:
+        src: tomcat-users.xml.j2
+        dest: /usr/share/tomcat/conf/tomcat-users.xml
+      notify: Restart Tomcat
+
+    - name: Allow access to Manager and Host Manager apps from any IP
+      template:
+        src: context.xml.j2
+        dest: "{{ item }}"
+      with_items:
+        - /usr/share/tomcat/webapps/host-manager/META-INF/context.xml
+        - /usr/share/tomcat/webapps/manager/META-INF/context.xml
+      notify: Restart Tomcat
+

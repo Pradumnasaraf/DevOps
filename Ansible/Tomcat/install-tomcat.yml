@@ -1,0 +1,17 @@
+---
+- name: Install and Configure Tomcat
+  hosts: tomcat       
+  become: true                    
+  remote_user: ansible   
+
+  vars:
+    tomcat_ver: 9.0.64 #OR 9.0.54                         
+    ui_manager_user: manager                   
+    ui_manager_pass: P@ssw0rd      
+    ui_admin_username: admin          
+    ui_admin_pass: T00l@dm1N          
+  
+  roles:
+    - tomcat-role-centos
+    - tomcat-role-ubuntu
+

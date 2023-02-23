@@ -1,0 +1,17 @@
+---
+# handlers file for nginx-role
+    # - name: Restart Nginx
+    #   systemd:
+    #     name: nginx
+    #     state: restarted
+
+    # - name: Reload Nginx
+    #   systemd:
+    #     name: nginx
+    #     state: reloaded
+
+    # - name: Reload Firewall
+    #   service:
+    #     name: firewalld
+    #     state: reloaded
+

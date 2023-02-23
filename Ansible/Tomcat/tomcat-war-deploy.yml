@@ -1,0 +1,32 @@
+---
+- hosts: tomcat
+  vars:
+  - warName: ROOT.war
+  - warRemotePath: /usr/share/tomcat
+
+  tasks:
+    - name: Download WAR to server or COPY from ansible node            
+      copy: 
+        src: /root/war/sample/sample.war 
+        dest: "{{ warRemotePath }}/{{ warName }}"            
+
+    - name: Create sample directory in webapps     
+      file: 
+        path: /usr/share/tomcat/webapps/hello-world
+        state: directory
+        mode: 0755
+    
+    - name: Unzip WAR file
+      unarchive: src="{{ warRemotePath }}/{{ warName }}" dest=/usr/share/tomcat/webapps/hello-world/ copy=no mode=0755 owner=tomcat group=tomcat
+      notify:
+          - Restart Tomcat
+          
+    - name: Delete remote war file
+      file: path={{ warRemotePath }}/{{ warName }} state=absent
+      
+    - name: Wait for tomcat to start
+      wait_for: port=8080 timeout=60
+    
+  handlers:
+    - name: Restart Tomcat
+      service: name=tomcat state=restarted

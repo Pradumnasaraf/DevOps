@@ -1,0 +1,3 @@
+---
+# vars file for tomcat-role-ubuntu
+    JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64

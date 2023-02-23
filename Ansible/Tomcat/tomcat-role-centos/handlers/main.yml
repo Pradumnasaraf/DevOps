@@ -1,0 +1,6 @@
+---
+# handlers file for tomcat-role-centos
+    - name: Restart Tomcat
+      service:
+        name: tomcat
+        state: restarted

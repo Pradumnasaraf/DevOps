@@ -1,0 +1,4 @@
+---
+# defaults file for tomcat-role-ubuntu
+    tomcat_archive_url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_ver }}/bin/apache-tomcat-{{ tomcat_ver }}.tar.gz
+    tomcat_archive_dest: /tmp/apache-tomcat-{{ tomcat_ver }}.tar.gz

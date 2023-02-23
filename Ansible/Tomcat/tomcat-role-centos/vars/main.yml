@@ -1,0 +1,3 @@
+---
+# vars file for tomcat-role-centos
+    JAVA_HOME: /usr/lib/jvm/jre
