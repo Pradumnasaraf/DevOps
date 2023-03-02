@@ -106,6 +106,12 @@ kubectl delete deployment <deployment-name>
 kubectl delete pod <pod-name>
 ```
 
+- To delete evicted pods
+
+```bash
+kubectl delete pod --field-selector="status.phase==Failed"
+```
+
 - To get logs of a pod
 
 ```bash
