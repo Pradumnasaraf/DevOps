@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"time"
+
 	"github.com/gorilla/mux"
 )
 
@@ -30,16 +31,16 @@ func main() {
 	r := mux.NewRouter()
 
 	myCourses := Course{
-		CourseId: "2",
-		CourseName: "ReactJs",
+		CourseId:    "2",
+		CourseName:  "ReactJs",
 		CoursePrice: 299,
-		Author: &Author{Fullname: "Pradumna", Website: "test.com"},
+		Author:      &Author{Fullname: "Pradumna", Website: "test.com"},
 	}
 	myCourses1 := Course{
-		CourseId: "4",
-		CourseName: "NodeJs",
+		CourseId:    "4",
+		CourseName:  "NodeJs",
 		CoursePrice: 199,
-		Author: &Author{Fullname: "Jack", Website: "test.com"},
+		Author:      &Author{Fullname: "Jack", Website: "test.com"},
 	}
 	courses = append(courses, myCourses)
 	courses = append(courses, myCourses1)
@@ -159,7 +160,7 @@ func deleteOneCouse(w http.ResponseWriter, r *http.Request) {
 	// first - grab ID fom req
 	params := mux.Vars(r)
 
-	// loop, id, remove, 
+	// loop, id, remove,
 
 	for index, course := range courses {
 		if course.CourseId == params["id"] {
@@ -170,4 +171,3 @@ func deleteOneCouse(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode("Id is not found")
 }
-

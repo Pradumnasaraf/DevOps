@@ -82,4 +82,5 @@ func postFormRequest(){
 
 	content, _ := ioutil.ReadAll(res.Body)
 	fmt.Println(string(content))
+
 }
