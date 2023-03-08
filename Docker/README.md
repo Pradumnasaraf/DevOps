@@ -49,9 +49,13 @@ We have a file `.dockerignore` which is not required when we copy files into the
 
 ### ⚫ Docker Network
 
-- We need create custom bridge network to enable dns resolution between containers. It doesn't work with the default bridge network.
+To connect to our created containers docker provides several network drivers. The available default drivers are bridge, host and null.
 
-- Host: Use the host network stack inside the container. The container will use the host's network interfaces. We don't need to expose ports.
+- Bridge network creates a virtual network that allows containers to communicate with each other using IP addresses. We need to create custom bridge network to enable dns resolution between containers. Only containers connected to the same custom bridge network can communicate with each other directly. It doesn't work with the default bridge network.
+
+- Host network uses the host machine's network stack inside the container. We can use this network for applications that require high network performance. We don't need to expose ports here.
+
+- Using Null network driver disables the networking for the container.
 
 ### ⚫ Docker Volumes
 
