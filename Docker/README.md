@@ -57,6 +57,9 @@ To connect to our created containers docker provides several network drivers. Th
 
 - Using Null network driver disables the networking for the container.
 
+![docker network](https://user-images.githubusercontent.com/37767537/223677649-babf850a-a87f-46bd-bb32-425801f05b2e.png)
+
+
 ### ⚫ Docker Volumes
 
 We need volume to Persist our data, like databases and user info, because containers can go up and down, and we need some way to preserve our data.
