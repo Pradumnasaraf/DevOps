@@ -139,6 +139,12 @@ docker network ls
 docker network inspect <network-name>
 ```
 
+- Create a network, by default the created network will use bridge network driver
+
+```bash
+docker network create <network-name>
+```
+
 - Run a container on a certian network/own careted network 
 
 ```
@@ -335,6 +341,15 @@ docker stack ps <stack name>
 ```
 
 ### Tips and Short hands
+
+- Use these below commands in case you forgot any docker commands related to images, containers, networks, volumes
+
+```bash
+docker images --help
+docker container --help
+docker volume --help
+docker network --help
+```
 
 - Run the command with the container creation
 
