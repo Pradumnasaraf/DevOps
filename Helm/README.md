@@ -28,3 +28,5 @@ helm search repo kubernetes-dashboard
 helm install <name> kubernetes-dashboard/kubernetes-dashboard
 ```
 
+### Step-by-step guidelines to learn Helm Chart
+- [Articles on Helm Chart](https://medium.com/@shamimice03/list/helmseries-6e2076d48ba8)
