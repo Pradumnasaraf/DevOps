@@ -73,6 +73,11 @@ To connect to our created containers docker provides several network drivers. Th
 
 ![docker network](https://user-images.githubusercontent.com/37767537/223677649-babf850a-a87f-46bd-bb32-425801f05b2e.png)
 
+- To Create a network, by default the created network will use bridge network driver
+
+```bash
+docker network create <network-name>
+```
 
 ### ⚫ Docker Volumes
 
