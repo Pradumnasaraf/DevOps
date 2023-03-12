@@ -5,6 +5,20 @@
 - [Docker Mastery (Course)](https://www.udemy.com/course/docker-mastery/)
 - [FreeCodeCamp Docker (Video)](https://youtu.be/kTp5xUtcalw)
 
+### ⚫ Overview of Docker
+
+Docker is an open-source platform designed to simplify the development, deployment, and management of applications in a containerized environment also known as docker containers. Docker containers are a lightweight and portable way to package and run applications that enable developers to package their applications with all the required dependencies and configurations in a single package that can be easily moved between any environment. Docker containers are simply the running instance of a docker image.
+
+### ⚫ Why you should consider using Docker?
+
+- Docker is portable, meaning that one can easily run the same application on different machines without any modifications, which makes it easier to move applications between development, testing, and production environments.
+
+- Docker containers are isolated in nature, meaning that each container runs in its own isolated environment with its own file system, network protocol, and process space, which provides a level of security and isolation that is not possible with traditional virtualization technologies and thus solves the problem of conflict with other applications or dependencies.
+
+- Docker containers are easily scalable, meaning that one can easily scale the containers that are running the applications by horizontally adding more containers with them when demand increases.
+
+- Docker containers are efficient in nature, meaning that containers are lightweight, and consume fewer resources, which means more containers can easily run on the same underlying hardware.
+
 ### ⚫ Docker Images
 
 - Images are made up of app binaries, dependencies, and metadata. Don't contain a full OS.
@@ -59,6 +73,11 @@ To connect to our created containers docker provides several network drivers. Th
 
 ![docker network](https://user-images.githubusercontent.com/37767537/223677649-babf850a-a87f-46bd-bb32-425801f05b2e.png)
 
+- To Create a network, by default the created network will use bridge network driver
+
+```bash
+docker network create <network-name>
+```
 
 ### ⚫ Docker Volumes
 
