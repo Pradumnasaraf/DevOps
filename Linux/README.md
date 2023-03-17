@@ -13,22 +13,21 @@ As Linux is open-source software so anyone can access its source code and make c
 
 ### ⚫ Linux Architecture Components
 
-The main architectural components that works together to form a complete linux OS includes: Kernel, System Libraries, User Space, Shell, System Utilities, Daemons and Configuration files.
+The main architectural components that work together to form a complete Linux OS include Kernel, System Libraries, User Space, Shell, System Utilities, Daemons, and Configuration files.
 
-- Kernel: Kernel is the central part of the Linux OS. It manages the computer's hardware resources and communicates with the softwares to provide a stable and consistent interface for us.
+- Kernel: The kernel is the central part of the Linux OS. It manages the computer's hardware resources and communicates with the software to provide a stable and consistent interface for us.
 
-- System Libraries: System libraries are the collections of pre-written code that provides common functions for other programs to use.
+- System Libraries: System libraries are collections of pre-written code that provides common functions for other programs to use.
 
-- User Space: User space mainly refers to the programs and applications that run on top of the operating system. This includes a wide range of applications such as text editors, web browsers, and games etc.
+- User Space: User space mainly refers to the programs and applications that run on top of the operating system. This includes a wide range of applications such as text editors, web browsers, games, etc.
 
 - Shell: Shell is a command-line interface that allows users to interact with the Linux operating system.
 
-- System Utilities: System utilities are the small programs that perform specific tasks such as file management, process management, and network management etc.
+- System Utilities: System utilities are small programs that perform specific tasks such as file management, process management, network management, etc.
 
-- Daemons: Daemons are the background processes that run continuously and perform specific tasks such as network services, and log management etc.
+- Daemons: Daemons are the background processes that run continuously and perform specific tasks such as network services, log management, etc.
 
-- Configuration files: Configuration files are used to configure various aspects of the Linux operating system 
-such as the network settings, system settings, and security settings etc.
+- Configuration files: Configuration files are used to configure various aspects of the Linux operating system such as the network settings, system settings, security settings, etc.
 
 ![architecture](https://user-images.githubusercontent.com/37767537/225990738-9e505c6d-bad0-4820-a2b2-4ce84ef286c9.jpg)
 
