@@ -31,3 +31,10 @@ The main architectural components that work together to form a complete Linux OS
 
 ![architecture](https://user-images.githubusercontent.com/37767537/225990738-9e505c6d-bad0-4820-a2b2-4ce84ef286c9.jpg)
 
+### ⚫ Linux Distributions
+
+Linux distributions, also known as "distros," are different versions of the Linux operating system that are built 
+and packaged with specific versions of the architectural components, the package management system used, the graphical user interface, and the tools and applications included in it.
+
+Examples of Linux distros include Ubuntu, Fedora, Debian, CentOS, Mint, Red Hat Enterprise Linux (RHEL), etc.
+
