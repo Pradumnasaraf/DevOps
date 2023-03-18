@@ -54,6 +54,10 @@ There are several types of file systems available for use in Linux including bel
 
 - FAT32: This is an older file system that is commonly used in older Microsoft Windows systems and is also widely used for removable storage devices such as USB drives and has limitations such as a maximum file size of 4GB.
 
+(Note: The machine from which the screenshot has been taken is having CentOS 8 Stream)
+
+![Linux-1](https://user-images.githubusercontent.com/37767537/226102852-2ca35206-f833-44e0-994f-a003a88c6b84.png)
+
 ### ⚫ Organization of Linux File System
 
 In Linux, the file system is organized into a hierarchical structure, with the root directory (/) at the top of the hierarchy. The root directory contains several subdirectories, each with its own specific purpose that form the foundation of the Linux file system hierarchy. The subdirectories include:
