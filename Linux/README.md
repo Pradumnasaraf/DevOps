@@ -54,3 +54,26 @@ There are several types of file systems available for use in Linux including bel
 
 - FAT32: This is an older file system that is commonly used in older Microsoft Windows systems and is also widely used for removable storage devices such as USB drives and has limitations such as a maximum file size of 4GB.
 
+### ⚫ Organization of Linux File System
+
+In Linux, the file system is organized into a hierarchical structure, with the root directory (/) at the top of the hierarchy. The root directory contains several subdirectories, each with its own specific purpose that form the foundation of the Linux file system hierarchy. The subdirectories include:
+
+- /bin - contains essential command-line utilities that are required for the system to function
+- /boot - contains files needed for booting the system including the Linux kernel and boot loader configuration files
+- /dev - contains device files that represent various devices and hardware components on the system
+- /etc - contains configuration files for the system and various applications
+- /home - contains the home directories for individual users
+- /lib - contains libraries needed by the utilities in /bin and /sbin
+- /media - a mount point for removable media such as CDs, DVDs, and USB drives
+- /mnt - a mount point for temporarily mounting file systems
+- /opt - contains third-party software packages
+- /proc - A virtual file system that contains information about the system's process and kernel
+- /root - the home directory for the root user
+- /sbin - contains system executables, similar to /bin
+- /sys - A virtual file system that provides an interface to the kernel's device drivers
+- /tmp - Contains temporary files that can be deleted by the system when space is needed
+- /usr - contains user utilities and libraries as well as data shared by multiple users
+- /var - contains variable data such as log files, mail spools, and database files
+
+These subdirectories may vary between different Linux distributions but the basic structure will remain the same. It is strongly recommended to explore each subdirectory separately to understand more about it.
+
