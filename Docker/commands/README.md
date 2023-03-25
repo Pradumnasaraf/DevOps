@@ -119,6 +119,11 @@ docker container prune -f
 docker rm -f $(docker ps -aq)
 ```
 
+- Remove unused images
+```bash
+docker image prune -all
+```
+
 - Auto cleanup when the container exits
 
 ```bash
