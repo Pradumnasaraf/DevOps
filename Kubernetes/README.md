@@ -12,7 +12,7 @@
 - [BretFisher/udemy-docker-mastery GitHub repo](https://github.com/BretFisher/udemy-docker-mastery)
 - [Kubernetes official docs](https://kubernetes.io/docs/home/)
 
-## Tools arround k8s
+## Tools around k8s
 
 - [Validkube](https://validkube.com/) - Kubernetes Manifest file validator (check security, structure).
 - [Lens](https://k8slens.dev/) - Lens is the only IDE you need to manage Kubernetes clusters. It's free and open source.
