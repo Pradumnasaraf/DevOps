@@ -1,0 +1,10 @@
+{
+  "user": {
+    "name": "John Doe",
+    "age": 42,
+    "address": {
+      "home": "123 Main St.",
+      "work": "456 Work St."
+    }
+  }
+}
