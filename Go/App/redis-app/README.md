@@ -12,7 +12,7 @@ First endpoint is used to create a user in Redis with the key and value both as 
 
 Second endpoint is used to check the user by sending a GET request to the `/get` endpoint with `username` as the parameter.
 
-Note: The data added by the POST request get expired after 60 seconds. So, the GET request will return error. If you remove the expiration, head over to `main.go` chnage the `time.Second` to `0` in the following line.
+Note: The data added by the POST request get expired after 3600 seconds. So, the GET request will return error. If you remove the expiration, head over to `main.go` chnage the `time.Second` to `0` in the following line.
 
 ```go
     err = rdb.Set(ctx, user.UserName, user.UserName, 60*time.Second).Err()
