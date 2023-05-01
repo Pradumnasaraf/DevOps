@@ -117,7 +117,7 @@ history
 
 # Operators
 
-- `ping google.com & pingfacebook.com` - run both the commands at the same time
+- `ping google.com & ping facebook.com` - run both the commands at the same time
 - `echo "google.com" && echo "facebook.com"` - second will only run if first is successful
 - `echo "google.com" && {echo "facebook.com"; eco "pradumnasaraf.co"}` 
 - `echo "google.com" || echo "pingfacebook.com"` - second will only run if first is not successful

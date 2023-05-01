@@ -30,12 +30,6 @@ func redisClient() *redis.Client {
 		Password: os.Getenv("REDIS_PASSWORD"),
 		DB:       0,
 	})
-
-	err := rdb.Set(ctx, "id", 2, 10*time.Second).Err()
-	if err != nil {
-		panic(err)
-	}
-
 	return rdb
 
 }
@@ -85,7 +79,12 @@ func main() {
 
 		rdb := redisClient()
 
-		rdb.Set(ctx, user.UserName, user.UserName, 60*time.Second)
+		err = rdb.Set(ctx, user.UserName, user.UserName, 60*time.Second).Err()
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"message": "Error saving user, please try again",
+			})
+		}
 
 		return c.JSON(fiber.Map{
 			"message": "User created",
