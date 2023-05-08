@@ -59,7 +59,7 @@ COPY . ./
 
 ### ⚫ .dockerignore
 
-We have a file `.dockerignore` which is not required when we copy files into the container.
+The .dockerignore file is used to specify files and directories that are not copied when using the `COPY` command.
 
 ### ⚫ Docker Network
 
