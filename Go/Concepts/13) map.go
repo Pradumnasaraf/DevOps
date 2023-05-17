@@ -5,8 +5,10 @@ import (
 )
 
 func main() {
-	var languages = make(map[string]string, 0) // create a slice of maps
+	// var languages = map[string]string{}
+	var languages = make(map[string]string, 0) // create a slice of maps with a length of 0. // map[keyType]valueType  
 
+	//laguages[key] = value
 	languages["JS"] = "JavaScript"
 	languages["PY"] = "Python"
 	languages["GO"] = "Go"
