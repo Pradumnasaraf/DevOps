@@ -1,4 +1,4 @@
-module Pradumnasaraf/Go-Web-Scraping
+module Pradumnasaraf/techcrunch-scraper
 
 go 1.20
 
