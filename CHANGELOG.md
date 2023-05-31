@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.3...v1.4.0) (2023-05-31)
+
+
+### Features
+
+* Add a discord bot to go app ([80941c8](https://github.com/Pradumnasaraf/DevOps/commit/80941c86ced3e40aaef379b6ca762938b16be111))
+
+
+
 ## [1.3.3](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.2...v1.3.3) (2023-05-31)
 
 
