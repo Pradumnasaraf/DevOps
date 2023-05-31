@@ -1,3 +1,13 @@
+## [1.3.3](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.2...v1.3.3) (2023-05-31)
+
+
+### Bug Fixes
+
+* Add versioning to GHCR and DockerHub images ([405e1ad](https://github.com/Pradumnasaraf/DevOps/commit/405e1adc80168ecf03282500bf7c0de18cb466f4))
+* the version file name ([9369b75](https://github.com/Pradumnasaraf/DevOps/commit/9369b75d4f74fae2c84208db49cef669c97e1f30))
+
+
+
 ## [1.3.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.1...v1.3.2) (2022-12-11)
 
 
