@@ -19,6 +19,5 @@ func LoadConfig() {
 	}
 
 	Token = os.Getenv("DISCORD_BOT_TOKEN")
-	BotPrefix = "!"
-
+	BotPrefix = os.Getenv("BOT_PREFIX")
 }

@@ -1,6 +1,10 @@
 package main
 
 import (
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/Pradumnasaraf/discord-bot/bot"
 	"github.com/Pradumnasaraf/discord-bot/config"
 )
@@ -11,6 +15,8 @@ func main() {
 
 	bot.Start()
 
-	<-make(chan struct{})	// Block main() from exiting
-	return
+	sc := make(chan os.Signal, 1)
+	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
+	<-sc
+
 }
