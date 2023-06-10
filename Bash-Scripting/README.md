@@ -131,7 +131,7 @@ if [$1 == "hello"],then echo "Hello World", fi
 
 ### Loops
 
-We can use loops to repeat a set of commands. There are two types of loops in bash. `for` and `while`. The the body is enclosed in `do` and `done`.
+We can use loops to repeat a set of commands. There are two types of loops in bash. `for` and `while`. The body is enclosed in `do` and `done`.
 
 #### For Loop
 
