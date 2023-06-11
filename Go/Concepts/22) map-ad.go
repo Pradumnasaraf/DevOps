@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	var bookings = make([]map[string]string, 0) // make() is used to create a slice, map, or chan with initial values
+	var bookings = make([]map[string]string, 0) // This is a slice of map.
+	// var bookings = []map[string]string{} // This is also valid
 
 	for i := 0; i < 1; i++ {
 

@@ -17,6 +17,8 @@ func greeter(s string) {
 		time.Sleep(1 * time.Second)
 		fmt.Println(s)
 	}
+
+	//runThisInMain()
 }
 
 func runThisInMain() {
