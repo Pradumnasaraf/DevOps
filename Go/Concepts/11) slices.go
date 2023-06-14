@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-	var fruits []string // or name := []string{} - We don't need to specify the size of the array
-	// fruit := make([]string, 2) - We can also use make function to create a slice
+	var fruits []string // We don't need to specify the size of the array
+	// fruits := []string{} - We can also use this syntax to create a slice
+	// fruits := make([]string, 2) - We can also use make function to create a slice
 
 	fruits = append(fruits, "Apple")
 	fruits = append(fruits, "Orange")

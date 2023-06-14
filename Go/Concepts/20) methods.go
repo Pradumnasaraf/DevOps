@@ -20,7 +20,7 @@ func main() {
 
 	fmt.Println(user)
 
-	user.greetUser() // method call
+	user.greetUser() // Method call	
 }
 
 func (u UserData) greetUser() { // method with receiver

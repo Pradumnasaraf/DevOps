@@ -16,7 +16,7 @@ func main() {
 }
 
 func getRequest() {
-	const apiUrl = "https://ossapi.vercel.app/api/devtip"
+	const apiUrl = "https://opensourceapi.vercel.app/api/devtip"
 
 	res, err := http.Get(apiUrl)
 

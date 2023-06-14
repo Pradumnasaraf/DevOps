@@ -69,9 +69,9 @@ Eg: `bash script.sh arg1 arg2`
 echo "First Argument: $1"
 ```
 
-### Arthemetic Operations
+### Arithmetic Operations
 
-We can do arthemetic operations in bash. We use the `(( ))` to do arthemetic operations.
+We can do Arithmetic operations in bash. We use the `(( ))` to do Arithmetic operations.
 
 ```bash
 
