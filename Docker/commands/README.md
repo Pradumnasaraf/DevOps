@@ -262,7 +262,7 @@ docker node update --role manager <node-name>
 docker network create -d overlay backend
 ```
 
-- Create a service. Also we can add flags for further customiztaion.
+- Create a service. Also we can add flags for further customization.
 
     - `--name` - to give a service name
     - `--replicas` - to define how many running instance of the same image.
@@ -296,7 +296,7 @@ docker service update --image mynginx:1.13.6  web
 
 - To update the port
 
-We can't direclty update the port We have to add and remove the ports
+We can't directly update the port We have to add and remove the ports
 
 ```
 docker service update --publish-rm 8080 --publish-add 808180 <service name>
