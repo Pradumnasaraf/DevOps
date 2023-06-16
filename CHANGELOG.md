@@ -1,3 +1,12 @@
+## [1.4.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.1...v1.4.2) (2023-06-14)
+
+
+### Bug Fixes
+
+* docker compose config ([69a2f20](https://github.com/Pradumnasaraf/DevOps/commit/69a2f20dc58713897d57f38a3263319ca1b324fe))
+
+
+
 ## [1.4.1](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.0...v1.4.1) (2023-06-11)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * the broken path on hosted website ([f3494ae](https://github.com/Pradumnasaraf/DevOps/commit/f3494ae339ecc1473387942dfbc9862624c70c7a))
-
-
-
-## [1.3.1](https://github.com/Pradumnasaraf/DevOps/compare/v0.1.0...v1.3.1) (2022-11-18)
-
-
-### Bug Fixes
-
-* extra spacing ([18360a9](https://github.com/Pradumnasaraf/DevOps/commit/18360a9b9371aeb78ff22bbb92443520d5dd2365))
 
 
 
