@@ -1,3 +1,12 @@
+## [1.4.3](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.2...v1.4.3) (2023-07-07)
+
+
+### Bug Fixes
+
+* link rendring on website ([531a539](https://github.com/Pradumnasaraf/DevOps/commit/531a5390d0af8e1b0d7fe0c8e666a565caf2ea97))
+
+
+
 ## [1.4.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.1...v1.4.2) (2023-06-14)
 
 
@@ -32,15 +41,6 @@
 
 * Add versioning to GHCR and DockerHub images ([405e1ad](https://github.com/Pradumnasaraf/DevOps/commit/405e1adc80168ecf03282500bf7c0de18cb466f4))
 * the version file name ([9369b75](https://github.com/Pradumnasaraf/DevOps/commit/9369b75d4f74fae2c84208db49cef669c97e1f30))
-
-
-
-## [1.3.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.1...v1.3.2) (2022-12-11)
-
-
-### Bug Fixes
-
-* the broken path on hosted website ([f3494ae](https://github.com/Pradumnasaraf/DevOps/commit/f3494ae339ecc1473387942dfbc9862624c70c7a))
 
 
 
