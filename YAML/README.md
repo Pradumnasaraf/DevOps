@@ -1,24 +1,45 @@
 ## YAML - YAML Ain't Markup Language
 
+YAML is a human-readable data serialization language. It is commonly used for configuration files and in applications where data is being stored or transmitted.
+
+Eg:
+
+```yaml
+name: Pradumana
+age: 21
+address: 
+  city: Bangalore
+  state: Karnataka
+  country: India
+  phone:
+    office: 0000000
+    home: 
+        - 1111111
+        - 2222222
+```
+
 ## Learning Resources
 
-- [YAML.](https://yaml.org/)
+- [YAML](https://yaml.org/)
 - [Yaml Tutorial - TechWorld with Nana](https://youtu.be/1uFVr15xDGg)
 - [Complete YAML Course](https://youtu.be/IA90BTozdow)
 
-- Data format used to exchange data.
+
+## Properties
+
 - Similar to XML & JSON.
 - We can't add commands.
-- Simple and easy to read.
 - Strict syntax - (Indentation)
-- More powerful to represent complex data.
-- Parsing is easy
+- Human readable data serialization language.
 
 
 ## Usage
 
-- Use in config files (Docker/Kubernetes)
-- used Logs, cache, etc
+- Used in Kubernetes, Ansible, Docker, etc.
+- Used to store data in key-value pairs.
+- CI/CD tools like GitHub Actions, CircleCI, use YAML to create workflows.
 
 #### YAML tools
-[yamllint](http://www.yamllint.com/) - Check the the format of the file
+- [Yamllint](http://www.yamllint.com/) - Check the the format of the file.
+- [YAML Validator](https://codebeautify.org/yaml-validator) - Check the the format of the file.
+- [YAML to JSON](https://codebeautify.org/yaml-to-json-xml-csv) - Convert YAML to JSON.

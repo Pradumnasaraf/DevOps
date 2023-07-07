@@ -101,6 +101,12 @@
   ```bash
   git commit -m <message> # Replace <message> with your commit message.
   ```
+  
+- commit without any changes
+  
+  ```bash
+  git commit --allow-empty -m <message> # Replace <message> with your commit message.
+  ```
 
 ## **Compare two commits**
 

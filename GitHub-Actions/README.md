@@ -199,7 +199,7 @@ jobs:
 
 ### Matrix
 
-Matrix is helpful when we want to run a job on multiple versions of a tool.Fo eg. we want to run a job on multiple versions of Node.js. We can use the `matrix` keyword to run a job on multiple versions of a tool. We can also use the `matrix` keyword to run a job on multiple operating systems.
+Matrix is helpful when we want to run a job on multiple versions of a tool.For eg. we want to run a job on multiple versions of Node.js. We can use the `matrix` keyword to run a job on multiple versions of a tool. We can also use the `matrix` keyword to run a job on multiple operating systems.
 
 ```yaml
 jobs:

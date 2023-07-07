@@ -12,7 +12,7 @@
 - [BretFisher/udemy-docker-mastery GitHub repo](https://github.com/BretFisher/udemy-docker-mastery)
 - [Kubernetes official docs](https://kubernetes.io/docs/home/)
 
-## Tools arround k8s
+## Tools around k8s
 
 - [Validkube](https://validkube.com/) - Kubernetes Manifest file validator (check security, structure).
 - [Lens](https://k8slens.dev/) - Lens is the only IDE you need to manage Kubernetes clusters. It's free and open source.
@@ -136,7 +136,7 @@ Services are for internal communication of pods. It also helps give a pop static
 
 - **ClusterIP**: For inter communication of pods  
 
-- **HeadLess**: It is a direct communication with a pod. No load blancing is required. So in this ClusterIp is none
+- **HeadLess**: It is a direct communication with a pod. No load balancing is required. So in this ClusterIp is none
 
 ```yaml
 spec:
@@ -209,7 +209,7 @@ kubectl port-forward <pod-name> <localhost-port>
 
 ### Ingress
 
-It is use for an external trafic/request, which can be accessed by an URL instaed of `IP-PORT - 17.28.55.44.5:7800`. For that we need an ingress controller to make work of ingress.
+It is use for an external trafic/request, which can be accessed by an URL instead of `IP-PORT - 17.28.55.44.5:7800`. For that we need an ingress controller to make work of ingress.
 
 ![Ingress](https://user-images.githubusercontent.com/51878265/201585224-eca055af-eeb6-473c-bd96-33af9b5f6c55.png)
 
@@ -340,7 +340,7 @@ data:
 
 First we create the Persistent Volume(PV) and then we claim it by creating Persistent Volume Claim (PVC). Then that claim is mounted to the pod. But when we use cloud provides we can claim the storage directly from the cloud provider.
 
-- Note: Persistent volume is indepent of the namespace, but Persistent Volume Claim is bound to a specfic.
+- Note: Persistent volume is independent of the namespace, but Persistent Volume Claim is bound to a specfic.
 
 ## Cluster Config file
 
@@ -352,7 +352,7 @@ All the Cluster info is stored in the file name `config` with the path:
 
 ## Networking
 
-Container communication - The container inside a pod communicate via localhost shares the same networking namespace. To test it out, `Curl` the other conatiner by exec into the 1st container.
+Container communication - The container inside a pod communicate via localhost shares the same networking namespace. To test it out, `Curl` the other container by exec into the 1st container.
 
 Steps
 

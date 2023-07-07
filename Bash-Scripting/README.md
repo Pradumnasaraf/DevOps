@@ -4,12 +4,12 @@
 - [devhints](https://devhints.io/)
 - [jq](https://stedolan.github.io/jq/)
 
-### Lerning Resources
+### Learning Resources
 
 [You need to learn Bash Scripting right now playlist - NetworkChuck (Video)](https://youtube.com/playlist?list=PLIhvC56v63IKioClkSNDjW7iz-6TFvLwS)
 - [Devhints Bash Cheat Sheet](https://devhints.io/bash)
 
-We start by creating a file with the `.sh` extension. For example `script.sh`. Then we write the script in it. For example:
+We start by creating a file with the `.sh` extension. For example, `script.sh`. Then we write the script in it. For example:
 
 Basic Script
 
@@ -23,11 +23,11 @@ We can run this by `bash script.sh` or `./script.sh`. But the second will only w
 
 ### Shebang
 
-The first line of a bash script is called the shebang. It tells the system which interpreter to use to run the script. The shebang for bash is `#!/bin/bash`. The shebang for python is `#!/usr/bin/env python`. It vary from the langauge to language.
+The first line of a bash script is called the shebang. It tells the system which interpreter to use to run the script. The shebang for bash is `#!/bin/bash`. The shebang for python is `#!/usr/bin/env python`. It varies from language to language.
 
 ### Variables
 
-It is placeholder for a value. Just like any other programming language. We use $ to access the variable. Eg: `$NAME`. We can also use `${NAME}`. The braces are used to make sure that the variable is not mistaken for a command.
+It is a placeholder for a value. Just like any other programming language. We use $ to access the variable. Eg: `$NAME`. We can also use `${NAME}`. The braces ensure the variable is not mistaken for a command.
 
 ```bash
 #!/bin/bash
@@ -41,7 +41,7 @@ echo "My name is $NAME"
 echo "My name is ${NAME}"
 ```
 
-NOTE: We can create variables by `NAME="John"` through CLI, we can't use in the script beacuse it is not exported. We can export it by `export NAME="John"`. Now we can use it in the script.
+NOTE: We can create variables by `NAME="John"` through CLI; we can't use it in the script because it is not exported. We can export it by `export NAME="John"`. Now we can use it in the script.
 
 But here is one more catch. If we exit the terminal and open a new one, the variable will be gone. To make it permanent, we can add it to the `.bashrc` file. It is a hidden file in the home directory. We can open it by `vi ~/.bashrc` or any other editor. We can add the variable to the file. Eg: `export NAME="John"`.
 
@@ -69,9 +69,9 @@ Eg: `bash script.sh arg1 arg2`
 echo "First Argument: $1"
 ```
 
-### Arthemetic Operations
+### Arithmetic Operations
 
-We can do arthemetic operations in bash. We use the `(( ))` to do arthemetic operations.
+We can do Arithmetic operations in bash. We use the `(( ))` to do Arithmetic operations.
 
 ```bash
 
@@ -81,7 +81,7 @@ We can do arthemetic operations in bash. We use the `(( ))` to do arthemetic ope
 echo $(( 5 + 5 ))
 ```
 
-#### Arthemetic Operators
+#### Arithmetic Operators
 
 - `+` - Addition
 - `-` - Subtraction
@@ -109,7 +109,7 @@ fi
 ```
 
 ```bash
-if [$1 == "hello"],then echo "Hello World", fi
+if [$1 == "hello"], then echo "Hello World", fi
 ```
 
 #### Comparison Operators
@@ -131,7 +131,7 @@ if [$1 == "hello"],then echo "Hello World", fi
 
 ### Loops
 
-We can use loops to repeat a set of commands. There are two types of loops in bash. `for` and `while`. The the body is enclosed in `do` and `done`.
+We can use loops to repeat a set of commands. There are two types of loops in bash. `for` and `while`. The body is enclosed in `do` and `done`.
 
 #### For Loop
 
@@ -209,13 +209,13 @@ sudo apt install jq
 
 #### Usage
 
-Format in JSON.
+The format in JSON.
 
 ```bash
 echo '{"name": "John", "age": 30}' | jq
 ```
 
-Will print out the the specified key.
+It will print out the specified key.
 
 ```bash
 echo '{"name": "John", "age": 30}' | jq '.name'

@@ -3,26 +3,43 @@ package main
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"error"
 )
 
 type book struct {
 	ID     string `json:"id"`
 	Title  string `json:"title"`
 	Author string `json:"author"`
-	quantity int `json:"quantity"`
+	Quantity int `json:"quantity"`
 }
 
 var books = []book{
-	{ID: "1", Title: "Book 1", Author: "Author 1", quantity: 10},
-	{ID: "2", Title: "Book 2", Author: "Author 2", quantity: 20},
-	{ID: "3", Title: "Book 3", Author: "Author 3", quantity: 30}
+	{ID: "1", Title: "Book 1", Author: "Author 1", Quantity: 10},
+	{ID: "2", Title: "Book 2", Author: "Author 2", Quantity: 20},
+	{ID: "3", Title: "Book 3", Author: "Author 3", Quantity: 30},
 }
 
+func getBooks(c *gin.Context){
+	c.IndentedJSON(http.StatusOK, books)
+}
+func createBooks(c *gin.Context){
+	var newBook book
+	if err := c.BindJSON(&newBook); err != nil {
+		return
+	}
+	books = append(books, newBook)
+	c.IndentedJSON(http.StatusCreated, newBook)
+}
+
+func root (c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "API is working fine",
+    })
+}
 
 func main(){
-	http.HandleFunc("/hello-world",  func( w http.ResponseWriter,r *http.Request){
-		w.Write([]byte("Hello world"))
-	})
-	http.ListenAndServe(":8080", nil)
+	router := gin.Default()
+	router.GET("/", root)
+	router.GET("/books", getBooks)
+	router.POST("/books", createBooks)
+	router.Run("localhost:8083")
 }

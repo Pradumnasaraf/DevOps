@@ -13,17 +13,16 @@ jobs:
 
       - name: conventional Changelog Action
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v3.7.1
+        uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.PA_TOKEN }}
-          version-file: './releases.json'
+          version-file: './version.yaml'
 
       - name: create release
-        uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.PA_TOKEN }}
+        if: steps.changelog.outputs.skipped == 'false'
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
+          token: ${{ secrets.PA_TOKEN }}
+          tag	: ${{ steps.changelog.outputs.tag }}
+          name: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
