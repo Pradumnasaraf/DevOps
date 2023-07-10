@@ -4,9 +4,9 @@ GitHub Actions is a feature that allows you to automate your software developmen
 
 ### Resources
 
-- [GitHub Actions]( https://docs.github.com/en/actions )
-- [GitHub Actions: Getting Started]( https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions )
-- [GitHub Action Tutorial - Tech World With Nana](https://youtu.be/R8_veQiYBjI) 
+- [GitHub Actions](https://docs.github.com/en/actions)
+- [GitHub Actions: Getting Started](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions)
+- [GitHub Action Tutorial - Tech World With Nana](https://youtu.be/R8_veQiYBjI)
 
 ### Overview
 
@@ -14,7 +14,7 @@ GitHub Actions is a feature that allows you to automate your software developmen
 
 - **Workflow** - A workflow is a configurable automated process made up of one or more jobs. Workflows are defined in `.yml` files in the `.github/workflows` directory of your repository.
 
-- **Jobs** - A job is a set of steps that execute on the same runner. Runner is a server that has the GitHub Actions runner application installed. 
+- **Jobs** - A job is a set of steps that execute on the same runner. Runner is a server that has the GitHub Actions runner application installed.
 
 - **Steps** - A step is an individual task that can run commands or actions like `actions/checkout@v2`. Each step in a job executes on the same runner, allowing for direct file sharing.
 
@@ -31,10 +31,9 @@ jobs:
   build: # name of the job
     runs-on: ubuntu-latest # runs-on is the type of machine to run the job on - runner
     steps: # steps are the individual tasks that make up a job
-
-    - uses: actions/checkout@v2 
-    - name: Run a one-line script # name is the name of the step
-      run: echo Hello, world!
+      - uses: actions/checkout@v2
+      - name: Run a one-line script # name is the name of the step
+        run: echo Hello, world!
 ```
 
 - **Action** - An action is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task.
@@ -43,16 +42,16 @@ jobs:
 
 ### Triggers
 
-The `on` keyword is used to trigger the workflow. It can be triggered by a push, pull request, or a schedule. 
+The `on` keyword is used to trigger the workflow. It can be triggered by a push, pull request, or a schedule.
 
 - [Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows)
 
 ```yaml
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 ```
 
 #### Trigger Filters
@@ -63,7 +62,7 @@ on:
 on:
   push:
     paths:
-      - 'src/index.js'
+      - "src/index.js"
 ```
 
 - We can trigger the workflow when only when certain files with an extension are changed.
@@ -72,11 +71,11 @@ on:
 on:
   push:
     paths:
-      - '**.js'
-      - '**.css'
+      - "**.js"
+      - "**.css"
   pull_request:
     paths:
-      - '**.js'
+      - "**.js"
 ```
 
 - We can trigger the workflow when only when certain files in a directory are changed.
@@ -85,7 +84,7 @@ on:
 on:
   push:
     paths:
-      - 'src/**'
+      - "src/**"
 ```
 
 - Manual trigger
@@ -105,7 +104,7 @@ services:
     image: redis # Docker image
     ports:
       - 6379:6379 # port mapping
-  
+
   mongodb:
     image: mongo
     ports:
@@ -174,7 +173,6 @@ The `github` context is available to you in any workflow or action you create on
 - `github.action` - The unique identifier (id) of the action.
 - `github.event` - The event payload. For example, the issue or pull request object that triggered the workflow run.
 
-
 ### Environment variables
 
 We can set environment variables in the workflow file using the `env` keyword. WE
@@ -215,6 +213,26 @@ jobs:
           node-version: ${{ matrix.version }}
 ```
 
+### Outputs
 
+We can use the `outputs` keyword to output data from a job. We can use the output from one job in another job using the `needs` keyword.
+
+```yaml
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.deploy-preview.outputs.url }}
+    steps:
+      - uses: actions/checkout@v3
+          echo "url=preview_url" >> $GITHUB_OUTPUT
+
+    data:
+      runs-on: ubuntu-latest
+      needs: deploy
+      steps:
+        - name: load json files
+          run: echo ${{ needs.deploy.outputs.url }}
+```
 
 
