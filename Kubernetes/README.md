@@ -93,6 +93,14 @@ Labels are for identification
 
 ### Deployment
 
+Deployment ensures that a specified number of replica sets are running and maintains the desired state even if the node or pod fails.
+
+_So,in short_
+
+Replica sets make sure that a specified number of pods are always up and running.
+
+Deployment make sure that a specified number of replica sets are always active.
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
