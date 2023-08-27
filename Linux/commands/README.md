@@ -62,7 +62,7 @@
         - start
         - stop
         - enable
-        - disabel
+        - disable
     - Example, `systemctl start apache2`     
 - `df` - Check the capacity and storage details.
     - `m` - In megabyte  or 
