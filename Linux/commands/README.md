@@ -57,6 +57,13 @@
 
 ### System commands
 - `ps aux` - processes which are running
+- `systemctl [option] [service]` - interact with a process
+    - We can do 4 `option` with `systemctl`
+        - start
+        - stop
+        - enable
+        - disable
+    - Example, `systemctl start apache2`     
 - `df` - Check the capacity and storage details.
     - `m` - In megabyte  or 
     - `hg` - In gigabyte.
