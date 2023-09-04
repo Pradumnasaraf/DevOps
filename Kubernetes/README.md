@@ -11,6 +11,7 @@
 - [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
 - [BretFisher/udemy-docker-mastery GitHub repo](https://github.com/BretFisher/udemy-docker-mastery)
 - [Kubernetes official docs](https://kubernetes.io/docs/home/)
+- [Kubernetes Tutorial for Beginners: Basic Concepts](https://spacelift.io/blog/kubernetes-tutorial)
 
 ## Tools around k8s
 
