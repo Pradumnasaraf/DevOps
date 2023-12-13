@@ -24,7 +24,7 @@ docker pull <image name>
   - Additioanly we can use flags
   
      - `--name <name> `- To give a name to the container.
-     - `-p <Host port:container port>`- To fowrad the port.
+     - `-p <Host port:container port>`- To forward the port.
      - `-d` - To run in detached mode
      - `-it` - For interactive envirnoment
      - `-e` - For environment variable
