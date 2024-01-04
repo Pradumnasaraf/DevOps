@@ -2,16 +2,6 @@
 
 <p align="center"> Contains all my learning related to DevOps tools and tech.</p>
 
-## Kubernetes
-
-<img align="right" src="https://user-images.githubusercontent.com/51878265/200594367-f416d081-af8f-4f48-8008-998d005b317f.png" height="100" alt="Kubernetes"> 
-
-- [Notes + Learning Resources](Kubernetes/README.md)
-- [Commands](Kubernetes/commands/README.md)
-- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/Kubernetes/YAML)
-
-<br>
-
 ## Docker
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/200594916-47ba8a4c-fb94-4953-b179-dfb542df9499.png" height="100" alt="docker"> 
@@ -20,6 +10,16 @@
 - [Commands](Docker/commands/README.md)
 - [Compose/Stack Files](https://github.com/Pradumnasaraf/DevOps/tree/main/Docker/YAML)
 - [Dockerfile](https://github.com/Pradumnasaraf/DevOps/tree/main/Docker/Dockerfile)
+
+<be>
+
+## Kubernetes
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/200594367-f416d081-af8f-4f48-8008-998d005b317f.png" height="100" alt="Kubernetes"> 
+
+- [Notes + Learning Resources](Kubernetes/README.md)
+- [Commands](Kubernetes/commands/README.md)
+- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/Kubernetes/YAML)
 
 <br>
 
