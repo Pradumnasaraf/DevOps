@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  devops-website:
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+
