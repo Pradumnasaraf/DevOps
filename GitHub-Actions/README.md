@@ -225,7 +225,8 @@ jobs:
       url: ${{ steps.deploy-preview.outputs.url }}
     steps:
       - uses: actions/checkout@v3
-          echo "url=preview_url" >> $GITHUB_OUTPUT
+      - id: deploy-preview
+        run: echo "url=preview_url" >> $GITHUB_OUTPUT
 
     data:
       runs-on: ubuntu-latest
