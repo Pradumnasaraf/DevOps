@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.4...v1.5.0) (2024-01-23)
+
+
+### Features
+
+* Add Google Analytics ([d154181](https://github.com/Pradumnasaraf/DevOps/commit/d154181ad1c772d44a0e1a3378c0b82c92005dbc))
+
+
+
 ## [1.4.4](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.3...v1.4.4) (2024-01-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * release action ([29720ce](https://github.com/Pradumnasaraf/DevOps/commit/29720cef1b86800613e7d18e6b82546700fbd4f7))
-
-
-
-# [1.4.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.3.3...v1.4.0) (2023-05-31)
-
-
-### Features
-
-* Add a discord bot to go app ([80941c8](https://github.com/Pradumnasaraf/DevOps/commit/80941c86ced3e40aaef379b6ca762938b16be111))
 
 
 
