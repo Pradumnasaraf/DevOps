@@ -3,14 +3,17 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 )
 
 func main() {
-	content := "Hello, playground!"
 
-	file, err := os.Create("./test.txt")
+	// Process to create, write and read a file
+
+	content := "Hey I am Pradumna"
+
+	//"." means current directory
+	file, err := os.Create("./hello.txt")
 
 	if err != nil {
 		panic(err)
@@ -21,20 +24,16 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Length of the file is: ", length)
-	defer file.Close()
 
-	readFile("./test.txt")
+	fmt.Println("Length:", length)
 
-}
-
-func readFile(filename string){
-
-	databyte, err := ioutil.ReadFile(filename)
+	data, err := os.ReadFile("./hello.txt")
 
 	if err != nil {
 		panic(err)
+
 	}
 
-	fmt.Println("Text data inside a file is \n", string(databyte))
+	// data is of type []byte so we need to convert it to string
+	fmt.Println(string(data))
 }

@@ -17,8 +17,6 @@ func main() {
 		fmt.Println("Your number is less than 10")
 	}
 
-	// Creating a variable inside the if statement
-
 	if 9%2 == 0 {
 		fmt.Println("9 is even")
 	} else {

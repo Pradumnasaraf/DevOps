@@ -19,7 +19,7 @@ func greetUser() {
 	fmt.Println("Hello, welcome to the app")
 }
 
-func addTwoNumbers(a int, b int) int { // Function with Para
+func addTwoNumbers(a int, b int) int { // Function with Para and retun value
 	return a + b
 }
 

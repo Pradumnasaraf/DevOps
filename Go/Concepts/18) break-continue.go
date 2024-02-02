@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// continue: Will skip that ireration, but will not break the look unlike "break"
+
 func main() {
 	for i := 0; i < 5; i++ {
 		if i == 3 { // Here 3 will not be printed
