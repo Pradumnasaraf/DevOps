@@ -24,7 +24,7 @@ func greeter(s string) {
 func runThisInMain() {
 	for {
 		var input string
-		go sayHello() // go keyword is used to create a go routine. It will not wait for the function to finish.
+		go sayHello() // go keyword is used to create a go routine. This is a concurrent execution of the function, meaning it will run in the background and will not block the main thread.
 		fmt.Print("Enter Text: ")
 		fmt.Scanln(&input)
 		fmt.Println("Your Input was:", input)
@@ -34,4 +34,5 @@ func runThisInMain() {
 func sayHello() {
 	time.Sleep(5 * time.Second)
 	fmt.Println("Hello from sayHello")
+	
 }

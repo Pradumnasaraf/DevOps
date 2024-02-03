@@ -3,69 +3,73 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 )
 
-type course struct {
-	Name     string `json:"coursename"`
-	Price    int	`json:"price"`
-	Platform string `json:"website"`
-	Password string `json:"-"`
-	Tags     []string `json:"tags,omitempty"`
+type Person struct {
+	Name string `json:"coursename"`
+	Age  int    `json:"age"`
+	DOBY int    `json:"doby"`
 }
 
 func main() {
 
-	//encodeJson()
-	//decodeJson()
+	// structToJson()
+	// jsonToStruct()
 	extractJsonData()
 
-
 }
 
-func encodeJson() {
-
-	cources := []course{
-		{"React", 100, "yt", "nn1234", []string{"react", "js"}},
-		{"Mern", 200, "yt", "fgf1234", []string{"full-stack", "js"}},
-		{"Golang", 300, "yt", "jh1234", nil},
-	}
-
-	finalJson, err := json.MarshalIndent(cources, "", "\t") // json.Marshal() will return byte array
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Print(string(finalJson))
-	// or
-	fmt.Printf("%s",finalJson)
-}
-
-func decodeJson() {
-
-	jsonData := []byte(`
+func structToJson() {
+	tom := []Person{
 		{
-			"coursename": "Mern",
-			"price": 200,
-			"website": "yt",
-			"tags": [ "full-stack", "js" ]
+			Name: "Tom",
+			Age:  21,
+			DOBY: 199,
 		},
-	`)
+		{
+			Name: "Ben",
+			Age:  21,
+			DOBY: 199,
+		},
+		{
+			Name: "Loft",
+			Age:  21,
+			DOBY: 199,
+		},
+	}
 
-	var myCourse course 
-	
-	checkValid := json.Valid(jsonData)
-	if checkValid {
-		json.Unmarshal(jsonData, &myCourse)
-		fmt.Printf("%#v\n", myCourse)
-	} else{
-		fmt.Println("JSON NOT VALID")
+	// Marshal will convert the struct to json
+	jsonOutput, err := json.MarshalIndent(tom, "", "  ")
+	if err != nil {
+		log.Fatal(err)
+
+	}
+
+	fmt.Println(string(jsonOutput))
+}
+
+func jsonToStruct() {
+	jsonData := []byte(`{
+    "coursename": "ben",
+    "age": 200,
+    "doby": 1975
+}`)
+
+	var myUser Person
+
+	validateJson := json.Valid(jsonData)
+	if validateJson == true {
+		// Unmarshal will convert the json to struct
+		json.Unmarshal(jsonData, &myUser)
+		fmt.Println(myUser)
+	} else {
+		fmt.Println("JSON is invalid")
 	}
 
 }
 
-
-func extractJsonData(){
+func extractJsonData() {
 
 	jsonData := []byte(`
 		{
@@ -78,9 +82,10 @@ func extractJsonData(){
 
 	var myData map[string]interface{}
 	json.Unmarshal(jsonData, &myData)
-	fmt.Printf("%#v\n", myData) // 
+	fmt.Printf("%#v\n", myData) //
 
-	for k, v := range myData{
+	// We can use range to loop through the map and print the key and value
+	for k, v := range myData {
 		fmt.Printf("Key is %v with the value %v and type is: %T\n", k, v, v)
 	}
 

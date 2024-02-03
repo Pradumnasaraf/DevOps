@@ -2,70 +2,55 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
+const URL = "https://osapi.vercel.app/api/devtip"
+
 func main() {
-	// getRequest()
-	// postRequest()
-	postFormRequest()
+
+	// getReq()
+	postReq()
 
 }
 
-func getRequest() {
-	const apiUrl = "https://opensourceapi.vercel.app/api/devtip"
+func getReq() {
+	res, err := http.Get(URL)
+	checkNilErr(err)
 
-	res, err := http.Get(apiUrl)
+	byteData, err := io.ReadAll(res.Body)
+	fmt.Println(string(byteData))
+}
 
+func postReq() {
+	resBody := strings.NewReader(
+		`{
+	"message": "Eat good food"
+	}`)
+
+	req, err := http.Post(URL, "application/json", resBody)
+
+	checkNilErr(err)
+	defer req.Body.Close()
+
+	dataBytes, err := io.ReadAll(req.Body)
+	fmt.Println("Status Code", req.StatusCode)
+	fmt.Println("Response Body", string(dataBytes))
+
+}
+
+func checkNilErr(err error) {
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-
-	defer res.Body.Close()
-
-	fmt.Printf("Status code: %v\n", res.StatusCode)
-
-	var resString strings.Builder
-
-	// normal string method
-	content, _ := ioutil.ReadAll(res.Body)
-	fmt.Println(string(content))
-
-	// Using the strings library
-	byteCount, _ := resString.Write(content)
-	fmt.Println(byteCount)
-	fmt.Println(resString.String())
-
 }
 
-func postRequest() {
-
-	const apiUrl = "https://ossapi.vercel.app/api/devtip"
-
-	// fake json paylaod
-
-	reqBody := strings.NewReader(`
-		{ 
-			"message": "eat good food"	
-		}
-	`)
-
-	res, err := http.Post(apiUrl, "application/json" , reqBody)
-
-	if err != nil{
-		panic(err)
-	}
-
-	defer res.Body.Close()
-
-	content, _ := ioutil.ReadAll(res.Body)
-	fmt.Println(string(content))
-}
-
-func postFormRequest(){
+func postFormRequest() {
 
 	const apiUrl = "https://ossapi.vercel.app/api/devtip"
 
@@ -80,7 +65,7 @@ func postFormRequest(){
 
 	defer res.Body.Close()
 
-	content, _ := ioutil.ReadAll(res.Body)
+	content, _ := io.ReadAll(res.Body)
 	fmt.Println(string(content))
 
 }
