@@ -1,12 +1,11 @@
-## Networking
-
-### Learning Resources
-
-- [Computer Networking](https://youtu.be/IPvYjXCsTg8)
+---
+sidebar_position: 1
+title: Introduction
+---
 
 ### OSI Layer
 
-<p align="center"><img alt="OSI" src="https://user-images.githubusercontent.com/51878265/206166710-cafe1502-ea85-433d-b4bd-6124f8110992.png"></p>
+<p align="center"><img alt="OSI" src="https://user-images.githubusercontent.com/51878265/206166710-cafe1502-ea85-433d-b4bd-6124f8110992.png"></img></p>
 
 ### TCP
 
@@ -21,7 +20,7 @@ UDP in turn is not connection-oriented. UDP starts transmitting data immediately
 
 A virtual point where network connections start and end. So that multiple applications can communicate easily.
 
-<p align="center"><img alt="Tcp port" src="https://user-images.githubusercontent.com/51878265/206188329-c5b10491-d39e-40ca-8369-1a9965559857.png"></p>
+<p align="center"><img alt="Tcp port" src="https://user-images.githubusercontent.com/51878265/206188329-c5b10491-d39e-40ca-8369-1a9965559857.png"></img></p>
 
 
 |Port Number| Process | Uses |
@@ -42,20 +41,20 @@ A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS
 
 ### URL Breakdown
 
-<p align="center"><img src="https://user-images.githubusercontent.com/51878265/206189760-ea426560-0d3c-4c5f-a8c4-b4f7c9d6f106.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/51878265/206189760-ea426560-0d3c-4c5f-a8c4-b4f7c9d6f106.png"></img></p>
 
 - Generally, the URL doesn't contains a port number in the string because it is by default. For eg, `google.com` or `google.com:443`
 
 
 ### IP Address
 
-<p align="center"><img alt="IP Address" src="https://user-images.githubusercontent.com/51878265/206245742-5b660f3d-5d22-421f-ab35-56faf05b0532.png"></p>
+<p align="center"><img alt="IP Address" src="https://user-images.githubusercontent.com/51878265/206245742-5b660f3d-5d22-421f-ab35-56faf05b0532.png"></img></p>
 
 
 ### IP Address classes
 
 
-<p align="center"><img alt="IP Address classes" src="https://user-images.githubusercontent.com/51878265/206355697-45304b89-eaba-42ba-b55d-0385c271ec9b.png"></p>
+<p align="center"><img alt="IP Address classes" src="https://user-images.githubusercontent.com/51878265/206355697-45304b89-eaba-42ba-b55d-0385c271ec9b.png"></img></p>
 
 
 <!--<p align="center"><img alt="" src=""></p> -->

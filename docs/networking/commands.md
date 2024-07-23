@@ -1,3 +1,8 @@
+---
+sidebar_position: 3
+title: Networking Commands
+---
+
 
 ### Ping
 
@@ -38,4 +43,3 @@ Hostname is a command that is used to display the name of the current host.
 ```bash
 hostname
 ```
-
