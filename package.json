@@ -1,6 +1,6 @@
 {
-  "name": "b",
-  "version": "0.0.0",
+  "name": "devops",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
