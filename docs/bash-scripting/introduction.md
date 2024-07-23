@@ -1,13 +1,7 @@
-## Bash Scripting
-
-- [Chmod Calculator](https://chmodcommand.com/)
-- [devhints](https://devhints.io/)
-- [jq](https://stedolan.github.io/jq/)
-
-### Learning Resources
-
-[You need to learn Bash Scripting right now playlist - NetworkChuck (Video)](https://youtube.com/playlist?list=PLIhvC56v63IKioClkSNDjW7iz-6TFvLwS)
-- [Devhints Bash Cheat Sheet](https://devhints.io/bash)
+---
+sidebar_position: 1
+title: Introduction
+---
 
 We start by creating a file with the `.sh` extension. For example, `script.sh`. Then we write the script in it. For example:
 
@@ -220,5 +214,3 @@ It will print out the specified key.
 ```bash
 echo '{"name": "John", "age": 30}' | jq '.name'
 ```
-
-

@@ -1,19 +1,11 @@
-## Jenkins
+---
+sidebar_position: 1
+title: Introduction
+---
 
 Jenkins is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
 
-### Resources
 
-- [official website](https://www.jenkins.io/)
-- [official documentation](https://www.jenkins.io/doc/)
-- [Jenkins Docker Image](https://hub.docker.com/r/jenkins/jenkins)
-- [Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
-
-#### Learning Resources
-
-- [Jenkins Docker Installation (docs)](https://www.jenkins.io/doc/book/installing/docker/)
-- [Jenkins Tutorial - TechWorld with Nana (video)](https://www.youtube.com/playlist?list=PLy7NrYWoggjw_LIiDK1LXdNN82uYuuuiC)
-- [Jenkins FreeCodeCamp (video)](https://youtu.be/f4idgaq2VqA)
 
 ## Jenkinsfile - Pipeline as Code
 
@@ -177,14 +169,14 @@ stage('Build') {
 }
 ```
 
-<img width="1512" alt="Screenshot 2023-01-07 at 1 31 11 PM" src="https://user-images.githubusercontent.com/51878265/211166915-b8e92fad-c5a7-4210-bc20-90b60127e2df.png">
+<img width="1512" alt="Screenshot 2023-01-07 at 1 31 11 PM" src="https://user-images.githubusercontent.com/51878265/211166915-b8e92fad-c5a7-4210-bc20-90b60127e2df.png"></img>
 
 
 ### Triggers
 
 The triggers directive is used to define the triggers for the pipeline. Common way are, poll, github webhooks, etc.
 
-<img width="1486" alt="Screenshot 2023-01-08 at 12 40 23 AM" src="https://user-images.githubusercontent.com/51878265/211166876-04dfe987-20ae-4a76-8314-27ccf3e636e4.png">
+<img width="1486" alt="Screenshot 2023-01-08 at 12 40 23 AM" src="https://user-images.githubusercontent.com/51878265/211166876-04dfe987-20ae-4a76-8314-27ccf3e636e4.png"></img>
 
 
 
@@ -192,5 +184,5 @@ The triggers directive is used to define the triggers for the pipeline. Common w
 
 The replay option is used to re-run the pipeline. It is useful to test withou making/committing any changes to the code.
 
-<img width="1511" alt="Screenshot 2023-01-07 at 2 18 28 PM" src="https://user-images.githubusercontent.com/51878265/211167100-f413eff3-d984-4ef2-a4a5-996b43051d04.png">
+<img width="1511" alt="Screenshot 2023-01-07 at 2 18 28 PM" src="https://user-images.githubusercontent.com/51878265/211167100-f413eff3-d984-4ef2-a4a5-996b43051d04.png"></img>
 

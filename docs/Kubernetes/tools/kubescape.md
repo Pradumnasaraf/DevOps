@@ -1,4 +1,8 @@
-## Kubescape
+---
+title: Kubescape
+sidebar_position: 2
+---
+
 
 Kubescape is a tool that helps you scan your Kubernetes clusters for security misconfigurations. We can scan local cluster and config files.
 
