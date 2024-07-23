@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Commands
+title: Kubernetes Commands
 ---
 
 > KUBECTL COMMANDS
