@@ -1,22 +1,11 @@
-## Kubernetes Learnings 
+---
+sidebar_position: 1
+title: Introduction
+---
 
-## Playground (environment to test out Kubernetes)
-
-- [labs.play-with-k8s.com](https://labs.play-with-k8s.com/)
-- [killercoda.com/playgrounds](https://killercoda.com/playgrounds)
-
-## Learning Resources 
-
-- [Kubernetes 101 Kubesimplify](https://www.youtube.com/live/PN3VqbZqmD8?feature=share)
-- [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) Udemy course.
-- [BretFisher/udemy-docker-mastery GitHub repo](https://github.com/BretFisher/udemy-docker-mastery)
-- [Kubernetes official docs](https://kubernetes.io/docs/home/)
-- [Kubernetes Basic Concepts - Blog](https://spacelift.io/blog/kubernetes-tutorial)
 
 ## Tools around k8s
 
-- [Validkube](https://validkube.com/) - Kubernetes Manifest file validator (check security, structure).
-- [Lens](https://k8slens.dev/) - Lens is the only IDE you need to manage Kubernetes clusters. It's free and open source.
 
 ## Kubernetes Components - architecture
 
@@ -25,7 +14,7 @@
 <details>
   <summary>Simpler Image</summary>
 
-<img width="872" alt="20200328170549" src="https://user-images.githubusercontent.com/51878265/197317783-ef595279-520d-4354-b995-96bff072485e.png">
+  ![image](https://user-images.githubusercontent.com/51878265/197317783-ef595279-520d-4354-b995-96bff072485e.png)
 
 </details>
 
@@ -198,7 +187,11 @@ Multi-port service - In this we have to name the ports
       
 ```
 
-<p align="center" ><img width="626" alt="Screenshot 2022-11-28 at 2 15 57 PM" src="https://user-images.githubusercontent.com/51878265/204233963-c7bde7da-f631-49f3-b9db-1750ed55a37f.png"></p>
+<p align="center" >
+
+![Service](https://user-images.githubusercontent.com/51878265/204233963-c7bde7da-f631-49f3-b9db-1750ed55a37f.png)
+
+</p>
 
 - Port forwarding
 
@@ -245,7 +238,8 @@ spec:
 
 TLS
 
-<img width="1512" alt="Screenshot 2022-11-14 at 1 17 55 PM" src="https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png">
+![Image](https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png)
+
 
 ### ConfigMap
 

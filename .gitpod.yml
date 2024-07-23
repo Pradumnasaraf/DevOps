@@ -1,3 +1,4 @@
+TODO: Update Gitpos according to JS project
 tasks:
   - name: Start web server
     init: python -m http.server 8000

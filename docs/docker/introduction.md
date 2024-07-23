@@ -1,9 +1,9 @@
+---
+sidebar_position: 1
+title: Introduction
+---
+
 ## Docker
-
-### Learning Resources
-
-- [Docker Mastery (Course)](https://www.udemy.com/course/docker-mastery/)
-- [FreeCodeCamp Docker (Video)](https://youtu.be/kTp5xUtcalw)
 
 ### ⚫ Overview of Docker
 
@@ -240,6 +240,4 @@ CMD curl -f http://localhost/ || exit 1
 
 We can create a reg with the official [Registry image](https://hub.docker.com/_/registry)
 
- <img src="https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png">
-
-
+[image](https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png)
