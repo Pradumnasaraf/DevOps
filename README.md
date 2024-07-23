@@ -116,16 +116,8 @@
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/205495495-b3f0b395-3ce3-42d8-9274-220ff10334f6.png" height="100" alt="Argo"> 
 
-- [Notes + Learning Resources](ArgoCD/README.md)
-- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/ArgoCD/YAML)
-
-<br>
-
-## Portainer
-
-<img align="right" src="https://user-images.githubusercontent.com/51878265/204345912-dee5ddf4-4a91-4b4f-aeb3-5a429de5a7f7.png" height="100" alt="portainer"> 
-
-- [Notes + Learning Resources](Portainer/README.md)
+- [Notes + Learning Resources](docs/argocd/introduction.md)
+- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/argocd/manifests)
 
 <br>
 
@@ -133,17 +125,24 @@
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/209197795-570330e6-fbee-4bf3-a42e-b8609e3afc46.png" height="100" alt="Jenkins"> 
 
-- [Notes + Learning Resources](Jenkins/README.md)
-- [Jenkinsfile](https://github.com/Pradumnasaraf/DevOps/tree/main/Jenkins/Jenkinsfile)
-
+- [Notes + Learning Resources](docs/jenkins/introduction.md)
+- [Jenkinsfile](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/jenkins/jenkinsfiles)
 <br>
 
 ## Bash Scripting 
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/200594989-b1406680-ed41-478a-84d5-7c35b287e112.png" height="100" alt="Bash"> 
 
-- [Notes + Learning Resources](Bash-Scripting/README.md)
-- [Script](https://github.com/Pradumnasaraf/DevOps/tree/main/Bash-Scripting/Scripts)
+- [Notes + Learning Resources](docs/bash-scripting/introduction.md)
+- [Script](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/bash-scripting/scripts)
+
+<br>
+
+## Portainer
+
+<img align="right" src="https://user-images.githubusercontent.com/51878265/204345912-dee5ddf4-4a91-4b4f-aeb3-5a429de5a7f7.png" height="100" alt="portainer"> 
+
+- [Notes + Learning Resources](docs/kubernetes/tools/portainer.md)
 
 <br>
 
@@ -151,7 +150,7 @@
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/208243882-9c4f03fe-7aa3-4f42-84c4-ab90047e056b.png" height="100" alt="Lens"> 
 
-- [Notes + Learning Resources](Lens/README.md)
+- [Notes + Learning Resources](docs/kubernetes/tools/lens.md)
 
 <br>
 
@@ -159,7 +158,7 @@
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/208244012-919ce817-32c1-40fe-b31f-44dba72655da.png" height="100" alt="Kubescape"> 
 
-- [Notes + Learning Resources](Kubescape/README.md)
+- [Notes + Learning Resources](docs/kubernetes/tools/kubescape.md)
 
 <br>
 
@@ -167,7 +166,7 @@
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/208244291-3e43c1aa-cee1-4943-8775-21189cab3dcd.png" height="50" alt="ValidKube"> 
 
-- [Notes + Learning Resources](Validkube/README.md)
+- [Notes + Learning Resources](docs/kubernetes/tools/validkube.md)
 
 <br>
 <br>
