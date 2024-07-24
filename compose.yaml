@@ -1,0 +1,7 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 3001:3000
+    container_name: server
