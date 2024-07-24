@@ -3,5 +3,5 @@ services:
     build:
       context: .
     ports:
-      - 3001:3000
+      - 3000:3000
     container_name: server
