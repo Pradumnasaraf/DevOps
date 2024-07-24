@@ -22,3 +22,4 @@ yarn-error.log*
 .env
 .DS_Store
 .vercel
+TODO.md
