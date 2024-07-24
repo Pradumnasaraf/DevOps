@@ -1,9 +1,10 @@
 tasks:
-  - name: Start web server
-    init: python -m http.server 8000
+  - name: Install dependencies
+    init: npm install
+    command: npm start
 ports:
-  - port: 8000
-    onOpen: open-browser
+  - port: 3000
+    onOpen: open-preview
     
 github:
   prebuilds:
