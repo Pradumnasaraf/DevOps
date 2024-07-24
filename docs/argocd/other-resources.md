@@ -3,7 +3,6 @@ sidebar_position: 6
 title: Other Resources
 ---
 
-Here are list of other resources that you can refer to learn more about Kubernetes:
+Here are list of other resources that you can refer to learn more about ArgoCD:
 
-TODO: Add the correct GitHub path links
-- [Manifest files](https://www.docker.com/)
+- [Sample ArgoCD Manifest files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/argocd/manifests): A collection of ArgoCD manifest files to help you understand the concepts better.
