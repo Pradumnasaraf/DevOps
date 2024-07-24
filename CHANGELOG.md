@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.5.1...v2.0.2) (2024-07-24)
+
+
+### Bug Fixes
+
+* Bump package version to 2.0.1 ([a429f46](https://github.com/Pradumnasaraf/DevOps/commit/a429f4660a4ff4407622fca49c6eb3dfd1ce8cf2))
+
+
+
 ## [1.5.1](https://github.com/Pradumnasaraf/DevOps/compare/v2.0.0...v1.5.1) (2024-07-24)
 
 
@@ -26,15 +35,6 @@
 ### Bug Fixes
 
 * update the docker compose file to compose.dev.yaml and compose.yaml ([a7f57fe](https://github.com/Pradumnasaraf/DevOps/commit/a7f57fe51e4277b205b773706af1da4f5c09a702))
-
-
-
-## [1.4.3](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.2...v1.4.3) (2023-07-07)
-
-
-### Bug Fixes
-
-* link rendring on website ([531a539](https://github.com/Pradumnasaraf/DevOps/commit/531a5390d0af8e1b0d7fe0c8e666a565caf2ea97))
 
 
 
