@@ -8,27 +8,15 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Home',
+  title: 'DevOps',
   tagline: 'Learn DevOps',
   favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
   url: 'https://devops.pradumnasaraf.dev',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Pradumnasaraf', // Usually your GitHub org/user name.
-  projectName: 'DevOps', // Usually your repo name.
-
+  organizationName: 'Pradumnasaraf', 
+  projectName: 'DevOps',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -68,41 +56,26 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/Pradumnasaraf/DevOps',
             label: 'GitHub',
+            position: 'right',
+          }, 
+          {
+            href: 'https://twitter.com/pradumna_Saraf',
+            label: 'Twitter',
             position: 'right',
           },
         ],
       },
       footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              // {
-              //   label: 'Blog',
-              //   to: '/blog',
-              // },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        logo: {
+          alt: 'DevOps',
+          src: 'img/logo.svg',
+          href: 'https://devops.pradumnasaraf.dev',
+        },
+        style: 'light',
+        copyright: `Copyright © ${new Date().getFullYear()} Pradumna Saraf`,
       },
       prism: {
         theme: prismThemes.github,
