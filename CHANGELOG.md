@@ -1,3 +1,16 @@
+## [1.5.1](https://github.com/Pradumnasaraf/DevOps/compare/v2.0.0...v1.5.1) (2024-07-24)
+
+
+### Bug Fixes
+
+* V2 cleanup ([#93](https://github.com/Pradumnasaraf/DevOps/issues/93)) ([6c852a8](https://github.com/Pradumnasaraf/DevOps/commit/6c852a8b62e9e2208c4271c81832dfaf1a312378))
+
+
+
+# [2.0.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.5.0...v2.0.0) (2024-07-24)
+
+
+
 # [1.5.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.4...v1.5.0) (2024-01-23)
 
 
@@ -22,24 +35,6 @@
 ### Bug Fixes
 
 * link rendring on website ([531a539](https://github.com/Pradumnasaraf/DevOps/commit/531a5390d0af8e1b0d7fe0c8e666a565caf2ea97))
-
-
-
-## [1.4.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.1...v1.4.2) (2023-06-14)
-
-
-### Bug Fixes
-
-* docker compose config ([69a2f20](https://github.com/Pradumnasaraf/DevOps/commit/69a2f20dc58713897d57f38a3263319ca1b324fe))
-
-
-
-## [1.4.1](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.0...v1.4.1) (2023-06-11)
-
-
-### Bug Fixes
-
-* release action ([29720ce](https://github.com/Pradumnasaraf/DevOps/commit/29720cef1b86800613e7d18e6b82546700fbd4f7))
 
 
 
