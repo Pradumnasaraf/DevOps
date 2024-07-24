@@ -13,10 +13,12 @@ jobs:
 
       - name: conventional Changelog Action
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: TriPSs/conventional-changelog-action@v5
         with:
           github-token: ${{ secrets.PA_TOKEN }}
           version-file: 'package.json, package-lock.json'
+          skip-ci: 'false'
+          create-summary: 'true'
 
       - name: create release
         if: steps.changelog.outputs.skipped == 'false'
