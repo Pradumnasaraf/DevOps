@@ -1,1 +1,3 @@
 - Add a main page introduction.
+- Update Favicons.
+- Create a favicon and logo.
