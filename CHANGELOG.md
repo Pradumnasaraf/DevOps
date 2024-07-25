@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/Pradumnasaraf/DevOps/compare/v2.0.2...v2.1.0) (2024-07-25)
+
+
+### Features
+
+* update intro and config ([a8727bb](https://github.com/Pradumnasaraf/DevOps/commit/a8727bb21e033886d0d201da74d9dd68777152cb))
+
+
+
 ## [2.0.2](https://github.com/Pradumnasaraf/DevOps/compare/v1.5.1...v2.0.2) (2024-07-24)
 
 
@@ -26,15 +35,6 @@
 ### Features
 
 * Add Google Analytics ([d154181](https://github.com/Pradumnasaraf/DevOps/commit/d154181ad1c772d44a0e1a3378c0b82c92005dbc))
-
-
-
-## [1.4.4](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.3...v1.4.4) (2024-01-16)
-
-
-### Bug Fixes
-
-* update the docker compose file to compose.dev.yaml and compose.yaml ([a7f57fe](https://github.com/Pradumnasaraf/DevOps/commit/a7f57fe51e4277b205b773706af1da4f5c09a702))
 
 
 
