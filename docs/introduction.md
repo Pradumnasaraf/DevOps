@@ -6,7 +6,7 @@ title: DevOps
 description: Introduction to DevOps
 ---
 
-> Hey, I created this repository to keep my learning, notes, and code in one place for various tools in DevOps. Now, it's helping thousands of learners, practitioners, and professionals every day in their DevOps journey. - [Pradumna saraf](https://twitter.com/pradumna_saraf)
+> Hey, I created this repository to keep my learning, notes, and code in one place for various tools in DevOps. Now, it's helping thousands of learners, practitioners, and professionals every day in their DevOps journey. - [Pradumna Saraf](https://twitter.com/pradumna_saraf)
 
 ## What is DevOps?
 
@@ -34,7 +34,7 @@ To understand the above image, let's break down the DevOps lifecycle into differ
 
 **8. Continuous Feedback**: In this stage, the team gets feedback from the users and stakeholders.
 
-### DevOps Tools
+## DevOps Tools
 
 There are various tools available for different stages of the DevOps lifecycle. It depends on the requirements of the project and the team. Some of the popular DevOps tools are:
 
