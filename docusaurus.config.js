@@ -33,6 +33,9 @@ const config = {
           editUrl:
             'https://github.com/Pradumnasaraf/DevOps/edit/main/',
         },
+        googleTagManager: {
+          containerId: 'GTM-KWKGT69C',
+        },
         blog: false,
         theme: {
           customCss: './src/css/custom.css',
