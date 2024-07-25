@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: Prometheus Introduction
 ---
 
 Prometheus is an open-source systems monitoring and alerting toolkit.

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: GitOps Introduction
 ---
 
 GitOps is a way of managing Kubernetes clusters using Git as the source of truth.

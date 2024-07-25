@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: Helm Introduction
 ---
 
 Helm is Package manager for Kubernetes.

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: Bash Scripting Introduction
 ---
 
 We start by creating a file with the `.sh` extension. For example, `script.sh`. Then we write the script in it. For example:

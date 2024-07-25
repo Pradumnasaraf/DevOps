@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Introduction
+title: Kubernetes Tools Introduction
 ---
 
 Kubertenes has a huge ecosystem of tools and resources that can help you in managing your Kubernetes clusters. Here are some of the tools that you can use:

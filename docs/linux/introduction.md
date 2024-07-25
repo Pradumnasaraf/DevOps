@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: Linux Introduction
 ---
 
 ### ⚫ Overview of Linux and Why it is so popular?

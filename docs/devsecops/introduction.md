@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: DevSecOps Introduction
 ---
 
 It is a set of practices that combines software development (Dev) and information security (Sec) to shorten the systems development life cycle while providing continuous monitoring to ensure the delivery of secure software.

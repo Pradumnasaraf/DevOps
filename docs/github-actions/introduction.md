@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: GitHub Actions Introduction
 ---
 
 ## GitHub Actions

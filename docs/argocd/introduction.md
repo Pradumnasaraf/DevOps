@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: ArgoCD Introduction
 ---
 
 - [ArgoCD](https://argoproj.github.io/cd)
