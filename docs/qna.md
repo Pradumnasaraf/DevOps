@@ -1,7 +1,7 @@
 ---
 sidebar_position: 18
-description: Frequently asked questions about DevOps.
-title: FAQ
+description: Questions and answers about DevOps
+title: Q&A
 ---
 
 Having questions or doubts about DevOps is totally reasonable and normal. Here are some frequently asked questions about DevOps:

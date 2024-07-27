@@ -12,6 +12,8 @@ description: Introduction to DevOps
 
 DevOps is a set of practices that combines software development (Dev) and information technology operations (Ops) to shorten the systems development life cycle while providing continuous delivery with high software quality. DevOps is a culture, movement, or practice that emphasizes the collaboration and communication of both software developers and other information-technology (IT) professionals while automating the process of software delivery and infrastructure changes.
 
+If you notice DevOps has a infinity symbol, which means it's a continuous process. It's not a one-time activity. It's a continuous process of development and operations. It's explained in the below image:
+
 ## DevOps Lifecycle
 
 ![DevOps Lifecycle](../static/img/devops-lifecycle.png)
