@@ -41,5 +41,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/pradumnasaraf/devops:${{ steps.package-version.outputs.current-version}}
+          tags: | 
+            ghcr.io/pradumnasaraf/devops:${{ steps.package-version.outputs.current-version}}
+            ghcr.io/pradumnasaraf/devops:latest
           labels: ${{ steps.meta.outputs.labels }}
