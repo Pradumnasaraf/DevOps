@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/Pradumnasaraf/DevOps/compare/v2.1.0...v2.2.0) (2024-07-27)
+
+
+### Features
+
+* add a FAQ section and some nitpicks ([0902e86](https://github.com/Pradumnasaraf/DevOps/commit/0902e8620b1c29685ba269b0819bf2b45404776c))
+
+
+
 # [2.1.0](https://github.com/Pradumnasaraf/DevOps/compare/v2.0.2...v2.1.0) (2024-07-25)
 
 
@@ -26,15 +35,6 @@
 
 
 # [2.0.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.5.0...v2.0.0) (2024-07-24)
-
-
-
-# [1.5.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.4.4...v1.5.0) (2024-01-23)
-
-
-### Features
-
-* Add Google Analytics ([d154181](https://github.com/Pradumnasaraf/DevOps/commit/d154181ad1c772d44a0e1a3378c0b82c92005dbc))
 
 
 
