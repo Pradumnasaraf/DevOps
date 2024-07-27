@@ -3,10 +3,6 @@ sidebar_position: 1
 title: Kubernetes Introduction
 ---
 
-
-## Tools around k8s
-
-
 ## Kubernetes Components - architecture
 
 ![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
