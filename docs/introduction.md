@@ -6,7 +6,7 @@ title: DevOps
 description: Introduction to DevOps
 ---
 
-> Hey, I created this repository to keep my learning, notes, and code in one place for various tools in DevOps. Now, it's helping thousands of learners, practitioners, and professionals every day in their DevOps journey. - [Pradumna Saraf](https://twitter.com/pradumna_saraf)
+> Hey, I created this repository to keep my learning, notes, and code in one place for various tools in DevOps. Now, it's helping thousands of learners, practitioners, and professionals every day in their DevOps journey. Good luck with your DevOps journey! - [Pradumna Saraf](https://twitter.com/pradumna_saraf)
 
 ## What is DevOps?
 

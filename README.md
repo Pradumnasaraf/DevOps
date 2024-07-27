@@ -171,12 +171,6 @@
 <br>
 <br>
 
-<div align="center">
- 
-<b>If you find the repository helpful, please consider sponsoring my efforts via <a href="https://github.com/sponsors/Pradumnasaraf">GitHub Sponsors</a></b>
-
-</div>
-
 <!-- ### Topic to cover
 - Ansible
 - Terraform

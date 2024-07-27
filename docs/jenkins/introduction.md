@@ -5,8 +5,6 @@ title: Jenkins Introduction
 
 Jenkins is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
 
-
-
 ## Jenkinsfile - Pipeline as Code
 
 Insted of configuring the pipeline in the Jenkins UI, we can define the entire pipeline in a Jenkinsfile and check it into source control. The file name is case sensitive and must be named `Jenkinsfile`.

@@ -3,13 +3,13 @@ sidebar_position: 1
 title: Linux Introduction
 ---
 
-### ⚫ Overview of Linux and Why it is so popular?
+### Overview of Linux and Why it is so popular?
 
 Linux is an open-source operating system (OS) that runs on a computer and controls all of the other software and hardware on the computer. Initially, Linux was built on the Unix operating system, which was created many decades ago as a platform for scientific and academic computing. It is used on a wide range of devices, including servers, desktop computers, laptops, cloud computing, and Mobile devices.
 
 As Linux is open-source software so anyone can access its source code and make changes to it. Other than this Linux is known for its Security features. It has a large community of users and developers who are constantly working to identify and fix security vulnerabilities. Also, Linux is well known for its Customizability allowing users to modify and configure it in order to meet their specific needs.
 
-### ⚫ Linux Architecture Components
+### Linux Architecture Components
 
 The main architectural components that work together to form a complete Linux OS include Kernel, System Libraries, User Space, Shell, System Utilities, Daemons, and Configuration files.
 
@@ -29,14 +29,14 @@ The main architectural components that work together to form a complete Linux OS
 
 ![architecture](https://user-images.githubusercontent.com/37767537/225990738-9e505c6d-bad0-4820-a2b2-4ce84ef286c9.jpg)
 
-### ⚫ Linux Distributions
+### Linux Distributions
 
 Linux distributions, also known as "distros," are different versions of the Linux operating system that are built 
 and packaged with specific versions of the architectural components, the package management system used, the graphical user interface, and the tools and applications included in it.
 
 Examples of Linux distros include Ubuntu, Fedora, Debian, CentOS, Mint, Red Hat Enterprise Linux (RHEL), etc.
 
-### ⚫ Linux File Systems
+### Linux File Systems
 
 The Linux file system is the way that the operating system organizes and stores files and directories on a computer's hard drive or other storage devices. It consists of a hierarchical structure where files and directories are arranged in a tree-like format starting from the root directory (represented by "/"). Each file and directory has a unique location within the file system hierarchy, and these locations can be referred to using a path similar to how file paths work in other operating systems.
 
@@ -56,7 +56,7 @@ There are several types of file systems available for use in Linux including bel
 
 ![Linux-1](https://user-images.githubusercontent.com/37767537/226102852-2ca35206-f833-44e0-994f-a003a88c6b84.png)
 
-### ⚫ Organization of Linux File System
+### Organization of Linux File System
 
 In Linux, the file system is organized into a hierarchical structure, with the root directory (/) at the top of the hierarchy. The root directory contains several subdirectories, each with its own specific purpose that form the foundation of the Linux file system hierarchy. The subdirectories include:
 
