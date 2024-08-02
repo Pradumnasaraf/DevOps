@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/Pradumnasaraf/DevOps/compare/v2.2.0...v2.3.0) (2024-08-02)
+
+
+### Features
+
+* add algolia search functionality ([#95](https://github.com/Pradumnasaraf/DevOps/issues/95)) ([e709c08](https://github.com/Pradumnasaraf/DevOps/commit/e709c089adefbab3a57aa6cef08863441cefd9bf))
+
+
+
 # [2.2.0](https://github.com/Pradumnasaraf/DevOps/compare/v2.1.0...v2.2.0) (2024-07-27)
 
 
@@ -31,10 +40,6 @@
 ### Bug Fixes
 
 * V2 cleanup ([#93](https://github.com/Pradumnasaraf/DevOps/issues/93)) ([6c852a8](https://github.com/Pradumnasaraf/DevOps/commit/6c852a8b62e9e2208c4271c81832dfaf1a312378))
-
-
-
-# [2.0.0](https://github.com/Pradumnasaraf/DevOps/compare/v1.5.0...v2.0.0) (2024-07-24)
 
 
 
