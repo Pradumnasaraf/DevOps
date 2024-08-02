@@ -47,7 +47,15 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
+      algolia: {
+        apiKey: 'bc32ca764f4327f836b2aabf20c05424',
+        indexName: 'devops',
+        appId: 'ZYPCM1MC1B', // Ensure you have the correct App ID if using a multi-application setup
+        contextualSearch: true, // Optional: contextual search
+        // Optional: see doc section below
+        // searchParameters: {},
+        //... other algolia configuration
+      },
       image: 'img/devops-repo-card.png',
       navbar: {
         title: 'DevOps',
