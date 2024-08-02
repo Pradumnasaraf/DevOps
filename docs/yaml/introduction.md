@@ -23,23 +23,23 @@ address:
         - 2222222
 ```
 
-## Properties
+### Properties
 
 - Similar to XML & JSON.
 - We can't add commands.
 - Strict syntax - (Indentation)
 - Human readable data serialization language.
 
-## Syntax
+### Syntax
 
-### Key Value pair
+#### Key Value pair
 
 ```yaml
 Name: "Pradumna Saraf"
 1: "This a list"
 ```
 
-### List
+#### List
 
 ```yaml
 - apple
@@ -53,7 +53,7 @@ or
 cities: [new delhi, patna,gujrat]
 ```
 
-### String and Variables
+#### String and Variables
 
 ```yaml
 name: Pradumna Saraf
@@ -64,7 +64,7 @@ marks: 10.33
 booleanValue: No, N, false, False, FALSE 
 ```
 
-### Multiline String
+#### Multiline String
 
 ```yaml
 Address: |
@@ -82,7 +82,7 @@ message: >
 
 ```
 
-### Nested Mapping
+#### Nested Mapping
 
 ```yaml
 names: Pradumna
@@ -91,7 +91,7 @@ role:
   job: student
 ```  
 
-### Nested Sequence
+#### Nested Sequence
 
 ```yaml
 -
@@ -103,7 +103,7 @@ role:
   - roll
 ```
 
-##### Specify the data type
+#### Specify the data type
 
 ```yaml
 
@@ -135,8 +135,13 @@ no Time zone: 2012-12-15T02:59:43
 India Time: 2012-12-15T02:59:43 +5:30
 ```
 
-## Usage
+### Usage
 
 - Used in Kubernetes, Ansible, Docker, etc.
 - Used to store data in key-value pairs.
 - CI/CD tools like GitHub Actions, CircleCI, use YAML to create workflows.
+
+### What's next?
+
+- [Learning Resources](./learning-resources.md) - Learn more about YAML with these resources.
+- [Tools](./tools.md) - Learn about the tools that you can use with YAML.

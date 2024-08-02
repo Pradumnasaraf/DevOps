@@ -76,3 +76,8 @@ spec:
         syncOptions:
         - CreateNamespace=true # This will create namespace if not present
 ```
+
+### What's next?
+
+- [Learning Resources](./learning-resources.md) - Learn more about ArgoCD with these resources.
+- [Other Resources](./other-resources.md) - Explore more about ArgoCD with these resources.

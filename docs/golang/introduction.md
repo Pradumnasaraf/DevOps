@@ -617,3 +617,9 @@ Receive Only Channel
 ```go
 var ch = make(<-chan int) // receive only channel
 ```
+
+### What's next?
+
+- [Learning Resources](./learning-resources.md) - Learn more about Golang with these resources.
+- [Other Resources](./other-resources.md) - A list of resources to learn more about Golang.
+- 

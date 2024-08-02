@@ -184,3 +184,6 @@ The replay option is used to re-run the pipeline. It is useful to test withou ma
 
 <img width="1511" alt="Screenshot 2023-01-07 at 2 18 28 PM" src="https://user-images.githubusercontent.com/51878265/211167100-f413eff3-d984-4ef2-a4a5-996b43051d04.png"></img>
 
+### What's next?
+
+- [Learning Resources](./learning-resources.md) - Learn more about Jenkins with these resources.

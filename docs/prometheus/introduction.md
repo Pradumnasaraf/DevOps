@@ -5,7 +5,7 @@ title: Prometheus Introduction
 
 Prometheus is an open-source systems monitoring and alerting toolkit.
 
-## Installation using Helm
+### Installation using Helm
 
 We will install Prometheus Operator using Helm. It is collection of Promethus + Grafana + Alertmanager + Node Exporter + Kube State Metrics + Pushgateway + Blackbox Exporter
 
@@ -30,3 +30,7 @@ kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring
 
 > The Grafana dashboard will be available at http://localhost:3000. The default username and password are `admin` $ `prom-operator`.
 
+
+### What's next?
+
+- [Learning Resources](./learning-resources.md) - Learn more about Prometheus with these resources.

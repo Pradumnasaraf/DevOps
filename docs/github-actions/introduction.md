@@ -5,9 +5,6 @@ title: GitHub Actions Introduction
 
 GitHub Actions is a feature that allows you to automate your software development workflows. You can write individual tasks, called actions, and combine them to create a custom workflow. Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub.
 
-### Resources
-
-
 ### Overview
 
 - [Docs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
@@ -236,4 +233,8 @@ jobs:
           run: echo ${{ needs.deploy.outputs.url }}
 ```
 
+### What's next?
 
+- [Scenarios](./scenarios.md) - A collection of GitHub Actions workflow files I use and created to help you understand the concepts better.
+- [Learning Resources](./learning-resources.md) - A list of resources to learn more about GitHub Actions.
+- [other Resources](./other-resources.md) - A list of other resources that you can refer to learn more about GitHub Actions.

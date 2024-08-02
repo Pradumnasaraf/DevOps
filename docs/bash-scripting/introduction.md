@@ -214,3 +214,9 @@ It will print out the specified key.
 ```bash
 echo '{"name": "John", "age": 30}' | jq '.name'
 ```
+
+### What's next?
+
+- [Learning Resources](./learning-resources.md) - Learn more about Bash Scripting with these resources.
+- [Other Resources](./other-resources.md) - Explore more about Bash Scripting with these resources.
+- [Tools](./tools.md) - Explore the tools used in Bash Scripting.

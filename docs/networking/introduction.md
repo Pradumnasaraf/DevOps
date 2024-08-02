@@ -56,5 +56,7 @@ A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS
 
 <p align="center"><img alt="IP Address classes" src="https://user-images.githubusercontent.com/51878265/206355697-45304b89-eaba-42ba-b55d-0385c271ec9b.png"></img></p>
 
+### What's next?
 
-<!--<p align="center"><img alt="" src=""></p> -->
+- [Networking Commands](./commands.md) - Learn about the commands that you can use with Networking.
+- [Learning Resources](./learning-resources.md) - Learn more about Networking with these resources.

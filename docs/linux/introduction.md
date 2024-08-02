@@ -80,3 +80,8 @@ In Linux, the file system is organized into a hierarchical structure, with the r
 These subdirectories may vary between different Linux distributions but the basic structure will remain the same. It is strongly recommended to explore each subdirectory separately to understand more about it.
 
 ![Linux-2](https://user-images.githubusercontent.com/37767537/226103260-c51190cf-3e9a-47e9-abe8-6b131227572d.png)
+
+### What's next?
+
+- [Linux Commands](./commands.md) - Learn about the commands that you can use with Linux.
+- [Learning Resources](./learning-resources.md) - Learn more about Linux with these resources.

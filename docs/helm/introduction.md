@@ -28,3 +28,6 @@ helm search repo kubernetes-dashboard
 helm install <name> kubernetes-dashboard/kubernetes-dashboard
 ```
 
+### What's next?
+
+[Learning Resources](./learning-resources.md) - Learn more about Helm with these resources.

@@ -241,3 +241,9 @@ CMD curl -f http://localhost/ || exit 1
 We can create a registry with the official [Registry image](https://hub.docker.com/_/registry).
 
 ![image](https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png)
+
+### What's next?
+
+- [Docker Commands](./commands.md) - Learn about the most commonly used Docker commands.
+- [Learning Resources](./learning-resources.md) - Learn more about Docker with these resources.
+- [Other Resources](./other-resources.md) - Explore more about Docker with these resources.
