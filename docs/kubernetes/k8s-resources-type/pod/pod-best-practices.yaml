@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx-pod-best-practices
+  namespace: my-namespace
+spec:
+  containers:
+  - name: nginx
+    image: cgr.dev/chainguard/nginx:latest
+    ports:
+      - containerPort: 8080
+        protocol: TCP
+    readinessProbe: 
+      httpGet:
+        path: /
+        port: 8080
+    resources:
+      requests:
+        memory: "50Mi"
+        cpu: "250m"
+      limits:
+        memory: "50Mi"
+        cpu: "250m"
+    securityContext: # This is the security context for the container
+      allowPrivilegeEscalation: false
+      privileged: false
+  securityContext: # This is the security context for the pod
+    seccompProfile:
+      type: RuntimeDefault
+    runAsUser: 1000
+    runAsGroup: 1001
+    runAsNonRoot: true
+

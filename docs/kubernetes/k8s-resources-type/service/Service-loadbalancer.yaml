@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-loadbalancer
+spec:
+  type: LoadBalancer # Will only work if cluster is configured to provision one from an external source (e.g. cloud provider)
+  selector:
+    baz: pod-label
+  ports:
+    - protocol: TCP
+      port: 80 # Port the service is listening on
+      targetPort: 80 # Port the container is listening on (if unset, defaults to equal port value)

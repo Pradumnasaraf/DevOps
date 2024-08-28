@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-minimal
+  labels:
+    foo: deployment-label
+  annotations:
+    bar: deployment-annotation
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      baz: pod-label
+  template:
+    metadata:
+      labels:
+        baz: pod-label
+      annotations:
+        bing: pod-annotation
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.26.0

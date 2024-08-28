@@ -233,6 +233,45 @@ jobs:
           run: echo ${{ needs.deploy.outputs.url }}
 ```
 
+## Artifacts
+
+It allows you to share data between jobs in a workflow and store data once the workflow has been completed. We can use the `upload-artifact` and `download-artifact` actions to upload and download artifacts.
+
+```yaml
+name: Share data between jobs
+
+on: [push]
+
+jobs:
+  job_1:
+    name: Generate Random Number
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          echo $((RANDOM % 100)) > random-number.txt
+      - name: Upload random number for job 1
+        uses: actions/upload-artifact@v4
+        with:
+          name: random_number
+          path: random-number.txt
+
+  job_2:
+    name: Echo Random Number
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download random number from job 1
+        uses: actions/download-artifact@v4
+        with:
+          name: random_number
+      - shell: bash
+        run: |
+          number=$(cat random-number.txt)
+          echo The random number is $number
+``` 
+
+
 ### What's next?
 
 - [Scenarios](./scenarios.md) - A collection of GitHub Actions workflow files I use and created to help you understand the concepts better.

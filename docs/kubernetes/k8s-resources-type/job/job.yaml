@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: echo-date
+spec:
+  template:
+    spec:
+      containers:
+      - name: echo
+        image: busybox:1.36.1
+        command: [date]
+      restartPolicy: Never
+  backoffLimit: 1
