@@ -404,6 +404,8 @@ kubectl create job --from=cronjob/<cronjob-name> <job-name>
 
 DemonSet ensures that all nodes run a copy of a pod. It is used to run a copy of a pod on all or a subset of nodes in a cluster. It can be used for monitoring, logging, etc.
 
+NOTE: It will run on all worker nodes, except the master node.
+
 ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
@@ -423,56 +425,160 @@ spec:
         image: fluentd:v1.16-1
 ```
 
+## StatefulSet
 
+StatefulSet is a controller that manages the deployment and scaling of a set of pods. It is used to run stateful applications. It is used to run applications that require stable, unique network identifiers, stable storage, and ordered deployment and scaling.
 
-<p align="center" >
+`serviceName` is used to create a headless service. It is used to create a service that does not load balance the traffic. It is used to create a service that does not have a cluster IP. It is used of headless services that are used to discover the pods.
 
-![Service](https://user-images.githubusercontent.com/51878265/204233963-c7bde7da-f631-49f3-b9db-1750ed55a37f.png)
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-with-init-containers
+spec:
+  serviceName: nginxs # Headless service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app 
+    spec:
+      initContainers:
+        - name: populate-default-html
+          image: nginx:1.26.0
+          command:
+            - bash
+            - "-c"
+            - |
+              set -ex
+              [[ $HOSTNAME =~ -([0-9]+)$ ]] || exit 1
+              ordinal=${BASH_REMATCH[1]}
+              echo "<h1>Hello from pod $ordinal</h1>" >  /usr/share/nginx/html/index.html
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/nginx/html
+      containers:
+        - name: nginx
+          image: nginx:1.26.0
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/nginx/html
 
-</p>
-
-- Port forwarding
-
-We can forward a port from a pod to our local machine
-
-```bash
-kubectl port-forward <pod-name> <localhost-port>:<pod-port>
+  volumeClaimTemplates: # PersistentVolumeClaim templates for each replica
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "standard"
+        resources:
+          requests:
+            storage: 100Mi
 ```
 
-or
+## ConfigMap
 
-Note: In this case pod port is same as localhost port
+ConfigMap enables environment specific configuration to be decoupled from the container image. It is used to store non-sensitive data in key-value pairs.
 
-```bash
-kubectl port-forward <pod-name> <localhost-port>
+Thee are two ways to primary style to create a ConfigMap:
+
+- Property like Keys (MYAPP_COLOR=blue) - This is useful when we want to use the ConfigMap as environment variables.
+- File like Keys (conf.yml = <multi line string>) - This is useful when we want to use the ConfigMap as a file.
+
+
+File like style:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: file-like-keys
+data:
+  conf.yml: |
+    name: YourAppName
+    version: 1.0.0
+    author: YourName
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-example-file
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.26.0
+      volumeMounts:
+        - name: configmap-file-like-keys
+          mountPath: /etc/config
+  volumes:
+    - name: configmap-file-like-keys
+      configMap:
+        name: file-like-keys
 ```
+
+Property like style:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: property-like-keys
+data:
+  NAME: YourAppName
+  VERSION: 1.0.0
+  AUTHOR: YourName
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-example-key
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.26.0
+      envFrom:
+        - configMapRef:
+            name: property-like-keys
+```
+
 
 ### Ingress
 
-It is use for an external traffic/request, which can be accessed by an URL instead of `IP-PORT - 17.28.55.44.5:7800`. For that we need an ingress controller to make work of ingress.
+Ingress enables routing traffic to services based on the request host or path. It is an API object that manages external access to services in a cluster, typically HTTP. It provides HTTP and HTTPS routing to services in a cluster.
 
-![Ingress](https://user-images.githubusercontent.com/51878265/201585224-eca055af-eeb6-473c-bd96-33af9b5f6c55.png)
+The way it works it that the traffic from the client comes to the Ingress Controller, then the Ingress Controller routes the traffic to the respective service and then the service routes the traffic to the respective pod. `Traffic -> Ingress Controller -> Service -> Pod`
+
+Some common ingress controllers are Nginx (below example), Traefik, etc. Some support annotations to configure the routing and some have their Ingress Class name.
+
+NOTE: One things to note here is it only supports layer 7 routing that is HTTP/HTTPS.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kubernetes-ingress
-  namespace: kubernetes-dashboard
+  name: nginx-ingress-ingress
 spec:
+  ingressClassName: nginx # Ingress controller name
   rules:
-  - host: example.com
+  - host: mydomain.com # Domain name
     http:
       paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: kubernetes-dashboard
-            port: 
-              number: 80
-
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nginx-ingress-service # Service name
+              port:
+                number: 80 # Service port
 ```
+
 
 ![Image](https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png)
 

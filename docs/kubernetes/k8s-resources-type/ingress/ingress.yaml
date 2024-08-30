@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: fba5362f-28ca-4c8f-bf56-482fdeaeb331.lb.civo.com
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nginx-ingress-service
+              port:
+                number: 80
