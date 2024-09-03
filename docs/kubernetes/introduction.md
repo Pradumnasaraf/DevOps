@@ -429,15 +429,18 @@ spec:
 
 StatefulSet is a controller that manages the deployment and scaling of a set of pods. It is used to run stateful applications. It is used to run applications that require stable, unique network identifiers, stable storage, and ordered deployment and scaling.
 
-`serviceName` is used to create a headless service. It is used to create a service that does not load balance the traffic. It is used to create a service that does not have a cluster IP. It is used of headless services that are used to discover the pods.
+`serviceName` is used to create a headless service. We need to create a headless service while creating a StatefulSet. The purpose of the headless service is that it allows a client to connect to whichever pod it prefers. 
+
+Another great thing about the StatefulSet is that pod naming is predictable. The pod name is in the format `<statefulset-name>-<ordinal>`. The ordinal is a unique number assigned to each pod. For example, if we have a StatefulSet with 3 replicas, the pod names will be `nginx-with-init-containers-0`, `nginx-with-init-containers-1`, `nginx-with-init-containers-2`, it's not like random hashes in the deployment.
+
+The way the below config is working that the init container will run before the main container. The init container will populate the default HTML file in the volume and then the main container will use that volume to serve the HTML file.
 
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
-metadata:
-  name: nginx-with-init-containers
+metadata: 
 spec:
-  serviceName: nginxs # Headless service
+  serviceName: nginx # Headless service
   replicas: 3
   selector:
     matchLabels:
@@ -477,6 +480,15 @@ spec:
         resources:
           requests:
             storage: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  clusterIP: None # Headless service
+  selector:
+    app: nginx-app
 ```
 
 ## ConfigMap
@@ -548,12 +560,59 @@ spec:
             name: property-like-keys
 ```
 
+## Secrets
 
-### Ingress
+Secrets are similar to ConigMap but Data is stored in base64 encoded format. This is support binary data and is NOT a security mechanism to protect sensitive data.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: string-data
+type: Opaque # This is the default type
+stringData:
+  foo: bar
+  baz: qux
+```
+
+> Note: the secret value can be `base64` encoded, like `cHJhZHVtbmE` 
+
+To encode a value in base64, we can use the below command
+
+```bash
+echo -n "value" | base64
+```
+
+To decode a value in base64, we can use the below command
+
+```bash 
+echo cHJhZHVtbmE | base64 --decode
+```
+
+Also, there is specific type of secret is `dockerconfigjson` which is used to store the docker registry credentials. It is used to store the docker registry credentials in a secret.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dockerconfigjson
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: |
+    <base64 encoded docker config.json> 
+```
+
+Kubectl has a build-in command to create a secret from the docker config.json file.
+
+```sh
+kubectl create secret docker-registry dockerconfigjson --docker-server=<server> --docker-username=<username> --docker-password=<password> --docker-email=<email>
+```
+
+## Ingress
 
 Ingress enables routing traffic to services based on the request host or path. It is an API object that manages external access to services in a cluster, typically HTTP. It provides HTTP and HTTPS routing to services in a cluster.
 
-The way it works it that the traffic from the client comes to the Ingress Controller, then the Ingress Controller routes the traffic to the respective service and then the service routes the traffic to the respective pod. `Traffic -> Ingress Controller -> Service -> Pod`
+The way it works it that the traffic from the client comes to the Ingress Controller, then the Ingress Controller routes the traffic to the respective service according to the rules and then the service routes the traffic to the respective pod. `Traffic -> Ingress Controller -> Service -> Pod`
 
 Some common ingress controllers are Nginx (below example), Traefik, etc. Some support annotations to configure the routing and some have their Ingress Class name.
 
@@ -579,121 +638,161 @@ spec:
                 number: 80 # Service port
 ```
 
+### Gateway API
 
-![Image](https://user-images.githubusercontent.com/51878265/201604299-264768c3-e5b1-48fa-9bc1-3762a3052006.png)
+It's a evolution of Ingress. It's add supports for Layer 4 routing, TCP, UDP, etc.
 
+```yaml
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: nginx-gateway
+spec:
+  - gatewayClassName: nginx
+    listeners:
+      - name: http
+        protocol: HTTP
+        port: 80
+        allowedRoutes:
+          kind:
+            - kind: HTTPRoute
 
-### ConfigMap
+---
 
-Use to store external configurations like database URLs. We put it in simple text format unlike [Secrets](#secrets)
+apiVersion: gateway.networking.k8s.io/v1alpha1
+kind: HTTPRoute
+metadata:
+  name: nginx-gateway-httproute
+spec:
+  parentRefs:
+    - name: nginx-gateway
+  hostnames:
+    - example.com
+  rules:
+    - matches:  
+        - path:
+          type: Prefix
+          value: /
+      backend:
+        - name: nginx-gateway-service
+          servicePort: 80
+```
+
+## Persistent Volume and Persistent Volume Claim
+
+It provides API for creating, managing, and using storage in a cluster. It is used to provide storage to the pods. It lives beyond the live of an individual pod.
+
+**Persistent Volume**: It is a piece of storage in the cluster that has been provisioned by an administrator. It is a storage resource in the cluster.
+
+**Persistent Volume Claim**: It is a request for storage by a user. It is a request for storage by a user. It is a way to claim a Persistent Volume.
+
+### Access Modes
+
+The access mode is used to specify how the volume can be mounted. 
+
+- **ReadWriteOnce**: The volume can be mounted as read-write by a single node.
+- **ReadWriteOncePod**: The volume can be mounted as read-write by a single pod.
+- **ReadOnlyMany**: The volume can be mounted read-only by many nodes.
+- **ReadWriteMany**: The volume can be mounted as read-write by many nodes.
+
+Some more important points to note:
+
+- In case of `deployment` if we specify PVC all the pods will share the same PVC. But in of `statefulset`, each pod will have its own independent PVC.
 
 ```yaml
 apiVersion: v1
-kind: ConfigMap
+kind: PersistentVolume
 metadata:
-  name: mongodb-configmap
-data:
-  database_url: mongodb-service
-```
-
-### Secrets
-
-We use secrets to pass environment variables inside the pods.
-
-```yaml
+  name: my-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  hostPath:
+    path: /data
+---
 apiVersion: v1
-kind: Secret
+kind: PersistentVolumeClaim
 metadata:
-  name: mongodb-secrets
-type: Opaque
-data:
-  mongo-root-username: cHJhZHVtbmE= //pradumna
-  mongo-root-password: c2FyYWYxMjM= //saraf123
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: standard
 ```
 
-> Note: the secret value should be `base64` encoded, like `cHJhZHVtbmE` 
+### Reclaim Policy
 
-```bash
-echo -n "value" | base64
-```
+Reclaim policy is used to specify what should happen to the volume after the Persistent Volume Claim is deleted. 
 
-We can decode it by
+- **Retain**: Retain the volume after the Persistent Volume Claim is deleted.
+- **Delete**: Delete the volume after the Persistent Volume Claim is deleted.
 
-```bash 
-echo cHJhZHVtbmE | base64 --decode
-```
+### PersistentVolumeClaim Retention Policy
 
-## StatefulSet
+We can also specify the PersistentVolumeClaim retention policy in the StatefulSet. We can specify the behavior of the PersistentVolumeClaim when the StatefulSet is deleted or scaled down by the consumer.
 
-- Any application that stores data to keep it state, like database. In this the name and endpoint stays same when the pods restarted.
+**whenDeleted**: This is the behavior when a statefulset is deleted.
+**whenScaled**: This is the behavior when the replicas count of StatefulSet is reduced.
 
-## Secret and ConfigMap as volume
-
-We can mount Config and Secret as a volume 
-
-**deployment.yaml**
 ```yaml
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mosquitto-deployment
+kind: StatefulSet
+...
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mosquitto
-  template:
-    metadata:
-      labels:
-        app: mosquitto
-    spec:
-      containers:
-        - name: mosquitto
-          image: eclipse-mosquitto:1.6.2
-          ports:
-          - containerPort: 1883
-          volumeMounts:
-          - name: mosquitto-config # Volume name which is defined below and need to mounted
-            mountPath: /mosquitto/config
-            
-      volumes: # List of volumes to mount into the container's filesystem.
-        - name: mosquitto-config # This is the name of the volume
-          configMap: #This is type of volume
-            name: mosquitto-config-file
+  persistentVolumeReclaimPolicy:
+    whenDeleted: Retain # 
+    whenScaled: Delete # 
 ```
 
-**config.yaml**
-```Yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mosquitto-config-file
-data:
-  mosquitto.conf: |
-    log_dest stdout
-    log_type all
-    log_timestamp_format %Y-%m-%dT%H:%M:%S
-    listener 9001
-```
 
-### Volume VS using it as a ENV.
+## Cluster Configuration
 
-![Env vs Volume mount](https://user-images.githubusercontent.com/51878265/202616618-c536bbd6-e221-4df9-b57d-8969dc1504a8.png)
-
-
-## Persistent Volume
-
-First we create the Persistent Volume(PV) and then we claim it by creating Persistent Volume Claim (PVC). Then that claim is mounted to the pod. But when we use cloud provides we can claim the storage directly from the cloud provider.
-
-- Note: Persistent volume is independent of the namespace, but Persistent Volume Claim is bound to a specfic.
-
-## Cluster Config file
-
-All the Cluster info is stored in the file name `config` with the path:
+The Cluster info is stored in the file name `config` with the path:
 
 ```bash
 ~/.kube/config
 ```
+
+When we have multiple configurations, we can specify the path of the kubeconfig file by setting the environment variable `KUBECONFIG`.
+
+```bash
+export KUBECONFIG=~/.kube/config:~/.kube/config2
+```
+
+We can also merge the kubeconfig files by using the below command.
+
+```bash
+kubectl config view --flatten > ~/.kube/config
+```
+
+To switch the context, we can use the below command.
+
+```bash
+kubectl config use-context <context-name>
+```
+
+To make cluster switching easier we can use a tool called `kubectx` and `kubens`.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Networking
 
@@ -775,7 +874,6 @@ spec:
         ports:
         - containerPort: 80
 ```
-
 
 ### Recreate
 

@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: fba5362f-28ca-4c8f-bf56-482fdeaeb331.lb.civo.com
+  - host: e1218320-b90e-4c0a-be3f-0ddf63f1b87f.lb.civo.com
     http:
       paths:
         - path: /

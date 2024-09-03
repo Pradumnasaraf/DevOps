@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-better
-  namespace: nginx-better-deployment
+  # namespace: nginx-better-deployment
 spec:
   replicas: 3
   selector:
