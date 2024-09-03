@@ -215,7 +215,28 @@ spec:
         - containerPort: 80
 ```
 
-### Deployment
+## Labels and Annotations
+
+**Labels:** They are key-value pairs that are attached to objects. They are used to identify and select objects. Can also be used to filter objects.
+
+```yaml
+metadata:
+  labels:
+    app: myapp
+```
+
+
+**Annotations:** They are key-value pairs that are attached to objects. They are used to attach non-identifying metadata to objects. USed for things like config details, build information, etc. Often used by tools to configure specific behavior, like ingress annotations.
+
+```yaml
+metadata:
+  annotations:
+    foo: bar
+```
+
+The difference between the two is that labels are used to identify and select objects, while annotations are used to attach metadata to objects, like attaching a ingress class to an Ingress object. 
+
+## Deployment
 
 Deployment is a higher-level abstraction that manages ReplicaSets and provides declarative updates to pods. It is a way to declaratively manage the pods. It is a part of the Kubernetes deployment. It is a recommended way to create pods.
 
@@ -239,16 +260,6 @@ spec:
         image: nginx:1.26.0
         ports:
         - containerPort: 80
-```
-
-#### Labels and selectors
-
-Labels are key-value pairs that are attached to objects, such as pods. They are used to organize and to select subsets of objects.
-
-```yaml
-metadata:
-  labels:
-    app: myapp
 ```
 
 ## Services
@@ -349,6 +360,7 @@ spec:
 
 A Job creates one or more pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the pods it created.
 
+It might look similar to Pod, but the main difference is that it runs to completion and have certain features like `parallelism`, `completions`, `activeDeadlineSeconds`, `backoffLimit`, etc. In easy way we can say it is a higher level of abstraction than Pods.
 ```yaml
 apiVersion: batch/v1
 kind: Job
@@ -752,6 +764,56 @@ spec:
     whenScaled: Delete # 
 ```
 
+## Role-Based Access Control (RBAC)
+
+It is used to control access to the Kubernetes API. It is used to control who can access the Kubernetes API and what they can do. It's also used to access Kubernetes API within the Kubernetes cluster.
+
+For example if we need tro give permission to a Job to get all the pods across the namespaces, we can create a Role and RoleBinding for that. We also need to create a ServiceAccount for the Job.
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cluster-pod-reader
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole # ClusterRole is used to access the Kubernetes API
+metadata:
+  name: pod-reader
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods"] # Resource type
+  verbs: ["get", "watch", "list"] # Actions
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pod-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pod-reader
+subjects:
+  - kind: ServiceAccount
+    name: cluster-pod-reader
+    namespace: rbac
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-no-perms
+spec:
+  template:
+    spec:
+      automountServiceAccountToken: true # To mount the service account token
+      containers:
+      - name: kubectl
+        image: cgr.dev/chainguard/kubectl
+        args: ["get", "pods", "-A"]
+      serviceAccountName: cluster-pod-reader # Service account name
+      restartPolicy: Never
+  backoffLimit: 1
+```
 
 ## Cluster Configuration
 
@@ -875,7 +937,7 @@ spec:
         - containerPort: 80
 ```
 
-### Recreate
+### Strategy
 
 The pods are deleted and then new pods are created. So the service is down for a while.
 
@@ -911,4 +973,6 @@ spec:
 - [Playground](./playground.md) - Play with Kubernetes in the browser.
 
 
-## CRD
+## CustomResourceDefinition (CRD)
+## LimitRange
+## NetworkPolicy
