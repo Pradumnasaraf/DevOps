@@ -1,0 +1,1 @@
+Hi 👋 -- you just deployed {{ template "envShort" . }} 
