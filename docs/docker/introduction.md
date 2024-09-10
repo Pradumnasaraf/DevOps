@@ -38,11 +38,20 @@ Docker is an open-source platform designed to simplify the development, deployme
 - `CMD` (command to run when the container starts) 
 - `WORKDIR` (create a directory where all the files will be copied and used)
 
-To build an image from the **Dockerfile**, use this command:
+### Docker Build Architecture
+
+We can build the image in two ways single architecture or multi-architecture. In the single architecture, we can build the image for a specific architecture, and in multi-architecture, we can build the image for multiple architectures.
+
+#### Single Architecture
 
 ```bash
-docker build <path> 
-// docker build .
+docker build -t <image-name> .
+```
+
+#### Multi-Architecture
+
+```bash
+docker buildx build --platform linux/amd64,linux/arm64 -t <image-name> .
 ```
 
 **Good Practice**
@@ -235,6 +244,18 @@ secrets:
 HEALTHCHECK --interval=30s --timeout=3s \
 CMD curl -f http://localhost/ || exit 1
 ```
+
+### Container Registry
+
+A repo - a collection of repositories. Use to store and access container images.
+
+Some popular registries are:
+
+- Docker Hub
+- GitHub Container Registry (ghcr.io)
+- Google Container Registry (gcr.io)
+- Amazon Elastic Container Registry (ECR)
+- Azure Container Registry (ACR) 
 
 ### Private Docker Registry
 

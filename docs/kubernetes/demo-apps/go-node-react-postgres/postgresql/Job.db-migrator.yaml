@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migrator
+  namespace: demo-app
+spec:
+  template:
+    spec:
+      containers:
+        - name: migrate
+          image: sidpalas/devops-directive-kubernetes-course-db-migrator:foobarbaz
+          args:
+            - -path=/app/migrations
+            - -database=$(DATABASE_URL)?sslmode=disable
+            - up
+          envFrom:
+            - secretRef:
+                name: db-password
+      restartPolicy: OnFailure

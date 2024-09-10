@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-react-nginx
+  namespace: demo-app
+spec:
+  selector:
+    app: client-react-nginx
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

@@ -585,6 +585,20 @@ type: Opaque # This is the default type
 stringData:
   foo: bar
   baz: qux
+
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-example
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.26.0
+      envFrom:
+        - secretRef:
+            name: string-data
+
 ```
 
 > Note: the secret value can be `base64` encoded, like `cHJhZHVtbmE` 
