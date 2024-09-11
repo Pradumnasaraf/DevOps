@@ -202,7 +202,7 @@ startupProbe:
   httpGet:
     path: /health
     port: 8080
-  initialDelaySeconds: 15
+  failureThreshold: 30 # Number of retries before considering the container as failed
   periodSeconds: 10
 ```
 
