@@ -193,6 +193,14 @@ readinessProbe:
     port: 8080
   initialDelaySeconds: 3 
   periodSeconds: 3 
+---
+readinessProbe:
+  exec:
+    command:
+    - cat
+    - /tmp/healthy
+  initialDelaySeconds: 5
+  periodSeconds: 5
 ```
 
 #### Startup Probe
@@ -202,7 +210,7 @@ startupProbe:
   httpGet:
     path: /health
     port: 8080
-  failureThreshold: 30 # Number of retries before considering the container as failed
+  failureThreshold: 30 
   periodSeconds: 10
 ```
 
