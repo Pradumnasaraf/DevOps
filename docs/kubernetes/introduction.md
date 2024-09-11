@@ -165,7 +165,48 @@ spec:
     runAsNonRoot: true # Run as non-root user
 ```
 
-#### Pod Lifecycle
+### Probes
+
+Probes are used to check the health of the container. There are three types of probes:
+
+- **Liveness Probe**: It is used to check if the container is alive. If the liveness probe fails, the container will be restarted. Sometimes deadlocks can occur in the container, so the liveness probe is used to check if the container is alive.
+- **Readiness Probe**: It is used to check if the container is ready to serve traffic. If the readiness probe fails, the container will not receive traffic. It is used to delay the traffic until the container is ready.
+- **Startup Probe**: It is used to check if the container is ready to start accepting traffic. It is used to delay the traffic until the container is ready to accept traffic. 
+
+#### Liveness Probe
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
+  periodSeconds: 3 # Check every 3 seconds
+```
+
+#### Readiness Probe
+
+```yaml
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 3 
+  periodSeconds: 3 
+```
+
+#### Startup Probe
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 10
+```
+
+### Pod Lifecycle
 
 ![Pod-Lifecycle](https://user-images.githubusercontent.com/51878265/197347032-cb45f52d-bfae-4ce4-838c-4c3ba9b10fa3.PNG)
 
@@ -856,7 +897,6 @@ kubectl config use-context <context-name>
 ```
 
 To make cluster switching easier we can use a tool called `kubectx` and `kubens`.
-
 
 
 
