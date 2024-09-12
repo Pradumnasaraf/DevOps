@@ -401,7 +401,25 @@ func(x, y int) int {
 
 ### Methods
 
-- A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name.
+A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name. Receiver can be of any type. Receiver is a special type of parameter that is passed to a method. It is similar to `this` in other languages. It is used to access the fields and methods associated with the Type like a Struct. There are two types of receivers:
+
+1. **Value Receiver**:  It is used when we don't want to modify the original value. 
+
+> func (t Test) printName() { fmt.Println(t.Name) }
+
+2. **Pointer Receiver**: It is used when we want to modify the original value. 
+
+>  func (t *Test) printName() { fmt.Println(t.Name) }
+
+Here's what a receiver does:
+
+### Example from your code:
+
+```go
+func (t Test) printName() {
+    fmt.Println(t.Name)
+}
+```
 
 ```go
 type Person struct {
@@ -516,21 +534,40 @@ type Person struct {
 
 ### Go routines
 
+#### Concurrency vs Parallelism
+
+- **Concurrency** - It is the ability of a program to be decomposed into parts that can run independently of each other. It is the composition of independently executing processes. It is about dealing with lots of things at once.
+
+- **Parallelism** - It is the ability of a program to run multiple tasks simultaneously. It is about doing lots of things at once.
+
 - A goroutine is a lightweight thread managed by the Go runtime. We can create a goroutine using the keyword `go`. It is similar to threads in other languages.
 
 The purpose of a goroutine is to run a function concurrently with other functions. It is a function that is capable of running concurrently with other functions. It will not wait for the function to complete. It will execute the function concurrently.
 
 ```go
-go func() {
-    fmt.Println("Hello")
-}()
+func main() {
+	go greeter("First Statement")
+	go greeter("Second Statement")
+	greeter("Third Statement")
+
+}
+
+func greeter(s string) {
+
+	for i := 0; i < 5; i++ {
+		time.Sleep(1 * time.Second)
+		fmt.Println(s)
+	}
+}
 ```
 
 - If the main function exits, the program will exit immediately even if the goroutine is still running. To prevent this, we can use the `WaitGroup` type. For Eg:
 
-```go
-
 #### WaitGroup
+
+- A WaitGroup waits for a collection of goroutines to finish. The main function will wait for the goroutines to finish before exiting.
+
+```go 
 
 var wg sync.WaitGroup
 
@@ -618,8 +655,41 @@ Receive Only Channel
 var ch = make(<-chan int) // receive only channel
 ```
 
+### IIF's (Immediately Invoked Functions)
+
+- An immediately invoked function is a function that is executed as soon as it is created. It is a function that is executed immediately after it is created. It is also known as a self-invoking function.
+
+```go
+func main() {
+    func() {
+        fmt.Println("Hello")
+    }()
+}
+```
+
+### Race Conditions
+
+Race Conditions occur when two or more goroutines access the same variable concurrently and at least one of the accesses is a write. It can lead to unpredictable results.
+
+We can check whether there is a race condition in our code by using the `-race` flag.
+
+```bash
+$ go run --race main.go
+```
+
+To avoid the race condition we can use the `sync` package. We can use the `Mutex` type to lock the variable.
+
+```go
+var mutex sync.Mutex
+
+mutex.Lock()
+
+// critical section
+
+mutex.Unlock()
+```
+
 ### What's next?
 
 - [Learning Resources](./learning-resources.md) - Learn more about Golang with these resources.
 - [Other Resources](./other-resources.md) - A list of resources to learn more about Golang.
-- 

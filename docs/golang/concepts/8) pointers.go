@@ -10,5 +10,15 @@ func main(){
 
 	println("myInt:", ptr) // ptr is the address of the variable
 	println("myInt:", *ptr) // * is used to get the value stored at the address
+	
+}
 
+type Persons struct {
+	Name string
+	Age  int
+}
+
+
+func ModifyPerson(p *Persons) {
+	p.Name = "Alice"
 }

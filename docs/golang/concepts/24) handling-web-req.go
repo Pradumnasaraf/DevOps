@@ -15,11 +15,12 @@ func main() {
 
 	fmt.Printf("Response is of type: %T\n", res)
 	fmt.Println(res.Status)
+	fmt.Println(res.Proto)
 
-	databytes, err := io.ReadAll(res.Body) //We can't read the response directly. So we use ioutil.ReadAll()
+	dataBytes, err := io.ReadAll(res.Body) //We can't read the response directly. So we use ioutil.ReadAll()
 	checkNilError(err)
 
-	content := string(databytes) // convert the byte array to string
+	content := string(dataBytes) // convert the byte array to string
 	fmt.Println(content)
 }
 

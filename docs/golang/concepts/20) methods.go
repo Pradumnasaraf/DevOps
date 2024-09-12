@@ -2,26 +2,30 @@ package main
 
 import "fmt"
 
-type UserData struct { // struct is a collection of fields.
+type UserData struct {
 	fistName        string
 	lastName        string
 	email           string
 	numberOfTickets int
 }
 
+/*
+func (receiver Type) MethodName(parameters) returnType {
+    // method body
+}
+*/
+
+func (u UserData) greetUser() {
+	fmt.Println("Hello", u.fistName, u.lastName)
+}
+
 func main() {
-	user := UserData{ // struct initialization
+	user := UserData{ 
 		fistName:        "John",
 		lastName:        "Doe",
 		email:           "pradumnasaraf@gmail.com",
 		numberOfTickets: 2,
 	}
-
-	fmt.Println(user)
-
-	user.greetUser() // Method call
-}
-
-func (u UserData) greetUser() { // method with receiver
-	fmt.Println("Hello", u.fistName, u.lastName)
+	
+	user.greetUser() // Call the method
 }
