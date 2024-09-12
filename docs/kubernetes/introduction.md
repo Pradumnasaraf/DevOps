@@ -559,7 +559,7 @@ ConfigMap enables environment specific configuration to be decoupled from the co
 Thee are two ways to primary style to create a ConfigMap:
 
 - Property like Keys (MYAPP_COLOR=blue) - This is useful when we want to use the ConfigMap as environment variables.
-- File like Keys (conf.yml = <multi line string>) - This is useful when we want to use the ConfigMap as a file.
+- File like Keys `(conf.yml = <multi line string>)` - This is useful when we want to use the ConfigMap as a file.
 
 
 File like style:
