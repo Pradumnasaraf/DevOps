@@ -25,6 +25,6 @@ func main() {
 		wg.Done()
 
 	}(myChannel, wg)
-
+	
 	wg.Wait()
 }

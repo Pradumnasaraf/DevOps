@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	// remove an element from a slice
 	var cars = []string{"BMW", "Audi", "Mercedes", "Ford", "Fiat"}
-
+	
 	fmt.Println(cars)
 	var index int = 2
 	// We are concatenating two slice and rewriting the 1st Slice.

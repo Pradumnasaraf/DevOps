@@ -405,11 +405,11 @@ A method is a function with a special receiver argument. The receiver appears in
 
 1. **Value Receiver**:  It is used when we don't want to modify the original value. 
 
-> func (t Test) printName() { fmt.Println(t.Name) }
+> `func (t Test) printName() { fmt.Println(t.Name) }`
 
 2. **Pointer Receiver**: It is used when we want to modify the original value. 
 
->  func (t *Test) printName() { fmt.Println(t.Name) }
+> `func (t *Test) printName() { fmt.Println(t.Name) }`
 
 Here's what a receiver does:
 
@@ -665,16 +665,16 @@ func main() {
         fmt.Println("Hello")
     }()
 }
-```
+``` -->
 
-### Race Conditions
+<!-- ### Race Conditions
 
 Race Conditions occur when two or more goroutines access the same variable concurrently and at least one of the accesses is a write. It can lead to unpredictable results.
 
 We can check whether there is a race condition in our code by using the `-race` flag.
 
 ```bash
-$ go run --race main.go
+go run --race main.go
 ```
 
 To avoid the race condition we can use the `sync` package. We can use the `Mutex` type to lock the variable.
