@@ -6,25 +6,30 @@ import (
 )
 
 func main() {
-	// When channel is closed, the value read from the channel is the zero value and at the same time maybe the write value can also be zero value.
-	// So we need to check if the channel is closed or not by using the second return value of the read operation.
 
-	myChannel := make(chan int, 2) 
 	wg := &sync.WaitGroup{}
+	myCh := make(chan int, 1)
 
 	wg.Add(2)
-	go func(ch <-chan int, wg *sync.WaitGroup) {
-		val, isChannelOpen := <-ch 
-		fmt.Println(val, isChannelOpen)		
-		wg.Done()
-	}(myChannel, wg)
+	go func(channel chan int, wait *sync.WaitGroup) {
+		fmt.Println("First Go Routine")
+		wait.Done()
 
-	go func(ch chan<- int, wg *sync.WaitGroup) {
-		// ch <- 5          uncomment this line to see the difference
-		close(myChannel)
-		wg.Done()
+		value, isChannelOpen := <-myCh
 
-	}(myChannel, wg)
-	
+		if !isChannelOpen {
+			fmt.Println("Channel Closed")
+		}
+		fmt.Println(value)
+	}(myCh, wg)
+
+	go func(channel chan int, wait *sync.WaitGroup) {
+		fmt.Println("Second Go Routine")
+		// myCh <- 3
+		close(myCh)
+		wait.Done()
+		// myCh <- 5
+	}(myCh, wg)
+
 	wg.Wait()
 }
