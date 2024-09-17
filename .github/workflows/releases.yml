@@ -17,7 +17,8 @@ jobs:
         with:
           github-token: ${{ secrets.PA_TOKEN }}
           version-file: 'package.json, package-lock.json'
-          skip-ci: 'false'
+          output-file: "false"
+          skip-commit: "true"
           create-summary: 'true'
 
       - name: create release

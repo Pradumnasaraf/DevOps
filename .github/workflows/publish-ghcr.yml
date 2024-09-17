@@ -1,4 +1,4 @@
-name: Publish Image - GHCR
+name: Build and Push Image to GHCR
 
 on:
   workflow_dispatch:
@@ -44,6 +44,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: ./Dockerfile
           push: true
           tags: | 
             ghcr.io/pradumnasaraf/devops:${{ steps.package-version.outputs.current-version}}
