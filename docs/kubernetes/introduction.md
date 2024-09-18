@@ -169,39 +169,9 @@ spec:
 
 Probes are used to check the health of the container. There are three types of probes:
 
-- **Liveness Probe**: It is used to check if the container is alive. If the liveness probe fails, the container will be restarted. Sometimes deadlocks can occur in the container, so the liveness probe is used to check if the container is alive.
+- **Startup Probe**: It is used to check if the container is started. It is used to delay the liveness and readiness probes until the container is started.
 - **Readiness Probe**: It is used to check if the container is ready to serve traffic. If the readiness probe fails, the container will not receive traffic. It is used to delay the traffic until the container is ready.
-- **Startup Probe**: It is used to check if the container is ready to start accepting traffic. It is used to delay the traffic until the container is ready to accept traffic. 
-
-#### Liveness Probe
-
-```yaml
-livenessProbe:
-  httpGet:
-    path: /health
-    port: 8080
-  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
-  periodSeconds: 3 # Check every 3 seconds
-```
-
-#### Readiness Probe
-
-```yaml
-readinessProbe:
-  httpGet:
-    path: /health
-    port: 8080
-  initialDelaySeconds: 3 
-  periodSeconds: 3 
----
-readinessProbe:
-  exec:
-    command:
-    - cat
-    - /tmp/healthy
-  initialDelaySeconds: 5
-  periodSeconds: 5
-```
+- **Liveness Probe**: It is used to check is in healthy state and able to serve traffic. If the liveness probe fails, the container will be restarted. It is used to restart the container if it is in an unhealthy state.
 
 #### Startup Probe
 
@@ -212,6 +182,45 @@ startupProbe:
     port: 8080
   failureThreshold: 30 
   periodSeconds: 10
+```
+
+#### Readiness Probe
+
+```yaml
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
+  periodSeconds: 3 # Check every 3 seconds
+  timeoutSeconds: 5 # Wait for 5 seconds before considering the probe as failed
+  successThreshold: 1 # Mark the probe as successful after 1 success
+  failureThreshold: 2 # Mark the probe as failed after 2 failures
+---
+readinessProbe:
+  exec:
+    command:
+    - cat
+    - /tmp/healthy
+  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
+  periodSeconds: 3 # Check every 3 seconds
+  timeoutSeconds: 5 # Wait for 5 seconds before considering the probe as failed
+  successThreshold: 1 # Mark the probe as successful after 1 success
+  failureThreshold: 2 # Mark the probe as failed after 2 failures
+```
+
+#### Liveness Probe
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
+  periodSeconds: 3 # Check every 3 seconds
+  timeoutSeconds: 5 # Wait for 5 seconds before considering the probe as failed
+  successThreshold: 1 # Mark the probe as successful after 1 success
+  failureThreshold: 2 # Mark the probe as failed after 2 failures
 ```
 
 ### Pod Lifecycle
