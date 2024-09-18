@@ -7,7 +7,7 @@ Golang (or Go) is statically typed, compiled programming language designed at Go
 
 In Golang, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library.
 
-### Installation
+## Installation
 
 - [Download](https://golang.org/dl/) and install Go
   
@@ -15,7 +15,7 @@ In Golang, everything is a package. A package is a collection of source files in
 - Multithreading
 - concurrency
 
-### Packages
+## Packages
 
 Module is a collection of related Go packages that are versioned together as a single unit.
 
@@ -27,12 +27,8 @@ Module is a collection of related Go packages that are versioned together as a s
 - net/http - provides HTTP client and server implementations.
 - encoding/json - implements encoding and decoding of JSON.
 
-#### Strings
 
-- strings.Contains(s, substr) - checks whether a substring exists within a string.
-- strings.Fields(s) - splits a string into an array of substrings separated by spaces.
-
-### Hello World - Running a program
+## Hello World - Running a program
 
 ```go
 package main // package declaration
@@ -52,7 +48,7 @@ We can run and compile the program using the following command:
 $ go run hello.go
 ```
 
-### Go Mod 
+## Go Mod (go.mod)
 
 Go modules are a dependency management system that makes dependency version information explicit and easier to manage. Go modules are the future of dependency management in Go.
 
@@ -72,16 +68,16 @@ Go modules are a dependency management system that makes dependency version info
 
 - `go mod vendor` - command will copy all dependencies into a vendor directory.
 
-### Sum (go.sum)
+## Sum (go.sum)
 
 It is a file that contains the expected cryptographic checksums of the content of specific module versions. It ensures that dependencies have not been modified.
 
-### Go Path
+## Go Path
 
 Go path is an environment variable that specifies the location of your workspace. It is used to find the location of your Go code.
 
 
-### Build
+## Build
 
 We can build a program using the following command:
 
@@ -95,14 +91,14 @@ we can also build for different platforms using the following command:
 $ GOOS=linux GOARCH=amd64 go build hello.go
 ```
 
-### Memory Allocation
+## Memory Allocation
 
 - new() - It allocates memory. The size of the memory is equal to the size of the type. It returns a pointer to the memory.
 - make() - It creates slices, maps, and channels only. It returns an initialized (not zeroed) value of type. It is used to create dynamically sized objects.
 
 Garbage collection is a form of automatic memory management. The garbage collector frees the memory occupied by objects that are no longer in use by the program.
 
-### Print
+## Print
 
 There are serveral ways to print in Go. We can use `fmt` package to print.
 
@@ -110,7 +106,7 @@ There are serveral ways to print in Go. We can use `fmt` package to print.
 - `fmt.Print` - prints without a new line
 - `fmt.Printf` - prints with formatting
 
-#### Placeholders for `printf` :
+Placeholders for `printf`
 
 - %v - value in default format
 - %+v - value in default format with field names
@@ -128,13 +124,13 @@ Escape sequences:
 - \n - newline
 - \t - tab
 
-### Variables
+## Variables and Constants
 
 - `var` - variables with initializers.
 - `const` - declares a constant value. Can't be updated.
 - `:=` - short variable declaration. Can be used only inside a function. Called Syntax sugar. We can't use it to declare a global variable.
 
-### Data Types
+## Data Types
 
 When we declare with a value we don't need to specify the type. Go will infer the type from the value. But when we declare without a value we need to specify the type.
 
@@ -157,7 +153,46 @@ name = "John"
 
 - If we don't put a variable type go will automatically assign the type based on the value.-
 
-### Scan
+### String
+
+- A string is a sequence of characters. We can use double quotes to create a string.
+
+```go
+var name = "John"
+```
+
+- We can use backticks to create a raw string literal. It is used to create a string without escape sequences.
+
+```go
+var name = `John\n`
+```
+
+We can perform a lot of operations on strings like concatenation, length, indexing etc. Here are some examples:
+
+```go
+var name = "John"
+
+fmt.Println(len(name)) // it will print the length of the string
+fmt.Println(name[0]) // it will print the first character of the string
+fmt.Println(name + " Doe") // it will concatenate the strings
+```
+
+With the `strings` package, we can perform more operations on strings like splitting, joining, replacing etc. It's one of most used packages in Go.
+
+```go
+import "strings"
+
+var name = "John Doe"
+
+fmt.Println(strings.Split(name, " ")) // it will split the string based on the space
+fmt.Println(strings.Join([]string{"John", "Doe"}, " ")) // it will join the strings with a space
+fmt.Println(strings.Replace(name, "John", "Jane", 1)) // it will replace the first occurrence of John with Jane
+fmt.Println(strings.Contains(name, "John")) // it will check if the string contains John
+fmy.Println(strings.ToLower(name)) // it will convert the string to lowercase
+fmt.Println(strings.ToUpper(name)) // it will convert the string to uppercase
+```
+
+## Scan
 
 `fmt.Scan` reads text from standard input, scanning the text read into successive arguments. Newlines count as space. It returns the number of items successfully scanned. If that is less than the number of arguments, err will report why.
 
@@ -165,7 +200,7 @@ name = "John"
 fmt.Scan(&name)
 ```
 
-#### Scanning though bufio
+### Scanning though bufio
 
 `bufio` package implements a buffered reader that may be useful both for its efficiency with many small reads and because of the additional reading methods it provides.
 
@@ -179,7 +214,7 @@ fmt.Println(text)
 }
 ```
 
-#### "text , err syntax"
+### "text , err syntax"
 
 In the above example we used `text, err` syntax. It is a common way to handle errors in Go. If we don't want to handle the error we can use `_` to ignore it.
 
@@ -194,12 +229,19 @@ if err != nil {
 - `panic` - It is a built-in function that stops the ordinary flow of control and begins panicking. When the function F calls panic, execution of F stops, any deferred functions in F are executed normally, and then F returns to its caller.
 
 
-### Conversion
+## Conversion
 
 We can convert a value from one type to another. The expression T(v) converts the value v to the type T. We can use `strconv` package to convert a data type to another.
 
+```go
+var num = 42
+var stringNum = "42"
 
-### Time
+var str = strconv.Itoa(num) // it will convert the integer to a string
+var intNum, _ = strconv.Atoi(stringNum) // it will convert the string to an integer
+```
+
+## Time
 
 We can use `time` package to get the current time.
 
@@ -208,7 +250,7 @@ t := time.Now()
 fmt.Println(t)
 ```
 
-### Pointers
+## Pointers
 
 A pointer is a variable that stores the memory address of another variable. We can declare a pointer by using `*` operator. Eg:
 
@@ -241,7 +283,7 @@ var name = "John"
 fmt.Println(&name) // it will print the memory address of the variable name
 ```
 
-### Arrays
+## Arrays
 
 An array is a numbered sequence of elements of a single type with a fixed length. We can store a fixed size collection of elements of the same type.
 
@@ -254,7 +296,7 @@ arr[0] = 1
 arr[1] = 2
 ```
 
-### Slice
+## Slice
 
 In this we don't need to specify the size of the array. It is a dynamically sized, flexible view into the elements of an array.
 
@@ -269,7 +311,7 @@ names = append(names, 1)
 names = append(names, 2)
 ```
 
-### Loops
+## Loops
 
 In Go, there is only one looping construct, the `for` loop.
 
@@ -297,7 +339,7 @@ fmt.Println(name)
 }
 ```
 
-### if else
+## If Else
 
 ```go
 if num > 0 { // this condition will only be true if num is greater than 0
@@ -311,7 +353,7 @@ fmt.Println("Negative")
 
 We can check also write `data == false` or `!data`
 
-#### Break and Continue
+### Break and Continue
 
 - `break` - The break statement terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
 
@@ -336,7 +378,7 @@ for i := 0; i < 5; i++ {
 }
 ```
 
-### Switch
+## Switch
 
 The switch statement is a shorter way to write a sequence of if - else statements. It runs the first case whose value is equal to the condition expression.
 
@@ -351,7 +393,9 @@ default:
 }
 ```
 
-- In Go, we don't need to write `break` after each case. It will automatically break after each case. If we want to execute the next case we can use `fallthrough` keyword.
+### Fallthrough
+
+In Go, we don't need to write `break` after each case. It will automatically break after each case. If we want to execute the next case we can use `fallthrough` keyword.
 
 ```go
 switch num {
@@ -365,7 +409,7 @@ default:
 }
 ```
 
-### Functions
+## Functions
 
 - A function is a block of code that performs a specific task. It is a reusable piece of code.
 
@@ -389,7 +433,7 @@ return y, x
 a, b := swap("hello", "world") // We can get the return values using multiple assignment
 ```
 
-#### Anonymous functions
+### Anonymous functions
 
 - We can declare a function without a name. Such functions are called anonymous functions.
 
@@ -399,7 +443,7 @@ func(x, y int) int {
 }
 ```
 
-### Methods
+## Methods
 
 A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name. Receiver can be of any type. Receiver is a special type of parameter that is passed to a method. It is similar to `this` in other languages. It is used to access the fields and methods associated with the Type like a Struct. There are two types of receivers:
 
@@ -411,19 +455,8 @@ A method is a function with a special receiver argument. The receiver appears in
 
 > `func (t *Test) printName() { fmt.Println(t.Name) }`
 
-Here's what a receiver does:
 
-### Example from your code:
-
-```go
-func (t Test) printName() {
-    fmt.Println(t.Name)
-}
-```
-
-## Methods
-
-Methods are functions that are associated with a type. They are similar to functions but are defined with a receiver. The receiver is like a parameter. It is the first argument of the method.
+Here is an example of a method:
 
 ```go
 type Person struct {
@@ -440,7 +473,7 @@ func main() {
 }
 ```
 
-### Defer
+## Defer
 
 - A defer statement defers the execution of a function until the surrounding function returns.
 
@@ -452,7 +485,7 @@ func main() {
 }
 ```
 
-### Mutex 
+## Mutex 
 
 - Mutex is a mutual exclusion lock. The zero value for a Mutex is an unlocked mutex.
 
@@ -475,45 +508,7 @@ rwMutex.Lock() // It will lock the mutex for writing
 rwMutex.Unlock() // It will unlock the mutex for writing
 ```
 
-### Package level variables
-
-- We can declare variables at the package level. They are called package level variables.
-
-NOTE: We can't use the short variable declaration operator `:=` to declare package level variables.
-
-```go
-var name string = "John" // It will be available to all the functions in the package
-
-func main() {
-    fmt.Println(name)
-}
-```
-
-### Code Organization
-
-We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
-
-Also, we can have multiple packages in a single directory.
-
-### Expoting and Importing
-
-- We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
-
-```go
-func Add(x, y int) int {
-    return x + y
-}
-
-var Name string = "John"
-```
-
-### Scope rules
-
-- `Local variables` are scoped to the function in which they are declared. They are not visible outside the function.
-- `Package level variables` are scoped to the package in which they are declared. They are visible to all the functions in the package.
-- `Exported variables` are scoped to the package in which they are declared. They are visible to all the functions in the package and other packages that import the package.
-
-### Maps
+## Maps
 
 - A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python. The limitation of maps is that the key should be of the same type and the value should be of the same type. The key and value can be of any type.
 
@@ -525,7 +520,7 @@ cars["Toyota"] = "Camry" // adding a key-value pair
 delete(cars, "Toyota") // deleting a key-value pair
 ```
 
-### Structs
+## Structs
 
 - A struct is a collection of fields. It is a data structure that lets us bundle together related data and behavior. We can use structs to represent real-world objects. It can handle multiple data types. It is similar to classes in other languages.
 
@@ -535,40 +530,6 @@ type Person struct {
     age int
 }
 ```
-
-### Go routines
-
-#### Concurrency vs Parallelism
-
-- **Concurrency** - It is the ability of a program to be decomposed into parts that can run independently of each other. It is the composition of independently executing processes. It is about dealing with lots of things at once.
-
-- **Parallelism** - It is the ability of a program to run multiple tasks simultaneously. It is about doing lots of things at once.
-
-- A goroutine is a lightweight thread managed by the Go runtime. We can create a goroutine using the keyword `go`. It is similar to threads in other languages.
-
-The purpose of a goroutine is to run a function concurrently with other functions. It is a function that is capable of running concurrently with other functions. It will not wait for the function to complete. It will execute the function concurrently.
-
-```go
-func main() {
-    p := Person{Name: "John", Age: 25}
-
-    data, err := json.Marshal(p)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(string(data))
-
-    var p1 Person
-    err = json.Unmarshal(data, &p1)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(p1)
-}
-```
-
 
 ## Go routines and WaitGroup
 
@@ -605,12 +566,14 @@ func sayHello() {
 `Add()` increments the WaitGroup counter by 1 and `Done()` decrements the WaitGroup counter by 1.
 
 
-### goto
+### Concurrency vs Parallelism
 
-- The goto statement transfers control to the labeled statement. It is similar to the break statement in other languages.
+- **Concurrency** - It is the ability of a program to be decomposed into parts that can run independently of each other. It is the composition of independently executing processes. It is about dealing with lots of things at once.
+
+- **Parallelism** - It is the ability of a program to run multiple tasks simultaneously. It is about doing lots of things at once.
 
 
-### Math
+## Math
 
 - rand.Seed() - It is used to initialize the default Source to a deterministic state. If Seed is not called, the generator behaves as if seeded by Seed(1). It should only be called once. It is usually called before the first call to Intn or Float64.
 
@@ -618,7 +581,7 @@ func sayHello() {
 rand.Seed(time.Now().UnixNano())
 ```
 
-### Json
+## Json
 
 - We can use the `json` package to encode and decode JSON data.
 
@@ -636,7 +599,7 @@ type Person struct {
 }    
 ``` 
 
-### Channels
+## Channels
 
 - A channel is a communication mechanism that allows one goroutine to pass values of a specified type to another goroutine. It is communication between goroutines. It is similar to pipes in other languages.
 
@@ -654,7 +617,6 @@ fmt.Println(val)
 ```
 
 We can create a buffered channel by passing the buffer size as the second argument to the `make()` function. By default, the channel is unbuffered and can only hold one value. So, if we try to send multiple value to the channel it will give an error.
-
 
 ### Buffered Channel
 
@@ -725,7 +687,6 @@ func main() {
 }
 ```
 
-
 ### Send Only Channel
 
 ```go
@@ -751,7 +712,7 @@ go func (ch <-chan int) {
 }(ch)
 ```
 
-### IIF's (Immediately Invoked Functions)
+## IIF's (Immediately Invoked Functions)
 
 - An immediately invoked function is a function that is executed as soon as it is created. It is a function that is executed immediately after it is created. It is also known as a self-invoking function.
 
@@ -774,28 +735,63 @@ func divide(x, y int) (int, error) {
     return x / y, nil
 }
 ```
+## goto
 
-### Code Organization
+- The goto statement transfers control to the labeled statement. It is similar to the break statement in other languages. It is used to transfer control to a different part of the program.
+
+```go
+func main() {
+    i := 0
+    start:
+    fmt.Println(i)
+    i++
+    if i < 5 {
+        goto start
+    }
+}
+```
+
+## Scope rules
+
+- `Local variables` are scoped to the function in which they are declared. They are not visible outside the function.
+- `Package level variables` are scoped to the package in which they are declared. They are visible to all the functions in the package.
+- `Exported variables` are scoped to the package in which they are declared. They are visible to all the functions in the package and other packages that import the package.
+
+## Package level variables
+
+- We can declare variables at the package level. They are called package level variables.
+
+NOTE: We can't use the short variable declaration operator `:=` to declare package level variables.
+
+```go
+var name string = "John" // It will be available to all the functions in the package
+
+func main() {
+    fmt.Println(name)
+}
+```
+
+## Expoting and Importing
+
+We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
+
+```go
+func Add(x, y int) int {
+    return x + y
+}
+
+var Name string = "John"
+```
+
+## Code Organization
 
 We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
 
 Also, we can have multiple packages in a single directory.
 
-### Expoting and Importing
 
-- We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
 
-```go
-var mutex sync.Mutex
-
-mutex.Lock()
-
-// critical section
-
-mutex.Unlock()
-```
-
-### What's next?
+## What's next?
 
 - [Learning Resources](./learning-resources.md) - Learn more about Golang with these resources.
 - [Other Resources](./other-resources.md) - A list of resources to learn more about Golang.
