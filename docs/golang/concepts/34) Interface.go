@@ -1,39 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-type Printer interface {
-	printInfo()
+type shape interface {
+	area() float64
+}
+type circle struct {
+	radius float64
 }
 
-
-type Book struct {
-	Title string
-	Price float32
+type rectangle struct {
+	width  float64
+	length float64
 }
 
-type Drink struct {
-	Name  string
-	Price float32
+func (r rectangle) area() float64 {
+	return r.length * r.width
 }
 
-func (b Book) printInfo() {
-	fmt.Println("Book Title:", b.Title, "Price:", b.Price)
-}
-
-func (d Drink) printInfo() {
-	fmt.Println("Drink Name:", d.Name, "Price:", d.Price)
+func (c circle) area() float64 {
+	return 2 * math.Pi * c.radius
 }
 
 func main() {
-	book := Book{Title: "The Alchemist", Price: 9.99}
-	drink := Drink{Name: "Coke", Price: 1.99}
+	myRectangle := rectangle{width: 8, length: 10}
+	fmt.Println(myRectangle.area())
 
-	// book.printInfo()
-	// drink.printInfo()
+	myCircle := circle{radius: 10}
+	fmt.Println(myCircle.area())
 
-	info := []Printer{book, drink}
-
-	info[0].printInfo()
-	info[1].printInfo()
+	
 }

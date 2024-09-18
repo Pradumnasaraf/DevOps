@@ -6,77 +6,92 @@ import (
 	"log"
 )
 
+// It's important to mention `json:"key-name"` otherwise it will pick the keyword mentioned in the Struct with capitalization.
 type Person struct {
-	Name string `json:"coursename"`
-	Age  int    `json:"age"`
-	DOBY int    `json:"doby"`
+	Name  string `json:"name"`
+	Age   int    `json:"age"`
+	Place string `json:"place"`
 }
 
 func main() {
-
-	// structToJson()
-	// jsonToStruct()
+	// letsMarshal()
+	// letsUnMarshal()	
 	extractJsonData()
 
 }
 
-func structToJson() {
-	tom := []Person{
-		{
-			Name: "Tom",
-			Age:  21,
-			DOBY: 199,
-		},
-		{
-			Name: "Ben",
-			Age:  21,
-			DOBY: 199,
-		},
-		{
-			Name: "Loft",
-			Age:  21,
-			DOBY: 199,
-		},
-	}
-
-	// Marshal will convert the struct to json
-	jsonOutput, err := json.MarshalIndent(tom, "", "  ")
-	if err != nil {
-		log.Fatal(err)
-
-	}
-
-	fmt.Println(string(jsonOutput))
-}
-
-func jsonToStruct() {
-	jsonData := []byte(`{
-    "coursename": "ben",
-    "age": 200,
-    "doby": 1975
-}`)
-
-	var myUser Person
-
-	validateJson := json.Valid(jsonData)
-	if validateJson == true {
-		// Unmarshal will convert the json to struct
-		json.Unmarshal(jsonData, &myUser)
-		fmt.Println(myUser)
-	} else {
-		fmt.Println("JSON is invalid")
-	}
-
-}
-
-func extractJsonData() {
-
+func letsUnMarshal() {
 	jsonData := []byte(`
 		{
-			"coursename": "Mern",
-			"price": 200,
-			"website": "yt",
-			"tags": [ "full-stack", "js" ]
+			"name": "Pradumna Saraf",
+			"age": 25,
+			"place": "India"
+		}
+	`)
+
+	var myData Person
+
+	isJSONValid := json.Valid(jsonData)
+	if isJSONValid == true {
+		json.Unmarshal(jsonData, &myData)
+	} else {
+		fmt.Println("Invalid JSON")
+	}
+
+	fmt.Println(myData.Age)
+	fmt.Println(myData.Name)
+	fmt.Println(myData.Place)
+
+
+}
+
+func letsMarshal() {
+	myPerson := Person{
+		Name:  "Pradumna Saraf",
+		Age:   25,
+		Place: "India",
+	}
+
+	myPersonSlice := []Person{
+		{
+			Name:  "Pradumna Saraf",
+			Age:   25,
+			Place: "India",
+		},
+		{
+			Name:  "Pradumna Saraf",
+			Age:   25,
+			Place: "India",
+		},
+		{
+			Name:  "Pradumna Saraf",
+			Age:   25,
+			Place: "India",
+		},
+	}
+
+	// Single Object
+	data, err := json.Marshal(&myPerson)
+	if err != nil {
+		log.Fatal("Unable to Marshal")
+	}
+	fmt.Println(string(data))
+
+	// A list of Objects
+	sliceData, err := json.MarshalIndent(&myPersonSlice, "", "  ")
+	if err != nil {
+		log.Fatal("Unable to Marshal")
+	}
+	fmt.Println(string(sliceData))
+}
+
+
+func extractJsonData() {
+	jsonData := []byte(`
+		{
+			"name": "Pradumna Saraf",
+			"age": 25,
+			"place": "India"
 		}
 	`)
 

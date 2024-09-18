@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	var bookings = make([]map[string]string, 0) // This is a slice of map.
-	// var bookings = []map[string]string{} // This is also valid
+
+	bookings :=[]map[string]string{} // This is a slice of map.
 
 	for i := 0; i < 1; i++ {
 
@@ -15,7 +15,7 @@ func main() {
 		age := 32
 		city := "New York"
 
-		var myMap = make(map[string]string)
+		myMap := map[string]string{}
 
 		myMap["name"] = name
 		myMap["age"] = strconv.FormatInt(int64(age), 10)

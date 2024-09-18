@@ -401,7 +401,29 @@ func(x, y int) int {
 
 ### Methods
 
-- A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name.
+A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name. Receiver can be of any type. Receiver is a special type of parameter that is passed to a method. It is similar to `this` in other languages. It is used to access the fields and methods associated with the Type like a Struct. There are two types of receivers:
+
+1. **Value Receiver**:  It is used when we don't want to modify the original value. 
+
+> `func (t Test) printName() { fmt.Println(t.Name) }`
+
+2. **Pointer Receiver**: It is used when we want to modify the original value. 
+
+> `func (t *Test) printName() { fmt.Println(t.Name) }`
+
+Here's what a receiver does:
+
+### Example from your code:
+
+```go
+func (t Test) printName() {
+    fmt.Println(t.Name)
+}
+```
+
+## Methods
+
+Methods are functions that are associated with a type. They are similar to functions but are defined with a receiver. The receiver is like a parameter. It is the first argument of the method.
 
 ```go
 type Person struct {
@@ -516,9 +538,41 @@ type Person struct {
 
 ### Go routines
 
+#### Concurrency vs Parallelism
+
+- **Concurrency** - It is the ability of a program to be decomposed into parts that can run independently of each other. It is the composition of independently executing processes. It is about dealing with lots of things at once.
+
+- **Parallelism** - It is the ability of a program to run multiple tasks simultaneously. It is about doing lots of things at once.
+
 - A goroutine is a lightweight thread managed by the Go runtime. We can create a goroutine using the keyword `go`. It is similar to threads in other languages.
 
 The purpose of a goroutine is to run a function concurrently with other functions. It is a function that is capable of running concurrently with other functions. It will not wait for the function to complete. It will execute the function concurrently.
+
+```go
+func main() {
+    p := Person{Name: "John", Age: 25}
+
+    data, err := json.Marshal(p)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(string(data))
+
+    var p1 Person
+    err = json.Unmarshal(data, &p1)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(p1)
+}
+```
+
+
+## Go routines and WaitGroup
+
+- A goroutine is a lightweight thread managed by the Go runtime. We can create a goroutine using the keyword `go`. It is similar to threads in other languages. The purpose of a goroutine is to run a function concurrently with other functions. 
 
 ```go
 go func() {
@@ -528,9 +582,11 @@ go func() {
 
 - If the main function exits, the program will exit immediately even if the goroutine is still running. To prevent this, we can use the `WaitGroup` type. For Eg:
 
-```go
-
 #### WaitGroup
+
+- A WaitGroup waits for a collection of goroutines to finish. The main function will wait for the goroutines to finish before exiting.
+
+```go 
 
 var wg sync.WaitGroup
 
@@ -586,40 +642,160 @@ type Person struct {
 
 - `make()` - It is used to create a channel. It takes the type of the channel as an argument.
 
-We can create a buffered channel by passing the buffer size as the second argument to the `make()` function. By default, the channel is unbuffered and can only hold one value. So, if we try to send multiple value to the channel it will give an error.
-
-```go
-var ch = make(chan int) // unbuffered channel
-
-var ch = make(chan int, 10) // buffered channel
-```
-
 ```go
 ch := make(chan int)
 
-ch <- 10 // It will send 10 to the channel
+go func() {
+    ch <- 10
+}()
 
-<- ch // It will receive from the channel
-val, ok := <- ch // It will receive from the channel and check if the channel is closed or not
+val := <-ch
+fmt.Println(val)
 ```
 
-- `close()` - It is used to close a channel. It takes the channel as an argument.
+We can create a buffered channel by passing the buffer size as the second argument to the `make()` function. By default, the channel is unbuffered and can only hold one value. So, if we try to send multiple value to the channel it will give an error.
 
 
-#### Send Only Channel
+### Buffered Channel
+
+A buffered channel is a channel with a buffer. It can hold multiple values. We can specify the buffer size when we create the channel.
+
+```go
+var ch = make(chan int, 5) // buffered channel with a buffer size of 5
+```
+
+### Unbuffered Channel
+
+An unbuffered channel is a channel without a buffer. It can hold only one value. We can send a value to the channel only if there is a goroutine ready to receive the value.
+
+```go
+var ch = make(chan int) // unbuffered channel
+```
+
+### Closing a Channel
+
+We can close a channel using the `close()` function. It is used to indicate that no more values will be sent on the channel. 
+
+```go
+msg := make(chan int)
+
+go func() {
+    msg <- 1
+    close(msg) // After closing the channel we can't send any more values
+}()
+```
+
+But here a catch even tho channel is closed we can still receive the values from it like zero, so it's dalmatic whether the it's channel is closed or the value is zero. To overcome this we can receive the value and a boolean value which will tell us whether the channel is closed or not.
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wait = sync.WaitGroup{}
+
+func main() {
+
+	myChannel := make(chan int, 1)
+
+	wait.Add(2)
+	go func() {
+		fmt.Println("First Go Routine")
+		wait.Done()
+
+		hello, isChannelOpen := <- myChannel
+		
+		if !isChannelOpen {
+			fmt.Println("Channel Closed")
+		}
+		fmt.Println(hello)
+	}()
+
+	go func() {
+		fmt.Println("Second Go Routine")
+		close(myChannel)
+		wait.Done()
+		// myChannel <- 5
+	}()
+
+	wait.Wait()
+}
+```
+
+
+### Send Only Channel
 
 ```go
 var ch = make(chan<- int) // send only channel
 ```
 
-Receive Only Channel
+```go
+go func (ch chan<- int) {
+    ch <- 10
+}(ch)
+```
+
+### Receive Only Channel
 
 ```go
 var ch = make(<-chan int) // receive only channel
+```
+
+```go
+go func (ch <-chan int) {
+    val := <-ch
+    fmt.Println(val)
+}(ch)
+```
+
+### IIF's (Immediately Invoked Functions)
+
+- An immediately invoked function is a function that is executed as soon as it is created. It is a function that is executed immediately after it is created. It is also known as a self-invoking function.
+
+```go
+func main() {
+    func() {
+        fmt.Println("Hello")
+    }()
+}
+```
+## Error Handling
+
+In Go, errors are values. We can use the `error` type to represent an error. We can use the `errors.New` function to create a new error. It returns an error.
+
+```go
+func divide(x, y int) (int, error) {
+    if y == 0 {
+        return 0, errors.New("division by zero")
+    }
+    return x / y, nil
+}
+```
+
+### Code Organization
+
+We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
+
+Also, we can have multiple packages in a single directory.
+
+### Expoting and Importing
+
+- We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
+
+```go
+var mutex sync.Mutex
+
+mutex.Lock()
+
+// critical section
+
+mutex.Unlock()
 ```
 
 ### What's next?
 
 - [Learning Resources](./learning-resources.md) - Learn more about Golang with these resources.
 - [Other Resources](./other-resources.md) - A list of resources to learn more about Golang.
-- 

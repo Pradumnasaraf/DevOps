@@ -6,14 +6,15 @@ import (
 )
 
 func main() {
-	myChannel := make(chan int, 2) // buffered channel. By default, it is unbuffered
+	
+	myChannel := make(chan int, 2) // buffered channel
+	// var myChannel chan int // unbuffered channel
 	wg := &sync.WaitGroup{}
+
 
 	wg.Add(2)
 	go func(ch chan int, wg *sync.WaitGroup) {
 		fmt.Println(<-ch) // read from channel
-
-		
 		wg.Done()
 	}(myChannel, wg)
 

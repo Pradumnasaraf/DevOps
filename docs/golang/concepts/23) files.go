@@ -8,17 +8,16 @@ import (
 
 func main() {
 
-	// Process to create, write and read a file
-
 	content := "Hey I am Pradumna"
 
-	//"." means current directory
+	// Create a file
 	file, err := os.Create("./hello.txt")
 
 	if err != nil {
 		panic(err)
 	}
 
+	// Writing content in a file
 	length, err := io.WriteString(file, content)
 
 	if err != nil {
@@ -27,6 +26,7 @@ func main() {
 
 	fmt.Println("Length:", length)
 
+	// Reading a file
 	data, err := os.ReadFile("./hello.txt")
 
 	if err != nil {
@@ -34,6 +34,14 @@ func main() {
 
 	}
 
-	// data is of type []byte so we need to convert it to string
+	// Print the read data
 	fmt.Println(string(data))
+
+	//Removing a file
+	err = os.Remove("./hello.txt")
+
+	if err != nil {
+		panic(err)
+
+	}
 }
