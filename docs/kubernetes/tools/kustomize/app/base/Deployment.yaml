@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: nginx-demo
+spec:
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 100m 
+            memory: 100Mi
+          requests:
+            cpu:  100m
+            memory: 100Mi
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+        volumeMounts:
+        - name: html-file
+          mountPath: /usr/share/nginx/html
+          
+      volumes:
+        - name: html-file
+          configMap:
+            name: nginx-configmap
+
+

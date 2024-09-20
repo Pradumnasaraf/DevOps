@@ -916,6 +916,13 @@ kubectl config use-context <context-name>
 To make cluster switching easier we can use a tool called `kubectx` and `kubens`.
 
 
+## Secret Management
+
+
+
+## Troubleshoting
+
+A great [blog](https://learnk8s.io/troubleshooting-deployments) on troubleshooting deployments.
 
 
 
