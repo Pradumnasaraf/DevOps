@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/Pradumnasaraf/DevOps/compare/v2.3.0...v2.3.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* Update Docker build and push actions to build and push multi-arch images ([#99](https://github.com/Pradumnasaraf/DevOps/issues/99)) ([f537f16](https://github.com/Pradumnasaraf/DevOps/commit/f537f162f737aceb9ccc95394e93ed677a10b2f8))
+
+
+
 # [2.3.0](https://github.com/Pradumnasaraf/DevOps/compare/v2.2.0...v2.3.0) (2024-08-02)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Bump package version to 2.0.1 ([a429f46](https://github.com/Pradumnasaraf/DevOps/commit/a429f4660a4ff4407622fca49c6eb3dfd1ce8cf2))
-
-
-
-## [1.5.1](https://github.com/Pradumnasaraf/DevOps/compare/v2.0.0...v1.5.1) (2024-07-24)
-
-
-### Bug Fixes
-
-* V2 cleanup ([#93](https://github.com/Pradumnasaraf/DevOps/issues/93)) ([6c852a8](https://github.com/Pradumnasaraf/DevOps/commit/6c852a8b62e9e2208c4271c81832dfaf1a312378))
 
 
 

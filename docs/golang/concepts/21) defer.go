@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+
+// Defer statements are run at the end
 func main() {
 	defer fmt.Println("This is the first defer statement")
 	defer fmt.Println("This is the second defer statement")

@@ -3,27 +3,32 @@ sidebar_position: 1
 title: Golang Introduction
 ---
 
-Golang (or Go) is statically typed, compiled programming language designed at Google. It is syntactically similar to C, but with memory safety, garbage collection, structural typing, and CSP-style concurrency. In Golang, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library.
+Golang (or Go) is statically typed, compiled programming language designed at Google. It is syntactically similar to C, but with memory safety, garbage collection, structural typing, and CSP-style concurrency.
+
+In Golang, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library.
 
 ## Installation
 
 - [Download](https://golang.org/dl/) and install Go
+  
+- Garbage collected
+- Multithreading
+- concurrency
 
-## Modules and Packages
+## Packages
 
-Modules are a collection of related Go packages that are versioned together as a single unit. For example `net/http` is a package that is part of the `net` module. Some of the standard library packages in Go are: 
+Module is a collection of related Go packages that are versioned together as a single unit.
 
-- **fmt** - formatted I/O with functions analogous to C's printf and scanf.
-- **os** - provides a platform-independent interface to operating system functionality.
-- **strconv** - implements conversions to and from string representations of basic data types.
-- **time** - provides functionality for measuring and displaying time.
-- **math** - provides basic constants and mathematical functions.
-- **net/http** - provides HTTP client and server implementations.
-- **encoding/json** - implements encoding and decoding of JSON.
+- fmt - formatted I/O with functions analogous to C's printf and scanf.
+- os - provides a platform-independent interface to operating system functionality.
+- strconv - implements conversions to and from string representations of basic data types.
+- time - provides functionality for measuring and displaying time.
+- math - provides basic constants and mathematical functions.
+- net/http - provides HTTP client and server implementations.
+- encoding/json - implements encoding and decoding of JSON.
 
-## Writing a program (skeleton)
 
-> `main.go` file
+## Hello World - Running a program
 
 ```go
 package main // package declaration
@@ -33,20 +38,21 @@ import "fmt" // import fmt package
 import ( "fmt" "os") // import multiple packages
 
 func main() {
-fmt.Println("Hello, World!") // Println is a function from the fmt package
+fmt.Println("Hello, World!")
 }
 ```
-We can run the program using the following command:
+
+We can run and compile the program using the following command:
 
 ```bash
-$ go run main.go
+$ go run hello.go
 ```
 
-## Go Mod 
+## Go Mod (go.mod)
 
-Go Mod helps to manage dependencies in Go. It is a dependency management tool that is built into the Go toolchain. It is used to manage the dependencies of a Go project. It creates a `go.mod` file that describes the module's dependencies.
+Go modules are a dependency management system that makes dependency version information explicit and easier to manage. Go modules are the future of dependency management in Go.
 
-`go mod init github.com/username/repo` - creates a new module, initializing the go.mod file that describes it. In this case our desired module path is `github.com/username/repo`.
+`go mod init github.com/username/repo` - creates a new module, initializing the go.mod file that describes it.
 
 - `go mod tidy` - command will add any missing modules necessary to build the current module's packages and dependencies. It will also remove any unused modules that don't provide any relevant packages. It will update the go.mod file and the go.sum file.
 
@@ -64,19 +70,22 @@ Go Mod helps to manage dependencies in Go. It is a dependency management tool th
 
 ## Sum (go.sum)
 
-It is a file that contains the expected cryptographic checksums of the content of specific module versions. It ensures that dependencies have not been modified. It will automatically be created when we run `go mod tidy` or `go get`.  We don't need to worry about this file. It is automatically managed by Go.
+It is a file that contains the expected cryptographic checksums of the content of specific module versions. It ensures that dependencies have not been modified.
+
+## Go Path
+
+Go path is an environment variable that specifies the location of your workspace. It is used to find the location of your Go code.
+
 
 ## Build
 
-We can build a Go program and create an executable file so that we can run from anywhere. We can use the `go build` command to build a Go program. It will create an executable file with the same name as the package name.
+We can build a program using the following command:
 
 ```bash
-$ go build main.go 
-$ go build . # it will build all the files in the current directory
-$ go build -o app main.go # we can specify the name of the executable file
+$ go build hello.go
 ```
 
-We can also build for different platforms using the following command:
+we can also build for different platforms using the following command:
 
 ```bash
 $ GOOS=linux GOARCH=amd64 go build hello.go
@@ -87,94 +96,41 @@ $ GOOS=linux GOARCH=amd64 go build hello.go
 - new() - It allocates memory. The size of the memory is equal to the size of the type. It returns a pointer to the memory.
 - make() - It creates slices, maps, and channels only. It returns an initialized (not zeroed) value of type. It is used to create dynamically sized objects.
 
-It will be get clearer as we move forward.
+Garbage collection is a form of automatic memory management. The garbage collector frees the memory occupied by objects that are no longer in use by the program.
 
+## Print
 
-### Print
+There are serveral ways to print in Go. We can use `fmt` package to print.
 
-There are several ways to print in Go. We generally use the `fmt` package to print in Go.
+- `fmt.Println` - prints a line
+- `fmt.Print` - prints without a new line
+- `fmt.Printf` - prints with formatting
 
-- `fmt.Println` - Prints a line with a new line
-- `fmt.Print` - Prints without a new line
-- `fmt.Printf` - Prints with formatting
+Placeholders for `printf`
 
-Eg:
-
-```go
-func main() {
-    fmt.Println("Hello, World!")
-    fmt.Print("Hello, World!")
-    fmt.Printf("Hello, %s!", "World")
-}
-```
-
-#### Placeholders for `printf` :
-
-- **%v** - value in default format
-- **%+v** - value in default format with field names
-- **%T** - type of value
-- **%t** - boolean
-- **%d** - decimal integer
-- **%b** - binary integer
-- **%c** - character
-- **%x** - hexadecimal integer
-- **%f** - floating point number
-- **%s** - string
-
-Eg:
-
-```go
-fmt.Printf("Hello, %s! You are %d years old.", "John", 25)
-```
+- %v - value in default format
+- %+v - value in default format with field names
+- %T - type of value
+- %t - boolean
+- %d - decimal integer
+- %b - binary integer
+- %c - character
+- %x - hexadecimal integer
+- %f - floating point number
+- %s - string
 
 Escape sequences:
 
 - \n - newline
 - \t - tab
-- \r - carriage return
 
-Eg:
-
-```go
-func main() {
-    fmt.Println("Hello, World!") // It will print Hello, World!
-    fmt.Println("Hello, \tWorld!") // It will print Hello, World! with a tab
-}
-```
-
-### Variables and Constants
+## Variables and Constants
 
 - `var` - variables with initializers.
 - `const` - declares a constant value. Can't be updated.
 - `:=` - short variable declaration. Can be used only inside a function. Called Syntax sugar. We can't use it to declare a global variable.
 
-```go
-var name string = "John" // variable declaration with type
-const pi = 3.14 // constant declaration
-
-func main() {
-    age := 25 // short variable declaration
-}
-```
-
-### Scope rules
-
-- `Local variables` are scoped to the function in which they are declared. They are not visible outside the function.
-- `Package level variables` are scoped to the package in which they are declared. They are visible to all the functions in the package.
-- `Exported variables` are scoped to the package in which they are declared. They are visible to all the functions in the package and other packages that import the package.
-- `Block level variables` are scoped to the block in which they are declared. They are not visible outside the block.
-
-NOTE: For  Package level variables We can't use the short variable declaration operator `:=` to declare package level variables.
-
-```go
-var name string = "John" // It will be available to all the functions in the package
-
-func main() {
-    fmt.Println(name)
-}
-```
-
-### Data Types
+## Data Types
 
 When we declare with a value we don't need to specify the type. Go will infer the type from the value. But when we declare without a value we need to specify the type.
 
@@ -197,9 +153,46 @@ name = "John"
 
 - If we don't put a variable type go will automatically assign the type based on the value.-
 
-## Scanner
+### String
 
-### Scanning through fmt
+- A string is a sequence of characters. We can use double quotes to create a string.
+
+```go
+var name = "John"
+```
+
+- We can use backticks to create a raw string literal. It is used to create a string without escape sequences.
+
+```go
+var name = `John\n`
+```
+
+We can perform a lot of operations on strings like concatenation, length, indexing etc. Here are some examples:
+
+```go
+var name = "John"
+
+fmt.Println(len(name)) // it will print the length of the string
+fmt.Println(name[0]) // it will print the first character of the string
+fmt.Println(name + " Doe") // it will concatenate the strings
+```
+
+With the `strings` package, we can perform more operations on strings like splitting, joining, replacing etc. It's one of most used packages in Go.
+
+```go
+import "strings"
+
+var name = "John Doe"
+
+fmt.Println(strings.Split(name, " ")) // it will split the string based on the space
+fmt.Println(strings.Join([]string{"John", "Doe"}, " ")) // it will join the strings with a space
+fmt.Println(strings.Replace(name, "John", "Jane", 1)) // it will replace the first occurrence of John with Jane
+fmt.Println(strings.Contains(name, "John")) // it will check if the string contains John
+fmy.Println(strings.ToLower(name)) // it will convert the string to lowercase
+fmt.Println(strings.ToUpper(name)) // it will convert the string to uppercase
+```
+
+## Scan
 
 `fmt.Scan` reads text from standard input, scanning the text read into successive arguments. Newlines count as space. It returns the number of items successfully scanned. If that is less than the number of arguments, err will report why.
 
@@ -221,7 +214,7 @@ fmt.Println(text)
 }
 ```
 
-## "text , err syntax" | ok, err syntax
+### "text , err syntax"
 
 In the above example we used `text, err` syntax. It is a common way to handle errors in Go. If we don't want to handle the error we can use `_` to ignore it.
 
@@ -235,29 +228,20 @@ if err != nil {
 
 - `panic` - It is a built-in function that stops the ordinary flow of control and begins panicking. When the function F calls panic, execution of F stops, any deferred functions in F are executed normally, and then F returns to its caller.
 
+
 ## Conversion
 
-We can convert a value from one type to another using the type conversion syntax. We can convert a value from one type to another using the type conversion syntax. Eg:
-
-```go
-var num int = 42
-var numFloat float64 = float64(num)
-
-var numFloat = 3.14
-var numInt = int(numFloat)
-```
-
-Else we can also use the `strconv` package to convert a value to a string and vice versa.
+We can convert a value from one type to another. The expression T(v) converts the value v to the type T. We can use `strconv` package to convert a data type to another.
 
 ```go
 var num = 42
-var numStr = strconv.Itoa(num)
+var stringNum = "42"
 
-var numStr = "42"
-var num, _ = strconv.Atoi(numStr)
+var str = strconv.Itoa(num) // it will convert the integer to a string
+var intNum, _ = strconv.Atoi(stringNum) // it will convert the string to an integer
 ```
 
-### Time
+## Time
 
 We can use `time` package to get the current time.
 
@@ -266,71 +250,47 @@ t := time.Now()
 fmt.Println(t)
 ```
 
-### Math
-
-We can use the `math` package to perform mathematical operations in Go. We can do operations like addition, subtraction, multiplication, division, etc.
-
-```go
-rand.Seed(time.Now().UnixNano())
-```
-
-## Strings Operations
-
-We can perform various operations on strings in Go. Some of them are:
-
-- `len()` - It is used to get the length of a string.
-- `strings.ToUpper()` - It is used to convert a string to uppercase.
-- `strings.ToLower()` - It is used to convert a string to lowercase.
-- `strings.TrimSpace()` - It is used to remove leading and trailing spaces from a string.
-- `strings.Split()` - It is used to split a string into substrings based on a separator.
-- `strings.Contains()` - It is used to check if a string contains a substring.
-- `strings.Replace()` - It is used to replace a substring with another substring.
-- `strings.Join()` - It is used to join a slice of strings into a single string.
-- `strings.Index()` - It is used to find the index of a substring in a string.
-
-```go
-func main() {
-
-	var name = "John"
-	fmt.Println(len(name))               // It will print the length of the string
-	fmt.Println(strings.ToUpper(name))   // It will print the string in uppercase
-	fmt.Println(strings.ToLower(name))   // It will print the string in lowercase
-	fmt.Println(strings.Title(name))     // It will print the string in title case
-	fmt.Println(strings.Repeat(name, 3)) // It will repeat the string 3 times
-	fmt.Println(strings.Replace(name, "J", "K", 1)) // It will replace the first occurrence of J with K
-	fmt.Println(strings.Split(name, "")) // It will split the string into a slice of characters
-}
-```
-
 ## Pointers
 
-A pointer is a variable that stores the memory address of another variable. It is used to store the address of a variable. We can use the `&` operator to get the address of a variable and the `*` operator to get the value stored at the address.
-
-Use of pointers:
-
-- To pass a large struct to a function without copying it.
-- To update the value of a variable in a function.
+A pointer is a variable that stores the memory address of another variable. We can declare a pointer by using `*` operator. Eg:
 
 ```go
-myInt := 42
-ptr := &myInt // & is used to get the address of the variable
-// var ptr *int = &myInt
+var p *int
+```
 
-println("myInt:", ptr) // ptr is the address of the variable
-println("myInt:", *ptr) // * is used to get the value stored at the address
+We can get the memory address of a variable using `&` operator.
+
+```go
+var name = "John"
+fmt.Println(&name) // it will print the memory address of the variable name
+```
+
+We can get the value of a pointer using `*` operator. Called dereferencing.
+
+```go
+
+var name = "John"
+var myName = &name
+
+fmt.Println(*myName) // it will print the value of the variable name
 ```
 
 - `*int` - the type `*int` is a pointer to an `int`.
 
+
+```go
+var name = "John"
+fmt.Println(&name) // it will print the memory address of the variable name
+```
+
 ## Arrays
 
-An array is a collection of elements of the same type. It is a fixed-size collection of elements.
+An array is a numbered sequence of elements of a single type with a fixed length. We can store a fixed size collection of elements of the same type.
 
 We declare an array as follows:
 
 ```go
 var arr [5]int  // array of 5 integers
-var arr1 = [5]int{1, 2, 3, 4, 5} // array of 5 integers with values
 
 arr[0] = 1
 arr[1] = 2
@@ -338,13 +298,10 @@ arr[1] = 2
 
 ## Slice
 
-Slice are more flexible than arrays. Their size is not fixed. A slice is a lightweight data structure that gives access to a subsequence of the elements of an array.
+In this we don't need to specify the size of the array. It is a dynamically sized, flexible view into the elements of an array.
 
 ```go
 var names []int  // slice of integers
-var names = []int{1, 2, 3, 4, 5} // slice of integers with values
-var names = make([]int, 5) // slice of integers with length 5
-var names = [5]string{}
 ```
 
 Unlink arrays, we don't add elements to a slice using `arr[index] = value`. We use `append` function to add elements to a slice.
@@ -354,124 +311,70 @@ names = append(names, 1)
 names = append(names, 2)
 ```
 
-## Maps
-
-Maps are used to store key-value pairs. It is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python.
-
-```go
-var names = make(map[string]string) // map of string to string
-var names = map[string]string{}
-```
-
-We can add key-value pairs to a map using the following syntax:
-
-```go
-names["John"] = "Doe"
-names["Jane"] = "Doe"
-
-fmt.Println(names["John"])
-```
-
-We can delete a key-value pair from a map using the `delete` function.
-
-```go
-delete(names, "John")
-```
-
-We can loop through a map using a `for` loop.
-
-```go
-for key, value := range names {
-    fmt.Println(key, value)
-}
-```
-
-## Structs
-
-A struct is a collection of fields. It is a data structure that lets us bundle together related data and behavior. We can use structs to represent real-world objects.
-
-```go
-type Person struct {
-    name string
-    age int
-}
-
-var p Person
-p.name = "John"
-p.age = 25
-```
-
-## If else
-
-In Go, the `if` statement is used to execute a block of code if a condition is true. The `else` statement is used to execute a block of code if the same condition is false.
-
-```go
-if num > 0 {
-    fmt.Println("Positive")
-} else if num == 0 {
-    fmt.Println("Equal to zero")
-} else {
-    fmt.Println("Negative")
-}
-```
-
-There is shorthand syntax for `if` statements. We can declare a variable and check the condition in the same line.
-
-```go
-if num := 10; num > 0 {
-    fmt.Println("Positive")
-}
-```
-
 ## Loops
 
-In Go, we have three types of loops:
-
-- `for` - The for loop is the only loop statement in Go. It is similar to the for loop in other languages.
-- `range` - The range form of the for loop iterates over a slice or map.
-- `_` - The blank identifier is a special identifier that is used to ignore values when multiple values are returned from a function.
-
-### For loop
-
-For loop is used to execute a block of code multiple times. It is similar to the for loop in other languages.
+In Go, there is only one looping construct, the `for` loop.
 
 ```go
 for i := 0; i < 5; i++ {
-    fmt.Println(i)
+fmt.Println(i)
 }
 ```
 
-### Range
-
-The range form of the for loop iterates over a slice or map.
+- `range` - The range form of the for loop iterates over a slice or map.
 
 ```go
 names := []string{"John", "Paul", "George", "Ringo"}
 
 for i, name := range names {
-    fmt.Println(i, name)
+fmt.Println(i, name)
 }
 ```
 
-### Blank Identifier
-
-Blank identifier is a special identifier that is used to ignore values when multiple values are returned from a function.
-
-We can use the blank identifier to ignore the index.
+- `_` - The blank identifier is a special identifier that is used to ignore values when multiple values are returned from a function. It is used to ignore the index in the above example.
 
 ```go
 for _, name := range names {
-    fmt.Println(name)
+fmt.Println(name)
 }
 ```
 
-Infinite loop
-
-We can create an infinite loop using the `for` loop.
+## If Else
 
 ```go
-for {
-    fmt.Println("Hello")
+if num > 0 { // this condition will only be true if num is greater than 0
+fmt.Println("Positive")
+} else if num == 0 { // this condition will only be true if num is equal to 0
+fmt.Println("Equal to zero")
+} else {   // this condition will only be true if num is less than 0
+fmt.Println("Negative")
+}
+```
+
+We can check also write `data == false` or `!data`
+
+### Break and Continue
+
+- `break` - The break statement terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
+
+```go
+
+for i := 0; i < 5; i++ {
+    if i == 3 {
+        break
+    }
+    fmt.Println(i)
+}
+```
+
+- `continue` - The continue statement terminates the current iteration of the loop, and resumes execution at the next iteration. It can be used only within an iterative or switch statement and only within the body of that statement.
+
+```go
+for i := 0; i < 5; i++ {
+    if i == 3 {
+        continue
+    }
+    fmt.Println(i)
 }
 ```
 
@@ -481,7 +384,7 @@ The switch statement is a shorter way to write a sequence of if - else statement
 
 ```go
 switch num {
-case 1 3: // It will execute the code if num is 1 or 3
+case 1:
     fmt.Println("One")
 case 2:
     fmt.Println("Two")
@@ -490,13 +393,15 @@ default:
 }
 ```
 
-We can use the `fallthrough` keyword to execute the next case. It will execute the next case even if the condition is false.
+### Fallthrough
+
+In Go, we don't need to write `break` after each case. It will automatically break after each case. If we want to execute the next case we can use `fallthrough` keyword.
 
 ```go
 switch num {
 case 1:
     fmt.Println("One")
-    fallthrough
+    fallthrough // it will execute the next case
 case 2:
     fmt.Println("Two")
 default:
@@ -504,141 +409,54 @@ default:
 }
 ```
 
-We can also use the `switch` statement without a condition. It is similar to an if-else chain.
+## Functions
+
+- A function is a block of code that performs a specific task. It is a reusable piece of code.
 
 ```go
-switch {
-case num > 0:
-    fmt.Println("Positive")
-case num == 0:
-    fmt.Println("Equal to zero")
-case num < 0:
-    fmt.Println("Negative")
-}
-```
-
-## Break and Continue
-
-- `break` - Break is used to terminate the loop immediately. It is used to exit the loop. 
-
-```go
-for i := 0; i < 5; i++ {
-    if i == 3 { // It will exit the loop when i is 3
-        break
-    }
-    fmt.Println(i)
-}
-```
-
-- `continue` - Continue is used to skip the current iteration of the loop. It is used to skip the current iteration and continue with the next iteration.
-
-```go
-for i := 0; i < 5; i++ {
-    if i == 3 { // It will skip the iteration when i is 3
-        continue
-    }
-    fmt.Println(i)
-}
-```
-
-### Functions
-
-Functions is a block of code that performs a specific task. It is a reusable piece of code. We can define a function using the `func` keyword.
-
-```go
-
-func hello() {
-    fmt.Println("Hello")
-}
-
-func main() {
-    hello()
-}
-```
-
-### Functions with arguments
-
-Functions can take arguments. We can specify the type of the arguments. We can pass them when we call the function.
-
-```go
-func add(x int, y int) { // We can specify the type of the parameters
-    fmt.Println(x + y)
-}
-
-func main() {
-    add(1, 2)
-}
-```
-
-### Functions with return values
-
-We can return a value from a function. We can specify the return type.
-
-```go
-func number() int { // We can specify the return type
-    return 42
-}
-```
-
-### Function with parameters and return values
-
-We can have functions with parameters and return values.
-
-```go
-func add(x, y int) int { // We can specify the type of the parameters and the return type
+func add(x int, y int) int { // We can specify the type of the parameters
     return x + y
 }
-```
 
-When we have multiple multiple parameters we put them in parentheses and arguments are separated by commas. Remember Arguments are actual data.
-
-```go
-func addSub(x, y int) (int, int) { // We can specify the type of the parameters and the return type
-    return x + y, x - y
+func main() {
+    fmt.Println(add(1, 2)) // We can call the function by passing the arguments
 }
 ```
 
-### Variadic functions
-
-A variadic function is a function that can accept a variable number of arguments. We can use the `...` operator to specify a variadic parameter.
+- A function can return multiple values.
 
 ```go
-func sum(nums ...int) int { // We can specify the type of the parameters
-    total := 0
-    for _, num := range nums {
-        total += num
-    }
-    return total
+func swap(x, y string) (string, string) { // When we have more than one return value we put them in parenthesis ().
+return y, x
 }
+
+a, b := swap("hello", "world") // We can get the return values using multiple assignment
 ```
 
 ### Anonymous functions
 
-An anonymous function is a function that doesn't have a name. It is a function literal. We can assign it to a variable.
+- We can declare a function without a name. Such functions are called anonymous functions.
 
 ```go
-add := func(x, y int) int {
+func(x, y int) int {
     return x + y
-}
-
-fmt.Println(add(1, 2))
-```
-
-### IIFE (Immediately Invoked Function Expression)
-
-An IIFE is a function that is immediately invoked. It is a function that is defined and called at the same time.
-
-```go
-func main() {
-    func() {
-        fmt.Println("Hello")
-    }()
 }
 ```
 
 ## Methods
 
-Methods are functions that are associated with a type. They are similar to functions but are defined with a receiver. The receiver is like a parameter. It is the first argument of the method.
+A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name. Receiver can be of any type. Receiver is a special type of parameter that is passed to a method. It is similar to `this` in other languages. It is used to access the fields and methods associated with the Type like a Struct. There are two types of receivers:
+
+1. **Value Receiver**:  It is used when we don't want to modify the original value. 
+
+> `func (t Test) printName() { fmt.Println(t.Name) }`
+
+2. **Pointer Receiver**: It is used when we want to modify the original value. 
+
+> `func (t *Test) printName() { fmt.Println(t.Name) }`
+
+
+Here is an example of a method:
 
 ```go
 type Person struct {
@@ -657,7 +475,7 @@ func main() {
 
 ## Defer
 
-Defer is used to delay the execution of a function until the surrounding function returns. It is used to ensure that a function call is performed regardless of the outcome of the surrounding function. It runs at the end of the function.
+- A defer statement defers the execution of a function until the surrounding function returns.
 
 ```go
 func main() {
@@ -667,131 +485,51 @@ func main() {
 }
 ```
 
-We can use defer to close a file after we open it.
+## Mutex 
+
+- Mutex is a mutual exclusion lock. The zero value for a Mutex is an unlocked mutex.
 
 ```go
-func main() {
-    file, err := os.Open("file.txt")
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    defer file.Close() // It will close the file after the main function returns
-}
+var mutex sync.Mutex
+
+mutex.Lock() // It will lock the mutex
+mutex.Unlock() // It will unlock the mutex
 ```
 
-## File Handling
-
-We can use the `os` package to work with files in Go. We can use the `os.Open` function to open a file. It returns a file and an error. We can use the `os.Create` function to create a file. It returns a file and an error.
+- RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. When a writer is active, no readers can be active. 
 
 ```go
+var rwMutex sync.RWMutex
 
-func main() {
-    file, err := os.Open("file.txt")
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    defer file.Close()
+rwMutex.RLock() // It will lock the mutex for reading
+rwMutex.RUnlock() // It will unlock the mutex for reading
 
-    // Read the file
-    data, err := ioutil.ReadAll(file)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(string(data))
-}
+rwMutex.Lock() // It will lock the mutex for writing
+rwMutex.Unlock() // It will unlock the mutex for writing
 ```
 
-## Web Requests
+## Maps
 
-We can use the `net/http` package to make web requests in Go. We can use the `http.Get` function to make a GET request. It returns a response and an error.
+- A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python. The limitation of maps is that the key should be of the same type and the value should be of the same type. The key and value can be of any type.
 
 ```go
-func main() {
-    resp, err := http.Get("https://jsonplaceholder.typicode.com/posts")
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    defer resp.Body.Close()
+var cars = make(map[string]string, 0) // map of string to string
 
-    data, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(string(data))
-}
+cars["Toyota"] = "Camry" // adding a key-value pair
+
+delete(cars, "Toyota") // deleting a key-value pair
 ```
 
-## URLs
+## Structs
 
-We can use the `net/url` package to parse URLs in Go. We can use the `url.Parse` function to parse a URL. It returns a URL and an error. We can construct or deconstruct URLs.
-
-```go
-const url = "https://example.com/path?name=John&age=25"
-
-u, err := url.Parse(url)
-if err != nil {
-    fmt.Println(err)
-    return
-}
-
-fmt.Println(u.Scheme) // It will print the scheme
-fmt.Println(u.Host) // It will print the host
-fmt.Println(u.Path) // It will print the path
-fmt.Println(u.RawQuery) // It will print the query
-```
-
-## Web Servers
-
-We can create a web server in Go using the `net/http` package. We can use the `http.HandleFunc` function to register a handler function for a pattern. We can use the `http.ListenAndServe` function to start the server.
-
-```go
-func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello, World!")
-}
-
-func main() {
-    http.HandleFunc("/", handler)
-    http.ListenAndServe(":8080", nil)
-}
-```
-
-This is provided by the `net/http` package, but we can use frameworks like `Gin` or `Echo` to create web servers.
-
-### JSON
-
-We can use the `encoding/json` package to encode and decode JSON data in Go. We can use the `json.Marshal` function to encode a value to JSON. It returns a byte slice and an error. We can use the `json.Unmarshal` function to decode a JSON-encoded value. It returns an error.
+- A struct is a collection of fields. It is a data structure that lets us bundle together related data and behavior. We can use structs to represent real-world objects. It can handle multiple data types. It is similar to classes in other languages.
 
 ```go
 type Person struct {
-    Name string `json:"name"`
-    Age int `json:"age"`
-}
-
-func main() {
-    p := Person{Name: "John", Age: 25}
-
-    data, err := json.Marshal(p)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(string(data))
-
-    var p1 Person
-    err = json.Unmarshal(data, &p1)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(p1)
+    name string
+    age int
 }
 ```
-
 
 ## Go routines and WaitGroup
 
@@ -805,7 +543,11 @@ go func() {
 
 - If the main function exits, the program will exit immediately even if the goroutine is still running. To prevent this, we can use the `WaitGroup` type. For Eg:
 
-```go
+#### WaitGroup
+
+- A WaitGroup waits for a collection of goroutines to finish. The main function will wait for the goroutines to finish before exiting.
+
+```go 
 
 var wg sync.WaitGroup
 
@@ -824,55 +566,42 @@ func sayHello() {
 `Add()` increments the WaitGroup counter by 1 and `Done()` decrements the WaitGroup counter by 1.
 
 
-## Race Conditions and Mutex
+### Concurrency vs Parallelism
 
-Race conditions occur when two or more goroutines access the same variable concurrently and at least one of the accesses is a write. It can lead to unpredictable behavior. To overcome this we can use the `sync` package. We can use the `sync.Mutex` type to lock and unlock a variable.
+- **Concurrency** - It is the ability of a program to be decomposed into parts that can run independently of each other. It is the composition of independently executing processes. It is about dealing with lots of things at once.
 
-```go
-func main() {
-	wg := &sync.WaitGroup{}
-	mut := &sync.RWMutex{}
-
-	var score = []int{0}
-
-	wg.Add(3)
-
-	go func(wg *sync.WaitGroup, mut *sync.RWMutex) {
-		fmt.Println("One Routine")
-		mut.Lock() // Lock the memory location of score
-		score = append(score, 1)
-		mut.Unlock() // Unlock the memory location of score
-		wg.Done()
-	}(wg, mut) // Pass the pointer of WaitGroup and Mutex
-	go func(wg *sync.WaitGroup, mut *sync.RWMutex) {
-		fmt.Println("Two Routine")
-		mut.Lock()
-		score = append(score, 2)
-		mut.Unlock()
-		wg.Done()
-	}(wg, mut)
-
-	wg.Wait()
-	fmt.Println(score)
-}
-```
-
-- `Lock()` - It will lock the mutex and prevent other goroutines from accessing the variable
-- `Unlock()` - It will unlock the mutex and allow other goroutines to access the variable
+- **Parallelism** - It is the ability of a program to run multiple tasks simultaneously. It is about doing lots of things at once.
 
 
-- `RWMutex` - It is a reader/writer mutual exclusion lock. It can be locked for reading or writing. It allows multiple readers or a single writer at a time.
+## Math
+
+- rand.Seed() - It is used to initialize the default Source to a deterministic state. If Seed is not called, the generator behaves as if seeded by Seed(1). It should only be called once. It is usually called before the first call to Intn or Float64.
 
 ```go
-var rwMutex sync.RWMutex
-
-rwMutex.RLock() // It will lock the mutex for reading
-rwMutex.RUnlock() // It will unlock the mutex for reading
+rand.Seed(time.Now().UnixNano())
 ```
+
+## Json
+
+- We can use the `json` package to encode and decode JSON data.
+
+- `json.Marshal()` - It is used to encode a value to JSON. It returns a byte slice and an error.
+- `json.MarshalIndent()` - It is used to encode a value to JSON with indentation. It returns a byte slice and an error.
+- `json.Unmarshal()` - It is used to decode a JSON-encoded value. It returns an error.
+
+In the Structs we can use the `json` tag to specify the name of the field in the JSON. I
+
+```go
+
+type Person struct {
+    Name string `json:"name"`
+    Age int `json:"age"`
+}    
+``` 
 
 ## Channels
 
-A channel is a communication mechanism that allows one goroutine to pass values of a specified type to another goroutine. It is communication between goroutines. It is similar to pipes in other languages.
+- A channel is a communication mechanism that allows one goroutine to pass values of a specified type to another goroutine. It is communication between goroutines. It is similar to pipes in other languages.
 
 - `make()` - It is used to create a channel. It takes the type of the channel as an argument.
 
@@ -889,64 +618,109 @@ fmt.Println(val)
 
 We can create a buffered channel by passing the buffer size as the second argument to the `make()` function. By default, the channel is unbuffered and can only hold one value. So, if we try to send multiple value to the channel it will give an error.
 
+### Buffered Channel
+
+A buffered channel is a channel with a buffer. It can hold multiple values. We can specify the buffer size when we create the channel.
+
+```go
+var ch = make(chan int, 5) // buffered channel with a buffer size of 5
+```
+
+### Unbuffered Channel
+
+An unbuffered channel is a channel without a buffer. It can hold only one value. We can send a value to the channel only if there is a goroutine ready to receive the value.
+
 ```go
 var ch = make(chan int) // unbuffered channel
-
-var ch = make(chan int, 10) // buffered channel
 ```
+
+### Closing a Channel
+
+We can close a channel using the `close()` function. It is used to indicate that no more values will be sent on the channel. 
 
 ```go
-ch := make(chan int)
+msg := make(chan int)
 
-ch <- 10 // It will send 10 to the channel
-
-<- ch // It will receive from the channel
-val, ok := <- ch // It will receive from the channel and check if the channel is closed or not
+go func() {
+    msg <- 1
+    close(msg) // After closing the channel we can't send any more values
+}()
 ```
 
-- `close()` - It is used to close a channel. It takes the channel as an argument.
+But here a catch even tho channel is closed we can still receive the values from it like zero, so it's dalmatic whether the it's channel is closed or the value is zero. To overcome this we can receive the value and a boolean value which will tell us whether the channel is closed or not.
 
+```go
+package main
 
-#### Send Only Channel
+import (
+	"fmt"
+	"sync"
+)
+
+var wait = sync.WaitGroup{}
+
+func main() {
+
+	myChannel := make(chan int, 1)
+
+	wait.Add(2)
+	go func() {
+		fmt.Println("First Go Routine")
+		wait.Done()
+
+		hello, isChannelOpen := <- myChannel
+		
+		if !isChannelOpen {
+			fmt.Println("Channel Closed")
+		}
+		fmt.Println(hello)
+	}()
+
+	go func() {
+		fmt.Println("Second Go Routine")
+		close(myChannel)
+		wait.Done()
+		// myChannel <- 5
+	}()
+
+	wait.Wait()
+}
+```
+
+### Send Only Channel
 
 ```go
 var ch = make(chan<- int) // send only channel
 ```
 
-Receive Only Channel
+```go
+go func (ch chan<- int) {
+    ch <- 10
+}(ch)
+```
+
+### Receive Only Channel
 
 ```go
 var ch = make(<-chan int) // receive only channel
 ```
 
-## Interfaces
-
-An interface is a collection of method signatures. It is a set of methods that a type must implement. We can use interfaces to define the behavior of an object. We can use the `interface` keyword to define an interface.
-
 ```go
-type Shape interface {
-    Area() float64
-}
-
-type Circle struct {
-    radius float64
-}
-
-func (c Circle) Area() float64 {
-    return math.Pi * c.radius * c.radius
-}
+go func (ch <-chan int) {
+    val := <-ch
+    fmt.Println(val)
+}(ch)
 ```
 
-We can use interfaces to create polymorphic behavior. We can use an interface as a type.
+## IIF's (Immediately Invoked Functions)
+
+- An immediately invoked function is a function that is executed as soon as it is created. It is a function that is executed immediately after it is created. It is also known as a self-invoking function.
 
 ```go
-func getArea(s Shape) float64 {
-    return s.Area()
-}
-
 func main() {
-    c := Circle{radius: 5}
-    fmt.Println(getArea(c))
+    func() {
+        fmt.Println("Hello")
+    }()
 }
 ```
 ## Error Handling
@@ -961,16 +735,45 @@ func divide(x, y int) (int, error) {
     return x / y, nil
 }
 ```
+## goto
 
-### Code Organization
+- The goto statement transfers control to the labeled statement. It is similar to the break statement in other languages. It is used to transfer control to a different part of the program.
 
-We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
+```go
+func main() {
+    i := 0
+    start:
+    fmt.Println(i)
+    i++
+    if i < 5 {
+        goto start
+    }
+}
+```
 
-Also, we can have multiple packages in a single directory.
+## Scope rules
 
-### Expoting and Importing
+- `Local variables` are scoped to the function in which they are declared. They are not visible outside the function.
+- `Package level variables` are scoped to the package in which they are declared. They are visible to all the functions in the package.
+- `Exported variables` are scoped to the package in which they are declared. They are visible to all the functions in the package and other packages that import the package.
 
-- We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
+## Package level variables
+
+- We can declare variables at the package level. They are called package level variables.
+
+NOTE: We can't use the short variable declaration operator `:=` to declare package level variables.
+
+```go
+var name string = "John" // It will be available to all the functions in the package
+
+func main() {
+    fmt.Println(name)
+}
+```
+
+## Expoting and Importing
+
+We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
 
 ```go
 func Add(x, y int) int {
@@ -980,24 +783,15 @@ func Add(x, y int) int {
 var Name string = "John"
 ```
 
-### goto
+## Code Organization
 
-- `goto` is a statement that allows us to jump to a labeled statement in the same function. It is similar to the `goto` statement in other languages.
+We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
 
-```go
-func main() {
-    i := 0
-loop:
-    fmt.Println(i)
-    i++
-    if i < 5 {
-        goto loop
-    }
-}
-```
+Also, we can have multiple packages in a single directory.
 
-### What's next?
+
+
+## What's next?
 
 - [Learning Resources](./learning-resources.md) - Learn more about Golang with these resources.
 - [Other Resources](./other-resources.md) - A list of resources to learn more about Golang.
-- 

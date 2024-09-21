@@ -1,7 +1,6 @@
 {
   "name": "devops",
-  "version": "2.3.0",
-  "private": true,
+  "version": "2.3.3",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
