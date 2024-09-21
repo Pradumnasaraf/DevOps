@@ -916,77 +916,61 @@ kubectl config use-context <context-name>
 To make cluster switching easier we can use a tool called `kubectx` and `kubens`.
 
 
-## Secret Management
+## Secret Management 
 
+There are many ways to manage secrets in Kubernetes. Some of the ways are
 
+- **Secrets**: It is used to store sensitive information in the cluster. It is used to store sensitive information in the cluster. It is used to store sensitive information in the cluster. (NOT RECOMMENDED, DON'T GO WITH THE NAME)
+- **External Secrets**: It is used to store secrets in an external secret manager like AWS Secrets Manager, GCP Secret Manager, etc.
+- **Sealed Secrets**: It is used to store encrypted secrets in the cluster. It is used to store encrypted secrets in the cluster. It is used to store encrypted secrets in the cluster.
+- **Vault**: It is used to store secrets in an external secret manager like HashiCorp Vault. Some 
 
-## Troubleshoting
+## Troubleshooting
 
-A great [blog](https://learnk8s.io/troubleshooting-deployments) on troubleshooting deployments.
+There are many ways to troubleshoot the Kubernetes cluster. Here a flow chart to understand the approach and options while troubleshooting the Kubernetes cluster Deployment issues.
 
+![Troubleshooting](../../static/doc/k8s-troubleshooting.jpg)
 
+## Kustomize
 
+Kustomize is a tool to customize Kubernetes configurations. It is used to customize, share, and manage Kubernetes configurations. It is used to manage Kubernetes configurations in a declarative way. It can help us achieve different configurations for different environments.
 
+Check out [Kustomize Page](./tools/kustomize/introduction.md) for more details.
 
+## Cluster Upgrade Process
 
+The process of upgrading a Kubernetes cluster is a complex process. It involves upgrading the control plane components, upgrading the worker nodes, and upgrading the add-ons. We can use tools like `kubent` to check the compatibility of the Kubernetes version with the add-ons.
 
+One of the Process to upgrade the cluster is:
 
+For eg your Node Group is running on 1.21.0 and you want to upgrade it to 1.22.0. First we will create another Node Group with 1.22.0 and then we shift load and traffic to the new Node Group. Once the new Node Group is stable, we can delete the old Node Group. 
 
+## Continuos Integration
 
+CI/CD is a practice that enables the automation of the software delivery process. It is used to automate the the process like:
 
-## Networking
+- Linting, testing, validating the code
+- Build the container image
+- Push the container image to the registry
 
-Container communication - The container inside a pod communicate via localhost shares the same networking namespace. To test it out, `Curl` the other container by exec into the 1st container.
+Some of the popular CI/CD tools are Jenkins, GitLab CI, GitHub Actions, etc.
 
-Steps
+## Continuos Deployment
 
-1) Create a deployment with the config file below 
- 
-```YAML
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-  labels:
-    app: myapp
-spec:
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: nginx
-        image: nginx
-        ports:
-        - containerPort: 80
-      - name: sidecar
-        image: curlimages/curl
-        command: ["bin/sh"]
-        args: ["-c", "echo Hello from the sidecar container! && sleep 3600"]
-```
+CD is a practice that enables the automation of the software delivery process. I more like how we can bring those changes to the Kubernetes cluster.
+It is used to automate the process like:
 
-2) Get inside the `sidecar` container in the pod myapp and access the terminal by:
+- Update Kubernetes resources
+- Apply Updated manifests to the cluster
+- Validate deployment worked as expected
 
-```bash
-kubectl exec -it <pod-name> -c sidecar -- /bin/sh
-```
-
-3) Curl the localhost with the respective port of other container.
-
-```bash
-curl localhost:80
-```
 ## Updating Strategy
 
-Updating means changing the image of the pod.
+There are various strategies to update the pods in the Kubernetes cluster. Some of the strategies are:
 
 ### Rolling Update
 
-The pods are updated one by one, so the service is not down. But the new pods are created with the new image and then the old pods are deleted.
+The pods are updated one by one. The new pod is created and the old pod is deleted. So the service is always up. By default, it is 25% of the pods can be unavailable during the update.
 
 ```yaml
 apiVersion: apps/v1
@@ -1015,9 +999,9 @@ spec:
         - containerPort: 80
 ```
 
-### Strategy
+### Blue-Green Deployment
 
-The pods are deleted and then new pods are created. So the service is down for a while.
+In Blue-Green Deployment, we have two identical environments. One is the production environment and the other is the staging environment. The production environment is the live environment and the staging environment is the new environment. The traffic is routed to the staging environment and then the traffic is switched to the production environment.
 
 ```yaml
 apiVersion: apps/v1
@@ -1049,8 +1033,9 @@ spec:
 - [Learning Resources](./learning-resources.md) - Learn more about Kubernetes with these resources.
 - [Other Resources](./other-resources.md) - Explore more about Kubernetes with these resources.
 - [Playground](./playground.md) - Play with Kubernetes in the browser.
-
-
+  
+<!--
 ## CustomResourceDefinition (CRD)
 ## LimitRange
 ## NetworkPolicy
+-->
