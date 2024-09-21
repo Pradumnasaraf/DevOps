@@ -1,0 +1,11 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-api-prefixes
+  namespace: demo-app
+spec:
+  stripPrefix:
+    forceSlash: false
+    prefixes:
+      - /api/node
+      - /api/golang

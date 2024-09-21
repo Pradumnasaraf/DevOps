@@ -1,0 +1,6 @@
+environment: staging
+
+configData:
+  - key: conditionalKey
+    value: "this wont be included"
+    enabled: false

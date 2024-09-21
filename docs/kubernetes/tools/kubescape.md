@@ -9,7 +9,6 @@ Kubescape is a tool that helps you scan your Kubernetes clusters for security mi
 - [Website](https://armosec.io/kubescape)
 - [Docs](https://hub.armosec.io/docs)
 - [GitHub](https://github.com/kubescape/kubescape)
-
  
 ### Usage
 

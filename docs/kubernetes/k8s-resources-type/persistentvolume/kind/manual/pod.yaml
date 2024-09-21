@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: manual-pod
+spec:
+  containers:
+    - name: nginx 
+      image: nginx:1.26.0
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - name: storage
+          mountPath: "/usr/share/nginx/html"
+  volumes:
+    - name: storage
+      persistentVolumeClaim:
+        claimName: manual-pvc
+

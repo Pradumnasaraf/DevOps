@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: echo-date-better
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      parallelism: 1
+      completions: 1
+      activeDeadlineSeconds: 100
+      backoffLimit: 1
+      template:
+        metadata:
+          labels:
+            app: echo-date
+        spec:
+          containers:
+            - name: echo
+              image: cgr.dev/chainguard/busybox:latest
+              command: [date]
+              resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "64Mi"
+                  cpu: "250m"
+              securityContext:
+                allowPrivilegeEscalation: false
+                privileged: false
+                runAsUser: 1001
+                runAsGroup: 1001
+                runAsNonRoot: true
+          restartPolicy: Never
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault
