@@ -1027,7 +1027,7 @@ spec:
         - containerPort: 80
 ```
 
-### What's next?
+## What's next?
 
 - [Commands](./commands.md) - Learn about the commands that you can use with Kubernetes.
 - [Learning Resources](./learning-resources.md) - Learn more about Kubernetes with these resources.
