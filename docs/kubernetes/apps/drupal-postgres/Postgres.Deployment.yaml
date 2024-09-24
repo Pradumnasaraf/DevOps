@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres-deployment
+  namespace: drupal
 spec:
   selector:
     matchLabels:
@@ -13,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:15.1
+        image: postgres:16
         ports:
         - containerPort: 5432
         env:
@@ -30,8 +31,8 @@ spec:
         volumeMounts:
         - name: postgres-persistent-storage
           mountPath: /var/lib/postgresql/data
+
       volumes:
       - name: postgres-persistent-storage
         persistentVolumeClaim:
           claimName: postgres-pvc
-          

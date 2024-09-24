@@ -414,6 +414,30 @@ spec:
       targetPort: 443
 ```
 
+### Headless Service
+
+A headless service is a service with a cluster IP of None. It is used to disable the load balancing for the service. It is used to get the DNS records for the pods. It is used to get the DNS records for the pods. It is used to get the DNS records for the pods.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-headless
+spec:
+  clusterIP: None
+  selector:
+    baz: pod-label
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
+### ExternalName Service
+
+An ExternalName service is a service that maps a service to a DNS name. It is used to map a service to a DNS name. It is used to map a service to a DNS name. It is used to map a service to a DNS name.
+
+
 ## Jobs
 
 A Job creates one or more pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the pods it created.
@@ -964,54 +988,199 @@ It is used to automate the process like:
 - Apply Updated manifests to the cluster
 - Validate deployment worked as expected
 
-## Updating Strategy
+## Deployment Update Strategies
 
-There are various strategies to update the pods in the Kubernetes cluster. Some of the strategies are:
+Update strategies are used to update the pods in a deployment. They can be responsible for how the pods are updated and their availability during the update. Also, different strategies have different affect on the availability of the service and downtime.
+
+Some of the common update strategies are:
+
+- **Recreate**: It deletes all the pods and then creates new pods. It is the fastest way to update the pods. But it has downtime. In this strategy, all the pods are deleted and then new pods are created. So there is downtime during the update.
+- **Rolling Update**: It updates the pods one by one and ensures that the service is always up. It is the default strategy. The new pod is created and the old pod is deleted. So the service is always up.
+- **Blue-Green Deployment**: In Blue-Green Deployment, we have two identical environments. One is the production environment and the other is the staging environment. The traffic is routed to the staging environment and then the traffic is switched to the production environment.
+- **Canary Deployment**: In Canary Deployment, a small number of users are redirected to the new version of the application. It is used to test the new version of the application before rolling it out to all users.
 
 ### Rolling Update
 
-The pods are updated one by one. The new pod is created and the old pod is deleted. So the service is always up. By default, it is 25% of the pods can be unavailable during the update.
+In Rolling Update, it updates the pods one by one and ensures that the service is always up. It is the default strategy. The new pod is created and the old pod is deleted. So the service is always up.
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  namespace: deployment-strategies
+  name: rollingupdate-deployment
 spec:
-  replicas: 5
   strategy:
-    type: RollingUpdate
+    type: RollingUpdate # This is the default
     rollingUpdate:
-      maxSurge: 1 # 1 pod can be created above the desired number of pods. By default it is 25%
-      maxUnavailable: 1 # 1 pod can be unavailable during the update. By default it is 25%
+      maxUnavailable: 25% # Maximum number of pods that can be unavailable during the update
+      # maxUnavailable: 1 # We can also provide a fix number of pods instead of percentage
+      maxSurge: 25% # Maximum number of pods that can be created above the desired number of pods
+      # maxSurge: 1 # We can also provide a fix number of pods instead of percentage
+  replicas: 10
   selector:
     matchLabels:
-      app: nginx-app
+      app: rollingupdate-app
   template:
     metadata:
       labels:
-        app: nginx-app
+        app: rollingupdate-app
     spec:
       containers:
-      - name: myapp
-        image: nginx:1.23.2
-        ports:
-        - containerPort: 80
+        - name: nginx-app
+          # image: pradumnasaraf/nginx:green
+          image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
+```
+
+`kubectl` also rollout command to manage the deployment. We can use the below command to check the rollout status. We can check history, pause, resume, undo, etc. It's valid on the resources like Deployment, StatefulSet, DaemonSet, etc.
+
+For example, to check the rollout status of the deployment, we can use the below command.
+
+```bash
+kubectl rollout status deployment <deployment-name>
+```
+
+### Recreate
+
+In Recreate, it deletes all the pods and then creates new pods. It is the fastest way to update the pods. But it has downtime. In this strategy, all the pods are deleted and then new pods are created. So there is downtime during the update. It is used mostly in the development environment. Sometime become necessary due to limited resources.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deployment-strategies
+  name: rollingupdate-deployment
+spec:
+  strategy:
+    type: Recreate
+  replicas: 10
+  selector:
+    matchLabels:
+      app: rollingupdate-app
+  template:
+    metadata:
+      labels:
+        app: rollingupdate-app
+    spec:
+      containers:
+        - name: nginx-app
+          image: pradumnasaraf/nginx:green
+          # image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
+---
+
 ```
 
 ### Blue-Green Deployment
 
-In Blue-Green Deployment, we have two identical environments. One is the production environment and the other is the staging environment. The production environment is the live environment and the staging environment is the new environment. The traffic is routed to the staging environment and then the traffic is switched to the production environment.
+In Blue-Green Deployment, we have two identical environments. One is the production environment and the other is the staging environment. The traffic is routed to the staging environment and then the traffic is switched to the production environment.
+
+Below is an example of Blue-Green Deployment. We have two deployments, one is the blue deployment and the other is the green deployment. The traffic is routed to the blue deployment. Once the green deployment is ready, the traffic is switched to the green deployment. Because both labels needs to satisfy the service selector, we can switch the traffic by changing the label of the service.
+
+```yaml
+# Blue Deployment (Blue.Deployment.yaml)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deployment-strategies
+  name: blue-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx-app
+      replica: blue
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+        replica: blue
+    spec:
+      containers:
+        - name: nginx-app
+          image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
+---
+# Green Deployment (Green.Deployment.yaml)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deployment-strategies
+  name: green-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx-app
+      replica: green
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+        replica: green
+    spec:
+      containers:
+        - name: nginx-app
+          image: pradumnasaraf/nginx:green
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
+---
+# Service (Service.yaml)
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: deployment-strategies
+  name: nginx-service
+spec:
+  selector:
+    app: nginx-app
+    replica: blue # We can switch traffic to green by changing the label to green
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+```
+
+### Canary Deployment
+
+In Canary Deployment, a small number of users are redirected to the new version of the application. It is used to test the new version of the application before rolling it out to all users.
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  namespace: deployment-strategies
+  name: canary-deployment
 spec:
-  replicas: 5
-  strategy:
-    type: Recreate # It will delete all the pods and then create new ones
+  replicas: 4
   selector:
     matchLabels:
       app: nginx-app
@@ -1021,10 +1190,45 @@ spec:
         app: nginx-app
     spec:
       containers:
-      - name: myapp
-        image: nginx:1.23.3
-        ports:
-        - containerPort: 80
+        - name: nginx-app
+          image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
+---
+apiVersion: service/v1
+kind: Service
+metadata:
+  namespace: deployment-strategies
+  name: nginx-service
+spec:
+  selector:
+    app: nginx-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+```
+
+## Pod Communication
+
+Inside a Kubernetes cluster, pods can communicate with each other using the service and DNS. The service is used to expose the pods to the other pods. The DNS is used to resolve the service names to the IP addresses.
+
+For communicating with a Pod in the same Namespace, we can use the below command. It can be reached at
+
+```
+<service-name>.svc.cluster.local
+```
+
+For communicating with a Pod in the different Namespace, we can use the below command. It can be reached at
+
+```
+<service-name>.<namespace>.svc.cluster.local
 ```
 
 ## What's next?

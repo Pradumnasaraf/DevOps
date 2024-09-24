@@ -2,10 +2,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
+  namespace: drupal
 spec:
   resources:
     requests:
-      storage: 1Gi
+      storage: 250Mi
   storageClassName: manual
   volumeMode: Filesystem
   accessModes:

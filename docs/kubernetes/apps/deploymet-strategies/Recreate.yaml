@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deployment-strategies
+  name: rollingupdate-deployment
+spec:
+  strategy:
+    type: Recreate
+  replicas: 10
+  selector:
+    matchLabels:
+      app: rollingupdate-app
+  template:
+    metadata:
+      labels:
+        app: rollingupdate-app
+    spec:
+      containers:
+        - name: nginx-app
+          image: pradumnasaraf/nginx:green
+          # image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
