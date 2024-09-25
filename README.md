@@ -21,7 +21,7 @@
 - [Notes](docs/kubernetes/introduction.md)
 - [Learning Resources](docs/kubernetes/learning-resources.md)
 - [Commands](docs/kubernetes/commands.md)
-- [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/kubernetes/manifests)
+- [Sample Apps](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/kubernetes/apps)
 
 <br>
 
