@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-deployment
+  name: mongodb-deployment
+  namespace: mongo-express
   labels:
     app: mongodb
 spec:
@@ -16,17 +17,24 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo
+          image: mongo:8.0
           ports:
             - containerPort: 27017
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-secrets
-                  key: mongo-root-username  
+                  name: mongodb-secret
+                  key: mongo-root-username
             - name: MONGO_INITDB_ROOT_PASSWORD
-              valueFrom: 
+              valueFrom:
                 secretKeyRef:
-                  name: mongodb-secrets
+                  name: mongodb-secret
                   key: mongo-root-password
+          resources:
+            limits:
+              memory: "250Mi"
+              cpu: "250m"
+            requests:
+              memory: "250Mi"
+              cpu: "250m"
