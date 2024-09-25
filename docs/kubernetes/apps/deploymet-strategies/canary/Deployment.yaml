@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deployment-strategies
+  name: my-nginx-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+        - name: nginx-app
+          image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5

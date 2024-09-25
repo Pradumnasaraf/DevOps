@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal-deployment
+  namespace: drupal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: drupal-app
+  template:
+    metadata:
+      labels:
+        app: drupal-app
+    spec:
+      containers:
+      - name: drupal
+        image: drupal:11
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "250m"
+          requests:
+            memory: "250Mi"
+            cpu: "250m"

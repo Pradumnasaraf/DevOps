@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deployment-strategies
+  name: rollingupdate-deployment
+spec:
+  strategy:
+    type: RollingUpdate # This is the default
+    rollingUpdate:
+      maxUnavailable: 25% # Maximum number of pods that can be unavailable during the update
+      # maxUnavailable: 1 # We can also provide a fix number of pods instead of percentage
+      maxSurge: 25% # Maximum number of pods that can be created above the desired number of pods
+      # maxSurge: 1 # We can also provide a fix number of pods instead of percentage
+  replicas: 10
+  selector:
+    matchLabels:
+      app: rollingupdate-app
+  template:
+    metadata:
+      labels:
+        app: rollingupdate-app
+    spec:
+      containers:
+        - name: nginx-app
+          # image: pradumnasaraf/nginx:green
+          image: pradumnasaraf/nginx:blue
+          ports:
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5

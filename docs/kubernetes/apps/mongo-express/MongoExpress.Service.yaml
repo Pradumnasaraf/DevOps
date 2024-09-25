@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-express-service
+  namespace: mongo-express
+spec:
+  selector:
+    app: mongodb-express
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
