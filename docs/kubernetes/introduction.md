@@ -525,7 +525,9 @@ StatefulSet is a controller that manages the deployment and scaling of a set of 
 
 `serviceName` is used to create a headless service. We need to create a headless service while creating a StatefulSet. The purpose of the headless service is that it allows a client to connect to whichever pod it prefers. 
 
-Another great thing about the StatefulSet is that pod naming is predictable. The pod name is in the format `<statefulset-name>-<ordinal>`. The ordinal is a unique number assigned to each pod. For example, if we have a StatefulSet with 3 replicas, the pod names will be `nginx-with-init-containers-0`, `nginx-with-init-containers-1`, `nginx-with-init-containers-2`, it's not like random hashes in the deployment.
+Another great thing about the StatefulSet is that pod naming is predictable. The pod name is in the format `<statefulset-name>-<ordinal>`. The ordinal is a unique number assigned to each pod. So, fo below example, the pod names will be `nginx-statefulset-0`, `nginx-statefulset-1`, `nginx-statefulset-2`.
+
+Also, similar kind of naming convention is follow by PVCs. The PVC name is in the format `<volume-claim-template-name>-<statefulset-name>-<ordinal>`. So, for below example, the PVC names will be `data-nginx-statefulset-0`, `data-nginx-statefulset-1`, `data-nginx-statefulset-2`.
 
 The way the below config is working that the init container will run before the main container. The init container will populate the default HTML file in the volume and then the main container will use that volume to serve the HTML file.
 
@@ -533,8 +535,9 @@ The way the below config is working that the init container will run before the 
 apiVersion: apps/v1
 kind: StatefulSet
 metadata: 
+  name: nginx-statefulset
 spec:
-  serviceName: nginx # Headless service
+  serviceName: nginxs # Headless service
   replicas: 3
   selector:
     matchLabels:
@@ -578,7 +581,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: nginxs
 spec:
   clusterIP: None # Headless service
   selector:
