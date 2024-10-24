@@ -81,7 +81,7 @@
 - [Notes](docs/go/introduction.md)
 - [Learning Resources](docs/go/learning-resources.md)
 - [Concepts](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/golang/concepts)
-- [Practice App](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/golang/app)
+- [Practice App](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/golang/apps)
 
 <br>
 
