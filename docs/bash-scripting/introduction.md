@@ -68,8 +68,6 @@ echo "First Argument: $1"
 We can do Arithmetic operations in bash. We use the `(( ))` to do Arithmetic operations.
 
 ```bash
-
-```bash
 #!/bin/bash
 
 echo $(( 5 + 5 ))
