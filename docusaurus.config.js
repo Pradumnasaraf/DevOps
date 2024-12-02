@@ -13,13 +13,24 @@ const config = {
   favicon: 'img/favicon.ico',
   url: 'https://devops.pradumnasaraf.dev',
   baseUrl: '/',
-  organizationName: 'Pradumnasaraf', 
+  organizationName: 'Pradumnasaraf',
   projectName: 'DevOps',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en','ru'],
+    localeConfigs: {
+      en: {
+        htmlLang: 'en-GB',
+      },
+      ru: {
+        htmlLang: 'ru-RU',
+      },
+      es: {
+        htmlLang: 'es-ES',
+      },
+    },
   },
 
   presets: [
@@ -68,7 +79,7 @@ const config = {
             href: 'https://github.com/Pradumnasaraf/DevOps',
             label: 'GitHub',
             position: 'right',
-          }, 
+          },
           {
             href: 'https://twitter.com/pradumna_Saraf',
             label: 'Twitter',
