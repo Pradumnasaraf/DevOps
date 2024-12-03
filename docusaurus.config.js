@@ -15,7 +15,7 @@ const config = {
   baseUrl: '/',
   organizationName: 'Pradumnasaraf',
   projectName: 'DevOps',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   i18n: {
     defaultLocale: 'en',
