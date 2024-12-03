@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ngix-pod
+  namespace: my-namespace
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.26.0

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-with-init-containers
+spec:
+  serviceName: nginxs # Headless service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app 
+    spec:
+      initContainers:
+        - name: populate-default-html
+          image: nginx:1.26.0
+          command:
+            - bash
+            - "-c"
+            - |
+              set -ex
+              [[ $HOSTNAME =~ -([0-9]+)$ ]] || exit 1
+              ordinal=${BASH_REMATCH[1]}
+              echo "<h1>Hello from pod $ordinal</h1>" >  /usr/share/nginx/html/index.html
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/nginx/html
+      containers:
+        - name: nginx
+          image: nginx:1.26.0
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/nginx/html
+
+  volumeClaimTemplates: # PersistentVolumeClaim templates for each replica
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "standard"
+        resources:
+          requests:
+            storage: 100Mi

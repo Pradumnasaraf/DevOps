@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Helm Introduction
+title: Введение в Helm
 ---
 
 Helm — это менеджер пакетов и шаблонизатор для Kubernetes. Он позволяет вам определять, устанавливать и обновлять даже самые сложные приложения Kubernetes. Он подобен apt, yum или homebrew, но предназначен специально для Kubernetes. Основное предназначение — это развертывание приложений и управление средой.
@@ -9,7 +9,7 @@ Helm — это менеджер пакетов и шаблонизатор дл
 
 Новая архитектура Helm 3 очень проста. В ней остались только клиентские компоненты. Серверные компоненты, такие как Tiller, были удалены в Helm 3. Теперь Helm 3 представляет собой клиентское приложение, которое взаимодействует с сервером API Kubernetes. Это упрощение делает использование Helm более безопасным и удобным, так как убирает необходимость в управлении дополнительными серверными компонентами.
 
-### Using a Helm Chart
+### Использование Helm Chart
 
 Чарт Helm — это набор файлов, который описывает связанный набор ресурсов Kubernetes. Один чарт может быть использован для развертывания чего-то простого, как, например, pod с memcached, или чего-то сложного, например, полного стека веб-приложения с HTTP-серверами, базами данных, кешами и так далее.
 
@@ -100,7 +100,9 @@ helm get manifest postgresql
 helm uninstall postgresql
 ```
 
-### Creating our own Helm Chart
+### Создание собственного Helm Chart
+
+ting our own Helm Chart
 
 - We can create our own helm chart using the following command. It will generate a dir with all the boilerplate code.
 
@@ -124,9 +126,9 @@ helm install mychart ./mychart --values values.yaml
 
 Helm hooks — это способ взаимодействия с жизненным циклом релиза. Они позволяют вам вмешиваться в определенные моменты жизненного цикла релиза. Helm поддерживает следующие hooks:
 
-- `pre-install` - Runs before any templates are rendered.
-- `post-install` - Runs after all templates have been rendered and resources have been created.
+- `pre-install` - Запускается перед тем, как будут отрендерены какие-либо шаблоны.
+- `post-install` - Запускается после того, как все шаблоны были отрендерены и ресурсы созданы.
 
-### What's next?
+### Что дальше?
 
-[Learning Resources](./learning-resources.md) - Learn more about Helm with these resources.
+[Learning Resources](./learning-resources.md) - Узнайте больше о Helm с помощью этих ресурсов.

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Learning Resources
+title: Учебные ресурсы
 ---
 
 - [Helm Docs](https://helm.sh/)
