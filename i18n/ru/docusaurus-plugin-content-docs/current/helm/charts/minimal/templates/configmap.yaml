@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: helm-{{ .Release.Name }}-configmap
+data:
+  appVersion: {{ .Chart.AppVersion }}
+  environment: {{ .Values.environment | quote }}
+  envShort: {{ template "envShort" . }} 
+  {{- range .Values.configData }}
+  {{- if .enabled }}
+  {{ .key }}: {{ .value | quote }}
+  {{- end }}
+  {{- end }}
