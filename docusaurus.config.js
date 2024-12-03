@@ -31,18 +31,7 @@ const config = {
         htmlLang: 'es-ES',
       },
     },
-    themeConfig: {
-       navbar: {
-         items: [
-           // ...
-           {
-             type: 'localeDropdown',
-             position: 'left',
-           },
-           // ...
-         ],
-       },
-     },
+
 
 
   },
@@ -89,6 +78,10 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
+          {
+          type: 'localeDropdown',
+          position: 'left',
+          },
           {
             href: 'https://github.com/Pradumnasaraf/DevOps',
             label: 'GitHub',
