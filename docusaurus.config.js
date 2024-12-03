@@ -18,7 +18,7 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'ru',
     locales: ['en','ru'],
     localeConfigs: {
       en: {
@@ -31,6 +31,20 @@ const config = {
         htmlLang: 'es-ES',
       },
     },
+    themeConfig: {
+       navbar: {
+         items: [
+           // ...
+           {
+             type: 'localeDropdown',
+             position: 'left',
+           },
+           // ...
+         ],
+       },
+     },
+
+
   },
 
   presets: [
