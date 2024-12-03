@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: client-react-nginx
+  namespace: demo-app
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`d11ae95f-7695-4635-9637-13829bf55c83.lb.civo.com`)
+      services:
+        - kind: Service
+          name: client-react-nginx
+          port: 8080
+          scheme: http

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-minimal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-minimal # Matching the labels of the pod
+  template:
+    metadata:
+      labels:
+        app: nginx-minimal # Applying the labels to the pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.26.0
+        ports:
+        - containerPort: 80

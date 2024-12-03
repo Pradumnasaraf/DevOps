@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-better
+  # namespace: nginx-better-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-better
+  template:
+    metadata:
+      labels:
+        app: nginx-better
+    spec:
+      containers:
+      - name: nginx
+        image: cgr.dev/chainguard/nginx:latest
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        readinessProbe: 
+          httpGet:
+            path: /
+            port: 8080
+        resources:
+          requests:
+            memory: "50Mi" # 50 M
+            cpu: "250m" # 250 milliCPU
+          limits:
+            memory: "50Mi"
+            cpu: "250m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsUser: 1000
+        runAsGroup: 1001
+        runAsNonRoot: true

@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-no-perms
+spec:
+  template:
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - name: kubectl
+        image: cgr.dev/chainguard/kubectl
+        args: ["get", "pods", "-A"]
+      serviceAccountName: cluster-pod-reader
+      restartPolicy: Never
+  backoffLimit: 1

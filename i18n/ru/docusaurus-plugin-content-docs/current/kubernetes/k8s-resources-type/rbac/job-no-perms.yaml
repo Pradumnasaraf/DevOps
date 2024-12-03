@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-no-perms
+spec:
+  template:
+    spec:
+      containers:
+      - name: kubectl
+        image: cgr.dev/chainguard/kubectl
+        args: ["get", "pods", "-A"]
+      restartPolicy: Never
+  backoffLimit: 1

@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: echo-date-better
+spec:
+  parallelism: 2 # This is the number of pods that will run in parallel
+  completions: 2 # This is the number of pods that need to complete successfully
+  activeDeadlineSeconds: 100 # This is the maximum time the job can run
+  backoffLimit: 1
+  template:
+    metadata:
+      labels:
+        app: echo-date
+    spec:
+      containers:
+        - name: echo
+          image: cgr.dev/chainguard/busybox:latest
+          command: [date]
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsUser: 1001
+            runAsGroup: 1001
+            runAsNonRoot: true
+      restartPolicy: Never
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault

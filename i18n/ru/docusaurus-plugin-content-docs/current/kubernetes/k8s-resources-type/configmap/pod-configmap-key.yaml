@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-example-key
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.26.0
+      envFrom:
+        - configMapRef:
+            name: property-like-keys

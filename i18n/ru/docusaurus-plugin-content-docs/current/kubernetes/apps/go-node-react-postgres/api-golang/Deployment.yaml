@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-golang
+  namespace: demo-app
+  labels:
+    app: api-golang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-golang
+  template:
+    metadata:
+      labels:
+        app: api-golang
+    spec:
+      containers:
+        - name: api-golang
+          image: sidpalas/devops-directive-docker-course-api-golang:foobarbaz
+          env:
+            - name: PORT
+              value: "8000"
+          envFrom:
+            - secretRef:
+                name: api-golang-database-url
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 8000
+          resources:
+            limits:
+              memory: "100Mi"
+            requests:
+              memory: "100Mi"
+              cpu: "50m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
