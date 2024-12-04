@@ -11,7 +11,7 @@ title: Команды Docker
 docker version
 ```
 
-- Просмотр все доступны образов docker
+- Просмотр все доступны образов docker 1
 
 ```bash
 docker images
