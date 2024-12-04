@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Docker Introduction
 ---
 
-### Overview of Docker
+### Обхор Docker
 
 Docker is an open-source platform designed to simplify the development, deployment, and management of applications in a containerized environment, also known as Docker containers. Docker containers are a lightweight and portable way to package and run applications, enabling developers to package their applications with all the required dependencies and configurations in a single package that can be easily moved between any environment. Docker containers are simply the running instance of a Docker image.
 
@@ -35,7 +35,7 @@ Docker is an open-source platform designed to simplify the development, deployme
 - `ENV` (environment variable)
 - `RUN` (any arbitrary shell command)
 - `EXPOSE` (open port from container to virtual network)
-- `CMD` (command to run when the container starts) 
+- `CMD` (command to run when the container starts)
 - `WORKDIR` (create a directory where all the files will be copied and used)
 
 ### Docker Build Architecture
@@ -119,7 +119,7 @@ In Compose, we don't have to give the `pwd`:
 ```yaml
 volumes:
   - ./:/usr/share/nginx/html:ro
-  - ./app:/usr/share/nginx/html/app:ro 
+  - ./app:/usr/share/nginx/html/app:ro
 ```
 
 ### Docker Compose
@@ -153,12 +153,12 @@ services:
     image: mongo:4.0
     volumes:
       - mongo-db:/data/db
-    networks: 
+    networks:
       - my-net
-      
+
 volumes:
   mongo-db: # named volume
-  
+
 networks:
   my-net:
     driver: bridge
@@ -230,7 +230,7 @@ services:
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/post-pass
       POSTGRES_USER_FILE: /run/secrets/post-user
-      
+
 secrets:
   post-pass:
     external: true
@@ -255,7 +255,7 @@ Some popular registries are:
 - GitHub Container Registry (ghcr.io)
 - Google Container Registry (gcr.io)
 - Amazon Elastic Container Registry (ECR)
-- Azure Container Registry (ACR) 
+- Azure Container Registry (ACR)
 
 ### Private Docker Registry
 
