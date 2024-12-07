@@ -14,7 +14,7 @@ docker version
 - To check all the available images
 
 ```bash
-docker images
+docker images test
 ```
 
 - Pull/Download the image from the Docker registry to local machine.
@@ -27,7 +27,7 @@ docker pull <image name>
 - To run an container (It will 1st pull the image if not present in the local sytem)
   - NOTE: When we just provide the name of the image it will pull the latest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
   - Additioanly we can use flags
-  
+
      - `--name <name> `- To give a name to the container.
      - `-p <Host port:container port>`- To forward the port.
      - `-d` - To run in detached mode
@@ -52,7 +52,7 @@ Eg: --env-file ./.env
 
 ```bash
 docker stop <container-ID/name>
-``` 
+```
 
 - To resume a stopped container
 
@@ -123,7 +123,7 @@ docker container prune -f
 ```bash
 docker rm -f $(docker ps -aq)
 ```
-- Delete all the images 
+- Delete all the images
 ```bash
 docker rmi -f $(docker images -q)
 ```
@@ -153,7 +153,7 @@ docker network ls
 docker network inspect <network-name>
 ```
 
-- Run a container on a certian network/own careted network 
+- Run a container on a certian network/own careted network
 
 ```
 docker run --network <network-name> <image-name>
@@ -185,7 +185,7 @@ docker inspect  <image-name/id>
 
 - Check the image layers formation
 
-```bash 
+```bash
 docker history <image-name/id>
 ```
 
@@ -201,7 +201,7 @@ docker image tag ubuntu:18.04 pradumna/ubuntu:example
 
 - Create bind mount
   - Help to sync our local files with help of Docker container.
-  
+
 
 - To sync our local machine changes with help of Docker volume (Bind mount)
     - `- v` is use to define volume, also we give another `-v` flag to override the changes so that it will not chnage in container.
@@ -216,7 +216,7 @@ docker run -v <path-to-folder-on-local-machine>:<path-to-folder-on-container> -v
 ```
 To make it read only so that when you add some files inside it, the container will not get created on your local machine use `-v port:port:ro`
 
-- docker  volume command for mounting the docker socket to the docker container for accessing the host's docker daemon for performing the continuous integration in jenkins while using docker as a agent.. 
+- docker  volume command for mounting the docker socket to the docker container for accessing the host's docker daemon for performing the continuous integration in jenkins while using docker as a agent..
 ```bash
 docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker-image:version bin/bash
 ```
@@ -282,7 +282,7 @@ docker network create -d overlay backend
 docker service create -p 8080:80 --name vote --replicas 2 nginx
 ```
 
-- To get all task containers running on different node 
+- To get all task containers running on different node
 
 ```bash
 docker service ps <service-name/id>
@@ -344,7 +344,7 @@ docker stack services <stack name>
 - To check taks are running inside a stack
 
 ```
-docker stack ps <stack name> 
+docker stack ps <stack name>
 ```
 
 > Registry
