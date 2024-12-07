@@ -24,7 +24,7 @@ docker pull <image name>
 //Eg: docker pull nginx
 ```
 
-- To run an container (It will 1st pull the image if not present in the local sytem)
+- To run an container erere(It will 1st pull the image if not present in the local sytem)
   - NOTE: When we just provide the name of the image it will pull the latest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
   - Additioanly we can use flags
 
