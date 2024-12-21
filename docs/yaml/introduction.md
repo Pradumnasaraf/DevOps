@@ -10,7 +10,7 @@ YAML is a human-readable data serialization language. It is commonly used for co
 Eg:
 
 ```yaml
-name: Pradumana
+name: Pradumna
 age: 21
 address: 
   city: Bangalore
