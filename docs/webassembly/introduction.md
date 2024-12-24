@@ -46,7 +46,7 @@ For better perspective how they work together. Take an example of image processi
 
 ### Binary format
 
-Unlike human readable text, the binary format is designed for machines, ensuring that it can be quickly decoded and executed. FOr example, the following code in C:
+Unlike human readable text, the binary format is designed for machines, ensuring that it can be quickly decoded and executed. For example, the following code in C:
 
 ```c
 int add(int a, int b) {
@@ -64,23 +64,25 @@ When compiled to WebAssembly, might looks like this:
 
 ### Stack-based virtual machine
 
-WebAssembly is a stack-based virtual machine. It means that it uses a stack to store and retrieve data. The stack is a data structure that follows the Last In First Out (LIFO) principle
+WebAssembly is a stack-based virtual machine. It means that it uses a stack to store and retrieve data. The stack is a data structure that follows the Last In First Out (LIFO) principle.
 
-![Stack-based virtual machine](https://github.com/user-attachments/assets/b0e7f220-edeb-41d3-ae9f-f2dcaac00b01)
+![Stack-based virtual machine](https://github.com/user-attachments/assets/86a18a37-7352-4633-8968-f542e4ca6787)
 
 ### Linear memory
 
 WebAssembly has a linear memory model. It allows the WebAssembly module to allocate and access memory in a linear fashion. It's like a big array that can be accessed by the WebAssembly module. It starts from 0 and growing up. It can be accessed via two primary instructions: `load` and `store`. The `load` instruction reads data from memory, while the `store` instruction writes data to memory. 
 
-The instructions are suffixed with the data type and size. Example i32, i64, f32, f64. It describes the type of data and the size of the data in memory. So, in `i32` the `i` stands for integer and `32` stands for 32-bit or 4 bytes. As 8 bits make 1 byte, 32 bits make 4 bytes. Similarly, `f32` stands for floating point number with 32-bit or 4 bytes.
+The instructions are suffixed with the data type and size. Example `i32`, `i64`, `f32`, `f64`. It describes the type of data and the size of the data in memory. So, in `i32` the `i` stands for integer and `32` stands for 32-bit or 4 bytes. As 8 bits make 1 byte, 32 bits make 4 bytes. Similarly, `f32` stands for floating point number with 32-bit or 4 bytes.
 
-For example if we want to store number 7 in the 5th slot of the memory. We have to use `i32` type. To get the byte address of the 5th slot, we have to multiply the slot number by the size of the data type. So, 4 * 4 = 16. As slot starts from 0, instead of multiplying by 5, we have to multiply by 4.
+For example if we want to store number 7 in the 5th slot of the memory. We have to use `i32` type. To get the byte address of the 5th slot, we have to multiply the `slot number` * `size per slot`. So, 4 * 4 = 16. As slot starts from 0, instead of multiplying by 5, we have to multiply by 4. So, we store our number 7 in the 16th byte address. 
 
-![Screenshot 2024-12-20 at 4 21 07 PM](https://github.com/user-attachments/assets/a8838314-1871-4b6f-a413-063ef5394eda)
+![linear memory](https://github.com/user-attachments/assets/55cc953d-6d1a-4037-8515-1fc758d869e6)
 
 ### Modules
 
 Like other programming languages, WebAssembly code is organized into modules. A module is a collection of functions, types, tables, memories, and globals. Each module can import and export entities. It can also define its own entities. The module is the basic unit of code in WebAssembly.
+
+![module](https://github.com/user-attachments/assets/4c4a978b-c105-4cd1-b8e8-4ab6d07f9693)
 
 For example, the following code defines a simple module with a single function:
 
@@ -97,5 +99,27 @@ Here, the module defines a function called `add` that takes two 32-bit integers 
 
 ### Security
 
-WASM is designed to 
+WASM is designed to be secure as it run in a sandboxed environment. Which means it doesn't have direct access to the host system. It can't access the file system, network, or other resources. It can only interact with the host environment through the WebAssembly System Interface (WASI). WASI provides a set of APIs that allow WebAssembly modules to interact with the host environment in a secure and controlled manner. 
 
+If WebAssembly program tries to access a memory location that it hasn't been granted access to, the browser will halt the execution and throw an error. This ensures that WebAssembly programs can't access memory and safety of user's data and system.
+
+![security](https://github.com/user-attachments/assets/b8741862-2bcd-4c72-b8da-c3cf9651a3ab)
+
+### Interoperability With JavaScript
+
+They both can work hand-in-hand. We can call WebAssembly functions from JavaScript and vice versa. 
+
+For example we have complied a add function in WebAssembly. In JavaScript we can call it like this:
+
+```js
+const result = wasmModule.instance.exports.add(2, 3);
+console.log(result); // 5
+```
+
+![interoperability](https://github.com/user-attachments/assets/15b07717-3045-4f59-8818-76d108583926)
+
+### Text Format
+
+Whilst WebAssembly primary format is binary, it also has a human-readable text format. This text format is called WebAssembly Text Format (WAT). It's a simple, verbose and readable representation of the binary format. It's useful for debugging and understanding the structure of the WebAssembly module.
+
+![text format](https://github.com/user-attachments/assets/0e3c9e90-08da-4d72-9908-b0d75cc92d13)
