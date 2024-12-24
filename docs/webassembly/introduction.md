@@ -123,3 +123,88 @@ console.log(result); // 5
 Whilst WebAssembly primary format is binary, it also has a human-readable text format. This text format is called WebAssembly Text Format (WAT). It's a simple, verbose and readable representation of the binary format. It's useful for debugging and understanding the structure of the WebAssembly module.
 
 ![text format](https://github.com/user-attachments/assets/0e3c9e90-08da-4d72-9908-b0d75cc92d13)
+
+## WebAssembly Modules
+
+Like any other high level programming language, WebAssembly code is organized into modules. A module is a collection of functions, types, tables, memories, and globals. It's backbones of WebAssembly. 
+
+### Functions
+
+They are defined block of code that can be called from other parts of the program or even from the JavaScript code. Functions can take parameters and return values. They can be imported from other modules or exported to be used by other modules.
+
+For example this a function that takes two parameters and returns the sum of them:
+
+```wasm
+(module
+  (func $add (param $a i32) (param $b i32) (result i32)
+    get_local $a // fetch value
+    get_local $b
+    i32.add) // Addition
+)
+```
+
+Here:
+- `(func $add ...)` defines a function called `add`. We use `$` to define the name of the function.
+- `(param $a i32) (param $b i32)` defines two parameters of type `i32`. That is 32-bit integer.
+- `(result i32)` defines the return type of the function. Same with the parameters name, we use `$` to define the name of the result.
+- `get_local $a` and `get_local $b` are instructions that get the values of the parameters.
+- `i32.add` is an instruction that adds the two values together.
+- The function returns the result of the addition.
+
+In WASM stack0base model, the result of the last expression in the function body is implicitly returned. So, we don't need to use `return` keyword. 
+
+Talking about value stack it will change in this order: 
+
+empty (locals with be a, b) -> a (locals with be b) -> a, b (locals with be empty) -> (a + b) (locals with be empty)
+
+#### Essence of WebAssembly Modules
+
+It not juts about function and using the functionality in our code. It about how these functions and along with other components comes to form a complete executable module. It's more like a container that holds all the necessary components for a specific functionality. 
+
+For example for image processing module, it can have functions for applying filters, resizing images, etc. It can have memories to store the image data, tables to store the filter data, etc. It can have globals to store the image dimensions, etc.
+
+![module](https://github.com/user-attachments/assets/a8ea0ea4-c60d-4d5e-a05c-cbc5191b8eb5)
+
+### Beyond Functions
+
+Apart from functions modules can have other components like:
+
+**Global Variables**: They are variables that are accessible from anywhere in the module. They can be imported from other modules or defined within the module. They can be mutable or immutable. They can be used to store constants, configuration values, etc.
+
+**Memory**: It's a linear array of bytes that can be accessed by the WebAssembly module. It can be used to store data that needs to be shared between functions. It can be used to store images, audio, video, etc. It can be imported from other modules or defined within the module.
+
+**Tables**: They are arrays of elements that can be accessed by index. They can be used to store function pointers, objects, etc. They can be imported from other modules or defined within the module.
+
+**Types**: They are used to define the types of functions, tables, memories, and globals. They can be imported from other modules or defined within the module.
+
+
+![beyond functions](https://github.com/user-attachments/assets/4dec5e7a-de30-4c5f-b9fe-769d7c953747)
+
+
+### Importing and Exporting
+
+Modules can declare dependencies, pulling in necessary functions, memories, tables, and globals from other modules. This is done using the `import` keyword. For example if a module requires the current date from the JavaScript, it would import the function like:
+
+```wasm
+(module
+  (import "js" "getCurrentDate" (func $currentDate (result i32)))
+)
+```
+
+Conversely, to provide its functionality to outside world, a module can export specific component like functions, memories, tables, and globals using the `export` keyword. For example, to export a function that adds two numbers:
+
+```wasm
+(module
+  (func $fibonacci (param $n i32) (result i32) ...)
+  (export "fibonacci" (func $fibonacci))
+)
+```
+
+### Security Considerations
+
+Modules are designed to be secure. As they are encapsulated nature, they operate in a confined environment, preventing unintended access to the host system. 
+
+For eg: If a module has a function to access to Database it can't directly access the database. It has go though specific Web APIs, ensuring data integrity and security.
+
+![security considerations](https://github.com/user-attachments/assets/4a34f53d-77d5-41fc-92aa-fa8fcf42c290)
+
