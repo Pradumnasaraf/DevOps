@@ -124,7 +124,7 @@ Whilst WebAssembly primary format is binary, it also has a human-readable text f
 
 ![text format](https://github.com/user-attachments/assets/0e3c9e90-08da-4d72-9908-b0d75cc92d13)
 
-## WebAssembly Modules
+## Modules
 
 Like any other high level programming language, WebAssembly code is organized into modules. A module is a collection of functions, types, tables, memories, and globals. It's backbones of WebAssembly. 
 
@@ -177,9 +177,7 @@ Apart from functions modules can have other components like:
 
 **Types**: They are used to define the types of functions, tables, memories, and globals. They can be imported from other modules or defined within the module.
 
-
 ![beyond functions](https://github.com/user-attachments/assets/4dec5e7a-de30-4c5f-b9fe-769d7c953747)
-
 
 ### Importing and Exporting
 
@@ -208,3 +206,117 @@ For eg: If a module has a function to access to Database it can't directly acces
 
 ![security considerations](https://github.com/user-attachments/assets/4a34f53d-77d5-41fc-92aa-fa8fcf42c290)
 
+### Portability and Universality
+
+WebAssembly offers cross-platform compatibility. Modules are platform-agnostic can run on any device that supports WebAssembly. For example a physics simulation module once created can be run on PC's browser, a smartphone, or even a smart TV ensuring consistent user experience, behavior, and performance.
+
+![portability and universality](https://github.com/user-attachments/assets/186de57e-4541-4b8c-894d-3a2491d39e5a)
+
+## Instructions and Data Types
+
+### Why we need instructions and data types?
+
+It's more like as the verbs of a language, dictating what actions to perform. And data types are like nouns, specifying what kind of data to work with. Together they form the building blocks of WebAssembly.
+
+### Instructions
+
+Like we give instructions verbally, we give instructions in WebAssembly. For example, to add two numbers, we use the `i32.add` instruction. It's a binary instruction that tells the WebAssembly engine to add two 32-bit integers.
+
+As WebAssembly instructions are low-level the execution is fast.
+
+Instructions - References:
+
+- `.add`: Add two numbers
+- `.sub`: Subtract two numbers
+- `.mul`: Multiply two numbers
+- `.div`: Divide two numbers
+- `.eq`: Check if two numbers are equal
+- `.lt`: Check if one number is less than another
+- `.gt`: Check if one number is greater than another
+- `.block`: Define a block of code
+- `.loop`: Define a loop
+- `.br`: Branch to a label
+- `.load`: Load data from memory
+- `.store`: Store data in memory
+
+![instructions and data types](https://github.com/user-attachments/assets/253d9410-4b43-4fbd-b64a-d78e6ba32437)
+
+### Data Types
+
+Data types define the kind of data we can work with. It help set the rule and how the data is stored and processed. For example in a weather app the temperature in once city is a whole number like 25°C, while in another city it's a decimal number like 25.5°C. So, we represent using `i32` (32-bit integer) and `f32` (32-bit floating point number) respectively.
+
+Data types are very essential to make the code is predictable by defining the kind of data and hoe it's used, we avoid errors and ensure efficient use of memory. For example imagine pouring water into a glass. Each glass (data type) can hold a specific amount and shape of water (data). If we try to pour too much water or wrong type of liquid, it either won't fit or won't function as intended. Same goes with data types, ensuring data fits well and works as intended.
+
+Data Types - References:
+
+- `i32`: 32-bit integer
+- `i64`: 64-bit integer
+- `f32`: 32-bit floating point number
+- `f64`: 64-bit floating point number
+- `v128`: 128-bit vector
+- `funcref`: Function reference
+- `externref`: External reference
+- `anyref`: Any reference
+
+![instructions and data types](https://github.com/user-attachments/assets/ff3cd2c3-9264-4ef1-8531-344cbe592756)
+
+### Symbiosis of Instructions and Data Types
+
+Instructions and data types work together to perform specific tasks. For example, to add two numbers, we use the `i32.add` instruction. It's a binary instruction that tells the WebAssembly engine to add two 32-bit integers. Here, `i32` is the data type that specifies the kind of data we are working with, and `add` is the instruction that tells the engine what action to perform.
+
+## Memory and Tables
+
+### Why we need Memory and Tables?
+
+Think it more like a building a city (which is a program) the buildings are the data and they plot of land that's the memory. The roads are the tables. And the city services are the functions and those functions needs a directory to be organized for that we have tables. Without memory and tables, the city (program) can't function properly and can be chaotic.
+
+![memory and tables](https://github.com/user-attachments/assets/f8071a47-0a88-4919-a796-ae7e9d7ec816)
+
+### Memory
+
+When we so something like add two number say 3 and 5, these number are stored in what's called WebAssembly memory. After the addition it stores the result back in the memory, that is the result 8. And by doing this it make isolated from the rest of the computer's memory making it secure and if something goes wrong it won't affect the rest of the computer. 
+
+Memory can grow as needed. It can be accessed by the WebAssembly module as well as the JavaScript code. 
+
+![memory](https://github.com/user-attachments/assets/772d45c9-639a-4075-8ced-d6cb8d0762b8)
+
+### Tables
+
+They are more like directories and lookup tables. They don't store actual data but store references to functions. For example, if we have a function that calculates the square of a number, we can store a reference to that function in a table. When we need to calculate the square of a number, we can look up the function in the table and call it.
+
+Not only it stores references to functions, it can store references global variables, objects, 
+
+![tables](https://github.com/user-attachments/assets/e5578a4b-5cc2-46b8-843b-d2b315bfcf5b)
+
+
+## Tools and Ecosystem
+
+### Why we need Tools and Ecosystem?
+
+For anything having right sets of tools can make the difference between a smooth process and a bumpy ride. For WASM, the tool and the surrounding ecosystem simplify the development, testing and deployment process. So that dev can focus on the core functionality of the application rather than worrying about the underlying complexities.
+
+### CNCF - WASM Landscape
+
+Cloud Native Computing Foundation (CNCF) has taken the lead and introduced the WebAssembly Landscape. It provides a bird's eye view of tools, libraries, and projects that are part of the WebAssembly worlds. Some core areas:
+
+**Programming Languages**: The real beauty of WASM chimed in when it comes to programming languages. It's not tied to any specific language. You can write code in any language that compiles to WebAssembly. Some popular languages are C, C++, Rust, Go, etc. On the other hand we managed languages like Kotlin, Dart, etc, rely on WASM by compiling their interpreters into it. Also new languages like Moonbit, and Grain, optimized for WASM.
+
+**Runtimes**: Onces are code complied into WASM bytecode, it needs a runtime to execute it. Some popular runtimes are WasmEdge, WasmTime, WebAssembly Micro Runtime (WAMR), etc. These runtimes provide the necessary environment to execute the WASM code. They all offer safety, speed and portability to the code.
+
+**Application Frameworks**: Dev can lean on the libraries and frameworks. WasmEdge, for instance, supports advance POSIX APIs, allowing Rust and JS app framework to run seamlessly.
+
+Tailored Framework: A framework for building WebAssembly microservices, and WasmCloud, which simplifies the development for distributed applications.
+
+**Edge/Bare Metal**: As cross-platform compatibility is one of the key features of WASM, that means it can run across different operating systems and architectures, including in edge and IOT computing. 
+
+**AI inference**: As AI is becoming more prevalent, and AI becoming staple in data centers. Runtimes like WasmTime and WasmEdge are integrating with native AI/ML libraries like TensorFlow, PyTorch, etc, to facilitate AI inference in the language like Rust.
+
+**Embedded Functions**: WASM can also be executed as embedded functions in various software products. For example, database like LibSql and OpenGauss have integrated WASM to run user-defined functions.
+
+**Tooling** Tools like cargo, LLVM and Binaryen are essential for compiling code to WASM.
+
+**Deployment**: We can easily take benefit of the cloud-native ecosystem. And deploy on Docker, Kubernetes, etc.
+
+**Debugging and Observability**: Debugging and observability are essential for any application in production. Tools like WASI logging are making it easier to debug and monitor WASM applications.
+
+**Artifacts** It's really important for software supply chain. Repositories like DockerHub and Harbor are stepping to store, and track WASM packages.
