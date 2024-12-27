@@ -4,7 +4,7 @@ title: Other Resources
 description: A collection of resources to learn more about Bash Scripting.
 tags: ["Bash Scripting", "Linux", "Shell Scripting"]
 keywords: ["Bash Scripting", "Linux", "Shell Scripting"]
-slug: "/bash-scripting/other-resources"
+slug: "/bash/other-resources"
 ---
 
 Here are list of other resources that you can refer to learn more about Bash Scripting:
