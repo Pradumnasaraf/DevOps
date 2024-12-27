@@ -206,7 +206,7 @@ const config = {
           },
           /* Networking */
           {
-            from: ['/networking/introduction'],
+            from: ['/networking/introduction', 'network'],
             to: '/networking',
           },
           {
@@ -215,7 +215,7 @@ const config = {
           },
           /* Prometheus */
           {
-            from: ['/prometheus/introduction'],
+            from: ['/prometheus/introduction', 'prom/introduction', '/prom'],
             to: '/prometheus',
           },
           {
