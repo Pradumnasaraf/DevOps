@@ -4,7 +4,7 @@ title: GitOps Introduction
 description: Learn about GitOps and its benefits.
 tags: ["GitOps", "Kubernetes", "Continuous Delivery"]
 keywords: ["GitOps", "Kubernetes", "Continuous Delivery"]
-slug: "/gitops/introduction"
+slug: "/gitops"
 ---
 
 GitOps is a way of managing Kubernetes clusters using Git as the source of truth.
