@@ -1,8 +1,10 @@
 ---
 sidebar_position: 1
 title: WebAssembly Introduction
+description: WebAssembly (Wasm) is a binary instruction format that allows you to write code in languages like C, C++, and Rust, and run it in the browser at near-native speed.
+tags: ["WebAssembly", "Wasm", "JavaScript", "Programming"]
+keywords: ["WebAssembly", "Wasm", "JavaScript", "Programming"]
 slug: /webassembly
-
 ---
 
 In simple terms WebAssembly (Wasm) is a binary instruction format. With WebAssembly, you can write code in languages like C, C++, and Rust, and run it in the browser at near-native speed. It is design to run alongside JavaScript, allowing both to work together.

@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Golang Introduction
+description: Learn about Golang and its features.
+tags: ["Golang", "Programming Language", "Go"]
+keywords: ["Golang", "Programming Language", "Go"]
+slug: "/golang"
 ---
 
 Golang (or Go) is statically typed, compiled programming language designed at Google. It is syntactically similar to C, but with memory safety, garbage collection, structural typing, and CSP-style concurrency.

@@ -1,6 +1,10 @@
 ---
 title: Portainer
 sidebar_position: 3
+description: A collection of resources to learn more about Portainer.
+tags: ["Portainer", "Kubernetes", "Docker", "Containerization"]
+keywords: ["Portainer", "Kubernetes", "Docker", "Containerization"]
+slug: "/kubernetes/tools/portainer"
 ---
 
 

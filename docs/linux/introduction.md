@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Linux Introduction
+description: An introduction to Linux and its architecture components.
+tags: ["Linux", "Operating System", "Open Source"]
+keywords: ["Linux", "Operating System", "Open Source"]
+slug: "/linux"
 ---
 
 ### Overview of Linux and Why it is so popular?

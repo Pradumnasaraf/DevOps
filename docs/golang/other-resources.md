@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Other Resources
+description: A collection of resources to learn more about Golang.
+tags: ["Golang", "Programming", "DevOps"]
+keywords: ["Golang", "Programming", "DevOps"]
+slug: "/golang/other-resources"
 ---
 
 Here are list of other resources that you can refer to learn more about Golang:

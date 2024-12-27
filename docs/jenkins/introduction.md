@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Jenkins Introduction
+description: Learn about Jenkins and its benefits.
+tags: ["Jenkins", "Continuous Integration", "Continuous Deployment"]
+keywords: ["Jenkins", "Continuous Integration", "Continuous Deployment"]
+slug: "/jenkins"
 ---
 
 Jenkins is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.

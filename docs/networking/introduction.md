@@ -1,6 +1,11 @@
 ---
 sidebar_position: 1
 title: Networking Introduction
+description: Learn about the basics of Networking.
+tags: ["Networking", "OSI", "TCP", "UDP", "Ports", "URL", "IP Address"]
+keywords: ["Networking", "OSI", "TCP", "UDP", "Ports", "URL", "IP Address"]
+slug: "/networking"
+
 ---
 
 ### OSI Layer
