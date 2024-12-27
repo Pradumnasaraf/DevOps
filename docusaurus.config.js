@@ -97,8 +97,8 @@ const config = {
       {
         redirects: [
           {
-            from: ['/webassembly'], // Old paths
-            to: '/webassembly/introduction', // Target path
+            from: ['/webassembly/introduction'], // Old paths
+            to: '/webassembly', // Target path
           },
         ],
       },
