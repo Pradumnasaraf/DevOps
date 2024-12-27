@@ -228,7 +228,7 @@ const config = {
             to: '/webassembly',
           },
           {
-            from: ['/webassembly/learning-resources'],
+            from: ['/webassembly/learning-resources', '/wasm/learning-resources'],
             to: '/webassembly/resources',
           },
           /* YAML */
