@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Kubernetes Commands
+description: A collection of commands to help you with Kubernetes.
+tags: ["Kubernetes", "Containerization", "DevOps"]
+keywords: ["Kubernetes", "Containerization", "DevOps"]
+slug: "/kubernetes/commands"
 ---
 
 > KUBECTL COMMANDS

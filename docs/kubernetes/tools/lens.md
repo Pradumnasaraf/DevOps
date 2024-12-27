@@ -1,6 +1,10 @@
 ---
 title: Lens IDE
 sidebar_position: 1
+description: Lens IDE is the Kubernetes IDE that makes working with Kubernetes easier.
+tags: [Kubernetes, Lens, IDE]
+keywords: [Kubernetes, Lens, IDE]
+slug: /kubernetes/tools/lens
 ---
 
 It can be used to manage multiple Kubernetes cluster.

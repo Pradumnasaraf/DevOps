@@ -1,9 +1,11 @@
 ---
 sidebar_position: 1
-slug: /
 label: Introduction
 title: DevOps
-description: Introduction to DevOps
+description: A collection of resources to learn more about DevOps.
+tags: ["DevOps", "Development", "Operations"]
+keywords: ["DevOps", "Development", "Operations"]
+slug: /
 ---
 
 > Hey, I created this repository to keep my learning, notes, and code in one place for various tools in DevOps. Now, it's helping thousands of learners, practitioners, and professionals every day in their DevOps journey. Good luck with your DevOps journey! - [Pradumna Saraf](https://twitter.com/pradumna_saraf)

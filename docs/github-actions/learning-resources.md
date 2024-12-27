@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Learning Resources
+description: A collection of resources to learn more about GitHub Actions.
+tags: ["GitHub Actions", "CI/CD", "DevOps"]
+keywords: ["GitHub Actions", "CI/CD", "DevOps"]
+slug: "/github-actions/resources"
 ---
 
 - [GitHub Actions](https://docs.github.com/en/actions)

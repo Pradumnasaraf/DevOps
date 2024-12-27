@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Helm Introduction
+description: Learn about Helm and its benefits.
+tags: ["Helm", "Kubernetes", "Package Manager"]
+keywords: ["Helm", "Kubernetes", "Package Manager"]
+slug: "/helm"
 ---
 
 Helm is package manager and a templating engine for Kubernetes. It allows you to define, install, and upgrade even the most complex Kubernetes applications. It's like apt, yum, or homebrew for Kubernetes. Primary use case is application deployment and environment management. 

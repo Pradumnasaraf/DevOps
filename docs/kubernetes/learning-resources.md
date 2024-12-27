@@ -1,6 +1,10 @@
 ---
 sidebar_position: 2
 title: Learning Resources
+description: A collection of resources to learn more about Kubernetes.
+tags: ["Kubernetes", "Containerization", "DevOps"]
+keywords: ["Kubernetes", "Containerization", "DevOps"]
+slug: "/kubernetes/resources"
 ---
 
 - [Complete Kubernetes Course - From BEGINNER to PRO by DevOps Directive](https://youtu.be/2T86xAtR6Fo?si=vVtltmpU2aw2gqXy)

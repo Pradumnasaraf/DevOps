@@ -1,6 +1,10 @@
 ---
 sidebar_position: 6
 title: Other Resources
+description: A collection of resources to learn more about Kubernetes.
+tags: ["Kubernetes", "Containerization", "DevOps"]
+keywords: ["Kubernetes", "Containerization", "DevOps"]
+slug: "/kubernetes/other-resources"
 ---
 
 Here are list of other resources that you can refer to learn more about Kubernetes:

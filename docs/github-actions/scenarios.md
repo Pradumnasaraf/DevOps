@@ -1,6 +1,10 @@
 ---
 sidebar_position: 2
 title: Senarios and Examples
+description: A collection of scenarios and examples to help you get started with GitHub Actions.
+tags: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
+keywords: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
+slug: "/github-actions/scenarios"
 ---
 
 This section contains GitHub workflow configuration files for different scenarios. You can use these files as a reference to create your own workflows.
