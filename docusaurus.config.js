@@ -90,6 +90,20 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: ['/webassembly'], // Old paths
+            to: '/webassembly/introduction', // Target path
+          },
+        ],
+      },
+    ],
+  ],
 };
 
 export default config;
