@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   Deploy-Preview:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
       - name: Install Vercel CLI

@@ -97,8 +97,8 @@ const config = {
       {
         redirects: [
           {
-            from: ['/webassembly/introduction', '/wasm'], // Matched paths can be a string or a string array.
-            to: '/webassembly', // Target path
+            from: ['/webassembly/introduction', '/wasm'], 
+            to: '/webassembly',
           },
         ],
       },

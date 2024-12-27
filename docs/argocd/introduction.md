@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 title: ArgoCD Introduction
+description: A deep dive into ArgoCD, a declarative, GitOps continuous delivery tool for Kubernetes.
+slug: "/argocd"
+tags: ["ArgoCD", "GitOps", "Kubernetes", "Continuous Delivery"]
 ---
 
 Argo CD is a popular GitOps controller. It is used to deploy applications to Kubernetes clusters. It is also used to manage the configuration of the cluster itself. It can be changed too.
