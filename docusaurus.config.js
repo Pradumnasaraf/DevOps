@@ -105,11 +105,11 @@ const config = {
             from: ['/argocd/learning-resources'],
             to: '/argocd/resources',
           },
+          /* Bash Scripting */
           {
             from: ['/bash-scripting/introduction', '/bash-scripting', '/bash-introduction'],
             to: '/bash',
           },
-          /* Bash Scripting */
           {
             from: ['/bash-scripting/learning-resources', '/bash-scripting/resources'],
             to: '/bash/resources',
