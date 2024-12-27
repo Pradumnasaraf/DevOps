@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Docker Commands
+description: A collection of Docker commands to help you get started with Docker.
+tags: ["Docker", "Containerization", "DevOps"]
+keywords: ["Docker", "Containerization", "DevOps"]
+slug: "/docker/commands"
 ---
 
 ### Docker Basic

@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Networking Commands
+description: A collection of networking commands that can help you troubleshoot network issues.
+tags: ["Networking", "Linux", "Network Troubleshooting"]
+keywords: ["Networking", "Linux", "Network Troubleshooting"]
+slug: "/networking/commands"
 ---
 
 

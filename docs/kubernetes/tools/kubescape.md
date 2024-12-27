@@ -1,6 +1,10 @@
 ---
 title: Kubescape
 sidebar_position: 2
+description: A tool that helps you scan your Kubernetes clusters for security misconfigurations.
+tags: [Kubernetes, Tools, Security]
+keywords: [Kubernetes, Tools, Security, Kubescape]
+slug: /kubernetes/tools/kubescape
 ---
 
 

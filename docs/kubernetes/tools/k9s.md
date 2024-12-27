@@ -1,6 +1,10 @@
 ---
 title: K9s
 sidebar_position: 5
+description: K9s is a terminal-based UI to interact with your Kubernetes clusters. It provides a rich set of features to manage your Kubernetes resources.
+tags: [Kubernetes, Tools]
+keywords: [Kubernetes, Tools, K9s]
+slug: /kubernetes/tools/k9s
 ---
 
 K9s is a terminal-based UI to interact with your Kubernetes clusters. It provides a rich set of features to manage your Kubernetes resources. It can help you to navigate your Kubernetes clusters, view resource details, and perform actions on resources. Super useful for debugging and troubleshooting your Kubernetes applications.

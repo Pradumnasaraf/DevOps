@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Linux Commands
+description: A collection of Linux commands that can help you with Linux.
+tags: ["Linux", "Operating System", "Kernel"]
+keywords: ["Linux", "Operating System", "Kernel"]
+slug: "/linux/commands"
 ---
 
 - `whereis` - Find the path of that executable file.

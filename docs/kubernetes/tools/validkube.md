@@ -1,6 +1,7 @@
 ---
 title: ValidKube
 sidebar_position: 4
+
 ---
 
 ## ValidKube

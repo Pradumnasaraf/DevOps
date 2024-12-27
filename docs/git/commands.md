@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Git Commands
+description: A collection of Git commands that can help you with version control.
+tags: ["Git", "Version Control System", "DevOps"]
+keywords: ["Git", "Version Control System", "DevOps"]
+slug: "/git/commands"
 ---
 
 ## **Add**

@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Bash Scripting Introduction
+description: A deep dive into Bash Scripting, a scripting language for the Unix shell.
+tags: ["Bash", "Scripting", "Unix", "Shell"]
+keywords: ["Bash", "Scripting", "Unix", "Shell"]
+slug: "/bash"
 ---
 
 We start by creating a file with the `.sh` extension. For example, `script.sh`. Then we write the script in it. For example:

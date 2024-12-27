@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Prometheus Introduction
+description: A collection of resources to learn more about Prometheus.
+tags: ["Prometheus", "Monitoring", "Alerting", "Kubernetes"]
+keywords: ["Prometheus", "Monitoring", "Alerting", "Kubernetes"]
+slug: "/prometheus"
 ---
 
 Prometheus is an open-source systems monitoring and alerting toolkit.

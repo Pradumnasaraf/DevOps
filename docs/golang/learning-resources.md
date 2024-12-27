@@ -1,6 +1,10 @@
 ---
 sidebar_position: 2
 title: Learning Resources
+description: A collection of resources to learn more about Golang.
+tags: ["Golang", "Programming", "Go"]
+keywords: ["Golang", "Programming", "Go"]
+slug: "/golang/resources"
 ---
 
 - [Go by Example](https://gobyexample.com/)

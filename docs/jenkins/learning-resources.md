@@ -1,6 +1,10 @@
 ---
 sidebar_position: 2
 title: Learning Resources
+description: A collection of resources to learn more about Jenkins.
+tags: ["Jenkins", "Continuous Integration", "Continuous Delivery", "DevOps"]
+keywords: ["Jenkins", "Continuous Integration", "Continuous Delivery", "DevOps"]
+slug: "/jenkins/resources"
 ---
 
 ### Resources

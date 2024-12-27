@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Docker Introduction
+description: An introduction to Docker, a platform designed to simplify the development, deployment, and management of applications in a containerized environment.
+tags: ["Docker", "Containerization", "DevOps"]
+keywords: ["Docker", "Containerization", "DevOps"]
+slug: "/docker"
 ---
 
 ### Overview of Docker
