@@ -155,7 +155,7 @@ Here:
 - `i32.add` is an instruction that adds the two values together.
 - The function returns the result of the addition.
 
-In WASM stack0base model, the result of the last expression in the function body is implicitly returned. So, we don't need to use `return` keyword. 
+In WASM stack-base model, the result of the last expression in the function body is implicitly returned. So, we don't need to use `return` keyword. 
 
 Talking about value stack it will change in this order: 
 
@@ -173,7 +173,7 @@ For example for image processing module, it can have functions for applying filt
 
 Apart from functions modules can have other components like:
 
-**Global Variables**: They are variables that are accessible from anywhere in the module. They can be imported from other modules or defined within the module. They can be mutable or immutable. They can be used to store constants, configuration values, etc.
+**Global Variables**: These are variables that are accessible from anywhere in the module. They can be imported from other modules or defined within the module. They can be mutable or immutable. They can be used to store constants, configuration values, etc.
 
 **Memory**: It's a linear array of bytes that can be accessed by the WebAssembly module. It can be used to store data that needs to be shared between functions. It can be used to store images, audio, video, etc. It can be imported from other modules or defined within the module.
 
@@ -249,7 +249,7 @@ Instructions - References:
 
 Data types define the kind of data we can work with. It help set the rule and how the data is stored and processed. For example in a weather app the temperature in once city is a whole number like 25°C, while in another city it's a decimal number like 25.5°C. So, we represent using `i32` (32-bit integer) and `f32` (32-bit floating point number) respectively.
 
-Data types are very essential to make the code is predictable by defining the kind of data and hoe it's used, we avoid errors and ensure efficient use of memory. For example imagine pouring water into a glass. Each glass (data type) can hold a specific amount and shape of water (data). If we try to pour too much water or wrong type of liquid, it either won't fit or won't function as intended. Same goes with data types, ensuring data fits well and works as intended.
+Data types are very essential to make the code is predictable by defining the kind of data and how it's used, we avoid errors and ensure efficient use of memory. For example imagine pouring water into a glass. Each glass (data type) can hold a specific amount and shape of water (data). If we try to pour too much water or wrong type of liquid, it either won't fit or won't function as intended. Same goes with data types, ensuring data fits well and works as intended.
 
 Data Types - References:
 
@@ -324,3 +324,271 @@ Tailored Framework: A framework for building WebAssembly microservices, and Wasm
 **Debugging and Observability**: Debugging and observability are essential for any application in production. Tools like WASI logging are making it easier to debug and monitor WASM applications.
 
 **Artifacts** It's really important for software supply chain. Repositories like DockerHub and Harbor are stepping to store, and track WASM packages.
+
+## Working with WebAssembly
+
+As we know WebAssembly comes in Binary and Text format. The binary format with `.wasm` extension. It serves as a universal compilation target for high-level languages. The text format with `.wat` extension. It's a human-readable representation of the binary format. It's useful for debugging and understanding the structure of the WebAssembly module.
+
+### Binary Format
+
+To compile a C++ code to WebAssembly binary format, we can use the Emscripten compiler. It's a toolchain for compiling to WebAssembly. It can compile C and C++ code to WebAssembly. It can also compile other languages like Rust, Go, etc.
+
+To compile a C++ code to WebAssembly, we can use the following command:
+
+```bash
+emcc hello.cpp -o hello.js
+```
+
+This above command compiles the `hello.cpp` file to WebAssembly and generates the `hello.js` along with the `hello.wasm` file.
+
+#### Structure of Wasm Binary
+
+The Binary file is organized into modules. Each module starts with a specific structure that includes a magic number and a version number. The magic number is `00 61 73 6d` which spells out `wasm` in ASCII. The version number is `01 00 00 00` which indicates the version of the WebAssembly binary format.
+
+And each module can have sections. Each section has a specific purpose. For example, the `type` section defines the types of functions, the `function` section defines the functions, the `memory` section defines the memory, etc. So, Type Section (Section ID: 1) defines the function signature, Function Section (Section ID: 3) defines the function bodies, Memory Section (Section ID: 5) defines the memory, etc.
+
+All sections and their purpose:
+
+- Section 0: Custom Section: It's used to define custom data.
+- Section 1: Type Section: It used to define the function signature.
+- Section 2: Import Section: It used to import functions, memories, tables, and globals from other modules.
+- Section 3: Function Section: It used to define the function bodies.
+- Section 4: Table Section: It used to define the tables. It defines the table types, including the element type and the limits.
+- Section 5: Memory Section: It used to define the memory.
+- Section 6: Global Section: It used to define the global variables.
+- Section 7: Export Section: It used to export functions, memories, tables, and globals to other modules.
+
+Let's take an example of Table Section:
+
+```wasm
+04  ;; Section ID: Table Section
+06  ;; Section Length: 8 bytes
+
+01  ;; Number of tables: 1
+70 00 01  ;; Table type: Element type (anyfunc), Initial size (1)
+```
+
+So, here 
+- `04` is the Section ID for Table Section for the Memory Section.
+- `06` is the Section Length in bytes. Indicating that Memory Section is 6 bytes long.
+- `00 01` is the limit of the table. It's a 32-bit integer. The first byte `00` indicates the minimum size of the table, and the second byte `01` indicates the maximum size of the table. Here, the table has a minimum size of 0 and a maximum size of 1.
+  
+Another example of Global Section
+
+```wasm
+06  ;; Section ID: Global Section
+19  ;; Section Length: 25 bytes.
+
+03 ;; Number of Global Variables
+7F 01 41 0B  ;; Global variable 1: Type (i32), Mutable, Initialization(i32.const 11)
+```
+
+So, here
+- `06` is the Section ID for Global Section.
+- `19` is the Section Length in bytes. Indicating that Global Section is 25 bytes long.
+- `03` is the Number of Global Variables.
+- `7F` is the Global variable type. Here, it's `i32`.
+- `01` is the mutability of the global variable. Here, it's mutable.
+- `41 0B` is the initialization value of the global variable. Here, it's `i32.const 11`.
+
+It's not necessary to understand the binary format in detail. But it's good to know how it's structured and how it works. Knowing it helps us achieve performance optimization, debugging, security auditing, adv. features, etc. Otherwise dev may work at high level of abstraction using languages like Rust, C+++, or JavaScript that compiles to WebAssembly.
+
+### Text Format
+
+As we know WASM binary format is not human readable. To make it human readable, we have WebAssembly Text Format (WAT). It's a simple, verbose, and readable representation of the binary format. It's useful for debugging and understanding the structure of the WebAssembly module.
+
+For example, the following binary code:
+
+Example:
+
+```Wasm
+(module
+;; Define a function working
+  (func $add (param $a i32) (param $b i32) (result i32) 
+    get_local $a
+    get_local $b
+    i32.add)
+  (export "add" (func $add))
+)
+```
+
+So, here:
+
+- `(module...)` : Module's definition. Everything inside this will help construct the module.
+- `(func $add (param $a i32) (param $b i32) (result i32)..)` : Function's definition. Here, we define a function called `add`.
+- `(param $a i32) (param $b i32)` : Parameters of the function. Here, we define two parameters of type `i32`.
+- `(result i32)` : Return type of the function. Here, we define the return type of the function as `i32`.
+- `get_local $a` and `get_local $b` : Instructions that get the values of the parameters.
+- `i32.add` : Instruction that adds the two values together.
+- `(export "add" (func $add))` : Export the function. Here, we export the `add` function.
+- `i32.add` : Instruction that adds the two values together.
+
+Seeing from a different pair of eyes, WASM a language. It has Grammar, Whitespace and structure. So, in above parenthesis defining scope and structure. While `func`, `param` and `result` specify the code's functionality. White space and indentation are used to make the code more readable.
+
+Let's break down the above code and see how it works behind the scenes:
+
+- `get_local $a` gets the value and pushes it onto the stack.
+- `get_local $b` gets the value and pushes it onto the stack.
+- `i32.add` pops the two values from the stack, adds them together, and pushes the result back onto the stack.
+- The function returns the result.
+
+Comments are also supported in the WebAssembly Text Format. They are enclosed in `;;` and are ignored by the WebAssembly engine. They are used to add notes, explanations, and documentation to the code.
+
+
+#### Lexical Structure
+
+If we look at Lexical Structure of WAT, it's more like a grammar of the language. It defines how the code is written and how it's structured. So, in above example we have identifiers like `add`, `a`, `b`, etc. We have keywords like `module`, `func`, `param`, `result`, etc. 
+
+#### Types
+
+In WAT, we have different types like `i32`, `i64`, `f32`, `f64`, etc. They define the kind of data we are working with. For example, `i32` is a 32-bit integer, `i64` is a 64-bit integer, `f32` is a 32-bit floating point number, and `f64` is a 64-bit floating point number. It also supports vector types like `v128`, reference types like `funcref`, `externref`, `anyref`, etc.
+
+An example of vector type:
+
+```wasm
+(module
+;; .... Previous definition ...
+  (func $add (param $a v128) (param $b v128) (result v128)
+    get_local $a
+    get_local $b
+    v128.add)
+
+  ;; .... other functions ...
+
+  (export "add" (func $add))
+
+  ;; .... other exports ...
+)
+```
+
+An example of reference type:
+
+```wasm
+(module
+;; .... Previous definition ...
+  (func $add (param $a funcref) (param $b externref) (result anyref)
+    get_local $a
+    get_local $b
+    anyref.add)
+
+  ;; .... other functions ...
+
+  (export "add" (func $add))
+
+  ;; .... other exports ...
+)
+```
+
+#### Instructions
+
+They define the actions that the WebAssembly engine can perform. For example, `i32.add` is an instruction that adds two 32-bit integers. 
+
+##### if-else block
+
+```wasm
+(module
+;; .... Previous definition ...
+  (func $add (param $a i32) (param $b i32) (result i32)
+    get_local $a
+    f32.const 0
+    f32.lt ;; Check if $a is less than 0
+    if (result i32)
+      f32.const 0 ;; If $a is less than 0, return 0
+    else
+      get_local $a
+      get_local $b
+      f32.add ;; If $a is greater than 0, add $a and $b
+    end)
+  ;; .... other functions ...
+)
+```
+
+Here `if` and `else` are instructions that define a conditional block. The Bloc can be nested within each other for complex conditions.
+
+
+##### Loop block
+
+```wasm
+(module
+;; .... Previous definition ...
+  (func $add (param $a i32) (param $b i32) (result i32)
+    get_local $a
+    get_local $b
+    loop (result i32)
+      i32.add
+      get_local $a
+      i32.const 1
+      i32.sub
+      tee_local $a
+      i32.const 0
+      i32.eq
+      br_if 0
+    end)
+  ;; .... other functions ...
+)
+```
+
+Here `loop` is an instruction that defines a loop block. The loop block can have a condition that determines when to exit the loop. The `br_if` instruction is used to break out of the loop if the condition is met
+
+So here they way it's working is:
+
+- `loop` starts the loop block.
+- `i32.add` adds the two values together.
+- `get_local $a` gets the value of `$a`.
+- `i32.const 1` pushes the value `1` onto the stack.
+- `i32.sub` subtracts `1` from `$a`.
+- `tee_local $a` duplicates the value of `$a` and stores it back in `$a`.
+- `i32.const 0` pushes the value `0` onto the stack.
+- `i32.eq` checks if `$a` is equal to `0`.
+- `br_if 0` breaks out of the loop if `$a` is equal to `0`.
+- `end` ends the loop block.
+
+## WASI - WebAssembly System Interface
+
+WASI (WebAssembly System Interface) is a system interface for WebAssembly. It provides a set of APIs that allow WebAssembly modules to interact with the host environment in a secure and controlled manner. It allows WebAssembly modules to access system resources like files, network, and environment variables.
+
+![WASI](https://github.com/user-attachments/assets/e701c4dc-bcaf-4f74-b4f3-a7d4940a4535)
+
+Without WASI WASM modules can't access the file system, network, or other resources. It's isn't a flaw, it's by design. A couple of more important points to understand WASI's design:
+
+- It ensures whether a person is using the application in Japan, France, or the US, on a variety of devices, the application will work the same way.
+- It only unlock specific permissions. For example, if a WebAssembly module needs to read a file, it can only access the file system and not the network or other resources.
+- WASI is giving dynamism to the static web pages.
+- Incorporating the specific functionalities without burdening the application with unnecessary features.
+  
+![WASI](https://github.com/user-attachments/assets/a271f1fb-32f5-4356-997d-6297037d2ac6)
+
+### WASI Functions
+
+WASI provides a set of functions that allow WebAssembly modules to interact with the host environment. These functions are divided into different categories like:
+
+![WASI Functions](https://github.com/user-attachments/assets/6e324ae0-e74b-4b53-a72b-9932be008004)
+
+- **File Operations**: Functions like `fd_read`, `fd_write`, `fd_seek`, etc. allow WebAssembly modules to read and write files.
+- **Network Activities**: Functions like `sock_send`, `sock_recv`, `sock_shutdown`, etc. allow WebAssembly modules to send and receive data over the network.
+- **System Information**: Functions like `args_sizes_get`, `args_get`, `environ_sizes_get`, `environ_get`, etc. allow WebAssembly modules to access system information like command-line arguments, environment variables, etc.
+- **Time and Clock**: Functions like `clock_time_get`, `clock_res_get`, etc. allow WebAssembly modules to access time and clock information.
+
+An example of `fd_read` function:
+
+```wasm
+(module
+  ;; Import the fd_read function from the WASI module
+  (import "wasi_snapshot_preview1" "fd_read" (func $fd_read (param i32 i32 i32 i32) (result i32)))
+
+  ;; Memory declaration and other necessary code...
+
+  ;; A function to read data from a file
+  (func $read_file
+    ;; Assuming file descriptor is stored in memory at offset 0
+    (i32.const 0) ;; File descriptor
+    (i32.const data_offset) ;; pointer to memory location where data will be stored
+    (i32.const data_length) ;; length of the data to read
+    (i32.const result_offset) ;; pointer to memory location where the result will be stored
+    (call $fd_read) ;; Call the fd_read function
+
+    ;; Handle the read data as necessary
+  )
+  ;; Export our read_file function
+  (export "read_file" (func $read_file))
+)
