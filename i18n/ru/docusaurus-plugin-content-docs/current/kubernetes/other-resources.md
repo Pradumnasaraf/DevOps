@@ -4,7 +4,7 @@ title: Other Resources
 description: A collection of resources to learn more about Kubernetes.
 tags: ["Kubernetes", "Containerization", "DevOps"]
 keywords: ["Kubernetes", "Containerization", "DevOps"]
-slug: "/kubernetes/other-resource
+slug: "/kubernetes/other-resource"
 ---
 
 Here are list of other resources that you can refer to learn more about Kubernetes:

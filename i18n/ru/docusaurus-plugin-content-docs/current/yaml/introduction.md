@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 title: YAML Введение
+description: Learn about YAML (YAML Ain't Markup Language) and its properties.
+tags: ["YAML", "Data Serialization", "Configuration"]
+slug: "/yaml"
 ---
 
 ## YAML - YAML это не язык разметки

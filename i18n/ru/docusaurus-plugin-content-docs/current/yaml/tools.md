@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Инструменты
+description: A collection of tools that can help you work with YAML files.
+tags: ["YAML", "DevOps", "Kubernetes"]
+keywords: ["YAML", "DevOps", "Kubernetes"]
+slug: "/yaml/tools"
 ---
 Здесь перечислены инструменты которые можно использовать с YAML:
 
