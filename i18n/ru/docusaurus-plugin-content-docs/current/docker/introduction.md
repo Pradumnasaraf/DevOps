@@ -1,7 +1,12 @@
 ---
 sidebar_position: 1
 title: Docker Введение
+description: Введение в Docker — платформу, предназначенную для упрощения разработки, развертывания и управления приложениями в контейнеризированной среде.
+tags: ["Docker", "Containerization", "DevOps"]
+keywords: ["Docker", "Containerization", "DevOps"]
+slug: "/docker"
 ---
+
 
 ### Обзор Docker
 
