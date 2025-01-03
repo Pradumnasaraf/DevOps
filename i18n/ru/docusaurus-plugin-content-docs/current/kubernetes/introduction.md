@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Введение в Kubernetes
+description: A guide to Kubernetes, a container orchestration tool.
+tags: ["Kubernetes", "Container Orchestration", "DevOps"]
+keywords: ["Kubernetes", "Container Orchestration", "DevOps"]
+slug: "/kubernetes"
 ---
 
 ## Компоненты Kubernetes - архитектура
