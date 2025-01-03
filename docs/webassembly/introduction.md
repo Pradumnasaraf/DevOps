@@ -333,13 +333,15 @@ As we know WebAssembly comes in Binary and Text format. The binary format with `
 
 To compile a C++ code to WebAssembly binary format, we can use the Emscripten compiler. It's a toolchain for compiling to WebAssembly. It can compile C and C++ code to WebAssembly. It can also compile other languages like Rust, Go, etc.
 
-To compile a C++ code to WebAssembly, we can use the following command:
+For heads up we compile our C++ code to WebAssembly like this using Emscripten:
 
 ```bash
 emcc hello.cpp -o hello.js
 ```
 
 This above command compiles the `hello.cpp` file to WebAssembly and generates the `hello.js` along with the `hello.wasm` file.
+
+We will have a deeper dive into the compilation process in the next section.
 
 #### Structure of Wasm Binary
 
@@ -592,3 +594,136 @@ An example of `fd_read` function:
   ;; Export our read_file function
   (export "read_file" (func $read_file))
 )
+```
+
+Here, we import the `fd_read` function from the WASI module. We then define a function called `read_file` that reads data from a file using the `fd_read` function. We pass the file descriptor, memory location to store the data, data length, and memory location to store the result to the `fd_read` function.
+
+## Creating a WebAssembly Module
+
+As we know modules are the core of WASM. We will se how we can convert code written in various languages like C, C++, Rust, etc. to WebAssembly module.
+
+
+### Compiling C++/C Code to WebAssembly
+
+To compile C++/C code to WebAssembly, we can use the Emscripten compiler. It's a toolchain for compiling to WebAssembly. It can compile C and C++ code to WebAssembly. It can also compile other languages like Rust, Go, etc.
+
+For example, to compile a C code to WebAssembly, we can use the following command:
+
+```c
+// hello.c
+#include <stdio.h>
+
+int add(int a, int b) {
+  return a + b;
+}
+```
+
+```bash
+emcc -03 -s WASM=1 -o hello.wasm hello.c
+```
+
+Here:
+
+- `emcc` is the Emscripten compiler.
+- `-03` is the optimization level. It's the highest level of optimization. The range is from `-O0` to `-O3`. It optimizes the code for size and speed.
+- `-s WASM=1` tells the compiler to generate WebAssembly output. Here `s` stands for setting.
+- `-o hello.wasm` specifies the output file name.
+- `hello.c` is the input C file.
+
+Together, these commands compile the `hello.c` file to WebAssembly and generate the `hello.wasm` file. The `hello.wasm` is the WASM binary file or we can call it as a WASM module. This a compact version
+
+### WebAssembly in the Browser
+
+To bring the WASM module to life in the browser, we use JavaScript. JavaScript fetches the WASM module using the `fetch` API. Once the module is fetched, it's compiled and instantiated using the `WebAssembly.instantiateStreaming` method. The module is then executed using the exported functions. Once the object is created, we can call the exported functions like any other JavaScript function.
+
+```js
+// index.js
+fetch('hello.wasm')
+  .then(response => response.arrayBuffer())
+  .then(bytes => WebAssembly.instantiate(bytes))
+  .then(results => {
+    const instance = results.instance;
+    const add = instance.exports.add;
+    console.log(add(2, 3)); // 5
+  });
+```
+
+Some older browsers may not support the `WebAssembly.instantiateStreaming` method. In that case, we can use the `WebAssembly.instantiate` method. So, this was just an example, we have keep the nuances in mind while building the application to cater to the different browsers.
+
+#### Linear Memory
+
+Memory is like a vast storage room where data is kept. When we talk about WASM and JavaScript sharing memory, it's more like a shared storage room. Where each section having its own shelves to store data. For WebAssembly, memory is a linear array of bytes. It's a continuous block of memory, much like a long shelf, where data is stored sequentially. This is the primary way for WebAssembly to store and access data.
+
+Now the way it works is, when JavaScript want to send data to WASM, it stores the data on this shared shelf. And when WASM wants to send data back to JavaScript, it stores the data on this shared shelf. This way both JavaScript and WASM can access and exchange data. For example, JavaScript want to convert 25°C to Fahrenheit, it stores the value 25 on the shelf. WASM then reads the value, converts it to Fahrenheit, and stores the result back on the shelf. JavaScript then reads the result and displays it to the user.
+
+Benefits of Linear Memory:
+
+- It's fast and efficient. As data is stored sequentially, it's easy to access and process.
+- Eliminates the need of complex data transfer mechanisms.
+- Ensures data integrity and security. As data is stored in a controlled environment, it's safe from unauthorized access.
+
+#### WASM Browser Runtime
+
+So, every modern browser comes equipped with a JavaScript engine, like V8 in Chrome or SpiderMonkey in Firefox. These engines are responsible for compiling and executing JavaScript code to machine code, and run it. 
+
+When it comes to WASM, as it is a different technology. The WASM doesn't need an separate engine. It's the JavaScript engine that compiles and executes the WASM code. JavaScript engines have been extended to handle WASM code. JavaScript engine takes the charge, but with a different set of tools tailored for WASM. Most of browser support WASM, like Chrome, Firefox, Safari, Edge, etc.
+
+#### WASM JavaScript API
+
+The WebAssembly JavaScript API provides a way to interact with WebAssembly modules from JavaScript. It provides methods to compile, instantiate, and execute WebAssembly modules. It also provides methods to access and manipulate linear memory, tables, and globals.
+
+Some of the key methods of the WebAssembly JavaScript API are:
+
+- `WebAssembly.instantiateStreaming`: Compiles and instantiates a WebAssembly module from a streamed response.
+- `WebAssembly.instantiate`: Compiles and instantiates a WebAssembly module from an array buffer.
+- `WebAssembly.Module`: Represents a WebAssembly module. It creates a new WebAssembly module from a binary buffer.
+- `WebAssembly.Instance`: Represents an instance of a WebAssembly module. It creates a new instance of a WebAssembly module.
+- `WebAssembly.Memory`: Represents a linear memory instance. It creates a new linear memory instance. It can be used to store and access data.
+- `WebAssembly.Table`: Represents a table instance. It creates a new table instance. It can be used to store function pointers, objects, etc.
+- `WebAssembly.CompileError`: Represents a compile error. It's thrown when there is a compile error in the WebAssembly module.
+- `WebAssembly.LinkError`: Represents a link error. It's thrown when there is a link error in the WebAssembly module.
+- `WebAssembly.RuntimeError`: Represents a runtime error. It's thrown when there is a runtime error in the WebAssembly module.
+
+WebAssembly.Memory - Example:
+
+```js
+const memory = new WebAssembly.Memory({ initial: 10, maximum: 100 });
+```
+
+Above example creates a new linear memory instance with an initial size of 256 pages and a maximum size of 256 pages. It can be used to store and access data.
+
+For reference:
+1 KiB = 1024 bytes
+1 WASM Memory Page = 64 KiB or 65536 bytes
+
+So, in above example, the initial size of the memory is 10 pages, that comes to 10 * 64 KiB = 640 KiB. The maximum size of the memory is 100 pages, that comes to 100 * 64 KiB = 6400 KiB or 6.25 MiB (6400 / 1024).
+
+Memory Pages are the unit of memory allocation in WebAssembly. They are fixed-size blocks of memory that can be allocated and deallocated. They are used to store and access data in WebAssembly modules.
+
+### Running WASM in Browser
+
+Before running any WASM module in the browser, we need to compile the code to WebAssembly. We can use the `Emscripten` compiler to compile C and C++ code to WebAssembly. Once the code is compiled, we can load the WebAssembly module in the browser using JavaScript. We have already seen how to compile C code to WebAssembly.
+
+We will taken an example of a C program as see step by step how to compile and run it in the browser.
+
+Create a C program called `hello.c`:
+
+```c
+hello.c
+#include <stdio.h>
+
+int main() {
+    printf("Hello, WebAssembly!\n");
+    return 0;
+}
+``` 
+
+Compile the `hello.c` file to WebAssembly using the `Emscripten` compiler:
+
+```bash
+emcc hello.c -o hello.html
+```
+
+It will generate the `hello.html` file along with the `hello.wasm` and `hello.js` files. We can open the `hello.html` file in the browser to run the WebAssembly module.
+
+If you look closely at the `hello.html` file, you will see that it loads the `hello.js` file, which in turn loads the `hello.wasm` file. The `hello.js` file contains the JavaScript code to load and run the WebAssembly module. In this way everything is connected and the WASM module is executed in the browser.
