@@ -1,27 +1,37 @@
 ---
 sidebar_position: 1
-title: Docker Introduction
+title: Docker Введение
+description: Введение в Docker — платформу, предназначенную для упрощения разработки, развертывания и управления приложениями в контейнеризированной среде.
+tags: ["Docker", "Containerization", "DevOps"]
+keywords: ["Docker", "Containerization", "DevOps"]
+slug: "/docker"
 ---
 
-### Overview of Docker
 
-Docker is an open-source platform designed to simplify the development, deployment, and management of applications in a containerized environment, also known as Docker containers. Docker containers are a lightweight and portable way to package and run applications, enabling developers to package their applications with all the required dependencies and configurations in a single package that can be easily moved between any environment. Docker containers are simply the running instance of a Docker image.
+### Обзор Docker
 
-### Why You Should Consider Using Docker
+Docker — это платформа с открытым исходным кодом, разработанная для упрощения разработки, развертывания и управления приложениями в контейнеризованной среде, также известной как контейнеры Docker. Контейнеры Docker представляют собой легковесный и портативный способ упаковки и запуска приложений, позволяя разработчикам упаковывать свои приложения со всеми необходимыми зависимостями и конфигурациями в одном пакете, который можно легко перемещать между любыми средами. Контейнеры Docker — это просто работающие экземпляры образа Docker.
 
-- Docker is portable, meaning that one can easily run the same application on different machines without any modifications, making it easier to move applications between development, testing, and production environments.
 
-- Docker containers are isolated in nature, meaning that each container runs in its own isolated environment with its own file system, network protocol, and process space, providing a level of security and isolation that is not possible with traditional virtualization technologies. This solves the problem of conflict with other applications or dependencies.
 
-- Docker containers are easily scalable, meaning that one can easily scale the containers running the applications by horizontally adding more containers when demand increases.
 
-- Docker containers are efficient, meaning that containers are lightweight and consume fewer resources, allowing more containers to run on the same underlying hardware.
+### Почему стоит использования Docker
 
-### Docker Images
+- Docker портативен, что означает, что одно и то же приложение можно легко запускать на разных машинах без каких-либо модификаций, что упрощает перемещение приложений между средами разработки, тестирования и производства.
 
-- Images are made up of app binaries, dependencies, and metadata. They don't contain a full OS.
-- Images are a combination of multiple layers.
-- Each image has its unique ID and a tag for a different version.
+- Контейнеры Docker изолированы по своей природе, что означает, что каждый контейнер работает в своем собственном изолированном окружении с собственной файловой системой, сетевым протоколом и пространством процессов, обеспечивая уровень безопасности и изоляции, который невозможен с традиционными технологиями виртуализации. Это решает проблему конфликтов с другими приложениями или зависимостями.
+
+- Контейнеры Docker легко масштабируемы, что означает, что можно легко увеличить количество контейнеров, запускающих приложения, добавляя горизонтально больше контейнеров по мере роста спроса.
+
+- Контейнеры Docker эффективны, что означает, что они легковесны и потребляют меньше ресурсов, позволяя запускать больше контейнеров на одном и том же аппаратном обеспечении.
+
+### Образы Docker
+
+- Образы состоят из бинарных файлов приложения, зависимостей и метаданных. Они не содержат полноценную операционную систему.
+- Образы представляют собой комбинацию нескольких слоев.
+- У каждого образа есть уникальный идентификатор и тег для разных версий.
+
+
 
 ![Screenshot from 2022-11-02 11-57-19](https://user-images.githubusercontent.com/51878265/199414178-d59e8780-c140-4bf1-b27e-7e8f1c723afb.png)
 
@@ -29,13 +39,13 @@ Docker is an open-source platform designed to simplify the development, deployme
 
 > Commands:
 
-- `FROM` (base image)
+- `FROM` (базовый образ )
 - `COPY` (copy files from local to the container)
 - `ARG` (pass arguments)
 - `ENV` (environment variable)
 - `RUN` (any arbitrary shell command)
 - `EXPOSE` (open port from container to virtual network)
-- `CMD` (command to run when the container starts) 
+- `CMD` (command to run when the container starts)
 - `WORKDIR` (create a directory where all the files will be copied and used)
 
 ### Docker Build Architecture
@@ -119,7 +129,7 @@ In Compose, we don't have to give the `pwd`:
 ```yaml
 volumes:
   - ./:/usr/share/nginx/html:ro
-  - ./app:/usr/share/nginx/html/app:ro 
+  - ./app:/usr/share/nginx/html/app:ro
 ```
 
 ### Docker Compose
@@ -153,12 +163,12 @@ services:
     image: mongo:4.0
     volumes:
       - mongo-db:/data/db
-    networks: 
+    networks:
       - my-net
-      
+
 volumes:
   mongo-db: # named volume
-  
+
 networks:
   my-net:
     driver: bridge
@@ -230,7 +240,7 @@ services:
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/post-pass
       POSTGRES_USER_FILE: /run/secrets/post-user
-      
+
 secrets:
   post-pass:
     external: true
@@ -255,7 +265,7 @@ Some popular registries are:
 - GitHub Container Registry (ghcr.io)
 - Google Container Registry (gcr.io)
 - Amazon Elastic Container Registry (ECR)
-- Azure Container Registry (ACR) 
+- Azure Container Registry (ACR)
 
 ### Private Docker Registry
 

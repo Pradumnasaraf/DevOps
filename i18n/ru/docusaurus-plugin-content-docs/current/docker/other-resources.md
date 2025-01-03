@@ -1,6 +1,10 @@
 ---
 sidebar_position: 4
 title: Other Resources
+description: A collection of resources to learn more about Docker.
+tags: ["Docker", "Containerization", "DevOps"]
+keywords: ["Docker", "Containerization", "DevOps"]
+slug: "/docker/other-resources"
 ---
 
 Here are list of other resources that you can refer to learn more about Docker:

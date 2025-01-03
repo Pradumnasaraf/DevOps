@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Введение в Helm
+description: Learn about Helm and its benefits.
+tags: ["Helm", "Kubernetes", "Package Manager"]
+keywords: ["Helm", "Kubernetes", "Package Manager"]
+slug: "/helm"
 ---
 
 Helm — это менеджер пакетов и шаблонизатор для Kubernetes. Он позволяет вам определять, устанавливать и обновлять даже самые сложные приложения Kubernetes. Он подобен apt, yum или homebrew, но предназначен специально для Kubernetes. Основное предназначение — это развертывание приложений и управление средой.

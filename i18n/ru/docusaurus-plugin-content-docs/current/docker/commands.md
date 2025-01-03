@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
-title: Команды Docker
+title: Docker Команды
+description: A collection of Docker commands to help you get started with Docker.
+tags: ["Docker", "Containerization", "DevOps"]
+keywords: ["Docker", "Containerization", "DevOps"]
+slug: "/docker/commands"
 ---
 
 ### Базовые команды Docker

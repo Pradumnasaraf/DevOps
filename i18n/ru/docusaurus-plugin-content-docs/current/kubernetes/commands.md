@@ -1,6 +1,10 @@
 ---
 sidebar_position: 3
 title: Kubernetes Commands
+description: A collection of commands to help you with Kubernetes.
+tags: ["Kubernetes", "Containerization", "DevOps"]
+keywords: ["Kubernetes", "Containerization", "DevOps"]
+slug: "/kubernetes/commands"
 ---
 
 > KUBECTL COMMANDS
@@ -54,7 +58,7 @@ kubectl get all -n <namespace name>
 - To get the internal components running
 
 ```bash
-kubectl get pods -A 
+kubectl get pods -A
 kubectl get pods -A -owide
 ```
 
@@ -105,7 +109,7 @@ kubectl api-resources
 kubectl delete deployment <deployment-name>
 ```
 
-- To delete the pods 
+- To delete the pods
 
 ```bash
 kubectl delete pod <pod-name>
@@ -139,7 +143,7 @@ kubectl exec -it <pod name> -- sh
 kubectl exec -it nginx -- sh
 ```
 
-- Get a deep details/state chnages about a pod 
+- Get a deep details/state chnages about a pod
 
 ```bash
 kube describe pod <pod -name>
@@ -190,13 +194,13 @@ kubectl apply -f <config file name> --namespace=<namespace name>
 
 - Get all the PersistentVolume
 
-```bash 
+```bash
 kubectl get pv
 ```
 
 - Get all the PersistentVolumeClaim (tied to a namespace)
 
-```bash 
+```bash
 kubectl get pvc
 ```
 
@@ -208,6 +212,6 @@ kubectl config set-context --current --namespace=<namespace name>
 
 - To get the details of a particular namespace
 
-```bash 
+```bash
 kubectl get all -n <namespace name>
 ```

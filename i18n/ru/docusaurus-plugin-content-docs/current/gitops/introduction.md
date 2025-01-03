@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
 title: Введение в GitOps
+description: Learn about GitOps and its benefits.
+tags: ["GitOps", "Kubernetes", "Continuous Delivery"]
+keywords: ["GitOps", "Kubernetes", "Continuous Delivery"]
+slug: "/gitops"
 ---
 
 GitOps — это способ управления кластерами Kubernetes с использованием Git в качестве источника истинности.
