@@ -40,7 +40,7 @@ Docker — это платформа с открытым исходным код
 > Commands:
 
 - `FROM` (базовый образ )
-- `COPY` (copy files from local to the container)
+- `COPY` (копирует файлы с локальной папки в контейнер)
 - `ARG` (pass arguments)
 - `ENV` (environment variable)
 - `RUN` (any arbitrary shell command)
