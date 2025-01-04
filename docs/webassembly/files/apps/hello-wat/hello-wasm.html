@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            let memory; // Declare memory globally
+            fetch('hello-wasm.wasm')
+                .then(response => response.arrayBuffer())
+                .then(bytes =>
+                    WebAssembly.instantiate(bytes, {
+                        console: {
+                            log: offset => {
+                                const message = new TextDecoder().decode(
+                                    new Uint8Array(memory.buffer, offset)
+                                );
+                                console.log(message);
+                            }
+                        }
+                    })
+                )
+                .then(results => {
+                    memory = results.instance.exports.memory;
+                    results.instance.exports.main();
+                })
+                .catch(error => console.error("Error loading WASM:", error));
+        </script>
+        <p id="output"></p>
+    </body>
+</html>

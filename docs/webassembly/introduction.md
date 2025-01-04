@@ -727,3 +727,154 @@ emcc hello.c -o hello.html
 It will generate the `hello.html` file along with the `hello.wasm` and `hello.js` files. We can open the `hello.html` file in the browser to run the WebAssembly module.
 
 If you look closely at the `hello.html` file, you will see that it loads the `hello.js` file, which in turn loads the `hello.wasm` file. The `hello.js` file contains the JavaScript code to load and run the WebAssembly module. In this way everything is connected and the WASM module is executed in the browser.
+
+## Closer look at WASM Compilation
+
+If we first look how JavaScript is compiled. It's uses JIT (Just-In-Time) compilation. It compiles the code on the fly, as it's executed. Previously it use to be interpreted line by line. But with JIT compilation, it compiles the code into machine code, and then executes it. This makes the code run faster and more efficiently.
+
+It was good, but WASM made it even better. WASM two-staged compilation process. Ahead-of-Time (AOT) compilation and Just-In-Time (JIT) compilation. So, the code is first compiled to WASM binary format using AOT compilation. One the WASM module is loaded, it's compiled to machine code using JIT compilation. This makes the code run even faster and more efficiently.
+
+### List of WASM Compilers
+
+There are several compilers available that can compile code to WebAssembly. Some of the popular compilers are:
+
+- **LLVM**: It's a popular compiler infrastructure that can compile C, C++, Rust, and other languages to WebAssembly. It's a good at optimizing code and generating efficient machine code.
+- **Binaryen**: It's not just a compiler, but a toolchain for WebAssembly. It can optimize and generate WebAssembly code.
+- **Emscripten**: Emscripten is a toolchain for compiling to WebAssembly. It can compile C and C++ code to WebAssembly. It can also compile other languages like Rust, Go, etc. It's famous for taking complex code and run it in the browser. IT uses LLVM and Binaryen under the hood.
+- **wasm-pack**: It's a tool for building and working with Rust and WebAssembly. It can compile Rust code to WebAssembly and generate the necessary JavaScript bindings. It works well with the Rust Package Manager (Cargo) and the Rust ecosystem.
+- **AssemblyScript**: It's a TypeScript-like language that compiles to WebAssembly. It's designed to be a drop-in replacement for JavaScript. It's easy to learn and use, and it can be compiled to WebAssembly using the AssemblyScript compiler. The good part about it is, it's very well optimized for WebAssembly. It's good a memory management.
+
+Some online tools for learning and experimenting with WebAssembly:
+
+- **WasmFiddle**: It's an online tool for experimenting with WebAssembly. It allows you to write, compile, and run WebAssembly code in the browser. It's a good way to learn and understand how WebAssembly works.
+- **WebAssembly Explorer**: It's an online tool for exploring WebAssembly. It allows you to compile C and C++ code to WebAssembly and see the generated WebAssembly code. It's a good way to understand how C and C++ code is compiled to WebAssembly.
+- **WABT Online**: It's an online tool for working with WebAssembly. It allows you to assemble, disassemble, and run WebAssembly code in the browser. It's a good way to learn and experiment with WebAssembly.
+- **WasmCloud Playground**: It's an online tool for building and running WebAssembly modules. It allows you to write, compile, and run WebAssembly code in the browser. It's a good way to learn and experiment with WebAssembly.
+
+## Emscripten Compiler
+
+To keep it simple Emscripten is a cool that that helps coders written in C, C++, Rust, etc. and bring to web. Many games and game engines like Unity, Nebula3, Geogram, etc, or graphics program like OpenGL ES 2.0, IMGUI has successfully ported to web using Emscripten.
+
+![Emscripten](https://github.com/user-attachments/assets/e2cb88e0-5bab-4afc-80da-4de2964a5890)
+
+It uses LLVM, Closure, Clang, Binaryen, etc. to compile the code to WebAssembly. It's a good at optimizing code and generating efficient machine code. It's famous for taking complex code and run it in the browser. It uses LLVM and Binaryen under the hood. It converts code in JavaScript and WebAssembly. The JavaScript code can be run both in the browser and on the server.
+
+To compile a C code to WebAssembly using Emscripten, we can use the following command:
+
+```bash
+emcc hello.c
+```
+
+If your node version is old and you are don't support wasm, you can use the following command to compile the code:
+
+```bash
+emcc hello.c -s WASM=0
+```
+
+This will only generate the JavaScript code and not the WebAssembly code. The `-s WASM=0` flag tells the compiler not to generate WebAssembly output. Here `s` stands for setting.
+
+Emscripten also make it convenient to test the code in the browser by generating the HTML file along with the JavaScript and WebAssembly files. It's a good way to test and run the code in the browser.
+
+We can also specify the output file name using the `-o` flag. For example, to generate the `hello.html` file, we can use the following command:
+
+```bash
+emcc hello.c -o hello.html
+```
+
+So, this will generate a total of three files: `hello.html`, `hello.js`, and `hello.wasm`. The `hello.html` file is the main HTML file that loads the `hello.js` file, which in turn loads the `hello.wasm` file. The `hello.js` file contains the JavaScript code to load and run the WebAssembly module.
+
+### Strict Mode
+
+Strict mode is a way to opt-in to a restricted variant of JavaScript. Helps catch common errors, also ensure code compatibility and future-proofing. 
+
+Some of the key features of strict mode are:
+
+![strict mode](https://github.com/user-attachments/assets/43edb431-5a3d-4446-bafa-6d973f98709e)
+
+For example if we are using `malloc` in our C++ code, which is the old way of allocating memory. But in strict mode, it's not allowed. And it will throw an error.
+
+### Exporting Functions
+
+When compiling the default behavior is not to export any functions. The reason being, it's more secure, optimization and enable encapsulation. However, there will be cases where exporting function will be necessary.
+
+To do that first we need to define the function using the `EMSCRIPTEN_KEEPALIVE` macro. This macro tells the compiler to keep the function alive and not optimize it out.
+
+```c
+#include <emscripten.h>
+
+EMSCRIPTEN_KEEPALIVE
+int add(int a, int b) {
+  return a + b;
+}
+```
+
+Then we need to export the function using the `EXPORTED_FUNCTIONS` flag. This flag tells the compiler to export the specified functions.
+
+```bash
+emcc hello.c -o hello.html -s EXPORTED_FUNCTIONS="['_add']"
+```
+
+Then we call the exported function in the JavaScript code like this:
+
+```js
+const add = Module._add(2, 3); // 5
+
+console.log(add);
+```
+
+### Using file system
+
+As JavaScript doesn't have access to the file system and runs in a sandboxed environment. Emscripten provides a way to work with files in the browser. It provides a virtual file system that allows you to read and write files in the browser. The way it works is Emscripten preloads the file into the virtual file system. We use the `--preload-file` flag to preload the file.
+
+For eg our C++ program open and reads a file called `input.txt` and we want to compile it to WebAssembly. We can use the following command:
+
+```cpp
+#include <stdio.h>
+
+int main() {
+  FILE *file = fopen("input.txt", "r");
+  if (file == NULL) {
+    printf("Error opening file\n");
+    return 1;
+  }
+
+  char buffer[256];
+  while (fgets(buffer, sizeof(buffer), file) != NULL) {
+    printf("%s", buffer);
+  }
+
+  fclose(file);
+  return 0;
+}
+```
+
+```bash
+emcc hello.c -o hello.html --preload-file input.txt
+```
+
+### Code Optimizations
+
+Emscripten provides a way to optimize the code using the `-O` flag (it's a capital letter O). The range is from `-O0` to `-O3`. The `-O0` flag disables optimization. The `-O1` flag enables basic optimization. The `-O2` flag enables more optimization. The `-O3` flag enables the highest level of optimization. This will a game changer in terms of performance.
+
+```bash
+emcc hello.c -o hello.html -O3
+```
+
+There are more option in Emscripten compiler we can use `--help` flag to see all the options.
+
+```bash
+emcc --help
+```
+
+
+## WebAssembly Text Format (WAT)
+
+WebAssembly Text Format (WAT) is a human-readable representation of the WebAssembly binary format. It's a simple, verbose, and readable format that allows you to write and read WebAssembly code. It's useful for debugging and understanding the structure of the WebAssembly module.
+
+To convert a WAT file to a WASM file, we can use the `wat2wasm` tool. It's a tool that converts a WAT file to a WASM file. It takes a WAT file as input and generates a WASM file as output.
+
+For example, to convert a WAT file called `hello.wat` to a WASM file, we can use the following command:
+
+```bash
+wat2wasm hello.wat -o hello.wasm
+```
