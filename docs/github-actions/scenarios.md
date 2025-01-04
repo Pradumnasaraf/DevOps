@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Senarios and Examples
+title: Scenarios and Examples
 description: A collection of scenarios and examples to help you get started with GitHub Actions.
 tags: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
 keywords: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
