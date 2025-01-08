@@ -26,7 +26,6 @@
 - [Tools](docs/kubernetes/tools.md)
 - [Playground](docs/kubernetes/playground.md)
 - [Other Resources](docs/kubernetes/other-resources.md)
-- 
 
 <br>
 
