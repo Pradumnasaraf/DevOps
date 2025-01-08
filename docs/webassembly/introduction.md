@@ -1012,9 +1012,6 @@ And the server will be running on port 3000. If we visit `http://localhost:3000/
 
 Now if we deploy this Docker Image to the cloud, it will be running in the cloud environment. And we can access the service will a url provided instead of `localhost`.
 
-
-> Image credit: KodeKloud. Shout to them for creating such a wonderful graphic.
-
 ### On the Edge
 
 There are many edge computing platforms like AWS WaveLength, Azure Edge Zones, etc. As wasm app getting more containerized, it's becoming more easier to deploy on the edge. 
@@ -1136,7 +1133,7 @@ wasm-pack build
 
 Now if we compare the Docker image and WASM binary. The Docker image size is between 100-200 MB, where as the WASM binary is around 1-10 MB. This is because Docker image contains the whole file system and OS, where as WASM binary contains only the necessary code and resources.
 
-![Size and Startup Time](https://github.com/user-attachments/assets/533d501b-51d4-4188-8cd5-24538481466f")
+![Size and Startup Time](https://github.com/user-attachments/assets/533d501b-51d4-4188-8cd5-24538481466f)
 
 **Startup Time**
 
@@ -1175,3 +1172,5 @@ In case of WASM, it uses a special runtime called WasmEdge. To integrate this wi
 Now with this we can deploy app that combines the efficiency and performance of WASM with the universality, ease and portability of Docker. Now no matter whether you run this image on a microservices architecture, cloud, edge, or on a developer's laptop.
 
 ![Docker and WASM](https://github.com/user-attachments/assets/c40d0a50-b706-49e5-a921-8828579da3a7)
+
+> Image credit: KodeKloud. Shout to them for creating such a wonderful graphic.
