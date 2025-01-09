@@ -1173,4 +1173,32 @@ Now with this we can deploy app that combines the efficiency and performance of 
 
 ![Docker and WASM](https://github.com/user-attachments/assets/c40d0a50-b706-49e5-a921-8828579da3a7)
 
-> Image credit: KodeKloud. Shout to them for creating such a wonderful graphic.
+## Tools and Frameworks
+
+### Wasm Frameworks
+
+Frameworks are the building blocks of WebAssembly applications. They provide a set of tools, libraries, and conventions for building, deploying, and managing WebAssembly applications. Here are some pain points that frameworks solve:
+
+- Without a framework, WASM devs find themselves **manually register services for load balancing, service discovery, etc**. Frameworks make it easier to build, deploy, and manage WebAssembly applications.
+
+- **Effective communication** between WASM services is crucial. Without a framework, the communication channels can be become complex. 
+  
+- Another pain becomes the **security**, without a dedicated framework, devs find themselves implementing security feature like auth and encryption manually.
+
+- **Integration with other platforms** can be cumbersome, leading to platform-specific code. And that become bottleneck to change the platform.
+
+- Writing a lot of **boilerplate code** and make the application bloated and harder to maintain. It reduces modularity and scalability.
+
+Now to sort out these pain points, there are frameworks available that can help in building, deploying, and managing WebAssembly applications. Some of the popular WebAssembly frameworks are:
+
+![Wasm Frameworks](https://github.com/user-attachments/assets/c452bea9-17d4-436b-a86a-37b643b59795)
+
+**SPIN**: It's an Open Source framework specifically designed for building WebAssembly applications. Its focus is on building, deploying, and running microservices that are fast, secure, and composable. It also aligns wih the latest advancements in WebAssembly and and supports various WASM runtimes.
+
+![spin](https://github.com/user-attachments/assets/fc3abb46-20b2-4aa5-a7a3-fe963ac3d5bc)
+
+**WasmCloud**: It's a versatile runtime capable of running app not just in cloud but also at the edge, within browsers, on compact devices, and virtually anywhere. Game changer in distributed computing.
+
+![wasmcloud](https://github.com/user-attachments/assets/3b05ac61-1797-4110-bfa6-9572349489ff)
+
+> Image credit: All the images and graphics are taken from KodeKloud course on WebAssembly. Shoutout to them for creating such wonderful graphics.
