@@ -80,7 +80,6 @@ It is a file that contains the expected cryptographic checksums of the content o
 
 Go path is an environment variable that specifies the location of your workspace. It is used to find the location of your Go code.
 
-
 ## Build
 
 We can build a program using the following command:
@@ -94,6 +93,46 @@ we can also build for different platforms using the following command:
 ```bash
 $ GOOS=linux GOARCH=amd64 go build hello.go
 ```
+
+## Go Default Environment Variables
+
+| **Env Name**        | **Description**                                                                                               | **Example**                                                                  |
+|---------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `GO111MODULE`       | Controls Go module support. If empty, Go uses module mode when a `go.mod` file is present, otherwise falls back to GOPATH mode. | `GO111MODULE=on` (forces Go to use modules)                                  |
+| `GOARCH`            | The architecture for which Go is building the binary (e.g., `amd64`, `arm64`).                                 | `GOARCH=arm64` (for Apple Silicon Macs)                                      |
+| `GOBIN`             | Directory where `go install` places binaries.                                                                 | `GOBIN=$GOPATH/bin` (default if empty)                                        |
+| `GOCACHE`           | Directory where Go stores build cache to speed up subsequent builds.                                          | `GOCACHE=/path/to/cache`                                                     |
+| `GOENV`             | Path to the Go environment file storing Go environment variables.                                             | `GOENV=/path/to/go/env`                                                      |
+| `GOEXE`             | File extension for Go executables (empty on Unix).                                                            | `GOEXE=.exe` (on Windows systems)                                             |
+| `GOEXPERIMENT`      | Enables experimental features in Go.                                                                          | `GOEXPERIMENT=generics` (for future Go features)                             |
+| `GOFLAGS`           | Flags passed to every `go` command.                                                                            | `GOFLAGS="-mod=readonly"` (prevents modifying `go.mod`)                       |
+| `GOHOSTARCH`        | Architecture of the machine running the Go toolchain (same as `GOARCH`).                                      | `GOHOSTARCH=arm64`                                                           |
+| `GOHOSTOS`          | OS of the machine running the Go toolchain (same as `GOOS`).                                                  | `GOHOSTOS=darwin`                                                            |
+| `GOINSECURE`        | Specifies which modules can be fetched without HTTPS or checksum validation.                                 | `GOINSECURE=example.com/private` (for private, insecure repositories)       |
+| `GOMODCACHE`        | Directory where downloaded Go modules are cached.                                                             | `GOMODCACHE=$GOPATH/pkg/mod`                                                 |
+| `GONOPROXY`         | Module paths that bypass `GOPROXY`.                                                                            | `GONOPROXY=example.com/*` (bypass proxy for certain modules)                |
+| `GONOSUMDB`         | Module paths that bypass checksum validation.                                                                 | `GONOSUMDB=example.com/*` (bypass checksum validation for private modules)  |
+| `GOOS`              | The target operating system for the Go build (e.g., `linux`, `darwin`, `windows`).                             | `GOOS=linux` (to build a Linux binary)                                      |
+| `GOPATH`            | The root directory for Go workspaces, storing source code, dependencies, and binaries.                        | `GOPATH=/Users/username/go` (default location)                               |
+| `GOPRIVATE`         | Specifies module paths as private, bypassing proxies and checksum validation.                                 | `GOPRIVATE=example.com/*` (for private repositories)                         |
+| `GOPROXY`           | Proxy servers used for fetching Go modules.                                                                    | `GOPROXY=https://proxy.golang.org` (default proxy)                           |
+| `GOROOT`            | The directory where Go is installed (contains Go's standard library and tools).                               | `GOROOT=/opt/homebrew/Cellar/go/1.23.4/libexec`                              |
+| `GOSUMDB`           | The checksum database for Go modules to verify downloaded content.                                             | `GOSUMDB=sum.golang.org`                                                     |
+| `GOTMPDIR`          | Temporary directory for Go build-related files.                                                                | `GOTMPDIR=/path/to/tmp`                                                      |
+| `GOTOOLCHAIN`       | Specifies the Go toolchain used for compiling code.                                                            | `GOTOOLCHAIN=go1.23` (to use a specific Go version toolchain)                |
+| `GOTOOLDIR`         | Directory where Go's compiler tools (like linker and compiler) are located.                                    | `GOTOOLDIR=/opt/homebrew/Cellar/go/1.23.4/libexec/pkg/tool/darwin_arm64`     |
+| `GOVCS`             | Controls versioning for Go modules' version control systems.                                                  | `GOVCS=git` (to use Git for version control)                                 |
+| `GOVERSION`         | The current version of Go being used.                                                                           | `GOVERSION=go1.23.4`                                                         |
+| `GODEBUG`           | Debugging options for Go runtime (e.g., for garbage collection or trace logs).                                 | `GODEBUG="gctrace=1"` (to trace garbage collection)                         |
+| `GOTELEMETRY`       | Controls telemetry data collection.                                                                            | `GOTELEMETRY=on` (telemetry enabled)                                         |
+| `GOTELEMETRYDIR`    | Directory where telemetry data is stored.                                                                      | `GOTELEMETRYDIR=/path/to/telemetry`                                          |
+| `GCCGO`             | The path to the GCC Go compiler for CGo support.                                                               | `GCCGO=gccgo`                                                               |
+| `GOARM64`           | Specifies the ARM64 architecture version.                                                                      | `GOARM64=v8.0`                                                              |
+| `AR`, `CC`, `CXX`   | Path to the archiver, C compiler, and C++ compiler used for CGo.                                               | `AR=ar`, `CC=cc`, `CXX=c++`                                                 |
+| `CGO_ENABLED`       | Enables or disables CGo, which allows Go to call C code.                                                       | `CGO_ENABLED=1` (enables CGo)                                               |
+| `CGO_*` flags       | Flags passed to the C compiler and linker for CGo, like `CGO_CFLAGS` for compiling flags.                    | `CGO_CFLAGS="-O2"` (optimizes CGo code compilation)                         |
+| `PKG_CONFIG`        | Specifies the path to the `pkg-config` tool for C libraries.                                                   | `PKG_CONFIG=pkg-config`                                                     |
+| `GOGCCFLAGS`        | Flags passed to the GCC compiler for CGo-based Go code compilation.                                           | `GOGCCFLAGS="-fPIC -arch arm64 -pthread"`                                    |
 
 ## Memory Allocation
 

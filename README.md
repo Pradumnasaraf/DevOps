@@ -149,7 +149,7 @@
 
 <br>
 
-## WebAssembly
+## WebAssembly (WASM)
 
 <img align="right" src="https://github.com/user-attachments/assets/0687a31f-fa90-4aeb-b3f2-b841d8758f77" height="100" alt="Wasm">
 

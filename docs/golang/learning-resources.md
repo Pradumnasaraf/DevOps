@@ -14,4 +14,6 @@ slug: "/golang/resources"
 - [Let's go with golang](https://youtube.com/playlist?list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa) - Recommended
 - [Golang Tutorial TechWorld with Nana](https://youtu.be/yyUHQIec83I)
 - [Codeacademy Free course](https://www.codecademy.com/learn/learn-go)
+- [Gophercises](https://gophercises.com/)
+
 
