@@ -23,3 +23,7 @@ yarn-error.log*
 .DS_Store
 .vercel
 TODO.md
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup

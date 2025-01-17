@@ -6,3 +6,6 @@ tags: ["Terraform", "Infrastructure as Code", "IaC"]
 keywords: ["Terraform", "Infrastructure as Code", "IaC"]
 slug: "/terraform/resources"
 ---
+
+- [Official Terraform Documentation](https://www.terraform.io/docs)
+- [Terraform Providers](https://registry.terraform.io/browse/providers)
