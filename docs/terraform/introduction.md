@@ -585,7 +585,7 @@ We can use the `terraform output` command to display the output values. We can a
 
 ## Terraform State
 
-Terraform uses a state file to store information about the resources it manages. The state file keeps track of the current state of the infrastructure and is used to plan and apply changes to the resources. The state file is stored locally by default, but it can also be stored remotely in a backend like Terraform Cloud, AWS S3, or HashiCorp Consul. More like a blueprint of the infrastructure.
+Terraform uses a state file to store information about the resources it manages. The state file keeps track of the current state of the infrastructure and is used to plan and apply changes to the resources. The state file is stored locally by default, but it can also be stored remotely in a backend like Terraform Cloud, AWS S3, or HashiCorp Consul. More like a blueprint of the infrastructure or single source of truth.
 
 When we run `terraform apply` command, it will create a state file `terraform.tfstate` in the working directory. The state file contains information about the resources managed by Terraform, their attributes, dependencies, and other metadata. The state file is used to track changes to the infrastructure and ensure that the desired state is maintained. 
 
@@ -611,3 +611,14 @@ Every time we run `terraform apply` command, Terraform checks the state file to 
 - **Performance**: Terraform state improves performance by caching the state of the infrastructure and only applying changes when necessary.
 
 We can make use of this command `terraform plan -refresh=false`. With this, Terraform generates an execution plan but skips refreshing the state of resources in the real-world infrastructure.
+
+One thing to note is state file contains sensitive information like passwords, access keys, and other secrets. So, it is important to secure the state file and avoid storing it in version control systems like Git. We can use remote backends like Terraform Cloud, AWS S3, or HashiCorp Consul to store the state file securely.
+
+:::important
+So, we store the resources files like the `main.tf`, `variables.tf`, `outputs.tf` in version control systems like Git and store the state file in a secure remote backend.
+
+Another important things that we don't make direct changes to state file. We use state management commands to manage those changes.
+:::
+
+
+
