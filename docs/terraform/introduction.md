@@ -7,9 +7,9 @@ keywords: ["Terraform", "Infrastructure as Code", "HashiCorp"]
 slug: "/terraform"
 ---
 
-Terraform is an open-source infrastructure as code software tool created by HashiCorp. It allows users to define and provision data center infrastructure using a declarative configuration language. 
+Terraform is an open source infrastructure as code software tool created by HashiCorp. It allows users to define and provision infrastructure using a declarative configuration language. Terraform manages infrastructure across multiple cloud providers and on-premises environments. It uses a simple syntax called HashiCorp Configuration Language (HCL) to define the infrastructure components and their dependencies.
 
-## Challenges with traditional infrastructure
+## Challenges with traditional infra
 
 In traditional infrastructure management, system administrators would manually configure servers, networks, and storage devices. This manual process was time-consuming, error-prone, and difficult to reproduce consistently across different environments. These come with the following challenges:
 
@@ -27,18 +27,20 @@ To solve these challenges, organizations are adopting Infrastructure as Code (Ia
 Infrastructure as Code (IaC) is the practice of managing infrastructure using code and automation. With IaC, infrastructure configurations are defined in code files that can be version-controlled. In the Iac tooling space we have 3 types of tools:
 
 - **Configuration Management Tools**: Tools like Ansible, Chef, and Puppet are used to automate the configuration of servers and applications.
-- **Provisioning Tools**: Tools like Terraform, CloudFormation, and ARM templates are used to provision and manage cloud resources.
 - **Server Templating Tools**: Tools like Packer and Docker are used to create machine images that can be deployed across different environments.
+- **Provisioning Tools**: Tools like Terraform, CloudFormation, and ARM templates are used to provision and manage cloud resources.
 
-![types of IaC tools](https://github.com/user-attachments/assets/d81f948a-d79a-4eeb-8f19-31cc4db30d00)
+![types of IaC tools](https://github.com/user-attachments/assets/346a952a-671b-478a-bbee-83d0ba1e301f)
 
 ## Why Terraform?
 
 Terraform is a popular Infrastructure as Code tool that allows you to define and provision infrastructure using a declarative configuration language. With Terraform we can deploy infrastructure across multiple cloud providers like AWS, Azure, Google Cloud, and on-premises environments. And it supports a variety of providers like Cloudflare, Grafana, Auth0, and more.
 
-![Terraform Providers](https://github.com/user-attachments/assets/63d359e3-3370-46ff-ba27-dd7de02aeda)
+![Terraform Providers](https://github.com/user-attachments/assets/e4fa9895-4cff-4b2d-b637-f1c97b38d599)
 
-Terraform uses a simple syntax called HashiCorp Configuration Language (HCL) to define the infrastructure components and their dependencies. It's easy to learn and understand, and it allows you to create reusable modules and share them with others.
+Terraform uses a simple syntax called **HashiCorp Configuration Language (HCL)** to define the infrastructure components and their dependencies. It's easy to learn and understand, and it allows you to create reusable modules and share them with others.
+
+![Terraform Workflow](https://github.com/user-attachments/assets/c0697d6a-a73e-419b-8d52-6558cb9d1b63)
 
 For example to create an AWS EC2 instance using Terraform, you can define the following configuration:
 
@@ -49,11 +51,9 @@ resource "aws_instance" "example" {
 }
 ```
 
-![Terraform Workflow](https://github.com/user-attachments/assets/c0697d6a-a73e-419b-8d52-6558cb9d1b63)
+It start by creating a configuration file and then work in three phases, **init** to initialize the working directory, **plan** to create an execution plan, and **apply** to apply the changes (more info below)
 
-It start by creating a configuration file and then work in three phases, init to initialize the working directory, plan to create an execution plan, and apply to apply the changes.
-
-Each object the Terraform manages is called a resource. Resources are defined in Terraform configuration files, and Terraform uses providers to interact with APIs of cloud providers and services. If any of resources go out of sync with the desired state, Terraform can update the resources to match the desired state.
+Each object the Terraform manages is called a **resource**. Resources are defined in Terraform configuration files, and Terraform uses providers to interact with APIs of cloud providers and services. If any of resources go out of sync with the desired state, Terraform can update the resources to match the desired state.
 
 ### Terraform benefits
 
@@ -408,7 +408,7 @@ In Tuples, we can define different types of values unlike list, map, and set. We
 
 #### Interactive Mode
 
-Terraform allows you to interactively input values for variables when running `terraform apply` command. We gives values from the CLI when we run `terraform apply` command.
+Terraform allows you to interactively input values for variables when running `terraform apply` command. We gives values from the CLI when we run `terraform apply` command. The way it works is we don't define value in the `variables.tf` file, instead we define the variable (name) and its type and then run `terraform apply` command. Terraform will prompt us to enter the value for the variable.
 
 ```hcl
 # variables.tf
@@ -467,9 +467,10 @@ terraform apply
 
 #### Variable Definition Files
 
-Another way to pass values to the variables is to use a variable definition file. We can create a file `terraform.tfvars` and define the values for the variables in the file. We can also use a different name but the file should have `.tfvars` extension.
+Another way to pass values to the variables is to use a variable definition file. We can create a file `terraform.tfvars` and define the values for the variables in the file. We can also use a different name for the file but the file should have `.tfvars` extension.
 
 ```hcl
+# terraform.tfvars
 say_hello = "Hello"
 ```
 
@@ -490,11 +491,8 @@ resource "local_file" hello{
   content  = var.say_hello
   file_permission = "0700"
 }
-``` 
 
-And then create a `terraform.tfvars` file:
-
-```hcl
+# terraform.tfvars
 say_hello = "Hello"
 ```
 
@@ -530,7 +528,7 @@ So, the value passed via command line flag will take precedence over the value d
 
 Resource attributes are the properties of a resource that can be used to reference or manipulate the resource. Each resource has a set of attributes that can be used to access information about the resource. For example, the `random_pet` resource has attributes like `id`, which gives the random pet name generated by Terraform and we can pass it to other resources. We use interpolation syntax `${}` like `${random_pet.my-pet.id}` to reference the attribute.
 
-The interpolation syntax for thu will be `${resource_type.resource_name.attribute}`.
+The interpolation syntax for this will be `${resource_type.resource_name.attribute}`.
 
 For example, to reference the `id` attribute of the `random_pet` resource:
 
@@ -544,7 +542,7 @@ Terraform automatically manages resource dependencies based on the order of reso
 
 Like we saw an an example above, the `random_pet` resource depends on the `local_file` resource. So, Terraform will create the `local_file` resource first and then create the `random_pet` resource. And when we destroy the resources, Terraform will destroy the `random_pet` resource first and then destroy the `local_file` resource.
 
-2. **Explicit Dependencies**: But there are times where we don't don't use the attributes of other resources and we still want to create the resources in a specific order. In such cases, we can use the `depends_on` argument to define explicit dependencies between resources. A real life example of this is when we want to create a VPC and then create an EC2 instance in that VPC. We can use the `depends_on` argument to define the dependency between the resources.
+1. **Explicit Dependencies**: But there are times where we don't don't use the attributes of other resources and we still want to create the resources in a specific order. Because they might be indirectly dependent on each other. In such cases, we can use the `depends_on` argument to define explicit dependencies between resources. A real life example of this is when we want to create a VPC and then create an EC2 instance in that VPC. We can use the `depends_on` argument to define the dependency between the resources.
 
 For our local file and random pet example, we can define the explicit dependency like this:
 
@@ -584,3 +582,32 @@ resource "random_pet" "my-pet" {
 ```
 
 We can use the `terraform output` command to display the output values. We can also specify the name of the output value to display only that value like `terraform output pet_name`.
+
+## Terraform State
+
+Terraform uses a state file to store information about the resources it manages. The state file keeps track of the current state of the infrastructure and is used to plan and apply changes to the resources. The state file is stored locally by default, but it can also be stored remotely in a backend like Terraform Cloud, AWS S3, or HashiCorp Consul. More like a blueprint of the infrastructure.
+
+When we run `terraform apply` command, it will create a state file `terraform.tfstate` in the working directory. The state file contains information about the resources managed by Terraform, their attributes, dependencies, and other metadata. The state file is used to track changes to the infrastructure and ensure that the desired state is maintained. 
+
+The state file contains the following information:
+
+- Resource IDs: The unique identifiers of the resources managed by Terraform.
+- Resource Attributes: The properties of the resources like IP addresses, DNS names, and other metadata.
+- Resource Dependencies: The relationships between the resources and their dependencies.
+- Provider Configuration: The configuration settings for the providers used by Terraform.
+- Output Values: The values returned by the resources after they are created.
+- Lock Information: The lock information to prevent concurrent modifications to the state file.
+- Version Information: The version of Terraform used to create the state file.
+
+Every time we run `terraform apply` command, Terraform checks the state file to determine the current state of the infrastructure and apply the changes accordingly. If the state file is deleted or corrupted, Terraform will not be able to manage the resources and we will have to recreate the resources.
+
+![Terraform State](https://github.com/user-attachments/assets/8826a8ad-5165-411c-ae9d-8aa8eeb804b0)
+
+### Benefits of Terraform State
+
+- **State Management**: Terraform stores the state of the infrastructure in a state file, allowing you to manage, version, and share the state across teams.
+- **Collaboration**: Terraform state allows multiple team members to work on the same infrastructure and track changes made by each team member.
+- **Rollback**: Terraform state allows you to rollback changes to the infrastructure by reverting to a previous state.
+- **Performance**: Terraform state improves performance by caching the state of the infrastructure and only applying changes when necessary.
+
+We can make use of this command `terraform plan -refresh=false`. With this, Terraform generates an execution plan but skips refreshing the state of resources in the real-world infrastructure.

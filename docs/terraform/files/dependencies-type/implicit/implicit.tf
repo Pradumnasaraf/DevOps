@@ -1,5 +1,5 @@
 resource local_file "my-file" {
-  content = random_pet.my-pet.id
+  content = "My pet is ${random_pet.my-pet.id}"
   filename = "/tmp/my-file.txt"
 }
 resource random_pet "my-pet" {
