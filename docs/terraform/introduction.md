@@ -619,6 +619,3 @@ So, we store the resources files like the `main.tf`, `variables.tf`, `outputs.tf
 
 Another important things that we don't make direct changes to state file. We use state management commands to manage those changes.
 :::
-
-
-
