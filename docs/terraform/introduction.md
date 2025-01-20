@@ -619,3 +619,255 @@ So, we store the resources files like the `main.tf`, `variables.tf`, `outputs.tf
 
 Another important things that we don't make direct changes to state file. We use state management commands to manage those changes.
 :::
+
+## Terraform Commands
+
+You can find the list of Terraform commands and their usage [here](./commands.md).
+
+## Mutable and Immutable Infrastructure
+
+In the context of infrastructure management, there are two approaches to managing infrastructure:
+
+### Mutable Infrastructure 
+
+Mutable infrastructure, servers and resources are updated or modified in place. Changes are made to the existing infrastructure to update software, apply patches, or make configuration changes. This approach is common in traditional infrastructure management where servers are manually configured and updated.
+
+This approach can lead to configuration drift, security vulnerabilities, and inconsistencies between environments. It can also make it difficult to scale and manage large, complex environments.
+
+### Mutable Infrastructure
+
+Immutable infrastructure, servers and resources are treated as disposable and are replaced with new instances when changes are required. Instead of updating existing servers, new servers are created with the desired configuration and the old servers are destroyed. This approach is common in cloud-native environments and is used to ensure consistency, reliability, and scalability.
+
+Terraform follows the immutable infrastructure approach where infrastructure is defined as code and changes are applied by creating new resources and destroying old resources.
+
+For example if we modify the file permissions of the file we created, Terraform will create a new file with the updated permissions and destroy the old file.
+```diff
+# local.tf
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = "We love pets!"
++ file_permission = "0700"
+- file_permission = "0600"
+}
+```
+
+#### Lifecycle Rules
+
+Without License Rules, Terraform will destroy the old resource and create a new one. But with Lifecycle Rules, we can control the behavior of the resources. We can use `create_before_destroy` to create the new resource before destroying the old one. This can be useful when we want to avoid downtime or data loss.
+
+```hcl
+# local.tf
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = "We love pets!"
+  file_permission = "0700"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+```
+
+There are other lifecycle rules like `prevent_destroy` to prevent a resource from being destroyed, this is useful to protect resources from accidental deletion. Note `terraform destroy` will still destroy the resource, it will prevent the resource from being destroyed when you make changes to the configuration and apply the changes.
+
+```hcl
+# local.tf
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = "We love pets!"
+  file_permission = "0700"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+```
+
+Another lifecycle rule is `ignore_changes` to ignore changes to specific attributes of a resource. This can be useful when you want to update the configuration of a resource without affecting the resource itself.
+
+```hcl
+# local.tf
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = "We love pets!"
+  file_permission = "0700"
+
+  lifecycle {
+    ignore_changes = [file_permission]
+  }
+}
+```
+
+Or an AWS instance example:
+
+```hcl
+# ec2.tf
+resource "aws_instance" "webserver" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "webserver"
+  }
+
+  lifecycle {
+   ignore_changes = [tags]
+  }
+}
+```
+
+## Data Sources
+
+Data sources are used to fetch information from external sources like APIs, databases, and other resources. Data sources allow you to query external systems and use the information in your Terraform configuration. Data sources are read-only and do not create or manage resources.
+
+The reason for data sources is that every resources will not be created and managed by Terraform. There are some resources that are created and managed by other methods like scripts, APIs, or other tools. In such cases, we can use data sources to fetch information about those resources and use them in our Terraform configuration.
+
+![Data Sources](https://github.com/user-attachments/assets/29c914b3-8582-4d88-9698-b52859e55b05)
+
+For example,
+
+```hcl
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = data.local_file.dog.content
+}
+
+data "local_file" "dog" {
+  filename = "./dogs.txt"
+}
+```
+
+The data read from data source is available under data object. We can use the data object to access the attributes of the data source. We can also use interpolation syntax to reference the data source attributes. `{data.data_type.data_name.attribute}`.
+
+### Resource vs Data Source
+
+![Resource vs Data Source](https://github.com/user-attachments/assets/44c291ea-6b98-4812-a40a-49a0ca9dd564)
+
+
+## Meta-Arguments
+
+Meta-arguments are special arguments that can be used with resources and data sources to control their behavior. Meta-arguments are used to define dependencies, manage lifecycle, and configure the behavior of resources and data sources.
+
+We have already seen some meta-arguments like `depends_on` and `lifecycle` in the previous sections. Here are some other meta-arguments:
+
+### Count
+
+The `count` meta-argument allows you to create multiple instances of a resource or data source. It takes an integer value and creates that many instances of the resource or data source. This can be useful when you want to create multiple instances of the same resource with different configurations.
+
+For example, to create multiple local files:
+
+```hcl
+resource "local_file" "pet" {
+  count    = length(var.filenames)
+  content  = "We love pets!"
+  filename = var.filenames[count.index]
+}
+
+
+variable "filenames" {
+  default = [
+    "/root/pets.txt",
+    "/root/dogs.txt",
+    "/root/cats.txt"
+  ]
+}
+```
+
+This will create three local files with filenames `pets-0.txt`, `pets-1.txt`, and `pets-2.txt`.
+
+### For_each
+
+The `for_each` meta-argument allows you to create multiple instances of a resource or data source based on a map or set of strings. It takes a map or set of strings and creates an instance of the resource or data source for each key or value in the map or set. 
+
+There was a pain point with `count` meta-argument that we have to use the index to reference the values. For example if we remove an element from the top of list, all the indexes will change and files will be recreated. But with `for_each` meta-argument, we can use the key to reference the values.
+
+For example, to create multiple local files:
+
+```hcl
+# local.tf
+resource "local_file" "pet" {
+  for_each = var.files
+  content  = "We love pets!"
+  filename = each.value
+}
+
+# variables.tf
+variable "files" {
+  default = {
+    pets = "/root/pets.txt"
+    dogs = "/root/dogs.txt"
+    cats = "/root/cats.txt"
+  }
+}
+```
+
+Here `for_each` will take the keys of the map and create local files with filenames `pets.txt`, `dogs.txt`, and `cats.txt`. We can use `each.value` to reference the values of the map. This don't allow `list` type. We can use `map` or `set` type. If we are using `list` type, we can convert it to `set` type using `toset()` function. Or make the type to `set` in the variable definition.
+
+For example, to create multiple local files:
+
+```hcl
+# local.tf
+resource "local_file" "pet" {
+  for_each = toset(var.files)
+  content  = "We love pets!"
+  filename = each.value
+}
+
+# variables.tf
+variable "files" {
+  type = list(string)
+  default = [
+    "/root/pets.txt",
+    "/root/dogs.txt",
+    "/root/cats.txt"
+  ]
+}
+```
+
+## Version Constraints
+
+Terraform uses version constraints to specify the version of the provider to use. Version constraints allow you to define the range of versions that are compatible with your configuration. By default, Terraform uses the latest version of the provider, but you can specify a specific version or range of versions using version constraints.
+
+Version constraints are defined using the following syntax:
+
+```hcl
+terraform {
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "1.4.0"
+    }
+  }
+}
+
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = "We love pets!"
+}
+```
+
+We can use version constraints to specify the version of the provider to use. We can use 
+
+- `>=` to specify the minimum version. `version = ">= 1.4.0"`
+- `<=` to specify the maximum version. 
+- `~>` to specify the compatible version. It will allow the minor version to change but not the major version. `version = "~> 1.4.0"`
+- `!=` to specify the version to exclude.
+- `=` to specify the exact version.
+- `>` to specify the greater than version.
+- `<` to specify the less than version.
+- `<=` to specify the less than or equal to version.
+- `>=` to specify the greater than or equal to version.
+
+We can also mix and match the version constraints to specify the range of versions that are compatible with your configuration.
+
+For example here we are specifying the version of local provider to be greater than or equal to 1.4.0 and less than 2.0.0 and excluding version 1.5.0.
+
+```hcl
+terraform {
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = ">= 1.4.0, < 2.0.0, != 1.5.0" 
+    }
+  }
+}
+```
