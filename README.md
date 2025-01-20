@@ -12,8 +12,6 @@
 - [Compose/Stack Files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/docker/docker-compose)
 - [Dockerfile](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/docker/dockerfiles)
 
-<be>
-
 ## Kubernetes
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/200594367-f416d081-af8f-4f48-8008-998d005b317f.png" height="100" alt="Kubernetes"> 
@@ -27,8 +25,6 @@
 - [Playground](docs/kubernetes/playground.md)
 - [Other Resources](docs/kubernetes/other-resources.md)
 
-<br>
-
 ## GitHub Actions
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/211621722-c2ddc389-6e4e-4769-9dac-f18f8e71fed3.png" height="100" alt="GitHub Action"> 
@@ -38,9 +34,7 @@
 - [Workflows](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/github-actions/Workflows)
 - [Scenarios](docs/github-actions/scenarios.md)
 - [Other Resources](docs/github-actions/other-resources.md)
-
-<br>
-
+- 
 ## Linux
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/209197882-51406a8f-04ff-4c53-a362-ac32ae8566ad.png" height="100" alt="linux"> 
@@ -49,7 +43,6 @@
 - [Learning Resources](docs/linux/learning-resources.md)
 - [Commands](docs/linux/commands.md)
 
-<br>
 
 ## Git 
 
@@ -59,8 +52,6 @@
 - [Learning Resources](docs/git/learning-resources.md)
 - [Commands](docs/git/commands.md)
 
-<br>
-
 ## Networking
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/204347251-efd0e271-5d3c-4008-bdab-6f6ce5b2195f.png" height="100" alt="network"> 
@@ -69,16 +60,12 @@
 - [Learning Resources](docs/networking/learning-resources.md)
 - [Commands](docs/networking/commands.md)
 
-<br>
-
 ## YAML
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/202765143-55758916-b631-4c18-aaad-718b42507d67.png" height="100" alt="YAML"> 
 
 - [Notes](docs/yaml/introduction.md)
 - [Learning Resources](docs/yaml/learning-resources.md)
-
-<br>
 
 ## Golang (Go)
 
@@ -90,8 +77,6 @@
 - [Practice App](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/golang/apps)
 - [Other Resources](docs/go/other-resources.md)
 
-<br>
-
 ## Helm
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/202859249-b90ac510-d8e8-408d-9c07-0d2bd8e1b092.png" height="100" alt="Helm"> 
@@ -100,8 +85,6 @@
 - [Learning Resources](docs/helm/learning-resources.md)
 - [Charts](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/helm/charts)
 
-<br>
-
 ## Prometheus
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/202859485-eba6809e-1cb8-4bbc-ab22-efa3c91d6463.png" height="100" alt="Prometheus"> 
@@ -109,16 +92,12 @@
 - [Notes](docs/prometheus/introduction.md)
 - [Learning Resources](docs/prometheus/learning-resources.md)
 
-<br>
-
 ## GitOps
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/206730962-b20f94c1-17af-48b2-b62c-b6c02dbeeb77.png" height="100" alt="Gitops"> 
 
 - [Notes](docs/gitops/introduction.md)
 - [Learning Resources](docs/gitops/learning-resources.md)
-
-<br>
 
 ## ArgoCD
 
@@ -128,8 +107,6 @@
 - [Learning Resources](docs/argocd/learning-resources.md)
 - [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/argocd/manifests)
 
-<br>
-
 ## Jenkins 
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/209197795-570330e6-fbee-4bf3-a42e-b8609e3afc46.png" height="100" alt="Jenkins"> 
@@ -137,7 +114,6 @@
 - [Notes](docs/jenkins/introduction.md)
 - [Learning Resources](docs/jenkins/learning-resources.md)
 - [Jenkinsfile](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/jenkins/jenkinsfiles)
-<br>
 
 ## Bash Scripting 
 
@@ -147,8 +123,6 @@
 - [Learning Resources](docs/bash-scripting/learning-resources.md)
 - [Script](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/bash-scripting/scripts)
 
-<br>
-
 ## WebAssembly (WASM)
 
 <img align="right" src="https://github.com/user-attachments/assets/0687a31f-fa90-4aeb-b3f2-b841d8758f77" height="100" alt="Wasm">
@@ -157,3 +131,11 @@
 - [Learning Resources](docs/webassembly/learning-resources.md)
 - [Tools](docs/webassembly/tools.md)
 - [Files and Sample Apps](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/webassembly/files)
+
+## Terraform
+
+<img align="right" src="https://github.com/user-attachments/assets/b81903bd-4377-4517-a1fd-8e6c99bdfa9a" height="100" alt="Terraform">
+
+- [Notes](docs/terraform/introduction.md)
+- [Learning Resources](docs/terraform/learning-resources.md)
+- [Commands](docs/terraform/commands.md)
