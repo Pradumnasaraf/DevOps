@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: Terraform Commands
 description: Terraform commands and their usage
 tags: ["Terraform", "Infrastructure as Code", "HashiCorp"]
