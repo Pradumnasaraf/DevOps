@@ -2,13 +2,17 @@ name: Vercel Preview Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   push:
     branches-ignore:
       - main
+
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-20.04
+    environment:
+      name: preview
     steps:
       - uses: actions/checkout@v4
       - name: Install Vercel CLI
@@ -18,4 +22,16 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deployment.txt
+        id: deploy
+      - name: Extract Deployment URL
+        run: |
+          DEPLOYMENT_URL=$(tail -n 1 deployment.txt)
+          echo "DEPLOYMENT_URL=$DEPLOYMENT_URL" >> $GITHUB_ENV
+        id: extract-url
+      - name: Set Environment URL
+        if: success()
+        environment:
+          name: preview
+          url: ${{ env.DEPLOYMENT_URL }}
