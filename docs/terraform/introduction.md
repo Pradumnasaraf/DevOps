@@ -871,3 +871,28 @@ terraform {
   }
 }
 ```
+
+## Working With AWS
+
+AWS is on of most popular cloud provider in the world. It has 100s of services from compute to AI. It's most global coverage and has the most data centers around the world. We need to create an AWS account to work with AWS services. We can use the free tier account to get started.
+
+### IAM
+
+When we create an AWS account, it a root user account and it has all the privileges to create, update, and delete resources. But it is not recommended to use the root user account to manage resources, like an Linux Root user account. We should create an IAM user account and use that account to manage resources. We can two kind of access, `Programmatic Access` and `Console Access`. We can use `Programmatic Access` to access AWS services using APIs and SDKs. We can use `Console Access` to access AWS services using the AWS Management Console.
+
+The only ideal use case for root user account is to create an IAM user account and manage billing and other account level settings.
+
+### IAM Policies
+
+IAM policies are used to define permissions for IAM users, groups, and roles. IAM policies are JSON documents that specify the actions, resources, and conditions that are allowed or denied. We can attach policies to IAM users, groups, and roles to grant or restrict access to AWS services and resources.
+
+Some other policies are:
+
+![IAM Policies](https://github.com/user-attachments/assets/98237fdf-8ee8-4fee-bf5b-661dd50ea6ee)
+
+### IAM Groups
+
+IAM groups are used to group IAM users and apply policies to multiple users at once. For example, you can create a group called `developers` and attach a policy that allows access to EC2 instances. Then you can add IAM users to the `developers` group to grant them access to EC2 instances. It great when we have multiple users with the same permissions.
+
+![IAM Groups](https://github.com/user-attachments/assets/be4e6aec-2fd8-4dde-b886-40953d556f1e)
+
