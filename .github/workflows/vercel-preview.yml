@@ -42,4 +42,4 @@ jobs:
         if: success()
         run: echo "::set-output name=environment_url::${{ env.DEPLOYMENT_URL }}"
         env:
-          DEPLOYMENT_URL: ${{ env.DEPLOYMENT_URL }}
+          DEPLOYMENT_URL: "https://google.com"
