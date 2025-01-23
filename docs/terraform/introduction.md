@@ -742,7 +742,6 @@ The data read from data source is available under data object. We can use the da
 
 ![Resource vs Data Source](https://github.com/user-attachments/assets/44c291ea-6b98-4812-a40a-49a0ca9dd564)
 
-
 ## Meta-Arguments
 
 Meta-arguments are special arguments that can be used with resources and data sources to control their behavior. Meta-arguments are used to define dependencies, manage lifecycle, and configure the behavior of resources and data sources.
@@ -871,3 +870,270 @@ terraform {
   }
 }
 ```
+
+## Working With AWS
+
+AWS is on of most popular cloud provider in the world. It has 100s of services from compute to AI. It's most global coverage and has the most data centers around the world. We need to create an AWS account to work with AWS services. We can use the free tier account to get started.
+
+### IAM
+
+When we create an AWS account, it a root user account and it has all the privileges to create, update, and delete resources. But it is not recommended to use the root user account to manage resources, like an Linux Root user account. We should create an IAM user account and use that account to manage resources. When we create an user we have two kind of access, `Programmatic Access` and `Console Access`. We can use `Programmatic Access` to access AWS services using APIs and SDKs. We can use `Console Access` to access AWS services using the AWS Management Console.
+
+The only ideal use case for root user account is to create an IAM user account and manage billing and other account level settings.
+
+### IAM Policies
+
+IAM policies are used to define permissions for IAM users, groups, and roles. IAM policies are JSON documents that specify the actions, resources, and conditions that are allowed or denied. We can attach policies to IAM users, groups, and roles to grant or restrict access to AWS services and resources.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+  ]
+}
+```
+
+Some other policies are:
+
+![IAM Policies](https://github.com/user-attachments/assets/98237fdf-8ee8-4fee-bf5b-661dd50ea6ee)
+
+For example, to create a policy that allows access to S3 buckets:
+
+### IAM Groups
+
+IAM groups are used to group IAM users and apply policies to multiple users at once. For example, you can create a group called `developers` and attach a policy that allows access to EC2 instances. Then you can add IAM users to the `developers` group to grant them access to EC2 instances. It great when we have multiple users with the same permissions.
+
+![IAM Groups](https://github.com/user-attachments/assets/be4e6aec-2fd8-4dde-b886-40953d556f1e)
+
+### IAM Roles
+
+Let's understand with an example what if an EC2 instance to interact with S3 bucket? Creating policy with not make the job done. We need to create an IAM role and attach the policy to the role. Then we can attach the role to the EC2 instance. This is called IAM roles. IAM roles are used to grant permissions to AWS services like EC2 instances, Lambda functions, and ECS tasks. IAM roles are used to define the permissions that are allowed or denied to the service.
+
+IAM roles are not just limited to AWS services, we can also use IAM roles to grant permissions to external services like third-party applications and services. We can use IAM roles to grant temporary access to external services without sharing access keys or credentials.
+
+![IAM Roles](https://github.com/user-attachments/assets/1ad28ae1-c24d-427f-a882-79e0662a4095)
+
+### AWS CLI
+
+AWS CLI is a command-line tool that allows you to interact with AWS services using the command line. You can use the AWS CLI to manage resources, configure services, and automate tasks. You can use the AWS CLI to perform operations like creating EC2 instances, managing S3 buckets, and configuring IAM policies.
+
+After installing we have to configure the AWS CLI with the access key and secret key. We can use `aws configure` command to configure the AWS CLI. We can also use `--profile` flag to create multiple profiles.
+
+![AWS CLI](https://github.com/user-attachments/assets/75a4aa54-eb7e-4768-8f52-3b835b4a3496)
+
+All the commands can be found [here](./commands.md#AWS-Commands).
+
+### AWS S3 (Simple Storage Service)
+
+Amazon S3 is a cloud storage service that allows you to store and retrieve data from anywhere on the web. S3 is highly scalable, durable, and secure. It great for storing files like images, videos, and documents. But not suitable for storing operating system files or databases.
+
+Data is store in form of buckets. Everything under a bucket is an object. We can use the AWS CLI to create, update, and delete S3 buckets. We can also use the AWS Management Console to manage S3 buckets.
+
+![AWS S3](https://github.com/user-attachments/assets/d452bd9e-1851-4840-8177-32e8be7eb934)
+
+Once the bucket is created we can access it via unique URL. We can also use the bucket to host static websites. it's in format of `http://<bucket-name>.<region>.amazonaws.com`. For eg. `http://my-bucket.s3.ap-south-1.amazonaws.com`.
+
+We can access the files in the bucket using the URL `http://<bucket-name>.<region>.amazonaws.com/<object-key>`. For eg. `http://my-bucket.s3.ap-south-1.amazonaws.com/index.html`.
+
+![AWS S3 bucket](https://github.com/user-attachments/assets/3c7fa44c-3d3a-4b3f-b7bf-e2565be6bb79)
+
+Any object stored in the bucket has the object data and the Metadata. The metadata contains information about the object like owner, size, last modified date, etc, in key-value pairs.
+
+![AWS S3 object](https://github.com/user-attachments/assets/37c4c48a-011b-4fd5-8092-addcda8901e3)
+
+
+## AWS and Terraform
+
+Terraform uses the AWS provider to interact with AWS services. The AWS provider allows you to define resources like EC2 instances, S3 buckets, and IAM policies in your Terraform configuration. 
+
+Creating an IAM user with Terraform:
+
+```hcl
+# main.tf
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_iam_user" "admin-user" {
+  name = "admin"
+  tags = {
+    Description = "Technical Team Leader"
+  }
+}
+
+# .aws/credentials
+[default]
+aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key = je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
+```
+
+Terraform will automatically use the credentials from the `~/.aws/credentials` file to authenticate with AWS. We can also use environment variables to set the credentials. We can also use `profile` argument to specify the profile to use.
+
+```hcl
+provider "aws" {
+  region = "us-east
+  profile = "default"
+}
+```
+
+Another way to use `export` command to set the environment variables:
+
+```bash
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+export AWS_SECRET_ACCESS_KEY=je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
+export AWS_REGION=us-east-1
+```
+
+```hcl
+resource "aws_iam_user" "admin-user" {
+  name = "lucy"
+  tags = {
+    Description = "Technical Team Leader"
+  }
+}
+```
+
+Now we don't need to specify the providers in the configuration file. Terraform will automatically use the environment variables to authenticate with AWS.
+
+Attaching a policy to the IAM user:
+
+```hcl
+# main.tf
+resource "aws_iam_user" "admin-user" {
+  name = "lucy"
+  tags = {
+    Description = "Technical Team Leader"
+  }
+}
+
+resource "aws_iam_policy" "adminUser" {
+  name = "AdminUsers"
+  policy = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "*",
+        "Resource": "*"
+      }
+    ]
+  }
+  EOF
+}
+
+resource "aws_iam_user_policy_attachment" "lucy-admin-access" {
+  user = aws_iam_user.admin-user.name
+  policy_arn = aws_iam_policy.adminUser.arn
+}
+```
+
+We use heredoc syntax to define the policy (`<<EOF`). We can use `terraform plan` to see the changes and `terraform apply` to apply the changes.
+
+![terraform apply](https://github.com/user-attachments/assets/3f661e06-dc17-4bc6-a829-810cb4fd9ca5)
+
+Another way to create an IAM policy is to create a JSON file and use the `file()` function to read the file.
+
+```hcl
+# main.tf
+resource "aws_iam_user" "admin-user" {
+  name = "lucy"
+  tags = {
+    Description = "Technical Team Leader"
+  }
+}
+
+resource "aws_iam_policy" "adminUser" {
+  name = "AdminUsers"
+  policy = file("policy.json")
+}
+
+resource "aws_iam_user_policy_attachment" "lucy-admin-access" {
+  user = aws_iam_user.admin-user.name
+  policy_arn = aws_iam_policy.adminUser.arn
+}
+```
+
+```json
+# policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+We can proceed with `terraform plan` and `terraform apply` to create the IAM user and attach the policy to the user.
+
+Another example to create IAM user for a list of users:
+
+```hcl
+# main.tf
+variable "dev-team" {
+  type = list(string)
+  default = ["lucy", "john", "jane"]
+}
+
+resource "aws_iam_user" "admin-user" {
+  name = var.dev-team[count.index]
+  count = length(var.dev-team)
+  tags = {
+    Description = "Technical Team Leader"
+  }
+}
+
+### S3
+
+Here we are creating an S3 bucket, uploading a file to the bucket, and creating a bucket policy to allow access to the bucket.
+
+```hcl
+# main.tf
+resource "aws_s3_bucket" "finance" {
+  bucket = "finance-21092020 # optional, otherwise Terraform will create a unique name
+  tags = {
+    Name = "Finance and Payroll"
+  }
+}
+
+resource "aws_s3_bucket_object" "finance-2020" {
+  content = "/root/finance/finance-2020.doc"
+  key = "finance-2020.doc"
+  bucket = aws_s3_bucket.finance.id # reference to the bucket
+}
+
+data "aws_iam_group" "finance-data" {
+  group_name = "finance-analysts"
+}
+
+resource "aws_s3_bucket_policy" "finance-policy" {
+  bucket = aws_s3_bucket.finance.id
+  policy = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": "*",
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::${aws_s3_bucket.finance.id}/*",
+        "Principal": {
+          "AWS": ["${data.aws_iam_group.finance-data.arn}"
+          ]
+        }
+      }
+    ]
+  }
+  EOF
+}
+```
+
+Here, `aws_s3_bucket` resource is used to create an S3 bucket, `aws_s3_bucket_object` resource is used to upload a file to the bucket, and `aws_s3_bucket_policy` resource is used to create a bucket policy to allow access to the bucket. Additionally, we are using the `data` block to fetch information about an IAM group.
