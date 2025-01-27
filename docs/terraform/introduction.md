@@ -124,7 +124,7 @@ To deploy a resource using Terraform, there is four step process:
 3. **Planning**: Create an execution plan with `terraform plan` command to preview the changes that Terraform will make.
 4. **Apply**: Apply the changes with `terraform apply` command to create, update, or delete the resources as per the configuration.
 
-So, let's se an example of creating a file locally with some content. First we need to create a configuration file:
+So, let's see an example of creating a file locally with some content. First we need to create a configuration file:
 
 ```hcl
 # local.tf
@@ -303,7 +303,7 @@ resource "random_pet" "my-pet" {
 }
 ```
 
-We can change list type to`number`, `bool`, or `any`. It will fail if we try to use a different type of value.
+We can change list type to `number`, `bool`, or `any`. It will fail if we try to use a different type of value.
 
 Map:
 
@@ -542,7 +542,7 @@ Terraform automatically manages resource dependencies based on the order of reso
 
 Like we saw an an example above, the `random_pet` resource depends on the `local_file` resource. So, Terraform will create the `local_file` resource first and then create the `random_pet` resource. And when we destroy the resources, Terraform will destroy the `random_pet` resource first and then destroy the `local_file` resource.
 
-1. **Explicit Dependencies**: But there are times where we don't don't use the attributes of other resources and we still want to create the resources in a specific order. Because they might be indirectly dependent on each other. In such cases, we can use the `depends_on` argument to define explicit dependencies between resources. A real life example of this is when we want to create a VPC and then create an EC2 instance in that VPC. We can use the `depends_on` argument to define the dependency between the resources.
+2. **Explicit Dependencies**: But there are times where we don't don't use the attributes of other resources and we still want to create the resources in a specific order. Because they might be indirectly dependent on each other. In such cases, we can use the `depends_on` argument to define explicit dependencies between resources. A real life example of this is when we want to create a VPC and then create an EC2 instance in that VPC. We can use the `depends_on` argument to define the dependency between the resources.
 
 For our local file and random pet example, we can define the explicit dependency like this:
 
@@ -634,7 +634,7 @@ Mutable infrastructure, servers and resources are updated or modified in place. 
 
 This approach can lead to configuration drift, security vulnerabilities, and inconsistencies between environments. It can also make it difficult to scale and manage large, complex environments.
 
-### Mutable Infrastructure
+### Immutable Infrastructure
 
 Immutable infrastructure, servers and resources are treated as disposable and are replaced with new instances when changes are required. Instead of updating existing servers, new servers are created with the desired configuration and the old servers are destroyed. This approach is common in cloud-native environments and is used to ensure consistency, reliability, and scalability.
 
@@ -651,9 +651,9 @@ resource "local_file" "pet" {
 }
 ```
 
-#### Lifecycle Rules
+## Lifecycle Rules
 
-Without License Rules, Terraform will destroy the old resource and create a new one. But with Lifecycle Rules, we can control the behavior of the resources. We can use `create_before_destroy` to create the new resource before destroying the old one. This can be useful when we want to avoid downtime or data loss.
+Without Lifecycle Rules, Terraform will destroy the old resource and create a new one. But with Lifecycle Rules, we can control the behavior of the resources. We can use `create_before_destroy` to create the new resource before destroying the old one. This can be useful when we want to avoid downtime or data loss.
 
 ```hcl
 # local.tf
@@ -740,6 +740,7 @@ The data read from data source is available under data object. We can use the da
 
 ### Resource vs Data Source
 
+In simple words resources are used to create and manage infrastructure resources like EC2 instances, S3 buckets, and databases. Data sources are used to fetch information from external sources like APIs, databases, and other resources. 
 ![Resource vs Data Source](https://github.com/user-attachments/assets/44c291ea-6b98-4812-a40a-49a0ca9dd564)
 
 ## Meta-Arguments
@@ -761,7 +762,6 @@ resource "local_file" "pet" {
   filename = var.filenames[count.index]
 }
 
-
 variable "filenames" {
   default = [
     "/root/pets.txt",
@@ -771,9 +771,9 @@ variable "filenames" {
 }
 ```
 
-This will create three local files with filenames `pets-0.txt`, `pets-1.txt`, and `pets-2.txt`.
+This will create three local files with filenames `pets.txt`, `dogs.txt`, and `cats.txt`. We can use `count.index` to reference the index of the resource. The index starts from 0.
 
-### For_each
+### For Each
 
 The `for_each` meta-argument allows you to create multiple instances of a resource or data source based on a map or set of strings. It takes a map or set of strings and creates an instance of the resource or data source for each key or value in the map or set. 
 
@@ -936,9 +936,9 @@ Data is store in form of buckets. Everything under a bucket is an object. We can
 
 ![AWS S3](https://github.com/user-attachments/assets/d452bd9e-1851-4840-8177-32e8be7eb934)
 
-Once the bucket is created we can access it via unique URL. We can also use the bucket to host static websites. it's in format of `http://<bucket-name>.<region>.amazonaws.com`. For eg. `http://my-bucket.s3.ap-south-1.amazonaws.com`.
+Once the bucket is created we can access it via unique URL. We can also use the bucket to host static websites. it's in format of `http://<bucket-name>.<region>.amazonaws.com`. For eg. `http://my-bucket.ap-south-1.amazonaws.com`.
 
-We can access the files in the bucket using the URL `http://<bucket-name>.<region>.amazonaws.com/<object-key>`. For eg. `http://my-bucket.s3.ap-south-1.amazonaws.com/index.html`.
+We can access the files in the bucket using the URL `http://<bucket-name>.<region>.amazonaws.com/<object-key>`. For eg. `http://my-bucket.ap-south-1.amazonaws.com/image.jpg`.
 
 ![AWS S3 bucket](https://github.com/user-attachments/assets/3c7fa44c-3d3a-4b3f-b7bf-e2565be6bb79)
 
@@ -946,6 +946,13 @@ Any object stored in the bucket has the object data and the Metadata. The metada
 
 ![AWS S3 object](https://github.com/user-attachments/assets/37c4c48a-011b-4fd5-8092-addcda8901e3)
 
+### DynamoDB (NoSQL Database)
+
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB is highly scalable, single-digit millisecond latency, and fully managed.
+
+Even tho it is NoSQL database, it has a table structure. Each table has a primary key that uniquely identifies each item in the table. We can use the AWS CLI to create, update, and delete DynamoDB tables. We can also use the AWS Management Console to manage DynamoDB tables.
+
+![DynamoDB](https://github.com/user-attachments/assets/99b55a27-dab6-4a9f-b8ae-2790fe7590b7)
 
 ## AWS and Terraform
 
@@ -965,7 +972,9 @@ resource "aws_iam_user" "admin-user" {
     Description = "Technical Team Leader"
   }
 }
+```
 
+```bash
 # .aws/credentials
 [default]
 aws_access_key_id = AKIAIOSFODNN7EXAMPLE
@@ -976,7 +985,7 @@ Terraform will automatically use the credentials from the `~/.aws/credentials` f
 
 ```hcl
 provider "aws" {
-  region = "us-east
+  region = "us-east"
   profile = "default"
 }
 ```
@@ -1004,14 +1013,13 @@ Attaching a policy to the IAM user:
 
 ```hcl
 # main.tf
-resource "aws_iam_user" "admin-user" {
+resource "aws_iam_user" "admin-user
   name = "lucy"
   tags = {
     Description = "Technical Team Leader"
   }
-}
 
-resource "aws_iam_policy" "adminUser" {
+resource "aws_iam_policy" "admin-user-policy" {
   name = "AdminUsers"
   policy = <<EOF
   {
@@ -1029,11 +1037,11 @@ resource "aws_iam_policy" "adminUser" {
 
 resource "aws_iam_user_policy_attachment" "lucy-admin-access" {
   user = aws_iam_user.admin-user.name
-  policy_arn = aws_iam_policy.adminUser.arn
+  policy_arn = aws_iam_policy.admin-user-policy.arn
 }
 ```
 
-We use heredoc syntax to define the policy (`<<EOF`). We can use `terraform plan` to see the changes and `terraform apply` to apply the changes.
+What we did is first we created an IAM user, then we created an IAM policy with full access to all the resources, and then we attached the policy to the IAM user. We use heredoc syntax to define the policy (`<<EOF`). It's not mandatory to use `EOF`, we can use any string. We can use `terraform plan` to see the changes and `terraform apply` to apply the changes.
 
 ![terraform apply](https://github.com/user-attachments/assets/3f661e06-dc17-4bc6-a829-810cb4fd9ca5)
 
@@ -1048,7 +1056,7 @@ resource "aws_iam_user" "admin-user" {
   }
 }
 
-resource "aws_iam_policy" "adminUser" {
+resource "aws_iam_policy" "admin-user-policy" {
   name = "AdminUsers"
   policy = file("policy.json")
 }
@@ -1091,6 +1099,7 @@ resource "aws_iam_user" "admin-user" {
     Description = "Technical Team Leader"
   }
 }
+```
 
 ### S3
 
@@ -1105,7 +1114,7 @@ resource "aws_s3_bucket" "finance" {
   }
 }
 
-resource "aws_s3_bucket_object" "finance-2020" {
+resource "aws_s3_object" "finance-2020" {
   content = "/root/finance/finance-2020.doc"
   key = "finance-2020.doc"
   bucket = aws_s3_bucket.finance.id # reference to the bucket
@@ -1137,3 +1146,54 @@ resource "aws_s3_bucket_policy" "finance-policy" {
 ```
 
 Here, `aws_s3_bucket` resource is used to create an S3 bucket, `aws_s3_bucket_object` resource is used to upload a file to the bucket, and `aws_s3_bucket_policy` resource is used to create a bucket policy to allow access to the bucket. Additionally, we are using the `data` block to fetch information about an IAM group.
+
+:::Note
+The bucket naming should not contain uppercase letters, underscores, or special characters. `ss_aa` is not allowed due to DNS compatibility.
+:::
+
+### DynamoDB
+
+Here we are creating a DynamoDB table with a primary key and a sort key.
+
+```hcl
+# main.tf
+resource "aws_dynamodb_table" "cars" {
+  name = "cars"
+  hash_key = "VIN"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+    name = "VIN"
+    type = "S"
+  }
+}
+
+Here `hash_key` is the primary key and `attribute` is the sort key. We can use `billing_mode` to specify the billing mode for the table. We can use `PAY_PER_REQUEST` for on-demand capacity mode and `PROVISIONED` for provisioned capacity mode. In the attribute block, we can specify the name and type of the attribute. Here we are using `S` for string type. We can also use `N` for number type and `B` for binary type.
+
+To insert data into the table, we can use the `aws_dynamodb_table_item` resource.
+
+```hcl
+# main.tf
+# main.tf
+resource "aws_dynamodb_table" "cars" {
+  name = "cars"
+  hash_key = "VIN"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+    name = "VIN"
+    type = "S"
+  }
+}
+
+resource "aws_dynamodb_table_item" "car-items" {
+  table_name = aws_dynamodb_table.cars.name
+  hash_key = aws_dynamodb_table.cars.hash_key
+  item = <<EOF
+  {
+    "Manufacturer": {"S": "Toyota"},
+    "Model": {"S": "Corolla"},
+    "Year": {"N": "2020"},
+    "VIN": {"S": "JH4KA3240JC000000"}
+  }
+EOF
+}
+```
