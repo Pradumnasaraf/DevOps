@@ -954,6 +954,29 @@ Even tho it is NoSQL database, it has a table structure. Each table has a primar
 
 ![DynamoDB](https://github.com/user-attachments/assets/99b55a27-dab6-4a9f-b8ae-2790fe7590b7)
 
+
+### EC2 (Elastic Compute Cloud)
+
+Amazon EC2 is a web service that provides resizable compute capacity in the cloud. EC2 instances are virtual servers that can run applications and workloads. EC2 instances can be launched in minutes and scaled up or down based on demand.
+
+EC2 provides Amazon Machine Images (AMIs) that contain the operating system, software, and configuration settings for the instance. The instance type determines the hardware specifications like CPU, memory, and storage. It can be different types like general purpose, compute optimized, memory optimized, storage optimized, and GPU instances.
+
+![EC2](https://github.com/user-attachments/assets/bf28251f-7f29-4b2a-8400-14993f7e914)
+
+The most common type is T2 General Purpose instances. It is suitable for web servers, small databases, and development environments. It has burstable performance and is cost-effective. It comes in a variety of sizes like:
+
+![EC2 Instance Types](https://github.com/user-attachments/assets/2d0a3b31-18e2-4fc6-a0cc-5b67b6033d11)
+
+The persistent storage for EC2 instances is provided by Elastic Block Store (EBS) volumes. EBS volumes are network-attached storage volumes that can be attached to EC2 instances. EBS volumes are durable, scalable, and high-performance. There are a variety of EBS volume tpo choose from on the basis of the data we want to persist. Some of them are:
+
+![EBS Volume Types](https://github.com/user-attachments/assets/de915648-d65f-4352-aa80-92e33faa5d94)
+
+We can pass user data to the EC2 instance to run scripts or commands when the instance is launched. We can use user data to install software, configure settings, and run custom scripts.
+
+![EC2 User Data](https://github.com/user-attachments/assets/2794bb05-4e1a-4c06-8548-cf7b1e513042)
+
+After everything is set up, we can access the EC2 instance using the public IP address or public DNS name. We can use SSH to connect to the instance and run commands. We can also use the AWS Management Console to manage EC2 instances.
+
 ## AWS and Terraform
 
 Terraform uses the AWS provider to interact with AWS services. The AWS provider allows you to define resources like EC2 instances, S3 buckets, and IAM policies in your Terraform configuration. 
@@ -1043,6 +1066,8 @@ resource "aws_iam_user_policy_attachment" "lucy-admin-access" {
 
 What we did is first we created an IAM user, then we created an IAM policy with full access to all the resources, and then we attached the policy to the IAM user. We use heredoc syntax to define the policy (`<<EOF`). It's not mandatory to use `EOF`, we can use any string. We can use `terraform plan` to see the changes and `terraform apply` to apply the changes.
 
+In `aws_iam_user` resource, we are using the `name` argument to specify the name of the IAM user and the `tags` argument to add tags to the user. We use the `aws_iam_policy` resource to create an IAM policy. We are using the `name` argument to specify the name of the policy and the `policy` argument to specify the policy document. Then we used the `aws_iam_user_policy_attachment` resource to attach the policy to the user. We are using the `user` argument to reference the IAM user and the `policy_arn` argument to reference the ARN of the policy.
+
 ![terraform apply](https://github.com/user-attachments/assets/3f661e06-dc17-4bc6-a829-810cb4fd9ca5)
 
 Another way to create an IAM policy is to create a JSON file and use the `file()` function to read the file.
@@ -1101,6 +1126,8 @@ resource "aws_iam_user" "admin-user" {
 }
 ```
 
+Here we are using the `count` meta-argument to create multiple instances of the resource. We are using the `count.index` to reference the index of the resource. The index starts from 0. We can use the `length` function to get the length of the list.
+
 ### S3
 
 Here we are creating an S3 bucket, uploading a file to the bucket, and creating a bucket policy to allow access to the bucket.
@@ -1145,7 +1172,13 @@ resource "aws_s3_bucket_policy" "finance-policy" {
 }
 ```
 
-Here, `aws_s3_bucket` resource is used to create an S3 bucket, `aws_s3_bucket_object` resource is used to upload a file to the bucket, and `aws_s3_bucket_policy` resource is used to create a bucket policy to allow access to the bucket. Additionally, we are using the `data` block to fetch information about an IAM group.
+Here, `aws_s3_bucket` resource is used to create an S3 bucket, `aws_s3_object` resource is used to upload a file to the bucket, and `aws_s3_bucket_policy` resource is used to create a bucket policy to allow access to a group of users to the bucket, which is defined using the `aws_iam_group` data source.
+
+In the `aws_s3_bucket` resource, we are using the `bucket` argument to specify the name of the bucket and the `tags` argument to add tags to the bucket. We can use the `aws_s3_object` resource to upload a file to the bucket. We are using the `content` argument to specify the file to upload, the `key` argument to specify the name of the object, and the `bucket` argument to reference the bucket.
+
+In the `aws_s3_bucket_policy` resource, we are using the `bucket` argument to reference the bucket, the `policy` argument to specify the bucket policy, 
+
+The `data` block to fetch information about an IAM group. We are using the `aws_iam_group` data source to fetch information about an IAM group named `finance-analysts`. We are using the `group_name` argument to specify the name of the group. We can use the `arn` attribute to reference the ARN of the group.
 
 :::Note
 The bucket naming should not contain uppercase letters, underscores, or special characters. `ss_aa` is not allowed due to DNS compatibility.
@@ -1166,13 +1199,13 @@ resource "aws_dynamodb_table" "cars" {
     type = "S"
   }
 }
+```
 
 Here `hash_key` is the primary key and `attribute` is the sort key. We can use `billing_mode` to specify the billing mode for the table. We can use `PAY_PER_REQUEST` for on-demand capacity mode and `PROVISIONED` for provisioned capacity mode. In the attribute block, we can specify the name and type of the attribute. Here we are using `S` for string type. We can also use `N` for number type and `B` for binary type.
 
 To insert data into the table, we can use the `aws_dynamodb_table_item` resource.
 
 ```hcl
-# main.tf
 # main.tf
 resource "aws_dynamodb_table" "cars" {
   name = "cars"
@@ -1197,3 +1230,233 @@ resource "aws_dynamodb_table_item" "car-items" {
 EOF
 }
 ```
+
+Here we are using the `aws_dynamodb_table_item` resource to insert data into the table. We are using the `table_name` to specify the name of the table, `hash_key` to specify the primary key, and `item` to specify the data to insert. We are using the `S` type for string, `N` type for number, and `B` type for binary.
+
+### EC2 Instance
+
+To create an EC2 instance, we can use the `aws_instance` resource. We can specify the AMI, instance type, key pair, and security group for the instance.
+
+```hcl
+# main.tf
+resource "aws_instance" "webserver" {
+  ami = "ami-0edab43bfb4c0e9b2"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "webserver"
+    Description = "An Nginx web server on Ubuntu"
+  }
+  user_data = <<-EOF
+  #!/bin/bash
+  sudo apt update
+  sudo apt install -y nginx
+  systemctl enable nginx
+  systemctl start nginx
+  EOF
+  key_name = aws_key_pair.web.id
+  vpn_security_group_ids = [aws_security_group.ssh-access.id]
+}
+
+resource "aws_key_pair" "web" {
+  public_key = file("/root/.ssh/id_rsa.pub")
+}
+
+resource "aws_security_group" "ssh-access" {
+  name = "ssh-access"
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+output "public_ip" {
+  value = aws_instance.webserver.public_ip
+}
+
+# provider.tf
+provider "aws" {
+  region = "us-west-1"
+}
+```
+
+In `user_data` value instead of heredoc syntax, we can also use the `file()` function to read the user data from a file.
+
+```hcl
+.
+.
+user_data = file("user-data.sh")
+.
+.
+```
+
+So, the way above config is working is that we are creating an EC2 instance with an Nginx web server on Ubuntu. We are using the `aws_instance` resource to create the instance, `aws_key_pair` resource to create the key pair, this will help us to SSH into the instance, `aws_security_group` resource to create the security group to allow SSH access to the instance, and `output` block to display the public IP address of the instance.
+
+In `aws_instance` resource, we are using the `ami` that's the Amazon Machine Image, `instance_type` that's the type of the instance, `tags` to add tags to the instance, `user_data` to run the script when the instance is launched, `key_name` to specify the key pair to use to SSH into the instance, and `vpn_security_group_ids` to specify the security group to use for the instance (expected to be a list of security group IDs). 
+
+In  `aws_key_pair` resource, we are using the `public_key` to specify the public key to use for the key pair. 
+
+In `aws_security_group` resource, we are using the `name` to specify the name of the security group, `ingress` block to specify the inbound rules for the security group, `from_port` and `to_port` to specify the port range, `protocol` to specify the protocol, and `cidr_blocks` to specify the IP range to allow access. This is very similar to the security group in the AWS Management Console.
+
+In `output` block, we are using the `value` to specify the value to display when the `terraform apply` command is run. We can use the `terraform output` command to display the value.
+
+## Terraform Provisioners
+
+Terraform provisioners are used to run scripts or commands on the local machine or on the remote machine. Provisioners are used to install software, configure settings, and run custom scripts. Provisioners are used to perform tasks that are not supported by Terraform resources.
+
+There are two types of provisioners:
+
+- Local-exec provisioner: It runs scripts or commands on the local machine where Terraform is running. It is used to install software, configure settings, and run custom scripts on the local machine.
+
+- Remote-exec provisioner: It runs scripts or commands on the remote machine where the resource is created. It is used to install software, configure settings, and run custom scripts on the remote machine.
+
+### Local-exec Provisioner
+
+```hcl
+resource "aws_instance "webserver" {
+  ami = "ami-0edab43bfb4c0e9b2"
+  instance_type = "t2.micro"
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.webserver.public_ip} Created > instance.txt"
+  }
+}
+```
+
+In the `aws_instance` resource, we are using the `provisioner` block to specify the provisioner type, `local-exec` to specify the type of provisioner, and `command` to specify the command to run on the local machine. We can use the `${}` syntax to reference the attributes of the resource. We can use the `file()` function to read the public IP address from a file.
+
+#### Destroy Time Provisioner
+
+We can also run the provisioner when the resource is destroyed. We can use the `when` argument to specify the time to run the provisioner. We can use `create` to run the provisioner when the resource is created and `destroy` to run the provisioner when the resource is destroyed.
+
+```hcl
+resource "aws_instance "webserver" {
+  ami = "ami-0edab43bfb4c0e9b2"
+  instance_type = "t2.micro"
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.webserver.public_ip} Created > instance.txt"
+  }
+  provisioner "local-exec" {
+    when = destroy
+    command = "echo ${aws_instance.webserver.public_dns} Destroyed > instance.txt"
+  }
+}
+```
+
+Above we are using the `when` argument to specify the time to run the provisioner. We are using `create` to run the provisioner when the resource is created and `destroy` to run the provisioner when the resource is destroyed. 
+
+#### Provisioner Failure Behavior
+
+The default behavior of Terraform is to stop (the applying state) the execution when the provisioner fails. The failure can occur due to an error in the script or command, file path, permissions, or network issues, etc. To change the default behavior of terraform when the provisioner fails, we can use `on_failure` argument. We can use `continue` to continue the execution, `fail` to stop the execution, and `ignore` to ignore the failure.
+
+```hcl
+resource "aws_instance "webserver" {
+  ami = "ami-0edab43bfb4c0e9b2"
+  instance_type = "t2.micro"
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.webserver.public_ip} Created > instance.txt"
+    on_failure = continue
+  }
+  provisioner "local-exec" {
+    when = destroy
+    command = "echo ${aws_instance.webserver.public_dns} Destroyed > instance.txt"
+    on_failure = fail
+  }
+}
+```
+
+So here we are using the `on_failure` argument to specify the behavior of Terraform when the provisioner fails. We are using `continue` to continue the execution when the provisioner fails and `fail` to stop the execution when the provisioner fails.
+
+### Remote-exec Provisioner
+
+```hcl
+resource "aws_instance" "webserver" {
+  ami = "ami-0edab43bfb4c0e9b2"
+  instance_type = "t2.micro"
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Hello, World!'",
+      "sudo apt update",
+      "sudo apt install -y nginx",
+      "systemctl enable nginx",
+      "systemctl start nginx"
+    ]
+  }
+  connection {
+    type = "ssh"
+    user = "ubuntu
+    private_key = file("/root/.ssh/id_rsa")
+    host = self.public_ip
+  }
+  key_name = aws_key_pair.web.id
+  vpc_security_group_ids = [aws_security_group.ssh-access.id]
+}
+
+resource "aws_security_group" "ssh-access" {
+  name = "ssh-access"
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_key_pair" "web" {
+  public_key = file("/root/.ssh/id_rsa.pub")
+}
+```
+
+In the `aws_instance` resource, we are using the `provisioner` block to specify the provisioner type, `inline` to specify the commands to run on the remote machine, and `connection` block to specify the connection details like the type of connection, user, private key, and host. We are using the `self` object to reference the current resource. We can use the `file()` function to read the private key from a file.
+
+### Provisioner Best Practices
+
+Provisioner are great but they are not recommended to use. As we can run any command on the instance, it hard to have a structure and framework to manage the scripts. It's better to use arguments like `user_data` and `cloud_init` to run scripts on the instance. Provisioners are used when there is no other way to run the scripts.
+
+Use custom AMIs to pre-install software and configure settings. Use user data to run scripts when the instance is launched. Like use an Ubuntu AMI with Nginx pre-installed.
+
+
+
+## Remote State (Remote Backend)
+
+Terraform stores the state file locally by default, but it can also store the state file remotely in a backend like Terraform Cloud, AWS S3, or HashiCorp Consul. Storing the state file remotely allows you to share the state file across teams, manage state locking, and store the state securely.
+
+It becomes a necessity to store it remotely when working in a team. To avoid conflicts and to have a single source of truth. 
+
+### State Locking
+
+State locking is used to prevent concurrent modifications to the state file. When multiple users are working on the same infrastructure, state locking ensures that only one user can modify the state file at a time. This prevents conflicts and ensures that changes are applied in the correct order. This is not supported by version control systems like Git.
+
+![State Locking](https://github.com/user-attachments/assets/52bdbf3f-aed8-444b-9407-4de323331c4e)
+
+When a remote backend is used, Terraform automatically manages state locking, upload and download the state file, and store the state securely.
+
+### AWS S3 and DynamoDB as Remote Backend
+
+We can use AWS S3 and DynamoDB as a remote backend to store the state file. We use S3 to store the state file and DynamoDB to manage state locking. We can use the `backend` block to configure the remote backend in the configuration file. State locking is optional but it is recommended to use state locking to prevent concurrent modifications to the state file.
+
+```hcl
+# terraform.tf
+terraform {
+  backend "s3" {
+    bucket = "pradumna-terraform-state-bucket"
+    key = "finance/terraform.tfstate"
+    region = "us-west-1"
+    dynamodb_table = "state-locking"
+  }
+}
+
+# main.tf
+resource "local_file" "pet" {
+  filename = "./pets.txt"
+  content  = "We love pets!"
+}
+```
+
+Once we initialize and the apply the changes, the state file will be stored in the S3 bucket and the state locking will be managed by DynamoDB table. After this we can delete the local state file. Now every time we run `terraform apply` command, Terraform will automatically download the state in memory, lock the state file, apply the changes, and upload the state file back to the S3 bucket.
+
+![Remote State](https://github.com/user-attachments/assets/8579996c-640d-4649-a1f0-4f6d563d52e7)
+
+### Terraform state commands
+
+All the commands can be found [here](./commands.md).

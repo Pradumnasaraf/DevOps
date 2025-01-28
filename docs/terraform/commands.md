@@ -115,6 +115,67 @@ It is used to destroy the Terraform-managed infrastructure.
 terraform destroy
 ```
 
+### Terraform State Commands
+
+12. Terraform State List
+
+It is used to list all the resources in the state file. 
+
+```bash
+terraform state list
+```
+
+Or to get the list of resources of a specific type, we can use the following command:
+
+```bash
+terraform state list <resource-address>
+terraform state list aws_instance.my_instance
+```
+
+13. Terraform State Show
+
+It is used to show the attributes of a single resource in the state file. 
+
+```bash
+terraform state show <resource-address>
+terraform state show aws_instance.my_instance
+```
+
+14. Terraform State Move
+
+It is used to move an item in the state file. 
+
+```bash
+terraform state mv <resource-address> <new-resource-address>
+terraform state mv aws_instance.my_instance aws_instance.my_instance_new
+```
+When we move the resource in the state file (technically renaming), we have to manually update the configuration file with the new resource name.
+
+15. Terraform State Pull
+
+It is used to pull the state and output it to the console. 
+
+```bash
+terraform state pull
+```
+
+Additionally, we can `jq` to get specific information from the state file. 
+
+```bash
+terraform state pull | jq '.resources[] | select(.type == "aws_instance")'
+```
+
+16. Terraform State Remove
+
+It is used to remove an item from the state file. 
+
+```bash
+terraform state rm <resource-address>
+terraform state rm aws_instance.my_instance
+```
+
+One you remove the resource from the state file, we have manually delete the resource block from the configuration file and from the cloud provider.
+
 ## AWS Commands
 
 0. AWS Help
