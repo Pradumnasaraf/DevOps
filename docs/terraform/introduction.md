@@ -1716,59 +1716,59 @@ There are many categories of functions like Number functions, String functions, 
 
 Numeric functions are used to perform arithmetic operations like addition, subtraction, min, max, and rounding.
 
-- max(1, 2, 3): Returns the maximum value from the list of numbers. In this case, it will return 3.
-- min(1, 2, 3): Returns the minimum value from the list of numbers. In this case, it will return 1.
-- ceil(10.1): Returns the smallest integer value greater than or equal to the number. In this case, it will return 11.
-- floor(10.9): Returns the largest integer value less than or equal to the number. In this case, it will return 10.
+- `max(1, 2, 3): Returns the maximum value from the list of numbers. In this case, it will return 3.
+- `min(1, 2, 3)`: Returns the minimum value from the list of numbers. In this case, it will return 1.
+- `ceil(10.1)`: Returns the smallest integer value greater than or equal to the number. In this case, it will return 11.
+- `floor(10.9)`: Returns the largest integer value less than or equal to the number. In this case, it will return 10.
 
 ### String Functions
 
 String functions are used to perform string manipulation operations like concatenation, substring, and formatting.
 
-- split(",", "ami-xyz, AMI-ABC, ami-pqr"): Splits the string into a list of substrings based on the delimiter. In this case, it will return ["ami-xyz", "AMI-ABC", "ami-pqr"].
-- lower("AMI-XYZ"): Converts the string to lowercase. In this case, it will return "ami-xyz".
-- upper("ami-xyz"): Converts the string to uppercase. In this case, it will return "AMI-XYZ".
-- title("ami-xyz"): Converts the string to title case. In this case, it will return "Ami-Xyz".
-- substr("ami-xyz", 0, 3): Returns a substring from the string. In this case, it will return "ami".
-- join(",", ["ami-xyz", "ami-abc", "ami-pqr"]): Joins the list of strings into a single string. In this case, it will return "ami-xyz,ami-abc,ami-pqr".
+- `split(",", "ami-xyz, AMI-ABC, ami-pqr")`: Splits the string into a list of substrings based on the delimiter. In this case, it will return ["ami-xyz", "AMI-ABC", "ami-pqr"].
+- `lower("AMI-XYZ")`: Converts the string to lowercase. In this case, it will return "ami-xyz".
+- `upper("ami-xyz")`: Converts the string to uppercase. In this case, it will return "AMI-XYZ".
+- `title("ami-xyz")`: Converts the string to title case. In this case, it will return "Ami-Xyz".
+- `substr("ami-xyz", 0, 3)`: Returns a substring from the string. In this case, it will return "ami".
+- `join(",", ["ami-xyz", "ami-abc", "ami-pqr"])`: Joins the list of strings into a single string. In this case, it will return "ami-xyz,ami-abc,ami-pqr".
 
 ### Collection Functions
 
 Collection functions are used to perform operations on lists and maps like filtering, sorting, and merging.
 
-- length(["ami-xyz", "ami-abc", "ami-pqr"]): Returns the length of the list. In this case, it will return 3.
-- index(["ami-xyz", "ami-abc", "ami-pqr"], "ami-abc"): Returns the index of the element in the list. In this case, it will return 1.
-- element(["ami-xyz", "ami-abc", "ami-pqr"], 1): Returns the element at the index in the list. In this case, it will return "ami-abc".
-- contains(["ami-xyz", "ami-abc", "ami-pqr"], "ami-abc"): Returns true if the element is present in the list. In this case, it will return true.
+- `length(["ami-xyz", "ami-abc", "ami-pqr"])`: Returns the length of the list. In this case, it will return 3.
+- `index(["ami-xyz", "ami-abc", "ami-pqr"], "ami-abc")`: Returns the index of the element in the list. In this case, it will return 1.
+- `element(["ami-xyz", "ami-abc", "ami-pqr"], 1)`: Returns the element at the index in the list. In this case, it will return "ami-abc".
+- `contains(["ami-xyz", "ami-abc", "ami-pqr"], "ami-abc")`: Returns true if the element is present in the list. In this case, it will return true.
 
 ### Map Functions
 
 Map functions are used to perform operations on maps like merging, filtering, and transforming.
 
-- keys({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}): Returns the keys of the map. In this case, it will return ["ami-xyz", "ami-abc"].
-- values({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}): Returns the values of the map. In this case, it will return ["ami-abc", "ami-pqr"].
-- lookup({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}, "ami-abc"): Returns the value of the key in the map. In this case, it will return "ami-pqr".
-- lookup({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}, "ami-xyz", "default"): Returns the value of the key in the map or the default value. In this case, it will return "ami-abc".
+- `keys({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"})`: Returns the keys of the map. In this case, it will return ["ami-xyz", "ami-abc"].
+- `values({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"})`: Returns the values of the map. In this case, it will return ["ami-abc", "ami-pqr"].
+- `lookup({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}, "ami-abc")`: Returns the value of the key in the map. In this case, it will return "ami-pqr".
+- `lookup({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}, "ami-xyz", "default")`: Returns the value of the key in the map or the default value. In this case, it will return "ami-abc".
 
 ### Numeric Operators
 
 Numeric operators are used to perform arithmetic operations like addition, subtraction, multiplication, and division.
 
-- 1 + 2: Addition
-- 5 - 3: Subtraction
-- 2 * 3: Multiplication
-- 6 / 2: Division
+- `1 + 2`: Addition
+- `5 - 3`: Subtraction
+- `2 * 3`: Multiplication
+- `6 / 2`: Division
   
 ### Equality Operators
 
 Equality operators are used to compare values like equal, not equal, greater than, and less than.
 
-- 1 == 2: Equal
-- 1 != 2: Not equal
-- 1 > 2: Greater than
-- 1 < 2: Less than
-- 1 >= 2: Greater than or equal
-- 1 <= 2: Less than or equal
+- `1 == 2`: Equal
+- `1 != 2`: Not equal
+- `1 > 2`: Greater than
+- `1 < 2`: Less than
+- `1 >= 2`: Greater than or equal
+- `1 <= 2`: Less than or equal
 
 ### Logical Operators
 
