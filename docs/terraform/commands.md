@@ -176,6 +176,51 @@ terraform state rm aws_instance.my_instance
 
 One you remove the resource from the state file, we have manually delete the resource block from the configuration file and from the cloud provider.
 
+### Terraform Workspace Commands
+
+17. Terraform Workspace New
+
+It is used to create a new workspace. 
+
+```bash
+terraform workspace new <workspace-name>
+terraform workspace new dev
+```
+
+18. Terraform Workspace List
+
+It is used to list all the workspaces. 
+
+```bash
+terraform workspace list
+```
+
+19. Terraform Workspace Select
+
+It is used to select a workspace. 
+
+```bash
+terraform workspace select <workspace-name>
+terraform workspace select dev
+```
+
+20. Terraform Workspace Show
+
+It is used to show the current workspace. 
+
+```bash
+terraform workspace show
+```
+
+21. Terraform Workspace Delete
+
+It is used to delete a workspace. 
+
+```bash
+terraform workspace delete <workspace-name>
+terraform workspace delete dev
+```
+
 ## AWS Commands
 
 0. AWS Help

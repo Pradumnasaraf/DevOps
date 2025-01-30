@@ -1144,7 +1144,7 @@ resource "aws_s3_bucket" "finance" {
 resource "aws_s3_object" "finance-2020" {
   content = "/root/finance/finance-2020.doc"
   key = "finance-2020.doc"
-  bucket = aws_s3_bucket.finance.id # reference to the bucket
+  bucket = aws_s3_bucket.finance.id # reference to the 
 }
 
 data "aws_iam_group" "finance-data" {
@@ -1460,3 +1460,383 @@ Once we initialize and the apply the changes, the state file will be stored in t
 ### Terraform state commands
 
 All the commands can be found [here](./commands.md).
+
+## Terraform Taint 
+
+When terraform apply get failed, it marks the resource as tainted. It means that the resource is not in the desired state. We can verify the resources is tainted by running `terraform plan` command. We can use `terraform taint` command to mark the resource as tainted. So when we mark a resource as tainted, Terraform will destroy the resource and recreate it. We can use `terraform untaint` command to undo the tainted mark from the resource.
+
+The benefit of using `terraform taint` is that it allows us to configure the behavior of resources when they are not in the desired state. For example we are running an EC2 instance with nginx v1.16 and someone manually updated it to v1.18. We can mark the resource as tainted and Terraform will destroy the instance and recreate it with the desired state.
+
+```bash
+terraform taint aws_instance.webserver
+```
+
+## Terraform Debugging
+
+Terraform already provides a lot of information in the output. But sometimes we need more information to debug the issues. 
+
+We can use the `TF_LOG` environment variable to set the log level. We can use `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, and `PANIC` log levels. 
+
+![Terraform Log Levels](https://github.com/user-attachments/assets/441b4c46-0476-4b38-a95c-ababdd853ce9)
+
+For example, to set the log level to `DEBUG`:
+
+```bash
+export TF_LOG=DEBUG
+terraform plan
+```
+
+We can also use `TF_LOG_PATH` environment variable to specify the log file. We can use `TF_LOG_PATH` to specify the log file path. For example, to set the log file path to `/tmp/terraform.log`:
+
+```bash
+export TF_LOG_PATH=/tmp/terraform.log
+terraform plan
+```
+
+we need to also set the `TF_LOG` environment variable to a level to enable logging to the file.
+
+To disable logging we can unset the `TF_LOG` environment variable:
+
+```bash
+unset TF_LOG
+```
+
+## Terraform Import
+
+So, there will not always be the case that every resource is being created and managed by Terraform. Sometimes we have to import it. Terraform import is used to import existing resources into Terraform state. It is used to import resources that were created outside of Terraform. For example some resources were created manually or using the AWS Management Console or using another Iac tool like Ansible or CloudFormation.
+
+![Terraform Import](https://github.com/user-attachments/assets/2aee6966-4b1e-4c36-af55-a0b65f3c342c)
+
+we have used `data` block, but that can only be used to fetch information about the resources. We can't manage the resources using the `data` block. With  `terraform import` command to import resources into Terraform state. We can use `terraform show` command to get the resource details.
+
+```bash
+terraform import <resource_type>.<resource_name> <resource_id>
+terraform import aws_instance.webserver i-0c1c4b7b3b3e3b3b3
+```
+
+When we run this command, we will see an error. Terraform will not update the resource file.
+
+To fix this, we have to manually add a resource block to the configuration file. We can define an empty resource block like this:
+
+```hcl 
+resource "aws_instance" "webserver-2"
+# (resource block)
+```
+
+Now we can run the `terraform import` command again. This time Terraform will import the resource into the state file. We can now fill in the attributes in the resource block by looking into the `terraform show` command.
+
+```hcl
+resource "aws_instance" "webserver-2" {
+  ami = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "webserver-2"
+  }
+}
+```
+
+Now, this resource is managed by Terraform. We can use `terraform plan` and `terraform apply` commands to manage the resource.
+
+
+## Terraform Modules
+
+Terraform modules are used to organize and reuse Terraform configurations. Modules are used to define reusable components like EC2 instances, S3 buckets, and IAM policies. Modules are used to create reusable components that can be shared across teams and projects. 
+
+![Terraform Modules](https://github.com/user-attachments/assets/f7c060b4-6ad9-4c03-8c9a-80867cde33a0)
+
+### Creating a Module
+
+To create a module, we create a dir name `modules` and inside that dir we create a dir with the name of the module. Inside that dir we create resource files. 
+
+Let's take an example to understand this better. We have an payroll app and we want to deploy it across different regions. We can create a module for the payroll app. Our structure will look like this:
+
+```
+terraform-project
+├── modules
+│   └── payroll-app
+│       ├── app_server.tf
+│       ├── s3_bucket.tf
+│       ├── dynamodb_table.tf
+```
+
+The `app.server.tf` file contains the EC2 instance configuration, the `s3_bucket.tf` file contains the S3 bucket configuration, and the `dynamodb_table.tf` file contains the DynamoDB table configuration. 
+
+```hcl
+# app_server.tf
+resource "aws_instance" "app-server" {
+  ami = "var.ami"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "${var.app_region}-app-server"
+  }
+  depends_on = [aws_dynamodb_table.payroll_db,
+                aws_s3_bucket.payroll_data
+                ]
+}
+
+# s3_bucket.tf
+resource "aws_s3_bucket" "payroll_data" {
+  bucket = "${var.app_region}-${var.bucket}"
+}
+
+# dynamodb_table.tf
+resource "aws_dynamodb_table" "payroll_db" {
+  name = "user_data"
+  hash_key = "EmployeeID"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+    name = "EmployeeID"
+    type = "N"
+  }
+}
+
+# variables.tf
+variable "ami" {
+  type = string
+}
+
+variable "app_region" {
+  type = string
+}
+
+variable "bucket" {
+  type = "flexit-payroll-01-02"
+}
+```
+
+In the `app_server.tf` file, we are using the `aws_instance` resource to create an EC2 instance. We are using the `ami` and `instance_type` arguments to specify the AMI and instance type, the `tags` argument to add tags to the instance, and the `depends_on` argument to specify the dependencies of the instance. We are using the `aws_dynamodb_table` and `aws_s3_bucket` resources to create the DynamoDB table and S3 bucket.
+
+Also, we have intentionally hard-coded the values of the resources and use variables to pass the values when we use the module.
+
+Now one the module is created, we can use it in the main configuration file. We can use the `module` block to use the module. 
+
+### Using a Module
+
+Now as we have created the module, we can use it in the main configuration file. We can use the `module` block to use the module. For example, we want to deploy the payroll app in the us region. We can use the module like this:
+
+First, we will create a dir under the root dir with `us-payroll-app` under `terraform-project` dir. Inside that dir we will create a `main.tf` file. Now the structure will look like this:
+
+```
+terraform-project
+├── us-payroll-app
+│   └── main.tf
+├── modules
+│   └── payroll-app
+│       ├── app_server.tf
+│       ├── s3_bucket.tf
+│       ├── dynamodb_table.tf
+```
+
+Our `main.tf` content will look like this:
+
+```hcl
+# /us-payroll-app/main.tf
+provider "aws" {
+  region = "us-west-1"
+}
+
+module "us_payroll" {
+  source = "../modules/payroll-app"
+  app_region = "us-east-1"
+  ami = "ami-0c55b159cbfafe1f0"
+}
+```
+
+In the `main.tf` file, we are using the `provider` block to specify the provider configuration, and the `module` block to use the module. We are using the `source` argument to specify the path to the module, and the `app_region` and `ami` arguments to pass the values to the module. The `us-payroll-app` directory is the root module and the `payroll-app` directory is the child module. 
+
+Additionally we can also specify the `bucket` variable in the `main.tf` as we set it as a variable in the module, otherwise it will use the default value. Now we can use the `terraform init`, `terraform plan`, and `terraform apply` commands to deploy the payroll app in the us region.
+
+Now we want to deploy to UK region as well. We can create a new dir `uk-payroll-app` under the root dir and create a `main.tf` file. The structure will look like this:
+
+```
+terraform-project
+├── uk-payroll-app
+│   └── main.tf
+├── us-payroll-app
+│   └── main.tf
+├── modules
+│   └── payroll-app
+│       ├── app_server.tf
+│       ├── s3_bucket.tf
+│       ├── dynamodb_table.tf
+```
+
+The `main.tf` file will look like this:
+
+```hcl
+# /uk-payroll-app/main.tf
+provider "aws" {
+  region = "eu-west-1"
+}
+
+module "uk_payroll" {
+  source = "../modules/payroll-app"
+  app_region = "eu-west-2"
+  ami = "ami-0c55b159cbfafe1f0avm"
+}
+```
+
+Now we can use the `terraform init`, `terraform plan`, and `terraform apply` commands to deploy the payroll app in the UK region (london).
+
+Since we are using modules the addressing syntax also gets changed. We use `module.<module_name>.<resource_type>.<resource_name>` to reference the resources in the module. For example, to reference the EC2 instance in the `payroll-app` module, we  use `module.us_payroll.aws_instance.app-server` or `module.uk_payroll.aws_instance.app-server` to reference the EC2 instance in the `us-payroll-app` and `uk-payroll-app` modules.
+
+### Using Module from Registry
+
+We can also use modules from the Terraform Registry. We can use the `source` argument to specify the path to the module in the Terraform Registry.
+
+There are two types of modules in the Terraform Registry:
+
+- Official modules (verified): These are modules created by HashiCorp and maintained by the Terraform team. They are verified and tested by HashiCorp.
+- Community modules: These are modules created by the community and shared on the Terraform Registry. They are not verified by HashiCorp.
+
+A modules can also have submodules. We can use the `source` argument to specify the path to the module in the Terraform Registry. For example, aws security group module:
+
+```hcl
+module "security_group_ssh" {
+  source = "terraform-aws-modules/security-group/aws/modules/ssh"
+  version = "3.16.0"
+  vpc_id = "vpc-12345678"
+  ingress_cidr_blocks = ["10.10.0.0/16"]
+}
+```
+
+## Terraform Functions, Expressions, and Operators
+
+Terraform provides a number of built-in functions that can be used to manipulate strings, numbers, lists, and maps. Functions are used to perform operations like string manipulation, arithmetic operations, and data transformation. Functions are used to generate dynamic values, format strings, and transform data.
+
+We have already seen some of the functions like `file()`, `length()`, `count.index`, `var.<variable_name>`, `self.<attribute_name>`, etc.
+
+We can use `terraform console` to test the functions. Like this:
+
+![Terraform Console](https://github.com/user-attachments/assets/5e999dd2-ca82-4ff6-b880-258ae7e23da4)
+
+There are many categories of functions like Number functions, String functions, List functions, Map functions, Filesystem functions, Date and Time functions, and Encoding functions.
+
+### Numeric Functions
+
+Numeric functions are used to perform arithmetic operations like addition, subtraction, min, max, and rounding.
+
+- max(1, 2, 3): Returns the maximum value from the list of numbers. In this case, it will return 3.
+- min(1, 2, 3): Returns the minimum value from the list of numbers. In this case, it will return 1.
+- ceil(10.1): Returns the smallest integer value greater than or equal to the number. In this case, it will return 11.
+- floor(10.9): Returns the largest integer value less than or equal to the number. In this case, it will return 10.
+
+### String Functions
+
+String functions are used to perform string manipulation operations like concatenation, substring, and formatting.
+
+- split(",", "ami-xyz, AMI-ABC, ami-pqr"): Splits the string into a list of substrings based on the delimiter. In this case, it will return ["ami-xyz", "AMI-ABC", "ami-pqr"].
+- lower("AMI-XYZ"): Converts the string to lowercase. In this case, it will return "ami-xyz".
+- upper("ami-xyz"): Converts the string to uppercase. In this case, it will return "AMI-XYZ".
+- title("ami-xyz"): Converts the string to title case. In this case, it will return "Ami-Xyz".
+- substr("ami-xyz", 0, 3): Returns a substring from the string. In this case, it will return "ami".
+- join(",", ["ami-xyz", "ami-abc", "ami-pqr"]): Joins the list of strings into a single string. In this case, it will return "ami-xyz,ami-abc,ami-pqr".
+
+### Collection Functions
+
+Collection functions are used to perform operations on lists and maps like filtering, sorting, and merging.
+
+- length(["ami-xyz", "ami-abc", "ami-pqr"]): Returns the length of the list. In this case, it will return 3.
+- index(["ami-xyz", "ami-abc", "ami-pqr"], "ami-abc"): Returns the index of the element in the list. In this case, it will return 1.
+- element(["ami-xyz", "ami-abc", "ami-pqr"], 1): Returns the element at the index in the list. In this case, it will return "ami-abc".
+- contains(["ami-xyz", "ami-abc", "ami-pqr"], "ami-abc"): Returns true if the element is present in the list. In this case, it will return true.
+
+### Map Functions
+
+Map functions are used to perform operations on maps like merging, filtering, and transforming.
+
+- keys({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}): Returns the keys of the map. In this case, it will return ["ami-xyz", "ami-abc"].
+- values({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}): Returns the values of the map. In this case, it will return ["ami-abc", "ami-pqr"].
+- lookup({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}, "ami-abc"): Returns the value of the key in the map. In this case, it will return "ami-pqr".
+- lookup({"ami-xyz": "ami-abc", "ami-abc": "ami-pqr"}, "ami-xyz", "default"): Returns the value of the key in the map or the default value. In this case, it will return "ami-abc".
+
+### Numeric Operators
+
+Numeric operators are used to perform arithmetic operations like addition, subtraction, multiplication, and division.
+
+- 1 + 2: Addition
+- 5 - 3: Subtraction
+- 2 * 3: Multiplication
+- 6 / 2: Division
+  
+### Equality Operators
+
+Equality operators are used to compare values like equal, not equal, greater than, and less than.
+
+- 1 == 2: Equal
+- 1 != 2: Not equal
+- 1 > 2: Greater than
+- 1 < 2: Less than
+- 1 >= 2: Greater than or equal
+- 1 <= 2: Less than or equal
+
+### Logical Operators
+
+Logical operators are used to perform logical operations like and, or, and not.
+
+- 8 > 5 && 5 < 3: And (both conditions must be true)
+- 8 > 5 || 5 < 3: Or (at least one condition must be true)
+- !true: Not (negates the value)
+
+
+### Conditional Operator
+
+- condition ? true_value : false_value: Ternary operator (if the condition is true, return the true value, otherwise return the false value) `10 > 5 ? "true" : "false"`
+
+```hcl
+# main.tf
+resource "random_password" "password" {
+  length = var.length < 8 ? 8 : var.length
+}
+output "password" {
+  value = random_password.password.result
+}
+
+# variables.tf
+variable "length" {
+  type = number
+}
+```
+
+So, here if the `var.length` is less than 8, the password length will be 8, otherwise it will be the value of `var.length`.
+
+## Terraform Workspaces
+
+Terraform workspaces are used to manage multiple environments like development, staging, and production. Workspaces are used to create separate environments for different teams, projects, and regions. Workspaces are used to manage state files for different environments. Workspaces are used to create separate state files for different environments.
+
+We can use the `terraform workspace` command to manage workspaces. We can use the `terraform workspace new` command to create a new workspace, the `terraform workspace list` command to list the workspaces, the `terraform workspace select` command to select a workspace, and the `terraform workspace delete` command to delete a workspace.
+
+We have modify our configuration is a way that it can be used for multiple environments. 
+
+```hcl
+# main.tf
+resource "aws_instance" "webserver" {
+  ami = lookup(var.ami, terraform.workspace)
+  instance_type = var.instance_type
+  tags = {
+    Name = terraform.workspace
+  }
+}
+
+# variables.tf
+variable "region" {
+  default = "ca-central-1"
+}
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+variable "ami" {
+  type = map
+  default = {
+    "ProjectA" = "ami-0c55b159cbfafe1f0"
+    "ProjectB" = "ami-oe4b3bfb4c0e9b2"
+  }
+}
+```
+
+Now if we create a new workspace like `ProjectA` and run the `terraform apply` command, it will use the `ami-0c55b159cbfafe1f0` AMI. If we create a new workspace like `ProjectB` and run the `terraform apply` command, it will use the `ami-oe4b3bfb4c0e9b2` AMI. We can use the `terraform workspace list` command to list the workspaces and the `terraform workspace select` command to select a workspace.
+
+The way terraform manages the the state files for different workspaces is that it creates a separate directory for each workspace and stores the state file in that directory. And all the directories are named as `terraform.tfstate.d/<workspace_name>`.
+
