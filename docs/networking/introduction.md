@@ -14,7 +14,7 @@ slug: "/networking"
 
 ### TCP
 
-TCP is a connection-oriented protocol. This means that it first establishes a link between the source and destination before it sends data. CP is a preferred protocol when data integrity is critical, such as in any transactional system. Eg: email and file transfer
+TCP is a connection-oriented protocol. This means that it first establishes a link between the source and destination before it sends data. TCP is a preferred protocol when data integrity is critical, such as in any transactional system. Eg: email and file transfer
 
 ### UDP
 
