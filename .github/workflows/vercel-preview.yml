@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   Deploy-Preview:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
       name: preview
     steps:
