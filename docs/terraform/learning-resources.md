@@ -9,3 +9,4 @@ slug: "/terraform/resources"
 
 - [Official Terraform Documentation](https://www.terraform.io/docs)
 - [Terraform Providers](https://registry.terraform.io/browse/providers)
+- [Terraform: Up & Running](https://www.terraformupandrunning.com/)
