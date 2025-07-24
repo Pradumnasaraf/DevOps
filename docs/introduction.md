@@ -38,16 +38,6 @@ To understand the above image, let's break down the DevOps lifecycle into differ
 
 **8. Continuous Feedback**: In this stage, the team gets feedback from the users and stakeholders.
 
-## Learning Resources
-
-Good resources to get a broad overview of DevOps:
-
-- [The Phoenix Project](https://itrevolution.com/product/the-phoenix-project/): A Novel about IT, DevOps, and Helping Your Business Win.
-- [The DevOps Handbook](https://itrevolution.com/product/the-devops-handbook-second-edition/): How to Create World-Class Agility, Reliability, & Security in Technology Organizations.
-- [Accelerate]](https://itrevolution.com/product/accelerate/): The Science of Lean Software and DevOps.
-- [Site Reliability Engineering](https://sre.google/books/): How Google Runs Production Systems.
-- [Fundamentals of DevOps and Software Delivery](https://www.fundamentals-of-devops.com/): A Hands-On Guide to Deploying and Managing Software in Production.
-
 ## DevOps Tools
 
 There are various tools available for different stages of the DevOps lifecycle. It depends on the requirements of the project and the team. Some of the popular DevOps tools are:
