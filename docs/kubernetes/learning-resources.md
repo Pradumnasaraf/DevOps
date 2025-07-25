@@ -13,3 +13,4 @@ slug: "/kubernetes/resources"
 - [BretFisher/udemy-docker-mastery GitHub repo](https://github.com/BretFisher/udemy-docker-mastery)
 - [Kubernetes official docs](https://kubernetes.io/docs/home/)
 - [Kubernetes Basic Concepts - Blog](https://spacelift.io/blog/kubernetes-tutorial)
+- [Kubernetes in Action](https://www.manning.com/books/kubernetes-in-action)
