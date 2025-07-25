@@ -21,6 +21,7 @@
 - [ ] My code follows the code style of this project.
 - [ ] This PR does not contain plagiarized content.
 - [ ] The title of my pull request is a short description of the requested changes.
+- [ ] I have created an issue and discussed these changes with the maintainers before starting work on this PR (see the [Contributing Guidelines](https://github.com/Pradumnasaraf/DevOps/blob/main/CONTRIBUTING.md)).
 
 ### Note to reviewers
 
