@@ -1,14 +1,14 @@
 ---
 sidebar_position: 21
-description: Feedback and suggestions
-title: Feedback & Suggestions
+description: Обратная связь и предложения
+title: Обратная связь и предложения
 
 ---
 
-Hey learner, practitioner, or expert in DevOps,
+Привет, учащийся, практик или эксперт в DevOps,
 
-Thank you so much for checking out this project/website. I ([Pradumna](https://x.com/pradumna_Saraf)) know that this project/website is not perfect and there are many things that can be improved. You might have encountered some errors or outdated information.
+Большое спасибо за то, что вы ознакомились с этим проектом/сайтом. Я ([Pradumna](https://x.com/pradumna_Saraf)) знаю, что этот проект/сайт не идеален и есть много вещей, которые можно улучшить. Возможно, вы столкнулись с некоторыми ошибками или устаревшей информацией.
 
-I am always open to feedback and suggestions. If you have any, please feel free to share them. You can raise a [Pull Request](https://github.com/Pradumnasaraf/DevOps) if the changes are minor. If you are unsure about the changes or if it's something major, please first raise an [Issue](https://github.com/Pradumnasaraf/DevOps/issues/new/choose) on the GitHub repo. I will try to incorporate your feedback and suggestions as much as possible.
+Я всегда открыт для обратной связи и предложений. Если у вас есть какие-либо, пожалуйста, не стесняйтесь поделиться ими. Вы можете создать [Pull Request](https://github.com/Pradumnasaraf/DevOps), если изменения незначительные. Если вы не уверены в изменениях или если это что-то серьезное, пожалуйста, сначала создайте [Issue](https://github.com/Pradumnasaraf/DevOps/issues/new/choose) в GitHub репозитории. Я постараюсь включить вашу обратную связь и предложения насколько это возможно.
 
-Thanks for your time and support.
+Спасибо за ваше время и поддержку.

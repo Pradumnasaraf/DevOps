@@ -1,51 +1,51 @@
 ---
 sidebar_position: 1
-title: GitHub Actions Introduction
-description: A guide to learn about GitHub Actions.
+title: Введение в GitHub Actions
+description: Руководство по изучению GitHub Actions.
 tags: ["GitHub Actions", "DevOps", "CI/CD"]
 keywords: ["GitHub Actions", "DevOps", "CI/CD"]
 slug: "/github-actions"
 ---
 
-GitHub Actions is a feature that allows you to automate your software development workflows. You can write individual tasks, called actions, and combine them to create a custom workflow. Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub.
+GitHub Actions - это функция, которая позволяет автоматизировать ваши рабочие процессы разработки программного обеспечения. Вы можете писать отдельные задачи, называемые действиями, и объединять их для создания пользовательского рабочего процесса. Рабочие процессы - это пользовательские автоматизированные процессы, которые вы можете настроить в своем репозитории для сборки, тестирования, упаковки, выпуска или развертывания любого проекта кода на GitHub.
 
-### Overview
+### Обзор
 
-- [Docs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+- [Документация](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
 
-- **Workflow** - A workflow is a configurable automated process made up of one or more jobs. Workflows are defined in `.yml` files in the `.github/workflows` directory of your repository.
+- **Workflow (Рабочий процесс)** - Рабочий процесс - это настраиваемый автоматизированный процесс, состоящий из одной или нескольких задач. Рабочие процессы определяются в файлах `.yml` в директории `.github/workflows` вашего репозитория.
 
-- **Jobs** - A job is a set of steps that execute on the same runner. Runner is a server that has the GitHub Actions runner application installed.
+- **Jobs (Задачи)** - Задача - это набор шагов, которые выполняются на одном и том же runner. Runner - это сервер, на котором установлено приложение GitHub Actions runner.
 
-- **Steps** - A step is an individual task that can run commands or actions like `actions/checkout@v2`. Each step in a job executes on the same runner, allowing for direct file sharing.
+- **Steps (Шаги)** - Шаг - это отдельная задача, которая может запускать команды или действия, такие как `actions/checkout@v2`. Каждый шаг в задаче выполняется на одном и том же runner, что позволяет напрямую обмениваться файлами.
 
-> Summary: The workflow is a set of jobs and each job is a set of steps. Each step can be an action or a shell command.
+> Резюме: Рабочий процесс - это набор задач, и каждая задача - это набор шагов. Каждый шаг может быть действием или shell командой.
 
-Basic worflow file.
+Базовый файл рабочего процесса.
 
 ```yaml
-name: CI # name of the workflow
+name: CI # имя рабочего процесса
 
-on: [push] # triggers the workflow on push or pull request events but only for the master branch
+on: [push] # запускает рабочий процесс при push или pull request событиях, но только для ветки master
 
 jobs:
-  build: # name of the job
-    runs-on: ubuntu-latest # runs-on is the type of machine to run the job on - runner
-    steps: # steps are the individual tasks that make up a job
+  build: # имя задачи
+    runs-on: ubuntu-latest # runs-on - это тип машины для запуска задачи - runner
+    steps: # шаги - это отдельные задачи, которые составляют задачу
       - uses: actions/checkout@v2
-      - name: Run a one-line script # name is the name of the step
+      - name: Run a one-line script # name - это имя шага
         run: echo Hello, world!
 ```
 
-- **Action** - An action is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task.
+- **Action (Действие)** - Действие - это пользовательское приложение для платформы GitHub Actions, которое выполняет сложную, но часто повторяющуюся задачу.
 
-- **Event** - An event is a specific activity that triggers a workflow. For example, activity that occurs on GitHub, such as opening a pull request or pushing a commit.
+- **Event (Событие)** - Событие - это конкретная активность, которая запускает рабочий процесс. Например, активность, которая происходит на GitHub, такая как открытие pull request или отправка коммита.
 
-### Triggers
+### Триггеры
 
-The `on` keyword is used to trigger the workflow. It can be triggered by a push, pull request, or a schedule.
+Ключевое слово `on` используется для запуска рабочего процесса. Он может быть запущен push, pull request или расписанием.
 
-- [Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows)
+- [Документация](https://docs.github.com/en/actions/reference/events-that-trigger-workflows)
 
 ```yaml
 on:
@@ -55,9 +55,9 @@ on:
     branches: [main]
 ```
 
-#### Trigger Filters
+#### Фильтры триггеров
 
-- We can trigger the workflow when only when certain files are changed.
+- Мы можем запускать рабочий процесс только когда изменяются определенные файлы.
 
 ```yaml
 on:
@@ -66,7 +66,7 @@ on:
       - "src/index.js"
 ```
 
-- We can trigger the workflow when only when certain files with an extension are changed.
+- Мы можем запускать рабочий процесс только когда изменяются определенные файлы с расширением.
 
 ```yaml
 on:
@@ -79,7 +79,7 @@ on:
       - "**.js"
 ```
 
-- We can trigger the workflow when only when certain files in a directory are changed.
+- Мы можем запускать рабочий процесс только когда изменяются определенные файлы в директории.
 
 ```yaml
 on:
@@ -88,16 +88,16 @@ on:
       - "src/**"
 ```
 
-- Manual trigger
+- Ручной запуск
 
 ```yaml
 on:
   workflow_dispatch:
 ```
 
-### Services
+### Сервисы
 
-Services are external resources that can be used in a workflow. We can use services like `redis` or `postgres` in our workflow. We can run a service in a container and use it in our workflow. We can also use custom images.
+Сервисы - это внешние ресурсы, которые можно использовать в рабочем процессе. Мы можем использовать сервисы, такие как `redis` или `postgres` в нашем рабочем процессе. Мы можем запустить сервис в контейнере и использовать его в нашем рабочем процессе. Мы также можем использовать пользовательские образы.
 
 ```yaml
 services:
@@ -117,9 +117,9 @@ services:
       - 3306:3306
 ```
 
-### Using ouput from one step in another step
+### Использование вывода одного шага в другом шаге
 
-We can use the output from one step in another step using the `id` keyword.
+Мы можем использовать вывод из одного шага в другой шаг, используя ключевое слово `id`.
 
 ```yaml
 jobs:
@@ -134,11 +134,11 @@ jobs:
         run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
 ```
 
-### Jobs
+### Задачи
 
-We can have multiple jobs in a workflow. Each job runs in parallel by default. We can also run jobs sequentially using the `needs` keyword. Each step in a job runs on the same runner.
+В рабочем процессе можно иметь несколько задач. Каждая задача запускается параллельно по умолчанию. Мы также можем запускать задачи последовательно, используя ключевое слово `needs`. Каждый шаг в задаче выполняется на одном и том же runner.
 
-We can run a job when a job passes or fails using the `needs` keyword.
+Мы можем запускать задачу, когда задача проходит или завершается с ошибкой, используя ключевое слово `needs`.
 
 ```yaml
 jobs:
@@ -158,34 +158,34 @@ jobs:
 
 ### GitHub context
 
-The `github` context is available to you in any workflow or action you create on GitHub. You can use the context to get information about the workflow run, the repository, the event that triggered the workflow like pull request number, etc.
+Контекст `github` доступен вам в любом рабочем процессе или действии, которое вы создаете на GitHub. Вы можете использовать контекст для получения информации о рабочем процессе, репозитории, событии, которое запустило рабочий процесс, например, номер pull request и т.д.
 
-**Some useful properties of the `github` context are:**
+**Некоторые полезные свойства контекста `github` являются:**
 
-- `github.event_name` - The name of the webhook event that triggered the workflow.
-- `github.sha` - The commit SHA that triggered the workflow.
-- `github.ref` - The branch or tag ref that triggered the workflow.
-- `github.repository` - The owner and repository name. For example, `Pradumnasaraf/DevOps`.
-- `github.actor` - The name of the person or app that initiated the workflow.
-- `github.job` - The name of the job that's currently running.
-- `github.run_number` - A unique number for each run of a particular workflow in a repository. This number begins at 1 for the workflow's first run, and increments with each new run. This number does not change if you re-run the workflow run.
-- `github.run_id` - A unique number for each run of any workflow in a repository. This number begins at 1 for the workflow's first run, and increments with each new run. This number does not change if you re-run the workflow run.
-- `github.workflow` - The name of the workflow.
-- `github.action` - The unique identifier (id) of the action.
-- `github.event` - The event payload. For example, the issue or pull request object that triggered the workflow run.
+- `github.event_name` - Имя вебхука события, которое запустило рабочий процесс.
+- `github.sha` - SHA коммита, который запустил рабочий процесс.
+- `github.ref` - Ссылка на ветку или тег, который запустил рабочий процесс.
+- `github.repository` - Владелец и имя репозитория. Например, `Pradumnasaraf/DevOps`.
+- `github.actor` - Имя человека или приложения, которое инициировало рабочий процесс.
+- `github.job` - Имя задачи, которая в данный момент выполняется.
+- `github.run_number` - Уникальный номер для каждого запуска определенного рабочего процесса в репозитории. Этот номер начинается с 1 для первого запуска рабочего процесса, и увеличивается с каждым новым запуском. Этот номер не изменяется, если вы повторно запускаете запуск рабочего процесса.
+- `github.run_id` - Уникальный номер для каждого запуска любого рабочего процесса в репозитории. Этот номер начинается с 1 для первого запуска рабочего процесса, и увеличивается с каждым новым запуском. Этот номер не изменяется, если вы повторно запускаете запуск рабочего процесса.
+- `github.workflow` - Имя рабочего процесса.
+- `github.action` - Уникальный идентификатор (id) действия.
+- `github.event` - Загрузка события. Например, объект issue или pull request, который запустил рабочий процесс.
 
-### Environment variables
+### Переменные окружения
 
-We can set environment variables in the workflow file using the `env` keyword. WE
+Мы можем устанавливать переменные окружения в файле рабочего процесса, используя ключевое слово `env`. WE
 
 ```yaml
 env:
   MY_NAME: "Pradumna"
 ```
 
-### Secrets
+### Секреты
 
-We can store sensitive data like API keys, passwords, etc. in the repository settings. We can access the secrets using the `secrets` context.
+Мы можем хранить чувствительные данные, такие как API-ключи, пароли и т.д., в настройках репозитория. Мы можем получить доступ к секретам, используя контекст `secrets`.
 
 ```yaml
 jobs:
@@ -196,9 +196,9 @@ jobs:
         run: echo ${{ secrets.MY_SECRET }}
 ```
 
-### Matrix
+### Матрица
 
-Matrix is helpful when we want to run a job on multiple versions of a tool.For eg. we want to run a job on multiple versions of Node.js. We can use the `matrix` keyword to run a job on multiple versions of a tool. We can also use the `matrix` keyword to run a job on multiple operating systems.
+Матрица полезна, когда мы хотим запустить задачу на нескольких версиях инструмента.Например, мы хотим запустить задачу на нескольких версиях Node.js. Мы можем использовать ключевое слово `matrix` для запуска задачи на нескольких версиях инструмента. Мы также можем использовать ключевое слово `matrix` для запуска задачи на нескольких операционных системах.
 
 ```yaml
 jobs:
@@ -214,9 +214,9 @@ jobs:
           node-version: ${{ matrix.version }}
 ```
 
-### Outputs
+### Выходы
 
-We can use the `outputs` keyword to output data from a job. We can use the output from one job in another job using the `needs` keyword.
+Мы можем использовать ключевое слово `outputs` для вывода данных из задачи. Мы можем использовать вывод из одной задачи в другую задачу, используя ключевое слово `needs`.
 
 ```yaml
 jobs:
@@ -237,9 +237,9 @@ jobs:
           run: echo ${{ needs.deploy.outputs.url }}
 ```
 
-## Artifacts
+## Артефакты
 
-It allows you to share data between jobs in a workflow and store data once the workflow has been completed. We can use the `upload-artifact` and `download-artifact` actions to upload and download artifacts.
+Он позволяет обмениваться данными между задачами в рабочем процессе и хранить данные после завершения рабочего процесса. Мы можем использовать действия `upload-artifact` и `download-artifact` для загрузки и загрузки артефактов.
 
 ```yaml
 name: Share data between jobs
@@ -276,8 +276,8 @@ jobs:
 ``` 
 
 
-### What's next?
+### Что дальше?
 
-- [Scenarios](./scenarios.md) - A collection of GitHub Actions workflow files I use and created to help you understand the concepts better.
-- [Learning Resources](./learning-resources.md) - A list of resources to learn more about GitHub Actions.
-- [other Resources](./other-resources.md) - A list of other resources that you can refer to learn more about GitHub Actions.
+- [Сценарии](./scenarios.md) - Коллекция файлов рабочих процессов GitHub Actions, которые я использую и создал, чтобы помочь вам лучше понять концепции.
+- [Обучающие ресурсы](./learning-resources.md) - Список ресурсов для изучения GitHub Actions.
+- [Другие ресурсы](./other-resources.md) - Список других ресурсов, которые вы можете использовать для изучения GitHub Actions.

@@ -1,23 +1,22 @@
 ---
 sidebar_position: 2
-title: Scenarios and Examples
-description: A collection of scenarios and examples to help you get started with GitHub Actions.
+title: Сценарии и примеры
+description: Коллекция сценариев и примеров, чтобы помочь вам начать работу с GitHub Actions.
 tags: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
 keywords: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
 slug: "/github-actions/scenarios"
 ---
 
-This section contains GitHub workflow configuration files for different scenarios. You can use these files as a reference to create your own workflows.
+Этот раздел содержит файлы конфигурации GitHub workflow для различных сценариев. Вы можете использовать эти файлы в качестве справочника для создания собственных рабочих процессов.
 
-> :warning: Note: The Actions get outdated quickly, so make sure to check the version of the Actions before using them.
+> :warning: Примечание: Actions быстро устаревают, поэтому обязательно проверяйте версию Actions перед их использованием.
 
+### Создание релиза и тега
 
-### Creating a Release and Tag
+Этот рабочий процесс создаст релиз и тег, когда будет выполнен push в основную ветку. Ниже приведен пример, использованный в проекте Node.js, но вы можете использовать его в любом проекте с другим языком.
 
-This workflow will create a release and a tag when a push is made to the main branch. Below one was used in a Node.js project, but you can use it in any project with a different language.
-
-Key points:
-- `version-file` can be changed or can be completely removed if you don't want to use it.
+Ключевые моменты:
+- `version-file` можно изменить или полностью удалить, если вы не хотите его использовать.
 
 ```yaml
 name: Releases and Changelog
@@ -54,9 +53,9 @@ jobs:
           body: ${{ steps.changelog.outputs.clean_changelog }}
 ```
 
-### Check and Build Go Project
+### Проверка и сборка Go проекта
 
-This workflow will check if the code is getting built and formatted correctly. It will also check for linting issues in the code. Can be useful to check incoming PRs.
+Этот рабочий процесс проверит, правильно ли собирается и форматируется код. Он также проверит проблемы с линтингом в коде. Может быть полезен для проверки входящих PR.
 
 ```yaml
 name: CI
@@ -99,13 +98,13 @@ jobs:
         uses: golangci/golangci-lint-action@v6
 ```
 
-### Welcome Message
+### Приветственное сообщение
 
-This workflow will send a welcome message to the contributor when they open an issue, PR, or comment on an issue or PR. You can customize the message as per your requirement.
+Этот рабочий процесс отправит приветственное сообщение участникам, когда они открывают проблему, PR или комментируют проблему или PR. Вы можете настроить сообщение по вашему усмотрению.
 
-Key points:
-- `issue-message` and `pr-message` can be changed as per your requirement.
-- `footer` can be changed or can be completely removed if you don't want to use it.
+Ключевые моменты:
+- `issue-message` и `pr-message` можно изменить по вашему усмотрению.
+- `footer` можно изменить или полностью удалить, если вы не хотите его использовать.
 
 ```yaml
 name : Greetings
@@ -139,11 +138,11 @@ jobs:
 
 ### GoReleaser
 
-This workflow will create a tag and release using GoReleaser when a push is made to the main branch. You can use this workflow in your Go project.
+Этот рабочий процесс создаст тег и релиз с помощью GoReleaser, когда будет выполнен push в основную ветку. Вы можете использовать этот рабочий процесс в вашем Go-проекте.
 
-Key points:
-- `PA_TOKEN` is a personal access token that you need to create in GitHub with `repo` access and write permissions.
-- You should have a `goreleaser.yml` file in the root of your project.
+Ключевые моменты:
+- `PA_TOKEN` - это личный токен доступа, который вы должны создать в GitHub с правами доступа `repo` и разрешениями на запись.
+- У вас должен быть файл `goreleaser.yml` в корне вашего проекта.
 
 ```yaml
 name: GoReleaser
@@ -197,12 +196,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### Publish Image to GitHub Container Registry (GHCR)
+### Публикация изображения в GitHub Container Registry (GHCR)
 
-This workflow will publish the image to the GitHub Container Registry (GHCR) when a release is published. You can use this workflow in your project to publish the image to GHCR.
+Этот рабочий процесс опубликует изображение в GitHub Container Registry (GHCR), когда будет опубликован релиз. Вы можете использовать этот рабочий процесс для публикации изображения в GHCR.
 
-Key points:
-- `tags` can be changed as per your requirement.
+Ключевые моменты:
+- `tags` можно изменить по вашему усмотрению.
 
 ```yaml
 name: Publish Image - GHCR
@@ -256,12 +255,12 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 ```
 
-### Publish Image to Docker Hub
+### Публикация изображения в Docker Hub
 
-This workflow will publish the image to Docker Hub when a release is published. You can use this workflow in your project to publish the image to Docker Hub.
+Этот рабочий процесс опубликует изображение в Docker Hub, когда будет опубликован релиз. Вы можете использовать этот рабочий процесс для публикации изображения в Docker Hub.
 
-Key points:
-- `DOCKERHUB_USERNAME` and `DOCKERHUB_PASSWORD` are the secrets that you need to create in GitHub with your Docker Hub username and password.
+Ключевые моменты:
+- `DOCKERHUB_USERNAME` и `DOCKERHUB_PASSWORD` - это секреты, которые вы должны создать в GitHub с вашим именем пользователя Docker Hub и паролем.
 
 ```yaml
 name: Publish Image to DockerHub

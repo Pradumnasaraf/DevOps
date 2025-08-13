@@ -1,52 +1,51 @@
 ---
 sidebar_position: 1
-title: Golang Introduction
-description: Learn about Golang and its features.
+title: Введение в Golang
+description: Узнайте о Golang и его возможностях.
 tags: ["Golang", "Programming Language", "Go"]
 keywords: ["Golang", "Programming Language", "Go"]
 slug: "/golang"
 ---
 
-Golang (or Go) is statically typed, compiled programming language designed at Google. It is syntactically similar to C, but with memory safety, garbage collection, structural typing, and CSP-style concurrency.
+Golang (или Go) - это статически типизированный, компилируемый язык программирования, разработанный в Google. Он синтаксически похож на C, но с безопасностью памяти, сборкой мусора, структурной типизацией и конкурентностью в стиле CSP.
 
-In Golang, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library.
+В Golang все является пакетом. Пакет - это коллекция исходных файлов в одной директории, которые компилируются вместе. Пакет может быть импортирован другими пакетами. `main` - это специальный пакет, который определяет автономную исполняемую программу, а не библиотеку.
 
-## Installation
+## Установка
 
-- [Download](https://golang.org/dl/) and install Go
+- [Скачать](https://golang.org/dl/) и установить Go
   
-- Garbage collected
-- Multithreading
-- concurrency
+- Сборка мусора
+- Многопоточность
+- конкурентность
 
-## Packages
+## Пакеты
 
-Module is a collection of related Go packages that are versioned together as a single unit.
+Модуль - это коллекция связанных Go пакетов, которые версионируются вместе как единое целое.
 
-- fmt - formatted I/O with functions analogous to C's printf and scanf.
-- os - provides a platform-independent interface to operating system functionality.
-- strconv - implements conversions to and from string representations of basic data types.
-- time - provides functionality for measuring and displaying time.
-- math - provides basic constants and mathematical functions.
-- net/http - provides HTTP client and server implementations.
-- encoding/json - implements encoding and decoding of JSON.
+- fmt - форматированный ввод-вывод с функциями, аналогичными printf и scanf в C.
+- os - предоставляет платформонезависимый интерфейс к функциональности операционной системы.
+- strconv - реализует преобразования в строковые представления базовых типов данных и из них.
+- time - предоставляет функциональность для измерения и отображения времени.
+- math - предоставляет базовые константы и математические функции.
+- net/http - предоставляет реализации HTTP клиента и сервера.
+- encoding/json - реализует кодирование и декодирование JSON.
 
-
-## Hello World - Running a program
+## Hello World - Запуск программы
 
 ```go
-package main // package declaration
+package main // объявление пакета
 
-import "fmt" // import fmt package
+import "fmt" // импорт пакета fmt
 
-import ( "fmt" "os") // import multiple packages
+import ( "fmt" "os") // импорт нескольких пакетов
 
 func main() {
 fmt.Println("Hello, World!")
 }
 ```
 
-We can run and compile the program using the following command:
+Мы можем запустить и скомпилировать программу, используя следующую команду:
 
 ```bash
 $ go run hello.go
@@ -54,128 +53,128 @@ $ go run hello.go
 
 ## Go Mod (go.mod)
 
-Go modules are a dependency management system that makes dependency version information explicit and easier to manage. Go modules are the future of dependency management in Go.
+Go модули - это система управления зависимостями, которая делает информацию о версии зависимостей явной и легче управляемой. Go модули - это будущее управления зависимостями в Go.
 
-`go mod init github.com/username/repo` - creates a new module, initializing the go.mod file that describes it.
+`go mod init github.com/username/repo` - создает новый модуль, инициализируя файл go.mod, который его описывает.
 
-- `go mod tidy` - command will add any missing modules necessary to build the current module's packages and dependencies. It will also remove any unused modules that don't provide any relevant packages. It will update the go.mod file and the go.sum file.
+- `go mod tidy` - команда добавит любые отсутствующие модули, необходимые для сборки пакетов и зависимостей текущего модуля. Она также удалит любые неиспользуемые модули, которые не предоставляют соответствующие пакеты. Она обновит файл go.mod и файл go.sum.
 
-- `go mod verify` - command will verify dependencies have expected content.
+- `go mod verify` - команда проверит, что зависимости имеют ожидаемое содержимое.
 
-- `go list -m all` - command will list all modules needed to build the current module, as well as indirect and test dependencies.
+- `go list -m all` - команда выведет список всех модулей, необходимых для сборки текущего модуля, а также косвенных и тестовых зависимостей.
 
-- `go get` - command will add dependencies to current module and install them.
+- `go get` - команда добавит зависимости к текущему модулю и установит их.
 
-- `go list -m -versions <module name>` - command will list all available versions of a module.
+- `go list -m -versions <module name>` - команда выведет список всех доступных версий модуля.
 
-- `go mod edit -go 1.16` - command will update the go directive in the go.mod file to the specified version.
+- `go mod edit -go 1.16` - команда обновит директиву go в файле go.mod до указанной версии.
 
-- `go mod vendor` - command will copy all dependencies into a vendor directory.
+- `go mod vendor` - команда скопирует все зависимости в директорию vendor.
 
 ## Sum (go.sum)
 
-It is a file that contains the expected cryptographic checksums of the content of specific module versions. It ensures that dependencies have not been modified.
+Это файл, который содержит ожидаемые криптографические контрольные суммы содержимого конкретных версий модулей. Он гарантирует, что зависимости не были изменены.
 
 ## Go Path
 
-Go path is an environment variable that specifies the location of your workspace. It is used to find the location of your Go code.
+Go path - это переменная окружения, которая указывает местоположение вашего рабочего пространства. Она используется для поиска местоположения вашего Go кода.
 
-## Build
+## Сборка
 
-We can build a program using the following command:
+Мы можем собрать программу, используя следующую команду:
 
 ```bash
 $ go build hello.go
 ```
 
-we can also build for different platforms using the following command:
+мы также можем собрать для разных платформ, используя следующую команду:
 
 ```bash
 $ GOOS=linux GOARCH=amd64 go build hello.go
 ```
 
-## Go Default Environment Variables
+## Go Переменные окружения по умолчанию
 
-| **Env Name**        | **Description**                                                                                               | **Example**                                                                  |
+| **Имя переменной**        | **Описание**                                                                                               | **Пример**                                                                  |
 |---------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| `GO111MODULE`       | Controls Go module support. If empty, Go uses module mode when a `go.mod` file is present, otherwise falls back to GOPATH mode. | `GO111MODULE=on` (forces Go to use modules)                                  |
-| `GOARCH`            | The architecture for which Go is building the binary (e.g., `amd64`, `arm64`).                                 | `GOARCH=arm64` (for Apple Silicon Macs)                                      |
-| `GOBIN`             | Directory where `go install` places binaries.                                                                 | `GOBIN=$GOPATH/bin` (default if empty)                                        |
-| `GOCACHE`           | Directory where Go stores build cache to speed up subsequent builds.                                          | `GOCACHE=/path/to/cache`                                                     |
-| `GOENV`             | Path to the Go environment file storing Go environment variables.                                             | `GOENV=/path/to/go/env`                                                      |
-| `GOEXE`             | File extension for Go executables (empty on Unix).                                                            | `GOEXE=.exe` (on Windows systems)                                             |
-| `GOEXPERIMENT`      | Enables experimental features in Go.                                                                          | `GOEXPERIMENT=generics` (for future Go features)                             |
-| `GOFLAGS`           | Flags passed to every `go` command.                                                                            | `GOFLAGS="-mod=readonly"` (prevents modifying `go.mod`)                       |
-| `GOHOSTARCH`        | Architecture of the machine running the Go toolchain (same as `GOARCH`).                                      | `GOHOSTARCH=arm64`                                                           |
-| `GOHOSTOS`          | OS of the machine running the Go toolchain (same as `GOOS`).                                                  | `GOHOSTOS=darwin`                                                            |
-| `GOINSECURE`        | Specifies which modules can be fetched without HTTPS or checksum validation.                                 | `GOINSECURE=example.com/private` (for private, insecure repositories)       |
-| `GOMODCACHE`        | Directory where downloaded Go modules are cached.                                                             | `GOMODCACHE=$GOPATH/pkg/mod`                                                 |
-| `GONOPROXY`         | Module paths that bypass `GOPROXY`.                                                                            | `GONOPROXY=example.com/*` (bypass proxy for certain modules)                |
-| `GONOSUMDB`         | Module paths that bypass checksum validation.                                                                 | `GONOSUMDB=example.com/*` (bypass checksum validation for private modules)  |
-| `GOOS`              | The target operating system for the Go build (e.g., `linux`, `darwin`, `windows`).                             | `GOOS=linux` (to build a Linux binary)                                      |
-| `GOPATH`            | The root directory for Go workspaces, storing source code, dependencies, and binaries.                        | `GOPATH=/Users/username/go` (default location)                               |
-| `GOPRIVATE`         | Specifies module paths as private, bypassing proxies and checksum validation.                                 | `GOPRIVATE=example.com/*` (for private repositories)                         |
-| `GOPROXY`           | Proxy servers used for fetching Go modules.                                                                    | `GOPROXY=https://proxy.golang.org` (default proxy)                           |
-| `GOROOT`            | The directory where Go is installed (contains Go's standard library and tools).                               | `GOROOT=/opt/homebrew/Cellar/go/1.23.4/libexec`                              |
-| `GOSUMDB`           | The checksum database for Go modules to verify downloaded content.                                             | `GOSUMDB=sum.golang.org`                                                     |
-| `GOTMPDIR`          | Temporary directory for Go build-related files.                                                                | `GOTMPDIR=/path/to/tmp`                                                      |
-| `GOTOOLCHAIN`       | Specifies the Go toolchain used for compiling code.                                                            | `GOTOOLCHAIN=go1.23` (to use a specific Go version toolchain)                |
-| `GOTOOLDIR`         | Directory where Go's compiler tools (like linker and compiler) are located.                                    | `GOTOOLDIR=/opt/homebrew/Cellar/go/1.23.4/libexec/pkg/tool/darwin_arm64`     |
-| `GOVCS`             | Controls versioning for Go modules' version control systems.                                                  | `GOVCS=git` (to use Git for version control)                                 |
-| `GOVERSION`         | The current version of Go being used.                                                                           | `GOVERSION=go1.23.4`                                                         |
-| `GODEBUG`           | Debugging options for Go runtime (e.g., for garbage collection or trace logs).                                 | `GODEBUG="gctrace=1"` (to trace garbage collection)                         |
-| `GOTELEMETRY`       | Controls telemetry data collection.                                                                            | `GOTELEMETRY=on` (telemetry enabled)                                         |
-| `GOTELEMETRYDIR`    | Directory where telemetry data is stored.                                                                      | `GOTELEMETRYDIR=/path/to/telemetry`                                          |
-| `GCCGO`             | The path to the GCC Go compiler for CGo support.                                                               | `GCCGO=gccgo`                                                               |
-| `GOARM64`           | Specifies the ARM64 architecture version.                                                                      | `GOARM64=v8.0`                                                              |
-| `AR`, `CC`, `CXX`   | Path to the archiver, C compiler, and C++ compiler used for CGo.                                               | `AR=ar`, `CC=cc`, `CXX=c++`                                                 |
-| `CGO_ENABLED`       | Enables or disables CGo, which allows Go to call C code.                                                       | `CGO_ENABLED=1` (enables CGo)                                               |
-| `CGO_*` flags       | Flags passed to the C compiler and linker for CGo, like `CGO_CFLAGS` for compiling flags.                    | `CGO_CFLAGS="-O2"` (optimizes CGo code compilation)                         |
-| `PKG_CONFIG`        | Specifies the path to the `pkg-config` tool for C libraries.                                                   | `PKG_CONFIG=pkg-config`                                                     |
-| `GOGCCFLAGS`        | Flags passed to the GCC compiler for CGo-based Go code compilation.                                           | `GOGCCFLAGS="-fPIC -arch arm64 -pthread"`                                    |
+| `GO111MODULE`       | Контролирует поддержку модулей Go. Если пусто, Go использует режим модуля, когда присутствует файл `go.mod`, в противном случае откатывается к режиму GOPATH. | `GO111MODULE=on` (заставляет Go использовать модули)                                  |
+| `GOARCH`            | Архитектура, для которой Go собирает двоичный файл (например, `amd64`, `arm64`).                                 | `GOARCH=arm64` (для Mac с процессором Apple Silicon)                                      |
+| `GOBIN`             | Директория, куда `go install` помещает двоичные файлы.                                                                 | `GOBIN=$GOPATH/bin` (по умолчанию, если пусто)                                        |
+| `GOCACHE`           | Директория, где Go хранит кэш сборки для ускорения последующих сборок.                                          | `GOCACHE=/path/to/cache`                                                     |
+| `GOENV`             | Путь к файлу Go, хранящему переменные окружения Go.                                             | `GOENV=/path/to/go/env`                                                      |
+| `GOEXE`             | Расширение файла для двоичных файлов Go (пусто на Unix).                                                            | `GOEXE=.exe` (в системах Windows)                                             |
+| `GOEXPERIMENT`      | Включает экспериментальные функции в Go.                                                                          | `GOEXPERIMENT=generics` (для будущих функций Go)                             |
+| `GOFLAGS`           | Флаги, передаваемые каждой команде `go`.                                                                            | `GOFLAGS="-mod=readonly"` (предотвращает модификацию `go.mod`)                       |
+| `GOHOSTARCH`        | Архитектура машины, на которой запускается инструментарий Go (такая же, как `GOARCH`).                                      | `GOHOSTARCH=arm64`                                                           |
+| `GOHOSTOS`          | ОС машины, на которой запускается инструментарий Go (такая же, как `GOOS`).                                                  | `GOHOSTOS=darwin`                                                            |
+| `GOINSECURE`        | Указывает, какие модули могут быть получены без HTTPS или проверки контрольной суммы.                                 | `GOINSECURE=example.com/private` (для частных, ненадежных репозиториев)       |
+| `GOMODCACHE`        | Директория, где кэшируются загруженные Go модули.                                                             | `GOMODCACHE=$GOPATH/pkg/mod`                                                 |
+| `GONOPROXY`         | Пути модулей, которые игнорируют `GOPROXY`.                                                                            | `GONOPROXY=example.com/*` (игнорировать прокси для определенных модулей)                |
+| `GONOSUMDB`         | Пути модулей, которые игнорируют проверку контрольной суммы.                                                                 | `GONOSUMDB=example.com/*` (игнорировать проверку контрольной суммы для частных модулей)  |
+| `GOOS`              | Целевая операционная система для сборки Go (например, `linux`, `darwin`, `windows`).                             | `GOOS=linux` (для сборки двоичного файла Linux)                                      |
+| `GOPATH`            | Корневая директория для рабочих пространств Go, хранящая исходный код, зависимости и двоичные файлы.                        | `GOPATH=/Users/username/go` (по умолчанию)                               |
+| `GOPRIVATE`         | Указывает, что пути модулей являются частными, игнорируя прокси и проверку контрольной суммы.                                 | `GOPRIVATE=example.com/*` (для частных репозиториев)                         |
+| `GOPROXY`           | Прокси-серверы, используемые для получения Go модулей.                                                                    | `GOPROXY=https://proxy.golang.org` (по умолчанию прокси)                           |
+| `GOROOT`            | Директория, где установлен Go (содержит стандартную библиотеку и инструменты).                               | `GOROOT=/opt/homebrew/Cellar/go/1.23.4/libexec`                              |
+| `GOSUMDB`           | Контрольная сумма для Go модулей для проверки загруженного содержимого.                                             | `GOSUMDB=sum.golang.org`                                                     |
+| `GOTMPDIR`          | Временная директория для файлов, связанных со сборкой Go.                                                                | `GOTMPDIR=/path/to/tmp`                                                      |
+| `GOTOOLCHAIN`       | Указывает инструментарий Go, используемый для компиляции кода.                                                            | `GOTOOLCHAIN=go1.23` (для использования определенного инструментария Go)                |
+| `GOTOOLDIR`         | Директория, где расположены инструменты компилятора Go (связывателя и компилятора).                                    | `GOTOOLDIR=/opt/homebrew/Cellar/go/1.23.4/libexec/pkg/tool/darwin_arm64`     |
+| `GOVCS`             | Контролирует версионирование для систем управления версиями Go модулей.                                                  | `GOVCS=git` (для использования Git для управления версиями)                                 |
+| `GOVERSION`         | Текущая версия Go, используемая.                                                                           | `GOVERSION=go1.23.4`                                                         |
+| `GODEBUG`           | Опции отладки для среды выполнения Go (например, для сбора мусора или журналов трассировки).                                 | `GODEBUG="gctrace=1"` (для трассировки сбора мусора)                         |
+| `GOTELEMETRY`       | Контролирует сбор данных телеметрии.                                                                            | `GOTELEMETRY=on` (телеметрия включена)                                         |
+| `GOTELEMETRYDIR`    | Директория, где хранятся данные телеметрии.                                                                      | `GOTELEMETRYDIR=/path/to/telemetry`                                          |
+| `GCCGO`             | Путь к GCC Go компилятору для поддержки CGo.                                                               | `GCCGO=gccgo`                                                               |
+| `GOARM64`           | Указывает версию архитектуры ARM64.                                                                      | `GOARM64=v8.0`                                                              |
+| `AR`, `CC`, `CXX`   | Путь к архиватору, компилятору C и компилятору C++, используемым для CGo.                                               | `AR=ar`, `CC=cc`, `CXX=c++`                                                 |
+| `CGO_ENABLED`       | Включает или отключает CGo, что позволяет Go вызывать код на C.                                                       | `CGO_ENABLED=1` (включает CGo)                                               |
+| `CGO_*` флаги       | Флаги, передаваемые компилятору C и компоновщику для CGo, такие как `CGO_CFLAGS` для флагов компиляции.                    | `CGO_CFLAGS="-O2"` (оптимизирует компиляцию CGo кода)                         |
+| `PKG_CONFIG`        | Указывает путь к инструменту `pkg-config` для библиотек C.                                                   | `PKG_CONFIG=pkg-config`                                                     |
+| `GOGCCFLAGS`        | Флаги, передаваемые компилятору GCC для компиляции Go кода на основе CGo.                                           | `GOGCCFLAGS="-fPIC -arch arm64 -pthread"`                                    |
 
-## Memory Allocation
+## Выделение памяти
 
-- new() - It allocates memory. The size of the memory is equal to the size of the type. It returns a pointer to the memory.
-- make() - It creates slices, maps, and channels only. It returns an initialized (not zeroed) value of type. It is used to create dynamically sized objects.
+- `new()` - Он выделяет память. Размер памяти равен размеру типа. Возвращает указатель на память.
+- `make()` - Он создает срезы, карты и каналы только. Возвращает инициализированное (не нулевое) значение типа. Используется для создания динамических объектов.
 
-Garbage collection is a form of automatic memory management. The garbage collector frees the memory occupied by objects that are no longer in use by the program.
+Сборка мусора - это форма автоматического управления памятью. Сборщик мусора освобождает память, занятую объектами, которые больше не используются программой.
 
-## Print
+## Печать
 
-There are serveral ways to print in Go. We can use `fmt` package to print.
+Существует несколько способов печати в Go. Мы можем использовать пакет `fmt` для печати.
 
-- `fmt.Println` - prints a line
-- `fmt.Print` - prints without a new line
-- `fmt.Printf` - prints with formatting
+- `fmt.Println` - печатает строку
+- `fmt.Print` - печатает без новой строки
+- `fmt.Printf` - печатает с форматированием
 
-Placeholders for `printf`
+Плейсхолдеры для `printf`
 
-- %v - value in default format
-- %+v - value in default format with field names
-- %T - type of value
-- %t - boolean
-- %d - decimal integer
-- %b - binary integer
-- %c - character
-- %x - hexadecimal integer
-- %f - floating point number
-- %s - string
+- %v - значение по умолчанию
+- %+v - значение по умолчанию с именами полей
+- %T - тип значения
+- %t - булево
+- %d - десятичное целое число
+- %b - двоичное целое число
+- %c - символ
+- %x - шестнадцатеричное целое число
+- %f - число с плавающей запятой
+- %s - строка
 
-Escape sequences:
+Эскейп-последовательности:
 
-- \n - newline
-- \t - tab
+- \n - новая строка
+- \t - табуляция
 
-## Variables and Constants
+## Переменные и Константы
 
-- `var` - variables with initializers.
-- `const` - declares a constant value. Can't be updated.
-- `:=` - short variable declaration. Can be used only inside a function. Called Syntax sugar. We can't use it to declare a global variable.
+- `var` - переменные с инициализаторами.
+- `const` - объявляет константное значение. Не может быть обновлен.
+- `:=` - короткое объявление переменной. Может использоваться только внутри функции. Называется синтаксический сахар. Мы не можем использовать его для объявления глобальной переменной.
 
-## Data Types
+## Типы данных
 
-When we declare with a value we don't need to specify the type. Go will infer the type from the value. But when we declare without a value we need to specify the type.
+Когда мы объявляем с помощью значения, нам не нужно указывать тип. Go определит тип из значения. Но когда мы объявляем без значения, нам нужно указать тип.
 
 Eg:
 
@@ -185,81 +184,81 @@ var name string
 name = "John"
 ```
 
-- `bool` - it can be either true or false. Example: `true`
-- `string` - string of characters. Example: `"Hello, World!"`
-- `int` - integer number. Example: `42`
-- `float64` - floating point number. Example: `3.14`
-- `uint` - unsigned integer. Example: `42`
-- `byte` - alias for uint8. Example: `42`
+- `bool` - он может быть либо true, либо false. Пример: `true`
+- `string` - строка символов. Пример: `"Hello, World!"`
+- `int` - целое число. Пример: `42`
+- `float64` - число с плавающей запятой. Пример: `3.14`
+- `uint` - беззнаковое целое число. Пример: `42`
+- `byte` - алиас для uint8. Пример: `42`
 
-- When we declare a variable without a value, Go will assign a default value to it. Eg: `0` for `int`, `false` for `bool` etc.
+- Когда мы объявляем переменную без значения, Go назначит ей значение по умолчанию. Например, `0` для `int`, `false` для `bool` и т.д.
 
-- If we don't put a variable type go will automatically assign the type based on the value.-
+- Если мы не указываем тип переменной, Go автоматически назначит тип на основе значения.-
 
-### String
+### Строка
 
-- A string is a sequence of characters. We can use double quotes to create a string.
+- Строка - это последовательность символов. Мы можем использовать двойные кавычки для создания строки.
 
 ```go
 var name = "John"
 ```
 
-- We can use backticks to create a raw string literal. It is used to create a string without escape sequences.
+- Мы можем использовать обратные кавычки для создания необработанной строковой литеральной строки. Он используется для создания строки без эскейп-последовательностей.
 
 ```go
 var name = `John\n`
 ```
 
-We can perform a lot of operations on strings like concatenation, length, indexing etc. Here are some examples:
+Мы можем выполнять множество операций со строками, таких как конкатенация, длина, индексация и т.д. Вот несколько примеров:
 
 ```go
 var name = "John"
 
-fmt.Println(len(name)) // it will print the length of the string
-fmt.Println(name[0]) // it will print the first character of the string
-fmt.Println(name + " Doe") // it will concatenate the strings
+fmt.Println(len(name)) // он выведет длину строки
+fmt.Println(name[0]) // он выведет первый символ строки
+fmt.Println(name + " Doe") // он объединит строки
 ```
 
-With the `strings` package, we can perform more operations on strings like splitting, joining, replacing etc. It's one of most used packages in Go.
+С пакетом `strings` мы можем выполнять больше операций со строками, таких как разделение, объединение, замена и т.д. Это один из самых используемых пакетов в Go.
 
 ```go
 import "strings"
 
 var name = "John Doe"
 
-fmt.Println(strings.Split(name, " ")) // it will split the string based on the space
-fmt.Println(strings.Join([]string{"John", "Doe"}, " ")) // it will join the strings with a space
-fmt.Println(strings.Replace(name, "John", "Jane", 1)) // it will replace the first occurrence of John with Jane
-fmt.Println(strings.Contains(name, "John")) // it will check if the string contains John
-fmy.Println(strings.ToLower(name)) // it will convert the string to lowercase
-fmt.Println(strings.ToUpper(name)) // it will convert the string to uppercase
+fmt.Println(strings.Split(name, " ")) // он разделит строку по пробелу
+fmt.Println(strings.Join([]string{"John", "Doe"}, " ")) // он объединит строки с пробелом
+fmt.Println(strings.Replace(name, "John", "Jane", 1)) // он заменит первое вхождение John на Jane
+fmt.Println(strings.Contains(name, "John")) // он проверит, содержит ли строка John
+fmy.Println(strings.ToLower(name)) // он преобразует строку в нижний регистр
+fmt.Println(strings.ToUpper(name)) // он преобразует строку в верхний регистр
 ```
 
-## Scan
+## Сканирование
 
-`fmt.Scan` reads text from standard input, scanning the text read into successive arguments. Newlines count as space. It returns the number of items successfully scanned. If that is less than the number of arguments, err will report why.
+`fmt.Scan` читает текст из стандартного ввода, сканируя текст, прочитанный в последовательные аргументы. Переносы строк считаются пробелами. Возвращает количество успешно просканированных элементов. Если это меньше, чем количество аргументов, err сообщит, почему.
 
 ```go
 fmt.Scan(&name)
 ```
 
-### Scanning though bufio
+### Сканирование через bufio
 
-`bufio` package implements a buffered reader that may be useful both for its efficiency with many small reads and because of the additional reading methods it provides.
+`bufio` пакет реализует буферизованный читатель, который может быть полезен как для его эффективности с множественными маленькими чтениями, так и из-за дополнительных методов чтения, которые он предоставляет.
 
 ```go
 func main() {
 
 reader := bufio.NewReader(os.Stdin)
 fmt.Print("Enter text: ")
-text, _ := reader.ReadString('\n') // It is text, err syntax. We put _ to ignore the error.
+text, _ := reader.ReadString('\n') // Это text, err синтаксис. Мы ставим _ для игнорирования ошибки.
 fmt.Println(text)
 }
 ```
 
-### "text , err syntax"
+### "text , err синтаксис"
 
-In the above example we used `text, err` syntax. It is a common way to handle errors in Go. If we don't want to handle the error we can use `_` to ignore it.
+В примере выше мы использовали синтаксис `text, err`. Это общепринятый способ обработки ошибок в Go. Если мы не хотим обрабатывать ошибку, мы можем использовать `_` для ее игнорирования.
 
 ```go
 text, err := reader.ReadString('\n')
@@ -269,94 +268,94 @@ if err != nil {
 }
 ```
 
-- `panic` - It is a built-in function that stops the ordinary flow of control and begins panicking. When the function F calls panic, execution of F stops, any deferred functions in F are executed normally, and then F returns to its caller.
+- `panic` - Это встроенная функция, которая останавливает обычный поток управления и начинает паниковать. Когда функция F вызывает panic, выполнение F останавливается, все отложенные функции в F выполняются нормально, а затем F возвращается к своему вызывателю.
 
 
-## Conversion
+## Преобразование
 
-We can convert a value from one type to another. The expression T(v) converts the value v to the type T. We can use `strconv` package to convert a data type to another.
+Мы можем преобразовать значение из одного типа в другой. Выражение T(v) преобразует значение v в тип T. Мы можем использовать пакет `strconv` для преобразования типа данных в другой.
 
 ```go
 var num = 42
 var stringNum = "42"
 
-var str = strconv.Itoa(num) // it will convert the integer to a string
-var intNum, _ = strconv.Atoi(stringNum) // it will convert the string to an integer
+var str = strconv.Itoa(num) // он преобразует целое число в строку
+var intNum, _ = strconv.Atoi(stringNum) // он преобразует строку в целое число
 ```
 
-## Time
+## Время
 
-We can use `time` package to get the current time.
+Мы можем использовать пакет `time` для получения текущего времени.
 
 ```go
 t := time.Now()
 fmt.Println(t)
 ```
 
-## Pointers
+## Указатели
 
-A pointer is a variable that stores the memory address of another variable. We can declare a pointer by using `*` operator. Eg:
+Указатель - это переменная, которая хранит адрес другой переменной. Мы можем объявить указатель, используя оператор `*`. Например:
 
 ```go
 var p *int
 ```
 
-We can get the memory address of a variable using `&` operator.
+Мы можем получить адрес переменной, используя оператор `&`.
 
 ```go
 var name = "John"
-fmt.Println(&name) // it will print the memory address of the variable name
+fmt.Println(&name) // он выведет адрес переменной name
 ```
 
-We can get the value of a pointer using `*` operator. Called dereferencing.
+Мы можем получить значение указателя, используя оператор `*`. Называется разыменованием.
 
 ```go
 
 var name = "John"
 var myName = &name
 
-fmt.Println(*myName) // it will print the value of the variable name
+fmt.Println(*myName) // он выведет значение переменной name
 ```
 
-- `*int` - the type `*int` is a pointer to an `int`.
+- `*int` - тип `*int` является указателем на `int`.
 
 
 ```go
 var name = "John"
-fmt.Println(&name) // it will print the memory address of the variable name
+fmt.Println(&name) // он выведет адрес переменной name
 ```
 
-## Arrays
+## Массивы
 
-An array is a numbered sequence of elements of a single type with a fixed length. We can store a fixed size collection of elements of the same type.
+Массив - это нумерованная последовательность элементов одного типа с фиксированной длиной. Мы можем хранить фиксированную коллекцию элементов одного типа.
 
-We declare an array as follows:
+Мы объявляем массив следующим образом:
 
 ```go
-var arr [5]int  // array of 5 integers
+var arr [5]int  // массив из 5 целых чисел
 
 arr[0] = 1
 arr[1] = 2
 ```
 
-## Slice
+## Срез
 
-In this we don't need to specify the size of the array. It is a dynamically sized, flexible view into the elements of an array.
+В этом мы не указываем размер массива. Это динамический, гибкий взгляд на элементы массива.
 
 ```go
-var names []int  // slice of integers
+var names []int  // срез целых чисел
 ```
 
-Unlink arrays, we don't add elements to a slice using `arr[index] = value`. We use `append` function to add elements to a slice.
+В отличие от массивов, мы не добавляем элементы в срез, используя `arr[index] = value`. Мы используем функцию `append` для добавления элементов в срез.
 
 ```go
 names = append(names, 1)
 names = append(names, 2)
 ```
 
-## Loops
+## Циклы
 
-In Go, there is only one looping construct, the `for` loop.
+В Go есть только одна конструкция цикла, цикл `for`.
 
 ```go
 for i := 0; i < 5; i++ {
@@ -364,7 +363,7 @@ fmt.Println(i)
 }
 ```
 
-- `range` - The range form of the for loop iterates over a slice or map.
+- `range` - Форма диапазона цикла `for` перебирает срез или карту.
 
 ```go
 names := []string{"John", "Paul", "George", "Ringo"}
@@ -374,7 +373,7 @@ fmt.Println(i, name)
 }
 ```
 
-- `_` - The blank identifier is a special identifier that is used to ignore values when multiple values are returned from a function. It is used to ignore the index in the above example.
+- `_` - Пустой идентификатор - это специальный идентификатор, который используется для игнорирования значений при возврате нескольких значений из функции. Он используется для игнорирования индекса в примере выше.
 
 ```go
 for _, name := range names {
@@ -382,23 +381,23 @@ fmt.Println(name)
 }
 ```
 
-## If Else
+## Условные операторы
 
 ```go
-if num > 0 { // this condition will only be true if num is greater than 0
+if num > 0 { // это условие будет истинно только если num больше 0
 fmt.Println("Positive")
-} else if num == 0 { // this condition will only be true if num is equal to 0
+} else if num == 0 { // это условие будет истинно только если num равно 0
 fmt.Println("Equal to zero")
-} else {   // this condition will only be true if num is less than 0
+} else {   // это условие будет истинно только если num меньше 0
 fmt.Println("Negative")
 }
 ```
 
-We can check also write `data == false` or `!data`
+Мы также можем писать `data == false` или `!data`
 
-### Break and Continue
+### Break и Continue
 
-- `break` - The break statement terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
+- `break` - Оператор break останавливает цикл или оператор switch и передает управление оператору, следующему за циклом или оператором switch.
 
 ```go
 
@@ -410,7 +409,7 @@ for i := 0; i < 5; i++ {
 }
 ```
 
-- `continue` - The continue statement terminates the current iteration of the loop, and resumes execution at the next iteration. It can be used only within an iterative or switch statement and only within the body of that statement.
+- `continue` - Оператор continue прерывает текущую итерацию цикла, и выполнение возобновляется на следующей итерации. Он может использоваться только в итерационном или операторе switch и только в теле этого оператора.
 
 ```go
 for i := 0; i < 5; i++ {
@@ -423,7 +422,7 @@ for i := 0; i < 5; i++ {
 
 ## Switch
 
-The switch statement is a shorter way to write a sequence of if - else statements. It runs the first case whose value is equal to the condition expression.
+Оператор switch является более коротким способом записи последовательности операторов if - else. Он выполняет первый случай, значение которого равно условному выражению.
 
 ```go
 switch num {
@@ -438,13 +437,13 @@ default:
 
 ### Fallthrough
 
-In Go, we don't need to write `break` after each case. It will automatically break after each case. If we want to execute the next case we can use `fallthrough` keyword.
+В Go мы не пишем `break` после каждого случая. Он автоматически разрывается после каждого случая. Если мы хотим выполнить следующий случай, мы можем использовать ключевое слово `fallthrough`.
 
 ```go
 switch num {
 case 1:
     fmt.Println("One")
-    fallthrough // it will execute the next case
+    fallthrough // он выполнит следующий случай
 case 2:
     fmt.Println("Two")
 default:
@@ -452,33 +451,33 @@ default:
 }
 ```
 
-## Functions
+## Функции
 
-- A function is a block of code that performs a specific task. It is a reusable piece of code.
+- Функция - это блок кода, который выполняет определенную задачу. Это повторно используемый фрагмент кода.
 
 ```go
-func add(x int, y int) int { // We can specify the type of the parameters
+func add(x int, y int) int { // Мы можем указать тип параметров
     return x + y
 }
 
 func main() {
-    fmt.Println(add(1, 2)) // We can call the function by passing the arguments
+    fmt.Println(add(1, 2)) // Мы можем вызвать функцию, передав аргументы
 }
 ```
 
-- A function can return multiple values.
+- Функция может возвращать несколько значений.
 
 ```go
-func swap(x, y string) (string, string) { // When we have more than one return value we put them in parenthesis ().
+func swap(x, y string) (string, string) { // Когда у нас больше одного возвращаемого значения, мы ставим их в скобки ().
 return y, x
 }
 
-a, b := swap("hello", "world") // We can get the return values using multiple assignment
+a, b := swap("hello", "world") // Мы можем получить возвращаемые значения, используя множественное присваивание
 ```
 
-### Anonymous functions
+### Анонимные функции
 
-- We can declare a function without a name. Such functions are called anonymous functions.
+- Мы можем объявить функцию без имени. Такие функции называются анонимными функциями.
 
 ```go
 func(x, y int) int {
@@ -486,27 +485,27 @@ func(x, y int) int {
 }
 ```
 
-## Methods
+## Методы
 
-A method is a function with a special receiver argument. The receiver appears in its own argument list between the func keyword and the method name. Receiver can be of any type. Receiver is a special type of parameter that is passed to a method. It is similar to `this` in other languages. It is used to access the fields and methods associated with the Type like a Struct. There are two types of receivers:
+Метод - это функция с особым аргументом-получателем. Аргумент-получатель появляется в своем собственном списке аргументов между ключевым словом func и именем метода. Получатель может быть любого типа. Получатель - это специальный тип параметра, который передается методу. Это похоже на `this` в других языках. Он используется для доступа к полям и методам, связанным с типом, как с Struct. Существует два типа получателей:
 
-1. **Value Receiver**:  It is used when we don't want to modify the original value. 
+1. **Значение-получатель**: Используется, когда мы не хотим изменять исходное значение. 
 
 > `func (t Test) printName() { fmt.Println(t.Name) }`
 
-2. **Pointer Receiver**: It is used when we want to modify the original value. 
+2. **Указатель-получатель**: Используется, когда мы хотим изменить исходное значение. 
 
 > `func (t *Test) printName() { fmt.Println(t.Name) }`
 
 
-Here is an example of a method:
+Вот пример метода:
 
 ```go
 type Person struct {
     name string
 }
 
-func (p Person) getName() string { // We can use the receiver argument to access the fields of the struct
+func (p Person) getName() string { // Мы можем использовать аргумент-получатель для доступа к полям структуры
     return p.name
 }
 
@@ -516,13 +515,13 @@ func main() {
 }
 ```
 
-## Defer
+## Отложенные вызовы
 
-- A defer statement defers the execution of a function until the surrounding function returns.
+- Оператор defer откладывает выполнение функции до возврата окружающей функции.
 
 ```go
 func main() {
-    defer fmt.Println("world") // It will print "world" after the main function returns
+    defer fmt.Println("world") // Он выведет "world" после возврата основной функции
 
     fmt.Println("hello")
 }
@@ -530,42 +529,42 @@ func main() {
 
 ## Mutex 
 
-- Mutex is a mutual exclusion lock. The zero value for a Mutex is an unlocked mutex.
+- Mutex - это взаимное исключение. Нулевое значение для Mutex - это разблокированный Mutex.
 
 ```go
 var mutex sync.Mutex
 
-mutex.Lock() // It will lock the mutex
-mutex.Unlock() // It will unlock the mutex
+mutex.Lock() // Он заблокирует Mutex
+mutex.Unlock() // Он разблокирует Mutex
 ```
 
-- RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. When a writer is active, no readers can be active. 
+- RWMutex - это взаимное исключение для чтения/записи. Замок может быть удержан произвольным количеством читателей или одним писателем. Когда активен писатель, читатели не могут быть активными. 
 
 ```go
 var rwMutex sync.RWMutex
 
-rwMutex.RLock() // It will lock the mutex for reading
-rwMutex.RUnlock() // It will unlock the mutex for reading
+rwMutex.RLock() // Он заблокирует Mutex для чтения
+rwMutex.RUnlock() // Он разблокирует Mutex для чтения
 
-rwMutex.Lock() // It will lock the mutex for writing
-rwMutex.Unlock() // It will unlock the mutex for writing
+rwMutex.Lock() // Он заблокирует Mutex для записи
+rwMutex.Unlock() // Он разблокирует Mutex для записи
 ```
 
-## Maps
+## Карты
 
-- A map is an unordered collection of key-value pairs. Maps are similar to dictionaries in Python. The limitation of maps is that the key should be of the same type and the value should be of the same type. The key and value can be of any type.
+- Карта - это неупорядоченная коллекция пар ключ-значение. Карты похожи на словари в Python. Ограничение карт заключается в том, что ключ должен быть одного типа, а значение - того же типа. Ключ и значение могут быть любого типа.
 
 ```go
-var cars = make(map[string]string, 0) // map of string to string
+var cars = make(map[string]string, 0) // карта строки на строку
 
-cars["Toyota"] = "Camry" // adding a key-value pair
+cars["Toyota"] = "Camry" // добавление пары ключ-значение
 
-delete(cars, "Toyota") // deleting a key-value pair
+delete(cars, "Toyota") // удаление пары ключ-значение
 ```
 
-## Structs
+## Структуры
 
-- A struct is a collection of fields. It is a data structure that lets us bundle together related data and behavior. We can use structs to represent real-world objects. It can handle multiple data types. It is similar to classes in other languages.
+- Структура - это коллекция полей. Это структура данных, которая позволяет нам объединять связанные данные и поведение. Мы можем использовать структуры для представления реальных объектов. Он может обрабатывать несколько типов данных. Это похоже на классы в других языках.
 
 ```go
 type Person struct {
@@ -574,9 +573,9 @@ type Person struct {
 }
 ```
 
-## Go routines and WaitGroup
+## Go goroutines и WaitGroup
 
-- A goroutine is a lightweight thread managed by the Go runtime. We can create a goroutine using the keyword `go`. It is similar to threads in other languages. The purpose of a goroutine is to run a function concurrently with other functions. 
+- Goroutine - это легкий поток управления, управляемый средой выполнения Go. Мы можем создать горутину, используя ключевое слово `go`. Это похоже на потоки в других языках. Цель горутины - запускать функцию параллельно с другими функциями. 
 
 ```go
 go func() {
@@ -584,41 +583,41 @@ go func() {
 }()
 ```
 
-- If the main function exits, the program will exit immediately even if the goroutine is still running. To prevent this, we can use the `WaitGroup` type. For Eg:
+- Если основная функция завершается, программа выйдет сразу, даже если горутина все еще работает. Чтобы предотвратить это, мы можем использовать тип `WaitGroup`. Например:
 
 #### WaitGroup
 
-- A WaitGroup waits for a collection of goroutines to finish. The main function will wait for the goroutines to finish before exiting.
+- WaitGroup ждет завершения коллекции горутин. Основная функция будет ждать завершения горутин перед выходом.
 
 ```go 
 
 var wg sync.WaitGroup
 
 func main() {
-    wg.Add(1) // We are adding 1 to the WaitGroup
+    wg.Add(1) // Мы добавляем 1 в WaitGroup
     go sayHello()
-    wg.Wait() // We are waiting for the WaitGroup to become zero
+    wg.Wait() // Мы ждем, пока WaitGroup станет нулем
 
 }
 func sayHello() {
     fmt.Println("Hello")
-    wg.Done() // We are decrementing the WaitGroup by 1
+    wg.Done() // Мы уменьшаем WaitGroup на 1
 }
 ```
 
-`Add()` increments the WaitGroup counter by 1 and `Done()` decrements the WaitGroup counter by 1.
+`Add()` увеличивает счетчик WaitGroup на 1 и `Done()` уменьшает счетчик WaitGroup на 1.
 
 
-### Concurrency vs Parallelism
+### Конкурентность vs Параллелизм
 
-- **Concurrency** - It is the ability of a program to be decomposed into parts that can run independently of each other. It is the composition of independently executing processes. It is about dealing with lots of things at once.
+- **Конкурентность** - Это способность программы быть разбита на части, которые могут выполняться независимо друг от друга. Это композиция независимых выполняющихся процессов. Это о том, чтобы иметь дело со многими вещами одновременно.
 
-- **Parallelism** - It is the ability of a program to run multiple tasks simultaneously. It is about doing lots of things at once.
+- **Параллелизм** - Это способность программы запускать несколько задач одновременно. Это о том, чтобы делать много вещей одновременно.
 
 
-## Math
+## Математика
 
-- rand.Seed() - It is used to initialize the default Source to a deterministic state. If Seed is not called, the generator behaves as if seeded by Seed(1). It should only be called once. It is usually called before the first call to Intn or Float64.
+- `rand.Seed()` - Он используется для инициализации источника по умолчанию в детерминированное состояние. Если Seed не вызывается, генератор ведет себя как если бы он был засеян Seed(1). Он должен вызываться только один раз. Обычно он вызывается перед первым вызовом Intn или Float64.
 
 ```go
 rand.Seed(time.Now().UnixNano())
@@ -626,13 +625,13 @@ rand.Seed(time.Now().UnixNano())
 
 ## Json
 
-- We can use the `json` package to encode and decode JSON data.
+- Мы можем использовать пакет `json` для кодирования и декодирования JSON данных.
 
-- `json.Marshal()` - It is used to encode a value to JSON. It returns a byte slice and an error.
-- `json.MarshalIndent()` - It is used to encode a value to JSON with indentation. It returns a byte slice and an error.
-- `json.Unmarshal()` - It is used to decode a JSON-encoded value. It returns an error.
+- `json.Marshal()` - Он используется для кодирования значения в JSON. Возвращает срез байтов и ошибку.
+- `json.MarshalIndent()` - Он используется для кодирования значения в JSON с отступами. Возвращает срез байтов и ошибку.
+- `json.Unmarshal()` - Он используется для декодирования значения, закодированного в JSON. Возвращает ошибку.
 
-In the Structs we can use the `json` tag to specify the name of the field in the JSON. I
+В структурах мы можем использовать тег `json` для указания имени поля в JSON. I
 
 ```go
 
@@ -642,11 +641,11 @@ type Person struct {
 }    
 ``` 
 
-## Channels
+## Каналы
 
-- A channel is a communication mechanism that allows one goroutine to pass values of a specified type to another goroutine. It is communication between goroutines. It is similar to pipes in other languages.
+- Канал - это механизм связи, который позволяет одной горутине передавать значения указанного типа другой горутине. Это коммуникация между горутинами. Это похоже на трубы в других языках.
 
-- `make()` - It is used to create a channel. It takes the type of the channel as an argument.
+- `make()` - Он используется для создания канала. Он принимает тип канала в качестве аргумента.
 
 ```go
 ch := make(chan int)
@@ -659,38 +658,38 @@ val := <-ch
 fmt.Println(val)
 ```
 
-We can create a buffered channel by passing the buffer size as the second argument to the `make()` function. By default, the channel is unbuffered and can only hold one value. So, if we try to send multiple value to the channel it will give an error.
+Мы можем создать буферизованный канал, передав размер буфера в качестве второго аргумента функции `make()`. По умолчанию канал небуферизованный и может содержать только одно значение. Таким образом, если мы попытаемся отправить несколько значений в канал, он даст ошибку.
 
-### Buffered Channel
+### Буферизованный канал
 
-A buffered channel is a channel with a buffer. It can hold multiple values. We can specify the buffer size when we create the channel.
-
-```go
-var ch = make(chan int, 5) // buffered channel with a buffer size of 5
-```
-
-### Unbuffered Channel
-
-An unbuffered channel is a channel without a buffer. It can hold only one value. We can send a value to the channel only if there is a goroutine ready to receive the value.
+Буферизованный канал - это канал с буфером. Он может содержать несколько значений. Мы можем указать размер буфера при создании канала.
 
 ```go
-var ch = make(chan int) // unbuffered channel
+var ch = make(chan int, 5) // буферизованный канал с размером буфера 5
 ```
 
-### Closing a Channel
+### Небуферизованный канал
 
-We can close a channel using the `close()` function. It is used to indicate that no more values will be sent on the channel. 
+Небуферизованный канал - это канал без буфера. Он может содержать только одно значение. Мы можем отправить значение в канал только в том случае, если есть горутина, готовая к приему значения.
+
+```go
+var ch = make(chan int) // небуферизованный канал
+```
+
+### Закрытие канала
+
+Мы можем закрыть канал, используя функцию `close()`. Он используется для указания того, что больше значений отправляться не будет. 
 
 ```go
 msg := make(chan int)
 
 go func() {
     msg <- 1
-    close(msg) // After closing the channel we can't send any more values
+    close(msg) // После закрытия канала мы не можем отправлять больше значений
 }()
 ```
 
-But here a catch even tho channel is closed we can still receive the values from it like zero, so it's dalmatic whether the it's channel is closed or the value is zero. To overcome this we can receive the value and a boolean value which will tell us whether the channel is closed or not.
+Но здесь есть ловушка, даже если канал закрыт, мы все еще можем получать значения из него, как ноль, поэтому это зависит от того, закрыт ли канал или значение равно нулю. Чтобы преодолеть это, мы можем получить значение и булево значение, которое сообщит нам, закрыт ли канал или нет.
 
 ```go
 package main
@@ -730,10 +729,10 @@ func main() {
 }
 ```
 
-### Send Only Channel
+### Отправка только канал
 
 ```go
-var ch = make(chan<- int) // send only channel
+var ch = make(chan<- int) // отправка только канал
 ```
 
 ```go
@@ -742,10 +741,10 @@ go func (ch chan<- int) {
 }(ch)
 ```
 
-### Receive Only Channel
+### Получение только канал
 
 ```go
-var ch = make(<-chan int) // receive only channel
+var ch = make(<-chan int) // получение только канал
 ```
 
 ```go
@@ -757,7 +756,7 @@ go func (ch <-chan int) {
 
 ## IIF's (Immediately Invoked Functions)
 
-- An immediately invoked function is a function that is executed as soon as it is created. It is a function that is executed immediately after it is created. It is also known as a self-invoking function.
+- Анонимное выражение - это функция, которая выполняется сразу после ее создания. Это функция, которая выполняется сразу после ее создания. Это также называется самовызывающейся функцией.
 
 ```go
 func main() {
@@ -766,21 +765,21 @@ func main() {
     }()
 }
 ```
-## Error Handling
+## Обработка ошибок
 
-In Go, errors are values. We can use the `error` type to represent an error. We can use the `errors.New` function to create a new error. It returns an error.
+В Go ошибки - это значения. Мы можем использовать тип `error` для представления ошибки. Мы можем использовать функцию `errors.New` для создания новой ошибки. Он возвращает ошибку.
 
 ```go
 func divide(x, y int) (int, error) {
     if y == 0 {
-        return 0, errors.New("division by zero")
+        return 0, errors.New("деление на ноль")
     }
     return x / y, nil
 }
 ```
 ## goto
 
-- The goto statement transfers control to the labeled statement. It is similar to the break statement in other languages. It is used to transfer control to a different part of the program.
+- Оператор goto передает управление метке. Это похоже на оператор break в других языках. Он используется для передачи управления в другой часть программы.
 
 ```go
 func main() {
@@ -794,29 +793,29 @@ func main() {
 }
 ```
 
-## Scope rules
+## Правила области видимости
 
-- `Local variables` are scoped to the function in which they are declared. They are not visible outside the function.
-- `Package level variables` are scoped to the package in which they are declared. They are visible to all the functions in the package.
-- `Exported variables` are scoped to the package in which they are declared. They are visible to all the functions in the package and other packages that import the package.
+- `Локальные переменные` - это переменные, объявленные в функции, в которой они объявлены. Они не видны за пределами функции.
+- `Пакетные переменные` - это переменные, объявленные в пакете, в котором они объявлены. Они видны всем функциям в пакете.
+- `Экспортированные переменные` - это переменные, объявленные в пакете, в котором они объявлены. Они видны всем функциям в пакете и другим пакетам, которые импортируют пакет.
 
-## Package level variables
+## Пакетные переменные
 
-- We can declare variables at the package level. They are called package level variables.
+- Мы можем объявлять переменные на уровне пакета. Они называются пакетными переменными.
 
-NOTE: We can't use the short variable declaration operator `:=` to declare package level variables.
+Примечание: Мы не можем использовать оператор короткого объявления `:=` для объявления пакетных переменных.
 
 ```go
-var name string = "John" // It will be available to all the functions in the package
+var name string = "John" // Он будет доступен всем функциям в пакете
 
 func main() {
     fmt.Println(name)
 }
 ```
 
-## Expoting and Importing
+## Экспортирование и Импорт
 
-We can export a function/ variable by capitalizing the first letter of the function/ variable name. Now we can use it in other packages.
+Мы можем экспортировать функцию/ переменную, записав первую букву функции/ переменной в верхнем регистре. Теперь мы можем использовать его в других пакетах.
 
 ```go
 func Add(x, y int) int {
@@ -826,15 +825,15 @@ func Add(x, y int) int {
 var Name string = "John"
 ```
 
-## Code Organization
+## Организация кода
 
-We can organize our code by putting functions/ variables in different files and can use them in the main file or calling the main function from other files.
+Мы можем организовать наш код, помещая функции/ переменные в разные файлы и использовать их в основном файле или вызывать основную функцию из других файлов.
 
-Also, we can have multiple packages in a single directory.
+Также мы можем иметь несколько пакетов в одной директории.
 
 
 
-## What's next?
+## Что дальше?
 
-- [Learning Resources](./learning-resources.md) - Learn more about Golang with these resources.
-- [Other Resources](./other-resources.md) - A list of resources to learn more about Golang.
+- [Учебные материалы](./learning-resources.md) - Узнайте больше о Golang с этими ресурсами.
+- [Другие ресурсы](./other-resources.md) - Список ресурсов для изучения Golang.

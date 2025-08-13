@@ -1,14 +1,14 @@
 ---
 sidebar_position: 1
-title: DevSecOps Introduction
-description: A collection of resources to learn more about DevSecOps.
+title: Введение в DevSecOps
+description: Коллекция ресурсов для изучения DevSecOps.
 tags: ["DevSecOps", "DevOps", "Security"]
 keywords: ["DevSecOps", "DevOps", "Security"]
 slug: "/devsecops"
 ---
 
-It is a set of practices that combines software development (Dev) and information security (Sec) to shorten the systems development life cycle while providing continuous monitoring to ensure the delivery of secure software.
+Это набор практик, который объединяет разработку программного обеспечения (Dev) и информационную безопасность (Sec) для сокращения жизненного цикла разработки систем при обеспечении непрерывного мониторинга для обеспечения поставки безопасного программного обеспечения.
 
 - [DevSecOps](https://www.redhat.com/en/topics/devops/what-is-devsecops)
 
-# MORE INFO COMING SOON
+# БОЛЬШЕ ИНФОРМАЦИИ СКОРО

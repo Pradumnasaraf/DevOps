@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-title: Git Commands
-description: A collection of Git commands that can help you with version control.
+title: Git Команды
+description: Коллекция команд Git, которые могут помочь вам с контролем версий.
 tags: ["Git", "Version Control System", "DevOps"]
 keywords: ["Git", "Version Control System", "DevOps"]
 slug: "/git/commands"
@@ -9,32 +9,32 @@ slug: "/git/commands"
 
 ## **Add**
 
-- New changes
+- Новые изменения
   
   ```bash
-  git add <file.ext> # To add a specific file
+  git add <file.ext> # Чтобы добавить конкретный файл
   
-  git add . # To add all the files in the current directory
+  git add . # Чтобы добавить все файлы в текущей директории
   ```
 
-- New branch
+- Новая ветка
   
   ```bash
-  git branch <new name> # and remain in the current branch 
+  git branch <new name> # и остаться в текущей ветке
   
-  git checkout -b <new name> # and switch to the new branch
+  git checkout -b <new name> # и переключиться на новую ветку
 
-  git checkout -b <new name> <another branch> # From another branch
+  git checkout -b <new name> <another branch> # Из другой ветки
 
   ```
 
-- New remote repository
+- Новый удаленный репозиторий
   
   ```bash
   git remote add <shortname> <url>
   ```
 
-- Annotated tag
+- Аннотированный тег
   
   ```bash
   git tag -a v1.4 -m "my version 1.4"
@@ -43,7 +43,7 @@ slug: "/git/commands"
 
 ## **Cherry-pick**
 
-- An commit from the origin branch into my working branch
+- Коммит из исходной ветки в мою рабочую ветку
   
   ```bash
   git cherry-pick <commit-hash> <commit-hash>
@@ -51,19 +51,19 @@ slug: "/git/commands"
 
 ## **Push**
 
-- Push changes to remote repo
+- Отправить изменения в удаленный репозиторий
   
   ```bash
   git push <remote> <branch>
   ```
   
-- force the push even if it results in a non-fast-forward merge
+- принудительно отправить, даже если это приведет к не-fast-forward слиянию
   
   ```bash
-  git push <remote> --force # Use the flag in case you know what you’re doing.
+  git push <remote> --force # Используйте флаг в случае, если вы знаете, что делаете.
   ```
 
-- Push all of your local branches to the specified remote.
+- Отправить все ваши локальные ветки в указанный удаленный репозиторий.
   
   ```bash
   git push <remote> --all
@@ -71,25 +71,25 @@ slug: "/git/commands"
 
 ## **Clone**
 
-- Existing repo into a new directory
+- Существующий репозиторий в новую директорию
   
   ```bash
-  git clone <repo-url> <directory> # Replace "directory" with the directory you want
+  git clone <repo-url> <directory> # Замените "directory" на директорию, которую вы хотите
   ```
 
-- Existing repo into the current directory
+- Существующий репозиторий в текущую директорию
   
   ```bash
-  git clone <repo-url> . # The current directory is represented with a "."
+  git clone <repo-url> . # Текущая директория представлена с помощью "."
   ```
 
-- existing repo along with submodules into the current directory
+- существующий репозиторий вместе с подмодулями в текущую директорию
 
   ```bash
   git clone --recurse-submodules <repo-url> . 
   ```
 
-- submodules after cloning the existing repo
+- подмодули после клонирования существующего репозитория
   
   ```bash
   git submodule update --init --recursive 
@@ -97,7 +97,7 @@ slug: "/git/commands"
 
 ## **Commit**
 
-- commit all local changes in tracked files
+- зафиксировать все локальные изменения в отслеживаемых файлах
   
   ```bash
   git commit -a

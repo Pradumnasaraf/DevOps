@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
-title: Learning Resources
-description: A collection of resources to learn more about Computer Networking.
+title: Ресурсы для обучения
+description: Коллекция ресурсов для изучения компьютерных сетей.
 tags: ["Computer Networking", "Networking", "Network"]
 keywords: ["Computer Networking", "Networking", "Network"]
 slug: "/networking/resources"
 ---
 
-- [Computer Networking](https://youtu.be/IPvYjXCsTg8)
+- [Компьютерные сети](https://youtu.be/IPvYjXCsTg8)

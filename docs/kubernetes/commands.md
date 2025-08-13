@@ -1,133 +1,133 @@
 ---
 sidebar_position: 3
-title: Kubernetes Commands
-description: A collection of commands to help you with Kubernetes.
+title: Kubernetes Команды
+description: Коллекция команд для работы с Kubernetes.
 tags: ["Kubernetes", "Containerization", "DevOps"]
 keywords: ["Kubernetes", "Containerization", "DevOps"]
 slug: "/kubernetes/commands"
 ---
 
-> KUBECTL COMMANDS
+> KUBECTL КОМАНДЫ
 
-- To check the version:
+- Проверить версию:
 
 ```bash
 kubectl version
 kubectl version --output=yaml
 ```
 
-- To check info about the cluster
+- Проверить информацию о кластере
 
 ```bash
 kubectl config view
 ```
 
-- To run a Pod
+- Запустить Pod
 
 ```bash
 kubectl run <pod name> --image <image name>
 kubectl run myngix --image nginx
 ```
 
-- To create a deployment
+- Создать deployment
 
 ```bash
 kubectl create deployment <name> --image <image name>
 kubectl create deployment mynginx --image nginx
 ```
 
-- To scale the deployment (increase replicas)
+- Масштабировать deployment (увеличить реплики)
 
 ```
 kubectl scale deployment <deployment name> --replicas <no of replicas>
 kubectl scale deployment mynginx --replicas 2
 ```
 
-- To check all running services, pods, etc.
+- Проверить все запущенные сервисы, поды и т.д.
 
 ```bash
 kubectl get all
 ```
 
-- To get the get details from the a particular namespace
+- Получить детали из определенного namespace
 
 ```bash
 kubectl get all -n <namespace name>
 ```
 
-- To get the internal components running
+- Получить запущенные внутренние компоненты
 
 ```bash
 kubectl get pods -A 
 kubectl get pods -A -owide
 ```
 
-- To check all the running services
+- Проверить все запущенные сервисы
 
 ```bash
 kubectl get services
 ```
 
-- To check all the running pods
+- Проверить все запущенные поды
 
 ```bash
 kubectl get pods
 ```
 
 ```bash
-// with extra details
+// с дополнительными деталями
 kubectl get pods -o wide
 ```
 
-- To check all the running node.
+- Проверить все запущенные узлы.
 
 ```bash
 kubectl get nodes
 ```
 
-- To check all the replicaset
+- Проверить все replicaset
 
 ```bash
 kubectl get replicaset
 ```
 
-- To check all the namespaces
+- Проверить все namespace
 
 ```bash
 kubectl get namespaces
 ```
 
-- To get all the API resources
+- Получить все API ресурсы
 
-```
+```bash
 kubectl api-resources
 ```
 
-- To delete the deployment
+- Удалить deployment
 
 ```bash
 kubectl delete deployment <deployment-name>
 ```
 
-- To delete the pods 
+- Удалить поды 
 
 ```bash
 kubectl delete pod <pod-name>
 ```
 
-- To delete evicted pods
+- Удалить эвакуированные поды
 
 ```bash
 kubectl delete pod --field-selector="status.phase==Failed"
 ```
 
-- To get logs of a pod
+- Получить логи пода
 
 ```bash
 kubectl logs <pod-name>
 ```
 
-- To check logs or sh/bash of a container inside a pod. That if pods have multiple container an we have enter inside a container
+- Проверить логи или sh/bash контейнера внутри пода. Если поды имеют несколько контейнеров, и мы хотим войти внутрь контейнера
 
 ```bash
 kube exec -it <pod-name> -c <container-name> -- <bash command>
@@ -136,81 +136,81 @@ kube exec -it multi-container -c nginx-container -- sh
 kubectl logs multi-container -c nginx-container
 ```
 
-- To get inside the pod
+- Войти внутрь пода
 
 ```
 kubectl exec -it <pod name> -- sh
 kubectl exec -it nginx -- sh
 ```
 
-- Get a deep details/state chnages about a pod 
+- Получить глубокие детали/изменения состояния о поде 
 
 ```bash
 kube describe pod <pod -name>
 ```
 
-- To watch the pods (watch refresh every few seconds)
+- Наблюдать за подами (обновление каждые несколько секунд)
 ```bash
 kubectl get pods -w
 ```
 
-- To check the cluster are avilable
+- Проверить доступные кластеры
 
 ```
 kube config get-contexts
 ```
 
-- We can create namespace by
+- Мы можем создать namespace с помощью
 
 ```bash
 kubectl create namespace <name>
 kubectl create namespace dev
 ```
 
-- To do a dry nun and get the output as Yaml
+- Сделать dry run и получить вывод в формате YAML
 
 ```bash
 kubectl create namespace test-name --dry-run=client -oyaml
 ```
 
-- To edit the deployment (deployment file)
+- Редактировать deployment (файл deployment)
 
 ```bash
 kubectl edit deployment <deployment name>
 ```
 
-- To delete all the pods
+- Удалить все поды
 ```
 kubectl delete pods --all
 ```
 
-- Apply to a particular namespace
+- Применить к определенному namespace
 
 ```bash
 kubectl apply -f <config file name> --namespace=<namespace name>
 ```
 
-## Persistent Volume
+## Постоянный том
 
-- Get all the PersistentVolume
+- Получить все PersistentVolume
 
 ```bash 
 kubectl get pv
 ```
 
-- Get all the PersistentVolumeClaim (tied to a namespace)
+- Получить все PersistentVolumeClaim (привязанные к namespace)
 
 ```bash 
 kubectl get pvc
 ```
 
-- To chnage default/active namespace
+- Изменить default/активный namespace
 
 ```bash
 kubectl config set-context --current --namespace=<namespace name>
 ```
 
-- To get the details of a particular namespace
+- Получить детали определенного namespace
 
 ```bash 
 kubectl get all -n <namespace name>

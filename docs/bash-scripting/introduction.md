@@ -1,15 +1,15 @@
 ---
 sidebar_position: 1
-title: Bash Scripting Introduction
-description: A deep dive into Bash Scripting, a scripting language for the Unix shell.
+title: Введение в Bash скриптинг
+description: Глубокое погружение в Bash скриптинг, язык скриптинга для Unix оболочки.
 tags: ["Bash", "Scripting", "Unix", "Shell"]
 keywords: ["Bash", "Scripting", "Unix", "Shell"]
 slug: "/bash"
 ---
 
-We start by creating a file with the `.sh` extension. For example, `script.sh`. Then we write the script in it. For example:
+Мы начинаем с создания файла с расширением `.sh`. Например, `script.sh`. Затем мы пишем в нем скрипт. Например:
 
-Basic Script
+Базовый скрипт
 
 ```bash
 #!/bin/bash
@@ -17,35 +17,35 @@ Basic Script
 echo "Hello World"
 ```    
 
-We can run this by `bash script.sh` or `./script.sh`. But the second will only work if the script is executable (permission to execute). We can make it executable by `chmod +x script.sh`. Now we can run it by `./script.sh`.
+Мы можем запустить его с помощью `bash script.sh` или `./script.sh`. Но второй будет работать только если скрипт исполняемый (разрешение на выполнение). Мы можем сделать его исполняемым с помощью `chmod +x script.sh`. Теперь мы можем запустить его с помощью `./script.sh`.
 
 ### Shebang
 
-The first line of a bash script is called the shebang. It tells the system which interpreter to use to run the script. The shebang for bash is `#!/bin/bash`. The shebang for python is `#!/usr/bin/env python`. It varies from language to language.
+Первая строка bash скрипта называется shebang. Она говорит системе, какой интерпретатор использовать для запуска скрипта. Shebang для bash - это `#!/bin/bash`. Shebang для python - это `#!/usr/bin/env python`. Это варьируется от языка к языку.
 
-### Variables
+### Переменные
 
-It is a placeholder for a value. Just like any other programming language. We use $ to access the variable. Eg: `$NAME`. We can also use `${NAME}`. The braces ensure the variable is not mistaken for a command.
+Это заполнитель для значения. Как и в любом другом языке программирования. Мы используем $ для доступа к переменной. Например: `$NAME`. Мы также можем использовать `${NAME}`. Фигурные скобки гарантируют, что переменная не будет принята за команду.
 
 ```bash
 #!/bin/bash
 
-# Variable Declaration
+# Объявление переменной
 NAME="John"
 
-# Variable Usage
+# Использование переменной
 
 echo "My name is $NAME"
 echo "My name is ${NAME}"
 ```
 
-NOTE: We can create variables by `NAME="John"` through CLI; we can't use it in the script because it is not exported. We can export it by `export NAME="John"`. Now we can use it in the script.
+ПРИМЕЧАНИЕ: Мы можем создавать переменные с помощью `NAME="John"` через CLI; мы не можем использовать это в скрипте, потому что она не экспортирована. Мы можем экспортировать ее с помощью `export NAME="John"`. Теперь мы можем использовать ее в скрипте.
 
-But here is one more catch. If we exit the terminal and open a new one, the variable will be gone. To make it permanent, we can add it to the `.bashrc` file. It is a hidden file in the home directory. We can open it by `vi ~/.bashrc` or any other editor. We can add the variable to the file. Eg: `export NAME="John"`.
+Но здесь есть еще одна загвоздка. Если мы выйдем из терминала и откроем новый, переменная исчезнет. Чтобы сделать ее постоянной, мы можем добавить ее в файл `.bashrc`. Это скрытый файл в домашней директории. Мы можем открыть его с помощью `vi ~/.bashrc` или любого другого редактора. Мы можем добавить переменную в файл. Например: `export NAME="John"`.
 
-### User Input
+### Пользовательский ввод
 
-We can take input from the user using the `read` command.
+Мы можем принимать ввод от пользователя с помощью команды `read`.
 
 ```bash
 #!/bin/bash
@@ -55,11 +55,11 @@ read NAME
 echo "Hello $NAME, nice to meet you!"
 ```
 
-### Arguments
+### Аргументы
 
-We can pass arguments to the script. The arguments are stored in the `$1`, `$2`, `$3` and so on. `$0` is the name of the script.
+Мы можем передавать аргументы в скрипт. Аргументы хранятся в `$1`, `$2`, `$3` и так далее. `$0` - это имя скрипта.
 
-Eg: `bash script.sh arg1 arg2`
+Например: `bash script.sh arg1 arg2`
 
 ```bash
 #!/bin/bash
@@ -67,9 +67,9 @@ Eg: `bash script.sh arg1 arg2`
 echo "First Argument: $1"
 ```
 
-### Arithmetic Operations
+### Арифметические операции
 
-We can do Arithmetic operations in bash. We use the `(( ))` to do Arithmetic operations.
+Мы можем выполнять арифметические операции в bash. Мы используем `(( ))` для выполнения арифметических операций.
 
 ```bash
 #!/bin/bash
@@ -77,17 +77,17 @@ We can do Arithmetic operations in bash. We use the `(( ))` to do Arithmetic ope
 echo $(( 5 + 5 ))
 ```
 
-#### Arithmetic Operators
+#### Арифметические операторы
 
-- `+` - Addition
-- `-` - Subtraction
-- `*` - Multiplication
-- `/` - Division
-- `%` - Modulus
+- `+` - Сложение
+- `-` - Вычитание
+- `*` - Умножение
+- `/` - Деление
+- `%` - Модуль
 
-### Conditional Statements
+### Условные операторы
 
-We can use the `if` statement to check for a condition. The syntax is:
+Мы можем использовать оператор `if` для проверки условия. Синтаксис:
 
 ```bash
 #!/bin/bash

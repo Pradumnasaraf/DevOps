@@ -1,66 +1,66 @@
 ---
 sidebar_position: 1
-title: Docker Introduction
-description: An introduction to Docker, a platform designed to simplify the development, deployment, and management of applications in a containerized environment.
+title: Введение в Docker
+description: Введение в Docker, платформу, предназначенную для упрощения разработки, развертывания и управления приложениями в контейнеризированной среде.
 tags: ["Docker", "Containerization", "DevOps"]
 keywords: ["Docker", "Containerization", "DevOps"]
 slug: "/docker"
 ---
 
-### Overview of Docker
+### Обзор Docker
 
-Docker is an open-source platform designed to simplify the development, deployment, and management of applications in a containerized environment, also known as Docker containers. Docker containers are a lightweight and portable way to package and run applications, enabling developers to package their applications with all the required dependencies and configurations in a single package that can be easily moved between any environment. Docker containers are simply the running instance of a Docker image.
+Docker - это платформа с открытым исходным кодом, предназначенная для упрощения разработки, развертывания и управления приложениями в контейнеризированной среде, также известной как Docker контейнеры. Docker контейнеры - это легкий и переносимый способ упаковки и запуска приложений, позволяющий разработчикам упаковывать свои приложения со всеми необходимыми зависимостями и конфигурациями в единый пакет, который можно легко перемещать между любыми средами. Docker контейнеры - это просто запущенные экземпляры Docker образа.
 
-### Why You Should Consider Using Docker
+### Почему стоит рассмотреть использование Docker
 
-- Docker is portable, meaning that one can easily run the same application on different machines without any modifications, making it easier to move applications between development, testing, and production environments.
+- Docker переносим, что означает, что можно легко запускать одно и то же приложение на разных машинах без каких-либо изменений, что упрощает перемещение приложений между средами разработки, тестирования и производства.
 
-- Docker containers are isolated in nature, meaning that each container runs in its own isolated environment with its own file system, network protocol, and process space, providing a level of security and isolation that is not possible with traditional virtualization technologies. This solves the problem of conflict with other applications or dependencies.
+- Docker контейнеры изолированы по своей природе, что означает, что каждый контейнер работает в своей собственной изолированной среде со своей собственной файловой системой, сетевым протоколом и пространством процессов, обеспечивая уровень безопасности и изоляции, который невозможен с традиционными технологиями виртуализации. Это решает проблему конфликта с другими приложениями или зависимостями.
 
-- Docker containers are easily scalable, meaning that one can easily scale the containers running the applications by horizontally adding more containers when demand increases.
+- Docker контейнеры легко масштабируются, что означает, что можно легко масштабировать контейнеры, запускающие приложения, горизонтально добавляя больше контейнеров при увеличении спроса.
 
-- Docker containers are efficient, meaning that containers are lightweight and consume fewer resources, allowing more containers to run on the same underlying hardware.
+- Docker контейнеры эффективны, что означает, что контейнеры легковесны и потребляют меньше ресурсов, позволяя запускать больше контейнеров на том же базовом оборудовании.
 
-### Docker Images
+### Docker Образы
 
-- Images are made up of app binaries, dependencies, and metadata. They don't contain a full OS.
-- Images are a combination of multiple layers.
-- Each image has its unique ID and a tag for a different version.
+- Образы состоят из бинарных файлов приложения, зависимостей и метаданных. Они не содержат полную ОС.
+- Образы представляют собой комбинацию нескольких слоев.
+- Каждый образ имеет свой уникальный ID и тег для разных версий.
 
 ![Screenshot from 2022-11-02 11-57-19](https://user-images.githubusercontent.com/51878265/199414178-d59e8780-c140-4bf1-b27e-7e8f1c723afb.png)
 
 ### Dockerfile
 
-> Commands:
+> Команды:
 
-- `FROM` (base image)
-- `COPY` (copy files from local to the container)
-- `ARG` (pass arguments)
-- `ENV` (environment variable)
-- `RUN` (any arbitrary shell command)
-- `EXPOSE` (open port from container to virtual network)
-- `CMD` (command to run when the container starts) 
-- `WORKDIR` (create a directory where all the files will be copied and used)
+- `FROM` (базовый образ)
+- `COPY` (копировать файлы с локальной машины в контейнер)
+- `ARG` (передать аргументы)
+- `ENV` (переменная окружения)
+- `RUN` (любая произвольная shell команда)
+- `EXPOSE` (открыть порт из контейнера в виртуальную сеть)
+- `CMD` (команда для запуска при запуске контейнера) 
+- `WORKDIR` (создать директорию, куда будут скопированы и использованы все файлы)
 
-### Docker Build Architecture
+### Архитектура сборки Docker
 
-We can build the image in two ways single architecture or multi-architecture. In the single architecture, we can build the image for a specific architecture, and in multi-architecture, we can build the image for multiple architectures.
+Мы можем собрать образ двумя способами: для одной архитектуры или для нескольких архитектур. В случае одной архитектуры мы можем собрать образ для конкретной архитектуры, а в случае нескольких архитектур - для нескольких архитектур.
 
-#### Single Architecture
+#### Одна архитектура
 
 ```bash
 docker build -t <image-name> .
 ```
 
-#### Multi-Architecture
+#### Несколько архитектур
 
 ```bash
 docker buildx build --platform linux/amd64,linux/arm64 -t <image-name> .
 ```
 
-**Good Practice**
+**Хорошая практика**
 
-- Copy the dependencies first and then copy the rest of the files.
+- Сначала скопируйте зависимости, а затем остальные файлы.
 
 ```Dockerfile
 COPY package.json ./
@@ -70,38 +70,38 @@ COPY . ./
 
 ### .dockerignore
 
-The .dockerignore file is used to specify files and directories that are not copied when using the `COPY` command.
+Файл .dockerignore используется для указания файлов и директорий, которые не копируются при использовании команды `COPY`.
 
-### Docker Network
+### Docker Сеть
 
-To connect to our created containers, Docker provides several network drivers. The available default drivers are bridge, host, and null.
+Для подключения к нашим созданным контейнерам Docker предоставляет несколько сетевых драйверов. Доступные драйверы по умолчанию: bridge, host и null.
 
-- Bridge network creates a virtual network that allows containers to communicate with each other using IP addresses. We need to create a custom bridge network to enable DNS resolution between containers. Only containers connected to the same custom bridge network can communicate with each other directly. It doesn't work with the default bridge network.
+- Bridge сеть создает виртуальную сеть, которая позволяет контейнерам общаться друг с другом, используя IP адреса. Нам нужно создать пользовательскую bridge сеть для включения DNS разрешения между контейнерами. Только контейнеры, подключенные к одной пользовательской bridge сети, могут общаться друг с другом напрямую. Это не работает с сетью bridge по умолчанию.
 
-- Host network uses the host machine's network stack inside the container. We can use this network for applications that require high network performance. We don't need to expose ports here.
+- Host сеть использует сетевой стек хост-машины внутри контейнера. Мы можем использовать эту сеть для приложений, которые требуют высокой сетевой производительности. Нам не нужно здесь открывать порты.
 
-- Using Null network driver disables the networking for the container.
+- Использование Null сетевого драйвера отключает сеть для контейнера.
 
 ![docker network](https://user-images.githubusercontent.com/37767537/223677649-babf850a-a87f-46bd-bb32-425801f05b2e.png)
 
-To create a network, by default the created network will use the bridge network driver:
+Для создания сети, по умолчанию созданная сеть будет использовать bridge сетевой драйвер:
 
 ```bash
 docker network create <network-name>
 ```
 
-### Docker Volumes
+### Docker Тома
 
-We need volumes to persist our data, like databases and user info, because containers can go up and down, and we need some way to preserve our data.
+Нам нужны тома для сохранения наших данных, таких как базы данных и информация о пользователях, потому что контейнеры могут запускаться и останавливаться, и нам нужен способ сохранить наши данные.
 
-We attach a volume during runtime:
+Мы подключаем том во время выполнения:
 
 ```bash
 docker run -v /path/in/container
 ```
 
-**Named Volume**
-We can also name the volume; otherwise, it will generate an ID and be hard to track:
+**Именованный том**
+Мы также можем назвать том; в противном случае он сгенерирует ID и будет трудно отслеживать:
 
 ```bash
 docker run -v <volume name>:</path in container> <image name>
@@ -110,7 +110,7 @@ docker run -v myvolume:/src/public nginx
 
 ### Bind Mounting
 
-A file or directory on the host machine is mounted into a container, i.e., it will match the condition of the file system inside a container.
+Файл или директория на хост-машине монтируется в контейнер, т.е. он будет соответствовать условию файловой системы внутри контейнера.
 
 ```bash
 docker run -v <path to your local system>:<container path>
@@ -118,7 +118,7 @@ docker run -v /app/content:/usr/share/nginx/html nginx
 docker run -v $(pwd):/user/html nginx
 ```
 
-In Compose, we don't have to give the `pwd`:
+В Compose нам не нужно давать `pwd`:
 
 ```yaml
 volumes:
@@ -128,27 +128,27 @@ volumes:
 
 ### Docker Compose
 
-- Compose helps us define and run multi-container Docker applications and configure relationships between containers.
-- It also saves the hassle of entering the commands from the CLI.
-- We have to write the configs in the YAML file, by default the file name is `docker-compose.yml`. We can run/stop by `docker compose up/down`.
+- Compose помогает нам определять и запускать многоконтейнерные Docker приложения и настраивать отношения между контейнерами.
+- Это также избавляет от необходимости вводить команды из CLI.
+- Нам нужно написать конфигурации в YAML файле, по умолчанию имя файла `docker-compose.yml`. Мы можем запускать/останавливать с помощью `docker compose up/down`.
 
-The Skeleton of Docker Compose:
+Скелет Docker Compose:
 
 ```yaml
-services:  # containers. same as docker run
-  servicename: # a friendly name. this is also the DNS name inside the network
-    image: # Optional if you use to build:
-    command: # Optional, replace the default CMD specified by the image
-    environment: # Optional, same as -e in docker run
-    volumes: # Optional, same as -v in docker run
+services:  # контейнеры. то же самое, что docker run
+  servicename: # дружественное имя. это также DNS имя внутри сети
+    image: # Опционально, если вы используете для сборки:
+    command: # Опционально, заменить CMD по умолчанию, указанный образом
+    environment: # Опционально, то же самое, что -e в docker run
+    volumes: # Опционально, то же самое, что -v в docker run
   servicename2:
 
-volumes: # Optional, same as docker volume create
+volumes: # Опционально, то же самое, что docker volume create
 
-networks: # Optional, same as docker network create
+networks: # Опционально, то же самое, что docker network create
 ```
 
-Sample:
+Пример:
 
 ```yaml
 services:
@@ -161,14 +161,14 @@ services:
       - my-net
       
 volumes:
-  mongo-db: # named volume
+  mongo-db: # именованный том
   
 networks:
   my-net:
     driver: bridge
 ```
 
-If any container depends on another container:
+Если какой-либо контейнер зависит от другого контейнера:
 
 ```yaml
 depends_on:
@@ -177,25 +177,25 @@ depends_on:
 
 ### Docker Swarm
 
-Docker Swarm is an orchestration management tool that runs on Docker applications. Container orchestration automates the deployment, management, scaling, and networking of containers.
+Docker Swarm - это инструмент управления оркестрацией, который работает на Docker приложениях. Оркестрация контейнеров автоматизирует развертывание, управление, масштабирование и сеть контейнеров.
 
-- Docker Swarm is not enabled by default. We have to enable it by:
+- Docker Swarm не включен по умолчанию. Нам нужно включить его с помощью:
 
 ```bash
 docker swarm init
 ```
 
-- In Swarm, we create services instead of creating the container directly.
+- В Swarm мы создаем сервисы вместо создания контейнера напрямую.
 
-### Docker Service
+### Docker Сервис
 
-In Swarm, we don't create containers directly. Instead, we create a service that creates a container for us. A service can run multiple nodes on several nodes.
+В Swarm мы не создаем контейнеры напрямую. Вместо этого мы создаем сервис, который создает контейнер для нас. Сервис может запускать несколько узлов на нескольких узлах.
 
 ![Screenshot from 2022-11-08 13-07-01](https://user-images.githubusercontent.com/51878265/200502631-b574f4fc-8a0c-4e6f-8493-6d666ec1db2e.png)
 
 ### Docker Stack
 
-When we have multiple services and need to establish the relationship between them, we use the stack. It is the same as the compose file. Here we don't use the `build:` object, and there is a new `deploy:` specific to swarm for things like replicas and secrets.
+Когда у нас есть несколько сервисов и нужно установить отношения между ними, мы используем stack. Это то же самое, что и compose файл. Здесь мы не используем объект `build:`, и есть новый `deploy:` специфичный для swarm для таких вещей, как реплики и секреты.
 
 ![Screenshot from 2022-11-04 13-34-28](https://user-images.githubusercontent.com/51878265/199923225-83fe75fc-406a-4d51-b2d4-15fb5ec6b4ee.png)
 
@@ -204,25 +204,25 @@ deploy:
   replicas: 3
 ```
 
-We deploy stack files with this command:
+Мы развертываем stack файлы с помощью этой команды:
 
 ```bash
 docker stack deploy -c file.yml <stackname>
 ```
 
-### Docker Secrets
+### Docker Секреты
 
-Docker Swarm supports secrets. We can pass ENV variables like SSH keys, usernames, and passwords with the help of secrets. We can pass secrets from the file or save the Docker secret.
+Docker Swarm поддерживает секреты. Мы можем передавать переменные ENV, такие как SSH ключи, имена пользователей и пароли, с помощью секретов. Мы можем передавать секреты из файла или сохранить Docker секрет.
 
-We can create Docker secrets through CLI `external:`:
+Мы можем создавать Docker секреты через CLI `external:`:
 
 ```bash
 echo "<password text>" | docker secret create psql-pw -
 ```
 
-or
+или
 
-Create a file with a password and then pass the path in the stack `file:`:
+Создать файл с паролем и затем передать путь в stack `file:`:
 
 ```yaml
 services:
@@ -249,11 +249,11 @@ HEALTHCHECK --interval=30s --timeout=3s \
 CMD curl -f http://localhost/ || exit 1
 ```
 
-### Container Registry
+### Реестр контейнеров
 
-A repo - a collection of repositories. Use to store and access container images.
+Репозиторий - это коллекция репозиториев. Используется для хранения и доступа к образам контейнеров.
 
-Some popular registries are:
+Некоторые популярные реестры:
 
 - Docker Hub
 - GitHub Container Registry (ghcr.io)
@@ -261,14 +261,14 @@ Some popular registries are:
 - Amazon Elastic Container Registry (ECR)
 - Azure Container Registry (ACR) 
 
-### Private Docker Registry
+### Приватный Docker реестр
 
-We can create a registry with the official [Registry image](https://hub.docker.com/_/registry).
+Мы можем создать реестр с официальным [Registry образом](https://hub.docker.com/_/registry).
 
 ![image](https://user-images.githubusercontent.com/51878265/200518472-c520103f-11a8-4104-a859-32f5e3c6304e.png)
 
-### What's next?
+### Что дальше?
 
-- [Docker Commands](./commands.md) - Learn about the most commonly used Docker commands.
-- [Learning Resources](./learning-resources.md) - Learn more about Docker with these resources.
-- [Other Resources](./other-resources.md) - Explore more about Docker with these resources.
+- [Docker Команды](./commands.md) - Узнайте о наиболее часто используемых командах Docker.
+- [Ресурсы для обучения](./learning-resources.md) - Узнайте больше о Docker с помощью этих ресурсов.
+- [Другие ресурсы](./other-resources.md) - Изучите больше о Docker с помощью этих ресурсов.

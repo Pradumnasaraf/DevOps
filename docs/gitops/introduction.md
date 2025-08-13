@@ -1,27 +1,27 @@
 ---
 sidebar_position: 1
-title: GitOps Introduction
-description: Learn about GitOps and its benefits.
+title: Введение в GitOps
+description: Узнайте о GitOps и его преимуществах.
 tags: ["GitOps", "Kubernetes", "Continuous Delivery"]
 keywords: ["GitOps", "Kubernetes", "Continuous Delivery"]
 slug: "/gitops"
 ---
 
-GitOps is a way of managing Kubernetes clusters using Git as the source of truth.
+GitOps - это способ управления кластерами Kubernetes, используя Git как источник истины.
 
-### Benefits of GitOps
+### Преимущества GitOps
 
-- History of changes to the cluster is stored in Git 
-- Rollback to a previous version of the cluster is easy
-- Changes to the cluster can be reviewed before they are applied
-- Changes to the cluster can be tested before they are applied
-- Changes to the cluster can be automated
+- История изменений кластера хранится в Git 
+- Откат к предыдущей версии кластера прост
+- Изменения в кластере могут быть проверены перед применением
+- Изменения в кластере могут быть протестированы перед применением
+- Изменения в кластере могут быть автоматизированы
 
-### GitOps Tools
+### Инструменты GitOps
 
-- [ArgoCD](../argocd/introduction.md) is a git controller that can be used to deploy applications to a Kubernetes cluster. 
+- [ArgoCD](../argocd/introduction.md) - это git контроллер, который может использоваться для развертывания приложений в кластер Kubernetes. 
 
-### What's next?
+### Что дальше?
 
-- [Learning Resources](./learning-resources.md) - Learn more about GitOps with these resources.
-- [ArgoCD](../argocd/introduction.md) - Learn more about ArgoCD.
+- [Ресурсы для обучения](./learning-resources.md) - Узнайте больше о GitOps с помощью этих ресурсов.
+- [ArgoCD](../argocd/introduction.md) - Узнайте больше об ArgoCD.

@@ -1,56 +1,56 @@
 ---
 sidebar_position: 1
-label: Introduction
+label: Введение
 title: DevOps
-description: A collection of resources to learn more about DevOps.
+description: Коллекция ресурсов для изучения DevOps.
 tags: ["DevOps", "Development", "Operations"]
 keywords: ["DevOps", "Development", "Operations"]
 slug: /
 ---
 
-> Hey, I created this repository to keep my learning, notes, and code in one place for various tools in DevOps. Now, it's helping thousands of learners, practitioners, and professionals every day in their DevOps journey. Good luck with your DevOps journey! - [Pradumna Saraf](https://twitter.com/pradumna_saraf)
+> Привет, я создал этот репозиторий, чтобы хранить в одном месте мое обучение, заметки и код по различным инструментам DevOps. Теперь он помогает тысячам учащихся, практиков и профессионалов каждый день в их DevOps путешествии. Удачи в вашем DevOps путешествии! - [Pradumna Saraf](https://twitter.com/pradumna_saraf)
 
-## What is DevOps?
+## Что такое DevOps?
 
-DevOps is a set of practices that combines software development (Dev) and information technology operations (Ops) to shorten the systems development life cycle while providing continuous delivery with high software quality. DevOps is a culture, movement, or practice that emphasizes the collaboration and communication of both software developers and other information-technology (IT) professionals while automating the process of software delivery and infrastructure changes.
+DevOps - это набор практик, который объединяет разработку программного обеспечения (Dev) и информационные технологии операций (Ops) для сокращения жизненного цикла разработки систем при обеспечении непрерывной поставки с высоким качеством программного обеспечения. DevOps - это культура, движение или практика, которая подчеркивает сотрудничество и коммуникацию как разработчиков программного обеспечения, так и других ИТ-профессионалов при автоматизации процесса поставки программного обеспечения и изменений инфраструктуры.
 
-If you notice DevOps has a infinity symbol, which means it's a continuous process. It's not a one-time activity. It's a continuous process of development and operations. It's explained in the below image:
+Если вы заметили, что DevOps имеет символ бесконечности, это означает, что это непрерывный процесс. Это не разовая деятельность. Это непрерывный процесс разработки и операций. Это объясняется на изображении ниже:
 
-## DevOps Lifecycle
+## Жизненный цикл DevOps
 
 ![DevOps Lifecycle](../static/img/devops-lifecycle.png)
 
-To understand the above image, let's break down the DevOps lifecycle into different stages:
+Чтобы понять изображение выше, давайте разберем жизненный цикл DevOps на различные этапы:
 
-**1. Discovery**: In this stage, the team identifies the requirements and the scope of the project.
+**1. Discovery (Обнаружение)**: На этом этапе команда определяет требования и объем проекта.
 
-**2. Plan**: In this stage, the team plans the project and creates a roadmap.
+**2. Plan (Планирование)**: На этом этапе команда планирует проект и создает дорожную карту.
 
-**3. Build/Develop**: In this stage, the team develops the software.
+**3. Build/Develop (Сборка/Разработка)**: На этом этапе команда разрабатывает программное обеспечение.
 
-**4. Test**: In this stage, the team tests the software.
+**4. Test (Тестирование)**: На этом этапе команда тестирует программное обеспечение.
 
-**5. Deploy**: In this stage, the team deploys the software.
+**5. Deploy (Развертывание)**: На этом этапе команда развертывает программное обеспечение.
 
-**6. Operate**: In this stage, the team operates the software.
+**6. Operate (Эксплуатация)**: На этом этапе команда эксплуатирует программное обеспечение.
 
-**7. Monitor/Observe**: In this stage, the team monitors the software.
+**7. Monitor/Observe (Мониторинг/Наблюдение)**: На этом этапе команда мониторит программное обеспечение.
 
-**8. Continuous Feedback**: In this stage, the team gets feedback from the users and stakeholders.
+**8. Continuous Feedback (Непрерывная обратная связь)**: На этом этапе команда получает обратную связь от пользователей и заинтересованных сторон.
 
-## DevOps Tools
+## Инструменты DevOps
 
-There are various tools available for different stages of the DevOps lifecycle. It depends on the requirements of the project and the team. Some of the popular DevOps tools are:
+Существуют различные инструменты для разных этапов жизненного цикла DevOps. Это зависит от требований проекта и команды. Некоторые из популярных инструментов DevOps:
 
-- **Source Code Management**: Git, GitHub, GitLab, Bitbucket.
-- **Continuous Integration**: Jenkins, GitLab CI, CircleCI, Travis CI.
-- **Continuous Deployment**: Jenkins, GitLab CI, CircleCI, Travis CI.
-- **Configuration Management**: Ansible, Puppet, Chef, SaltStack.
-- **Containerization**: Docker, Podman, Containerd, LXC.
-- **Orchestration**: Kubernetes, Docker Swarm, Amazon ECS.
-- **Monitoring**: Prometheus, Grafana, ELK Stack, Nagios.
-- **Infrastructure as Code**: Terraform, AWS CloudFormation, Azure Resource Manager.
-- **Security**: SonarQube, OWASP ZAP, Clair, Trivy.
-- **Collaboration**: Slack, Microsoft Teams, Google Chat, Zoom.
+- **Source Code Management (Управление исходным кодом)**: Git, GitHub, GitLab, Bitbucket.
+- **Continuous Integration (Непрерывная интеграция)**: Jenkins, GitLab CI, CircleCI, Travis CI.
+- **Continuous Deployment (Непрерывное развертывание)**: Jenkins, GitLab CI, CircleCI, Travis CI.
+- **Configuration Management (Управление конфигурацией)**: Ansible, Puppet, Chef, SaltStack.
+- **Containerization (Контейнеризация)**: Docker, Podman, Containerd, LXC.
+- **Orchestration (Оркестрация)**: Kubernetes, Docker Swarm, Amazon ECS.
+- **Monitoring (Мониторинг)**: Prometheus, Grafana, ELK Stack, Nagios.
+- **Infrastructure as Code (Инфраструктура как код)**: Terraform, AWS CloudFormation, Azure Resource Manager.
+- **Security (Безопасность)**: SonarQube, OWASP ZAP, Clair, Trivy.
+- **Collaboration (Сотрудничество)**: Slack, Microsoft Teams, Google Chat, Zoom.
   
-To learn more about these tools, you can navigate to the respective sections in the sidebar.
+Чтобы узнать больше об этих инструментах, вы можете перейти к соответствующим разделам в боковой панели.

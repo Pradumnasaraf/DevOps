@@ -1,12 +1,12 @@
 ---
 sidebar_position: 2
-title: Learning Resources
-description: A collection of resources to learn more about Terraform.
+title: Ресурсы для обучения
+description: Коллекция ресурсов для изучения Terraform.
 tags: ["Terraform", "Infrastructure as Code", "IaC"]
 keywords: ["Terraform", "Infrastructure as Code", "IaC"]
 slug: "/terraform/resources"
 ---
 
-- [Official Terraform Documentation](https://www.terraform.io/docs)
-- [Terraform Providers](https://registry.terraform.io/browse/providers)
+- [Официальная документация Terraform](https://www.terraform.io/docs)
+- [Terraform Провайдеры](https://registry.terraform.io/browse/providers)
 - [Terraform: Up & Running](https://www.terraformupandrunning.com/)

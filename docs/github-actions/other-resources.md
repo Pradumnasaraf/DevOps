@@ -1,12 +1,12 @@
 ---
 sidebar_position: 4
-title: Other Resources
-description: A collection of resources to learn more about GitHub Actions.
+title: Другие ресурсы
+description: Коллекция ресурсов для изучения GitHub Actions.
 tags: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
 keywords: ["GitHub Actions", "DevOps", "Continuous Integration", "Continuous Deployment"]
 slug: "/github-actions/other-resources"
 ---
 
-Here are list of other resources that you can refer to learn more about GitHub Actions:
+Вот список других ресурсов, к которым вы можете обратиться для изучения GitHub Actions:
 
-- [Wokflow files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/github-actions/Workflows): A collection of GitHub Actions workflow files I use and created to help you understand the concepts better.
+- [Файлы Workflow](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/github-actions/Workflows): Коллекция файлов GitHub Actions workflow, которые я использую и создаю, чтобы помочь вам лучше понять концепции.

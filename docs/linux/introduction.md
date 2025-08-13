@@ -1,91 +1,90 @@
 ---
 sidebar_position: 1
-title: Linux Introduction
-description: An introduction to Linux and its architecture components.
+title: Введение в Linux
+description: Введение в Linux и его архитектурные компоненты.
 tags: ["Linux", "Operating System", "Open Source"]
 keywords: ["Linux", "Operating System", "Open Source"]
 slug: "/linux"
 ---
 
-### Overview of Linux and Why it is so popular?
+### Обзор Linux и почему он так популярен?
 
-Linux is an open-source operating system (OS) that runs on a computer and controls all of the other software and hardware on the computer. Initially, Linux was built on the Unix operating system, which was created many decades ago as a platform for scientific and academic computing. It is used on a wide range of devices, including servers, desktop computers, laptops, cloud computing, and Mobile devices.
+Linux - это операционная система (ОС) с открытым исходным кодом, которая работает на компьютере и управляет всем другим программным обеспечением и оборудованием на компьютере. Изначально Linux был построен на операционной системе Unix, которая была создана много десятилетий назад как платформа для научных и академических вычислений. Он используется на широком спектре устройств, включая серверы, настольные компьютеры, ноутбуки, облачные вычисления и мобильные устройства.
 
-As Linux is open-source software so anyone can access its source code and make changes to it. Other than this Linux is known for its Security features. It has a large community of users and developers who are constantly working to identify and fix security vulnerabilities. Also, Linux is well known for its Customizability allowing users to modify and configure it in order to meet their specific needs.
+Поскольку Linux - это программное обеспечение с открытым исходным кодом, любой может получить доступ к его исходному коду и внести в него изменения. Помимо этого, Linux известен своими функциями безопасности. У него большое сообщество пользователей и разработчиков, которые постоянно работают над выявлением и исправлением уязвимостей безопасности. Также Linux хорошо известен своей настраиваемостью, позволяя пользователям модифицировать и настраивать его в соответствии с их конкретными потребностями.
 
-### Linux Architecture Components
+### Архитектурные компоненты Linux
 
-The main architectural components that work together to form a complete Linux OS include Kernel, System Libraries, User Space, Shell, System Utilities, Daemons, and Configuration files.
+Основные архитектурные компоненты, которые работают вместе для формирования полной ОС Linux, включают Ядро, Системные библиотеки, Пользовательское пространство, Оболочку, Системные утилиты, Демоны и Конфигурационные файлы.
 
-- Kernel: The kernel is the central part of the Linux OS. It manages the computer's hardware resources and communicates with the software to provide a stable and consistent interface for us.
+- **Ядро**: Ядро - это центральная часть ОС Linux. Оно управляет аппаратными ресурсами компьютера и общается с программным обеспечением, чтобы предоставить нам стабильный и последовательный интерфейс.
 
-- System Libraries: System libraries are collections of pre-written code that provides common functions for other programs to use.
+- **Системные библиотеки**: Системные библиотеки - это коллекции предварительно написанного кода, которые предоставляют общие функции для использования другими программами.
 
-- User Space: User space mainly refers to the programs and applications that run on top of the operating system. This includes a wide range of applications such as text editors, web browsers, games, etc.
+- **Пользовательское пространство**: Пользовательское пространство в основном относится к программам и приложениям, которые работают поверх операционной системы. Это включает широкий спектр приложений, таких как текстовые редакторы, веб-браузеры, игры и т.д.
 
-- Shell: Shell is a command-line interface that allows users to interact with the Linux operating system.
+- **Оболочка**: Оболочка - это интерфейс командной строки, который позволяет пользователям взаимодействовать с операционной системой Linux.
 
-- System Utilities: System utilities are small programs that perform specific tasks such as file management, process management, network management, etc.
+- **Системные утилиты**: Системные утилиты - это небольшие программы, которые выполняют конкретные задачи, такие как управление файлами, управление процессами, управление сетью и т.д.
 
-- Daemons: Daemons are the background processes that run continuously and perform specific tasks such as network services, log management, etc.
+- **Демоны**: Демоны - это фоновые процессы, которые работают непрерывно и выполняют конкретные задачи, такие как сетевые сервисы, управление логами и т.д.
 
-- Configuration files: Configuration files are used to configure various aspects of the Linux operating system such as the network settings, system settings, security settings, etc.
+- **Конфигурационные файлы**: Конфигурационные файлы используются для настройки различных аспектов операционной системы Linux, таких как сетевые настройки, системные настройки, настройки безопасности и т.д.
 
 ![architecture](https://user-images.githubusercontent.com/37767537/225990738-9e505c6d-bad0-4820-a2b2-4ce84ef286c9.jpg)
 
-### Linux Distributions
+### Дистрибутивы Linux
 
-Linux distributions, also known as "distros," are different versions of the Linux operating system that are built 
-and packaged with specific versions of the architectural components, the package management system used, the graphical user interface, and the tools and applications included in it.
+Дистрибутивы Linux, также известные как "дистры", - это разные версии операционной системы Linux, которые построены и упакованы с конкретными версиями архитектурных компонентов, используемой системой управления пакетами, графическим пользовательским интерфейсом и инструментами и приложениями, включенными в него.
 
-Examples of Linux distros include Ubuntu, Fedora, Debian, CentOS, Mint, Red Hat Enterprise Linux (RHEL), etc.
+Примеры дистрибутивов Linux включают Ubuntu, Fedora, Debian, CentOS, Mint, Red Hat Enterprise Linux (RHEL) и т.д.
 
-### Linux File Systems
+### Файловые системы Linux
 
-The Linux file system is the way that the operating system organizes and stores files and directories on a computer's hard drive or other storage devices. It consists of a hierarchical structure where files and directories are arranged in a tree-like format starting from the root directory (represented by "/"). Each file and directory has a unique location within the file system hierarchy, and these locations can be referred to using a path similar to how file paths work in other operating systems.
+Файловая система Linux - это способ, которым операционная система организует и хранит файлы и директории на жестком диске компьютера или других устройствах хранения. Она состоит из иерархической структуры, где файлы и директории расположены в древовидном формате, начиная с корневой директории (обозначенной "/"). Каждый файл и директория имеют уникальное местоположение в иерархии файловой системы, и эти местоположения могут быть указаны с помощью пути, аналогично тому, как работают пути к файлам в других операционных системах.
 
-There are several types of file systems available for use in Linux including below:
+Существует несколько типов файловых систем, доступных для использования в Linux, включая следующие:
 
-- Ext4: This is the most widely used file system in Linux and it is known for its high performance, reliability, and scalability. It is a journaling file system meaning that it keeps track of changes made to the file system in a log that helps to ensure that data is not lost in the event of a system failure.
+- **Ext4**: Это наиболее широко используемая файловая система в Linux, и она известна своей высокой производительностью, надежностью и масштабируемостью. Это журналируемая файловая система, что означает, что она отслеживает изменения, внесенные в файловую систему, в журнале, который помогает обеспечить, чтобы данные не были потеряны в случае сбоя системы.
 
-- XFS: This is a high-performance file system that is optimized for large-scale data storage and is commonly used in enterprise and high-performance computing environments. It supports large file sizes and high-bandwidth I/O which makes it well-suited for use with high-speed storage devices such as solid-state drives.
+- **XFS**: Это высокопроизводительная файловая система, которая оптимизирована для крупномасштабного хранения данных и обычно используется в корпоративных и высокопроизводительных вычислительных средах. Она поддерживает большие размеры файлов и высокопропускную способность ввода-вывода, что делает ее хорошо подходящей для использования с высокоскоростными устройствами хранения, такими как твердотельные накопители.
 
-- Btrfs: This is a newer file system that is designed to be flexible, scalable, and easy to manage. It offers advanced features such as snapshots which allow administrators to easily backup and restore data and it also supports data and metadata checksums which help to prevent data corruption.
+- **Btrfs**: Это более новая файловая система, которая предназначена для гибкости, масштабируемости и простоты управления. Она предлагает продвинутые функции, такие как снимки, которые позволяют администраторам легко резервировать и восстанавливать данные, а также поддерживает контрольные суммы данных и метаданных, которые помогают предотвратить повреждение данных.
 
-- NTFS: This is a file system commonly used in Microsoft Windows and it is supported by most modern Linux distributions. It is designed to be compatible with a wide range of devices including hard drives and removable storage devices and it supports advanced features such as compression and encryption.
+- **NTFS**: Это файловая система, обычно используемая в Microsoft Windows, и она поддерживается большинством современных дистрибутивов Linux. Она предназначена для совместимости с широким спектром устройств, включая жесткие диски и съемные устройства хранения, и поддерживает продвинутые функции, такие как сжатие и шифрование.
 
-- FAT32: This is an older file system that is commonly used in older Microsoft Windows systems and is also widely used for removable storage devices such as USB drives and has limitations such as a maximum file size of 4GB.
+- **FAT32**: Это более старая файловая система, которая обычно используется в более старых системах Microsoft Windows, а также широко используется для съемных устройств хранения, таких как USB-накопители, и имеет ограничения, такие как максимальный размер файла 4 ГБ.
 
-(Note: The machine from which the screenshot has been taken is having CentOS 8 Stream)
+(Примечание: Машина, с которой был сделан скриншот, имеет CentOS 8 Stream)
 
 ![Linux-1](https://user-images.githubusercontent.com/37767537/226102852-2ca35206-f833-44e0-994f-a003a88c6b84.png)
 
-### Organization of Linux File System
+### Организация файловой системы Linux
 
-In Linux, the file system is organized into a hierarchical structure, with the root directory (/) at the top of the hierarchy. The root directory contains several subdirectories, each with its own specific purpose that form the foundation of the Linux file system hierarchy. The subdirectories include:
+В Linux файловая система организована в иерархическую структуру с корневой директорией (/) в верхней части иерархии. Корневая директория содержит несколько поддиректорий, каждая со своей конкретной целью, которые формируют основу иерархии файловой системы Linux. Поддиректории включают:
 
-- /bin - contains essential command-line utilities that are required for the system to function
-- /boot - contains files needed for booting the system including the Linux kernel and boot loader configuration files
-- /dev - contains device files that represent various devices and hardware components on the system
-- /etc - contains configuration files for the system and various applications
-- /home - contains the home directories for individual users
-- /lib - contains libraries needed by the utilities in /bin and /sbin
-- /media - a mount point for removable media such as CDs, DVDs, and USB drives
-- /mnt - a mount point for temporarily mounting file systems
-- /opt - contains third-party software packages
-- /proc - A virtual file system that contains information about the system's process and kernel
-- /root - the home directory for the root user
-- /sbin - contains system executables, similar to /bin
-- /sys - A virtual file system that provides an interface to the kernel's device drivers
-- /tmp - Contains temporary files that can be deleted by the system when space is needed
-- /usr - contains user utilities and libraries as well as data shared by multiple users
-- /var - contains variable data such as log files, mail spools, and database files
+- **/bin** - содержит основные утилиты командной строки, которые необходимы для функционирования системы
+- **/boot** - содержит файлы, необходимые для загрузки системы, включая ядро Linux и конфигурационные файлы загрузчика
+- **/dev** - содержит файлы устройств, которые представляют различные устройства и аппаратные компоненты в системе
+- **/etc** - содержит конфигурационные файлы для системы и различных приложений
+- **/home** - содержит домашние директории для отдельных пользователей
+- **/lib** - содержит библиотеки, необходимые для утилит в /bin и /sbin
+- **/media** - точка монтирования для съемных носителей, таких как CD, DVD и USB-накопители
+- **/mnt** - точка монтирования для временного монтирования файловых систем
+- **/opt** - содержит сторонние программные пакеты
+- **/proc** - Виртуальная файловая система, которая содержит информацию о процессах и ядре системы
+- **/root** - домашняя директория для пользователя root
+- **/sbin** - содержит системные исполняемые файлы, аналогично /bin
+- **/sys** - Виртуальная файловая система, которая предоставляет интерфейс к драйверам устройств ядра
+- **/tmp** - Содержит временные файлы, которые могут быть удалены системой, когда требуется место
+- **/usr** - содержит пользовательские утилиты и библиотеки, а также данные, совместно используемые несколькими пользователями
+- **/var** - содержит переменные данные, такие как файлы логов, почтовые ящики и файлы базы данных
 
-These subdirectories may vary between different Linux distributions but the basic structure will remain the same. It is strongly recommended to explore each subdirectory separately to understand more about it.
+Эти поддиректории могут варьироваться между разными дистрибутивами Linux, но базовая структура останется той же. Настоятельно рекомендуется изучить каждую поддиректорию отдельно, чтобы понять больше о ней.
 
 ![Linux-2](https://user-images.githubusercontent.com/37767537/226103260-c51190cf-3e9a-47e9-abe8-6b131227572d.png)
 
-### What's next?
+### Что дальше?
 
-- [Linux Commands](./commands.md) - Learn about the commands that you can use with Linux.
-- [Learning Resources](./learning-resources.md) - Learn more about Linux with these resources.
+- [Linux Команды](./commands.md) - Узнайте о командах, которые вы можете использовать с Linux.
+- [Ресурсы для обучения](./learning-resources.md) - Узнайте больше о Linux с помощью этих ресурсов.

@@ -1,89 +1,89 @@
 ---
 sidebar_position: 1
-title: Kubernetes Introduction
-description: A guide to Kubernetes, a container orchestration tool.
+title: Введение в Kubernetes
+description: Руководство по Kubernetes, инструменту оркестрации контейнеров.
 tags: ["Kubernetes", "Container Orchestration", "DevOps"]
 keywords: ["Kubernetes", "Container Orchestration", "DevOps"]
 slug: "/kubernetes"
 ---
 
-## Kubernetes Components - architecture
+## Компоненты Kubernetes - архитектура
 
 ![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
 
 <details>
-  <summary>Simpler Image</summary>
+  <summary>Упрощенное изображение</summary>
 
   ![image](https://user-images.githubusercontent.com/51878265/197317783-ef595279-520d-4354-b995-96bff072485e.png)
 
 </details>
 
-## Cluster
+## Кластер
 
-Cluster is collection of nodes. The nodes can be grouped into two categories, Control Plane and Data Plane. The Control Plane is responsible for runining all the Kubernetes components. The Data Plane is responsible for running the application (our application).
+Кластер - это коллекция узлов. Узлы могут быть сгруппированы в две категории: Control Plane и Data Plane. Control Plane отвечает за запуск всех компонентов Kubernetes. Data Plane отвечает за запуск приложения (нашего приложения).
 
 ## Control Plane
 
-Control Plane is the brain of the Kubernetes cluster. It is responsible for managing the cluster. It contains the Control plane nodes. And each control plane node contains the following components:
+Control Plane - это мозг кластера Kubernetes. Он отвечает за управление кластером. Он содержит узлы Control Plane. И каждый узел Control Plane содержит следующие компоненты:
 
-- **API Server**: It is the entry point for all the REST commands used to control the cluster. It is the only component that communicates with the etcd.
-- **Etcd**: It stores the current state of the cluster. It's like a cluster brain.
-- **Scheduler**: Decide which worker node will be best to deploy the next pods, after examining the resources and other paras. It does not schedule the pods, it just decides.
-- **Controller Manager**: Detect the current state of the cluster and keep the desired state of pods running. Follow requests when some things need to change/added to a worker node
-- **Cloud Controller Manager**: It Communicates with the cloud provider's API to create, delete, and update the resources.  
+- **API Server**: Это точка входа для всех REST команд, используемых для управления кластером. Это единственный компонент, который общается с etcd.
+- **Etcd**: Он хранит текущее состояние кластера. Это как мозг кластера.
+- **Scheduler**: Решает, какой рабочий узел будет лучшим для развертывания следующих подов, после изучения ресурсов и других параметров. Он не планирует поды, он просто решает.
+- **Controller Manager**: Обнаруживает текущее состояние кластера и поддерживает желаемое состояние подов в рабочем состоянии. Следует запросам, когда что-то нужно изменить/добавить к рабочему узлу
+- **Cloud Controller Manager**: Он общается с API облачного провайдера для создания, удаления и обновления ресурсов.  
 
 ## Data Plane
 
-Data Plane is responsible for running the application. It contains the worker nodes. And each worker node contains the following components:
+Data Plane отвечает за запуск приложения. Он содержит рабочие узлы. И каждый рабочий узел содержит следующие компоненты:
 
-- **Kubelet**: It is an agent that runs on each node in the cluster. It makes sure that the containers are running in a pod.
-- **Kube Proxy**: Maintains network rules on the node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
-- **Container Runtime** - Like Docker, ContainerD, etc. Which runs the container
+- **Kubelet**: Это агент, который работает на каждом узле в кластере. Он обеспечивает работу контейнеров в поде.
+- **Kube Proxy**: Поддерживает сетевые правила на узле, которые позволяют сетевую связь с вашими подами из сетевых сессий внутри или снаружи вашего кластера.
+- **Container Runtime** - Как Docker, ContainerD и т.д. Который запускает контейнер
 
 ## CRI - Container Runtime Interface
 
-It is a plugin interface that enables kubelet to use a wide variety of container runtimes, without the need to recompile the kubelet binary. It is a standard interface between Kubernetes and container runtimes. Previously, Docker was the default container runtime for Kubernetes and their was component called `dockershim` which was used to communicate with Docker. But it was removed in Kubernetes 1.20. and Docker is no longer the default container runtime. Now, the default container runtime is ContainerD. Popular choices are ContainerD, CRI-O, etc.
+Это интерфейс плагина, который позволяет kubelet использовать широкий спектр сред выполнения контейнеров без необходимости перекомпиляции двоичного файла kubelet. Это стандартный интерфейс между Kubernetes и средами выполнения контейнеров. Ранее Docker был средой выполнения контейнеров по умолчанию для Kubernetes, и был компонент, называемый `dockershim`, который использовался для связи с Docker. Но он был удален в Kubernetes 1.20, и Docker больше не является средой выполнения контейнеров по умолчанию. Теперь средой выполнения контейнеров по умолчанию является ContainerD. Популярные выборы - ContainerD, CRI-O и т.д.
 
 ## CNI - Container Network Interface
 
-It is a specification and libraries for writing plugins to configure network interfaces in Linux containers. It is used by Kubernetes to configure networking in the cluster. It is a standard interface between Kubernetes and the network plugins. It is used to set up networking in a container. Cloud providers like AWS, Azure, GCP have their own CNI plugins. Popular choices are Calico, Flannel, Cilium, etc.
+Это спецификация и библиотеки для написания плагинов для настройки сетевых интерфейсов в Linux контейнерах. Он используется Kubernetes для настройки сети в кластере. Это стандартный интерфейс между Kubernetes и сетевыми плагинами. Он используется для настройки сети в контейнере. Облачные провайдеры, такие как AWS, Azure, GCP, имеют свои собственные CNI плагины. Популярные выборы - Calico, Flannel, Cilium и т.д.
 
 ### CSI - Container Storage Interface
 
-It is a standard for exposing arbitrary block and file storage systems to containerized workloads on Kubernetes. It is used to provide persistent storage to the containers. It is a standard interface between Kubernetes and storage providers. It is used to provide persistent storage to the containers. Popular choices are Rook, OpenEBS, etc.
+Это стандарт для предоставления произвольных блочных и файловых систем хранения контейнеризированным рабочим нагрузкам на Kubernetes. Он используется для предоставления постоянного хранилища контейнерам. Это стандартный интерфейс между Kubernetes и провайдерами хранилищ. Он используется для предоставления постоянного хранилища контейнерам. Популярные выборы - Rook, OpenEBS и т.д.
 
-Custom Resource Definition - It allows you to define your own resources in Kubernetes. It extends the Kubernetes API. 
+Custom Resource Definition - Он позволяет вам определять собственные ресурсы в Kubernetes. Он расширяет API Kubernetes. 
 
-## Imperative Vs Declarative
+## Императивный vs Декларативный
 
-- Imperative - When we give a command through CLI to run pod/deployment. For eg: `kubectl run nginx --image=nginx`
+- Императивный - Когда мы даем команду через CLI для запуска пода/deployment. Например: `kubectl run nginx --image=nginx`
 
-- Declarative - Creating deployment through YAML file. 
+- Декларативный - Создание deployment через YAML файл. 
 
-## Resources Configuration File Schema
+## Схема файла конфигурации ресурсов
 
-Generally, a configuration file for Kubernetes resources has the following schema:
+Как правило, файл конфигурации для ресурсов Kubernetes имеет следующую схему:
 
 ```YAML
-apiVersion: # The version of the Kubernetes API you're using
-kind: # The type of object you're creating
-metadata: # Data that helps uniquely identify the object
-spec: # The desired state of the object
+apiVersion: # Версия API Kubernetes, которую вы используете
+kind: # Тип объекта, который вы создаете
+metadata: # Данные, которые помогают однозначно идентифицировать объект
+spec: # Желаемое состояние объекта
 ```
 
 ## Namespaces
 
-Isolated environment, we can group resources separately like a database. Also, great for running different versions of the app. By default, we have a namespace called `default`. We can create a new namespace by creating a YAML file.
+Изолированная среда, мы можем группировать ресурсы отдельно, как база данных. Также отлично подходит для запуска разных версий приложения. По умолчанию у нас есть namespace, называемый `default`. Мы можем создать новый namespace, создав YAML файл.
 
-NOTE: By default namespaces DO NOT provide any security and Networking Boundary. It is just a logical separation of resources.
+ПРИМЕЧАНИЕ: По умолчанию namespaces НЕ предоставляют никакой безопасности и сетевой границы. Это просто логическое разделение ресурсов.
 
-We can create a namespace either by CLI or by 
+Мы можем создать namespace либо через CLI, либо через
 
 ```bash
 kubectl create namespace <namespace-name>
 ```
 
-or in a declarative way vy creating a YAML file and then applying it.
+или декларативным способом, создав YAML файл и затем применив его.
 
 ```yaml
 apiVersion: v1
@@ -92,31 +92,31 @@ metadata:
   name: non-default-namespace
 ```
 
-We can apply it by 
+Мы можем применить его через
 
 ```bash
 kubectl apply -f <filename>.yaml
 ```
 
-Some useful commands for namespaces
+Некоторые полезные команды для namespaces
 
 ```bash
-kubectl get namespaces # To get all the namespaces
+kubectl get namespaces # Чтобы получить все namespace
 ```
 
-We can also switch the namespace by 
+Мы также можем переключить namespace через
 
 ## Pods
 
-The "smallest deployable unit" in Kubernetes. It is a group of one or more containers, with shared storage/network, and a specification for how to run the containers. It is the basic building block of Kubernetes.
+Наименьшая деплойруемая единица в Kubernetes. Это группа одного или нескольких контейнеров, с общим хранилищем/сетевым интерфейсом, и спецификацией для запуска контейнеров. Это базовая единица для Kubernetes.
 
-It's not recommended to create a pod directly, instead, we should create a deployment, which will create a pod for us. But we can create a pod by 
+Не рекомендуется создавать пода напрямую, вместо этого мы должны создать deployment, который создаст пода для нас. Но мы можем создать пода через
 
 ```bash
 kubectl run <pod-name> --image=<image-name>
 ```
 
-Or by creating in a declarative way by creating a YAML file and then applying it.
+или декларативным способом, создав YAML файл и затем применив его.
 
 ```yaml
 apiVersion: v1
@@ -132,7 +132,7 @@ spec:
     - containerPort: 80
 ```
 
-Here is an example of a pod resource file with good practices:
+Вот пример файла ресурса пода с хорошими практиками:
 
 ```yaml
 apiVersion: v1
@@ -147,11 +147,11 @@ spec:
     ports:
       - containerPort: 8080
         protocol: TCP
-    readinessProbe:  # Check if the container is ready to serve traffic
+    readinessProbe:  # Проверяет, готов ли контейнер к обслуживанию трафика
       httpGet:
         path: /
         port: 8080
-    resources: # Resource requests and limits
+    resources: # Запросы ресурсов и лимиты
       requests:
         memory: "50Mi"
         cpu: "250m"
@@ -159,23 +159,23 @@ spec:
         memory: "50Mi"
         cpu: "250m"
     securityContext:
-      allowPrivilegeEscalation: false # Do not allow privilege escalation
-      privileged: false # Do not run as a privileged container
-  securityContext: # Pod security context (Above is container security context)
+      allowPrivilegeEscalation: false # Не разрешать привилегированное повышение
+      privileged: false # Не запускать как привилегированный контейнер
+  securityContext: # Контекст безопасности пода (выше - контекст безопасности контейнера)
     seccompProfile:
       type: RuntimeDefault
     runAsUser: 1000
     runAsGroup: 1001
-    runAsNonRoot: true # Run as non-root user
+    runAsNonRoot: true # Запускать как непривилегированный пользователь
 ```
 
-### Probes
+### Пробы
 
-Probes are used to check the health of the container. There are three types of probes:
+Пробы используются для проверки здоровья контейнера. Существует три типа проб:
 
-- **Startup Probe**: It is used to check if the container is started. It is used to delay the liveness and readiness probes until the container is started.
-- **Readiness Probe**: It is used to check if the container is ready to serve traffic. If the readiness probe fails, the container will not receive traffic. It is used to delay the traffic until the container is ready.
-- **Liveness Probe**: It is used to check is in healthy state and able to serve traffic. If the liveness probe fails, the container will be restarted. It is used to restart the container if it is in an unhealthy state.
+- **Startup Probe**: Используется для проверки запуска контейнера. Он используется для задержки проб liveness и readiness probes до запуска контейнера.
+- **Readiness Probe**: Используется для проверки готовности контейнера к обслуживанию трафика. Если проб readiness провалена, контейнер не получит трафик. Он используется для задержки трафика до запуска контейнера.
+- **Liveness Probe**: Используется для проверки здоровья и способности обслуживать трафик. Если проб liveness провалена, контейнер будет перезапущен. Он используется для перезапуска контейнера, если он находится в нездоровом состоянии.
 
 #### Startup Probe
 
@@ -195,22 +195,22 @@ readinessProbe:
   httpGet:
     path: /health
     port: 8080
-  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
-  periodSeconds: 3 # Check every 3 seconds
-  timeoutSeconds: 5 # Wait for 5 seconds before considering the probe as failed
-  successThreshold: 1 # Mark the probe as successful after 1 success
-  failureThreshold: 2 # Mark the probe as failed after 2 failures
+  initialDelaySeconds: 3 # Ждать 3 секунды перед запуском пробы
+  periodSeconds: 3 # Проверять каждые 3 секунды
+  timeoutSeconds: 5 # Ждать 5 секунд перед тем, как считать пробу неудачной
+  successThreshold: 1 # Отметить пробу как успешную после 1 успеха
+  failureThreshold: 2 # Отметить пробу как неудачную после 2 неудач
 ---
 readinessProbe:
   exec:
     command:
     - cat
     - /tmp/healthy
-  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
-  periodSeconds: 3 # Check every 3 seconds
-  timeoutSeconds: 5 # Wait for 5 seconds before considering the probe as failed
-  successThreshold: 1 # Mark the probe as successful after 1 success
-  failureThreshold: 2 # Mark the probe as failed after 2 failures
+  initialDelaySeconds: 3 # Ждать 3 секунды перед запуском пробы
+  periodSeconds: 3 # Проверять каждые 3 секунды
+  timeoutSeconds: 5 # Ждать 5 секунд перед тем, как считать пробу неудачной
+  successThreshold: 1 # Отметить пробу как успешную после 1 успеха
+  failureThreshold: 2 # Отметить пробу как неудачную после 2 неудач
 ```
 
 #### Liveness Probe
@@ -220,39 +220,39 @@ livenessProbe:
   httpGet:
     path: /health
     port: 8080
-  initialDelaySeconds: 3 # Wait for 3 seconds before starting the probe
-  periodSeconds: 3 # Check every 3 seconds
-  timeoutSeconds: 5 # Wait for 5 seconds before considering the probe as failed
-  successThreshold: 1 # Mark the probe as successful after 1 success
-  failureThreshold: 2 # Mark the probe as failed after 2 failures
+  initialDelaySeconds: 3 # Ждать 3 секунды перед запуском пробы
+  periodSeconds: 3 # Проверять каждые 3 секунды
+  timeoutSeconds: 5 # Ждать 5 секунд перед тем, как считать пробу неудачной
+  successThreshold: 1 # Отметить пробу как успешную после 1 успеха
+  failureThreshold: 2 # Отметить пробу как неудачную после 2 неудач
 ```
 
-### Pod Lifecycle
+### Жизненный цикл пода
 
 ![Pod-Lifecycle](https://user-images.githubusercontent.com/51878265/197347032-cb45f52d-bfae-4ce4-838c-4c3ba9b10fa3.PNG)
 
 ### Init Containers
 
-The purpose of init containers is to run utility containers that can do some setup before the main container starts. They are run before the main container starts. They are run to completion. If the init container fails, the pod will not start. For example, setting up the environment, etc.
+Цель init containers - это запуск утилитных контейнеров, которые могут выполнить некоторые настройки перед запуском основного контейнера. Они запускаются перед запуском основного контейнера. Они запускаются до завершения. Если init container провален, пода не запустится. Например, настройка окружения и т.д.
 
 ### Sidecar Containers
 
-The purpose of sidecar containers is to extend and support the main container. They are run alongside the main container. They are used to extend the functionality of the main container. They are used to provide additional functionality to the main container. For example, logging, monitoring, etc.
+Цель sidecar контейнеров - это расширение и поддержка основного контейнера. Они запускаются рядом с основным контейнером. Они используются для расширения функциональности основного контейнера. Они используются для предоставления дополнительных функций основного контейнера. Например, логирование, мониторинг и т.д.
 
-Some useful commands for pods
+Некоторые полезные команды для пода
 
 ```bash
-Kubectl pods -A # (-all-namespaces) To get all the pods in all the namespaces
-kubectl get pods -n <namespace-name> # To get all the pods in a nam
-kubectl port-forward <pod-name> <localhost-port>:<pod-port> # To forward a port from a pod to our local machine
-kubectl port-forward svc/<service-name> <localhost-port>:<service-port> # To forward a port from a service to our local machine
+Kubectl pods -A # (-all-namespaces) Чтобы получить все пода во всех namespace
+kubectl get pods -n <namespace-name> # Чтобы получить все пода в namespace
+kubectl port-forward <pod-name> <localhost-port>:<pod-port> # Чтобы перенаправить порт из пода на нашу локальную машину
+kubectl port-forward svc/<service-name> <localhost-port>:<service-port> # Чтобы перенаправить порт из сервиса на нашу локальную машину
 ```
 
 ## ReplicaSet
 
-ReplicaSet is a controller that ensures that a specified number of pod replicas are running at all times. It is a higher-level abstraction that manages the pods. It is a replacement for Replication Controller. It is a part of the Kubernetes deployment.
+ReplicaSet - это контроллер, который обеспечивает, что указанное количество подов реплик запущено всегда. Это более высокий уровень абстракции, который управляет подами. Это замена Replication Controller. Это часть Kubernetes deployment.
 
-NOTE: Unlike the pods we don't create a ReplicaSet directly, instead, we create a deployment, which will create a ReplicaSet and underlying pods for us.
+ПРИМЕЧАНИЕ: В отличие от подов мы не создаем ReplicaSet напрямую, вместо этого мы создаем deployment, который создаст ReplicaSet и базовые подов для нас.
 
 ```yaml
 apiVersion: apps/v1
@@ -264,11 +264,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx-app # Select the pods with this label
+      app: nginx-app # Выберите подов с этим лейблом
   template:
     metadata:
       labels:
-        app: nginx-app # Create a label for the pod not container
+        app: nginx-app # Создайте лейбл для пода, а не для контейнера
     spec:
       containers:
       - name: nginx
@@ -277,9 +277,9 @@ spec:
         - containerPort: 80
 ```
 
-## Labels and Annotations
+## Labels и Annotations
 
-**Labels:** They are key-value pairs that are attached to objects. They are used to identify and select objects. Can also be used to filter objects.
+**Labels:** Они являются парами ключ-значение, прикрепленными к объектам. Они используются для идентификации и выбора объектов. Также могут использоваться для фильтрации объектов.
 
 ```yaml
 metadata:
@@ -288,7 +288,7 @@ metadata:
 ```
 
 
-**Annotations:** They are key-value pairs that are attached to objects. They are used to attach non-identifying metadata to objects. USed for things like config details, build information, etc. Often used by tools to configure specific behavior, like ingress annotations.
+**Annotations:** Они являются парами ключ-значение, прикрепленными к объектам. Они используются для прикрепления неидентифицирующих метаданных к объектам. Используется для вещей, таких как детали конфигурации, информация о сборке и т.д. Часто используется инструментами для настройки специфического поведения, например, аннотации ingress.
 
 ```yaml
 metadata:
@@ -296,11 +296,11 @@ metadata:
     foo: bar
 ```
 
-The difference between the two is that labels are used to identify and select objects, while annotations are used to attach metadata to objects, like attaching a ingress class to an Ingress object. 
+Разница между ними в том, что лейблы используются для идентификации и выбора объектов, а аннотации используются для прикрепления метаданных к объектам, например, прикрепление класса ingress к объекту Ingress. 
 
 ## Deployment
 
-Deployment is a higher-level abstraction that manages ReplicaSets and provides declarative updates to pods. It is a way to declaratively manage the pods. It is a part of the Kubernetes deployment. It is a recommended way to create pods.
+Deployment - это более высокий уровень абстракции, который управляет ReplicaSets и предоставляет декларативные обновления для подов. Это способ декларативного управления подами. Это часть Kubernetes deployment. Это рекомендуемый способ создания пода.
 
 ```yaml
 apiVersion: apps/v1
@@ -326,19 +326,19 @@ spec:
 
 ## Services
 
-Serves as an internal load balancer across the replicas. It uses pod labels to determine which pods to serve. 
+Служит как внутренний балансировщик нагрузки по всем репликам. Он использует метки подов для определения, какие подов обслуживать. 
 
-### Types of Services
+### Типы сервисов
 
-- **ClusterIP**: For inter communication of pods (Internal to Cluster)
-- **NodePort**: Listen on each node in a cluster.
-- **LoadBalancer**: Expose the service externally using the cloud provider's load balancer. 
+- **ClusterIP**: Для внутренней связи подов (внутри кластера)
+- **NodePort**: Слушает на каждом узле в кластере.
+- **LoadBalancer**: Экспортирует сервис внешним образом с помощью облачного провайдера балансировщика нагрузки. 
 
-Couple of things to NOTE:
+Несколько вещей, которые нужно ПРИМЕЧАНИЕ:
 
-- ClusterIP is the default type of service. It exposes the service on a cluster-internal IP. It is only reachable from within the cluster.
-- If we don't specify the `targetPort` in the service, it will default to the same value as the `port`.
-- If we don't specify the `nodePort` in the service, Kubernetes will assign a port within the range of 30000-32767.
+- ClusterIP - это тип сервиса по умолчанию. Он экспортирует сервис по внутреннему IP кластера. Он доступен только изнутри кластера.
+- Если мы не указываем `targetPort` в сервисе, он по умолчанию будет равен `port`.
+- Если мы не указываем `nodePort` в сервисе, Kubernetes назначит порт в диапазоне 30000-32767.
 
 #### ClusterIP
 
@@ -352,13 +352,13 @@ metadata:
   annotations:
     bar: service-annotation
 spec:
-  type: ClusterIP # This is the default value
+  type: ClusterIP # Это значение по умолчанию
   selector:
     baz: pod-label
   ports:
     - protocol: TCP
-      port: 80 # Port the service is listening on
-      targetPort: 80 # Port the container is listening on (if unset, defaults to equal port value)
+      port: 80 # Порт, на котором сервис слушает
+      targetPort: 80 # Порт, на котором контейнер слушает (если не установлен, по умолчанию равен значению порта)
 ```
 
 #### NodePort
@@ -374,9 +374,9 @@ spec:
     baz: pod-label
   ports:
     - protocol: TCP
-      port: 80 # Port the service is listening on
-      targetPort: 80 # Port the container is listening on (if unset, defaults to equal port value)
-      # nodePort: 30XXX (if unset, kubernetes will assign a port within 30000-32767)
+      port: 80 # Порт, на котором сервис слушает
+      targetPort: 80 # Порт, на котором контейнер слушает (если не установлен, по умолчанию равен значению порта)
+      # nodePort: 30XXX (если не установлен, kubernetes назначит порт в диапазоне 30000-32767)
 ```
 
 #### LoadBalancer
@@ -387,16 +387,16 @@ kind: Service
 metadata:
   name: nginx-loadbalancer
 spec:
-  type: LoadBalancer # Will only work if cluster is configured to provision one from an external source (e.g. cloud provider)
+  type: LoadBalancer # Будет работать только если кластер настроен для предоставления одного из внешних источников (например, облачного провайдера)
   selector:
     baz: pod-label
   ports:
     - protocol: TCP
-      port: 80 # Port the service is listening on
-      targetPort: 80 # Port the container is listening on (if unset, defaults to equal port value)
+      port: 80 # Порт, на котором сервис слушает
+      targetPort: 80 # Порт, на котором контейнер слушает (если не установлен, по умолчанию равен значению порта)
 ```
 
-Example of multi-port service
+Пример многопортового сервиса
 
 ```yaml
 apiVersion: v1
@@ -420,7 +420,7 @@ spec:
 
 ### Headless Service
 
-A headless service is a service with a cluster IP of None. It is used to disable the load balancing for the service. It is used to get the DNS records for the pods. It is used to get the DNS records for the pods. It is used to get the DNS records for the pods.
+Headless service - это сервис с Cluster IP равным None. Он используется для отключения балансировки нагрузки для сервиса. Он используется для получения DNS записей подов. Он используется для получения DNS записей подов. Он используется для получения DNS записей подов.
 
 ```yaml
 apiVersion: v1
@@ -439,24 +439,24 @@ spec:
 
 ### ExternalName Service
 
-An ExternalName service is a service that maps a service to a DNS name. It is used to map a service to a DNS name. It is used to map a service to a DNS name. It is used to map a service to a DNS name.
+ExternalName service - это сервис, который отображает сервис на DNS имя. Он используется для отображения сервиса на DNS имя. Он используется для отображения сервиса на DNS имя. Он используется для отображения сервиса на DNS имя.
 
 
 ## Jobs
 
-A Job creates one or more pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the pods it created.
+Job создает один или несколько подов и гарантирует, что указанное количество из них успешно завершается. По мере успешного завершения подов Job отслеживает успешные завершения. Когда достигается указанное количество успешных завершений, задача (т.е., Job) завершается. Удаление Job очищает подов, которые он создал.
 
-It might look similar to Pod, but the main difference is that it runs to completion and have certain features like `parallelism`, `completions`, `activeDeadlineSeconds`, `backoffLimit`, etc. In easy way we can say it is a higher level of abstraction than Pods.
+Это может выглядеть похоже на пода, но основное отличие в том, что он запускается до завершения и имеет определенные функции, такие как `parallelism`, `completions`, `activeDeadlineSeconds`, `backoffLimit`, и т.д. В простом виде мы можем сказать, что это более высокий уровень абстракции, чем подов.
 ```yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: echo-date-job
 spec:
-  parallelism: 1 # Number of pods that should be created in parallel
-  completions: 1 # Number of pods that should be created
-  activeDeadlineSeconds: 100 # Time in seconds after which the Job will be terminated
-  backoffLimit: 1 # Number of retries before considering a Job as failed
+  parallelism: 1 # Количество подов, которые должны быть созданы параллельно
+  completions: 1 # Количество подов, которые должны быть созданы
+  activeDeadlineSeconds: 100 # Время в секундах после которого Job будет завершен
+  backoffLimit: 1 # Количество попыток перед тем, как считать Job неудачным
   template:
     spec:
       containers:
@@ -468,7 +468,7 @@ spec:
 
 ## CronJobs
 
-A CronJob creates Jobs on a repeating schedule. Like a Job, a CronJob creates one or more Jobs. However, a CronJob is used for creating Jobs that run on a repeating schedule, whereas a Job runs once and then is finished.
+CronJob создает Jobs по повторяющемуся расписанию. Как Job, CronJob создает один или несколько Jobs. Однако CronJob используется для создания Jobs, которые работают по повторяющемуся расписанию, в то время как Job запускается один раз и затем завершается.
 
 ```yaml
 apiVersion: batch/v1
@@ -476,7 +476,7 @@ kind: CronJob
 metadata:
   name: echo-date-cronjob
 spec:
-  schedule: "*/1 * * * *" # Run every minute
+  schedule: "*/1 * * * *" # Запускать каждую минуту
   jobTemplate:
     spec:
       parallelism: 1
@@ -492,7 +492,7 @@ spec:
           restartPolicy: Never
 ```
 
-We can also create a Job from a CronJob spec by running below command. This cab help us to run the job immediately without waiting for the schedule. This also helps to check if the CronJob job is working as expected and you don't want to wait for the schedule.
+Мы также можем создать Job из спецификации CronJob, запустив ниже команду. Это может помочь нам запустить задачу сразу, без ожидания расписания. Это также помогает проверить, работает ли CronJob job как ожидалось, и вы не хотите ждать расписания.
 
 ```bash
 kubectl create job --from=cronjob/<cronjob-name> <job-name>
@@ -500,9 +500,9 @@ kubectl create job --from=cronjob/<cronjob-name> <job-name>
 
 ## DaemonSet
 
-DemonSet ensures that all nodes run a copy of a pod. It is used to run a copy of a pod on all or a subset of nodes in a cluster. It can be used for monitoring, logging, etc.
+DaemonSet гарантирует, что на всех узлах запущен копию пода. Он используется для запуска копии пода на всех или подмножестве узлов в кластере. Он может использоваться для мониторинга, логирования и т.д.
 
-NOTE: It will run on all worker nodes, except the master node.
+ПРИМЕЧАНИЕ: Он будет запущен на всех рабочих узлах, кроме мастер-узла.
 
 ```yaml
 apiVersion: apps/v1
@@ -525,13 +525,13 @@ spec:
 
 ## StatefulSet
 
-StatefulSet is a controller that manages the deployment and scaling of a set of pods. It is used to run stateful applications. It is used to run applications that require stable, unique network identifiers, stable storage, and ordered deployment and scaling.
+StatefulSet - это контроллер, который управляет развертыванием и масштабированием набора подов. Он используется для запуска stateful приложений. Он используется для запуска приложений, которые требуют стабильные, уникальные сетевые идентификаторы, стабильное хранилище и упорядоченное развертывание и масштабирование.
 
-`serviceName` is used to create a headless service. We need to create a headless service while creating a StatefulSet. The purpose of the headless service is that it allows a client to connect to whichever pod it prefers. 
+`serviceName` используется для создания headless сервиса. Нам нужно создать headless сервис при создании StatefulSet. Цель headless сервиса заключается в том, чтобы позволить клиенту подключиться к тому пода, который он предпочитает.
 
-Another great thing about the StatefulSet is that pod naming is predictable. The pod name is in the format `<statefulset-name>-<ordinal>`. The ordinal is a unique number assigned to each pod. So, fo below example, the pod names will be `nginx-statefulset-0`, `nginx-statefulset-1`, `nginx-statefulset-2`.
+Еще одна замечательная вещь о StatefulSet заключается в том, что имена подов предсказуемы. Имя пода в формате `<statefulset-name>-<ordinal>`. Ординал - это уникальный номер, назначенный каждому пода. Таким образом, для примера ниже, имена подов будут `nginx-statefulset-0`, `nginx-statefulset-1`, `nginx-statefulset-2`.
 
-Also, similar kind of naming convention is follow by PVCs. The PVC name is in the format `<volume-claim-template-name>-<statefulset-name>-<ordinal>`. So, for below example, the PVC names will be `data-nginx-statefulset-0`, `data-nginx-statefulset-1`, `data-nginx-statefulset-2`.
+Также следует такое же соглашение об именовании для PVCs. Имя PVC в формате `<volume-claim-template-name>-<statefulset-name>-<ordinal>`. Таким образом, для примера ниже, имена PVC будут `data-nginx-statefulset-0`, `data-nginx-statefulset-1`, `data-nginx-statefulset-2`.
 
 The way the below config is working that the init container will run before the main container. The init container will populate the default HTML file in the volume and then the main container will use that volume to serve the HTML file.
 

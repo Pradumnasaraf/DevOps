@@ -1,13 +1,13 @@
 ---
 sidebar_position: 4
-title: Other Resources
-description: A collection of resources to learn more about Docker.
+title: Другие ресурсы
+description: Коллекция ресурсов для изучения Docker.
 tags: ["Docker", "Containerization", "DevOps"]
 keywords: ["Docker", "Containerization", "DevOps"]
 slug: "/docker/other-resources"
 ---
 
-Here are list of other resources that you can refer to learn more about Docker:
+Вот список других ресурсов, к которым вы можете обратиться для изучения Docker:
 
-- [Dockerfiles files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/docker/dockerfiles): A collection of Dockerfiles to help you understand the concepts better.
-- [Docker Compose files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/docker/docker-compose): A collection of Docker Compose files I have created for different applications to help you understand the concepts better.
+- [Dockerfiles файлы](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/docker/dockerfiles): Коллекция Dockerfiles для лучшего понимания концепций.
+- [Docker Compose файлы](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/docker/docker-compose): Коллекция Docker Compose файлов, которые я создал для различных приложений, чтобы помочь вам лучше понять концепции.
