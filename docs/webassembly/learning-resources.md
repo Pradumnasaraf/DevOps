@@ -12,3 +12,8 @@ slug: "/webassembly/resources"
 - [GitHub WebAssembly](https://github.com/WebAssembly) - WebAssembly's GitHub organization.
 - [Awesome Wasm repo](https://github.com/mbasso/awesome-wasm) - A curated list of awesome WebAssembly projects.
 - [KodeKloud WebAssembly Course](https://kodekloud.com/p/webassembly) - NOTE: This is a paid course. Mentioning it here as I used it to learn WebAssembly.
+
+## Read next
+
+- [WebAssembly Introduction](./introduction.md) - Review the basics, runtimes, and ecosystem first.
+- [Tools](./tools.md) - Try WebAssembly tools and playgrounds in the browser.

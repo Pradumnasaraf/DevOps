@@ -8,3 +8,8 @@ slug: "/prometheus/resources"
 ---
 
 - [Prometheus Playlist - TechWorld with Nana](https://youtube.com/playlist?list=PLy7NrYWoggjxCF3av5JKwyG7FFF9eLeL4)
+
+## Read next
+
+- [Prometheus Introduction](./introduction.md) - Review the monitoring stack and basic concepts.
+- [Kubernetes Introduction](../kubernetes/introduction.md) - Connect Prometheus setup back to Kubernetes basics.

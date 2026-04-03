@@ -8,9 +8,9 @@ slug: "/yaml"
 
 ## YAML - YAML Ain't Markup Language
 
-YAML is a human-readable data serialization language. It is commonly used for configuration files and in applications where data is being stored or transmitted.
+YAML is a human-readable data serialization language. It is commonly used for configuration files and for describing structured data in tools such as Kubernetes, GitHub Actions, and Docker Compose.
 
-Eg:
+Example:
 
 ```yaml
 name: Pradumna
@@ -28,18 +28,18 @@ address:
 
 ### Properties
 
-- Similar to XML & JSON.
-- We can't add commands.
-- Strict syntax - (Indentation)
-- Human readable data serialization language.
+- Similar in purpose to JSON and XML.
+- Designed for data, not executable commands.
+- Sensitive to indentation and spacing.
+- Easy for humans to read when formatted clearly.
 
 ### Syntax
 
-#### Key Value pair
+#### Key-value pair
 
 ```yaml
 Name: "Pradumna Saraf"
-1: "This a list"
+1: "This is a value"
 ```
 
 #### List
@@ -53,7 +53,7 @@ Name: "Pradumna Saraf"
 or
 
 ```yaml
-cities: [new delhi, patna,gujrat]
+cities: [new delhi, patna, gujarat]
 ```
 
 #### String and Variables
@@ -64,7 +64,7 @@ fruit: "Mango"
 job: 'Advocate'
 age: 65
 marks: 10.33
-booleanValue: No, N, false, False, FALSE 
+booleanValue: false
 ```
 
 #### Multiline String
@@ -75,7 +75,7 @@ Address: |
   Delhi
   India
 ```
-Single line in multiple line.
+Folded style joins multiple lines into a single string.
 
 ```yaml
 message: >
@@ -130,7 +130,7 @@ surname: !!null #null or NULL ~
 ~: this a null key
 
 # Exponential Numbers
-myNum: 6.22ES56
+myNum: 6.22E56
 
 # Dates and time
 date: !!timestamp 2002-01-02
@@ -140,9 +140,9 @@ India Time: 2012-12-15T02:59:43 +5:30
 
 ### Usage
 
-- Used in Kubernetes, Ansible, Docker, etc.
-- Used to store data in key-value pairs.
-- CI/CD tools like GitHub Actions, CircleCI, use YAML to create workflows.
+- Used in Kubernetes, Ansible, Docker, and many other tools.
+- Useful for storing data in key-value form.
+- Common in CI/CD systems like GitHub Actions and CircleCI.
 
 ### What's next?
 

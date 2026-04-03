@@ -7,8 +7,17 @@ keywords: ["DevSecOps", "DevOps", "Security"]
 slug: "/devsecops"
 ---
 
-It is a set of practices that combines software development (Dev) and information security (Sec) to shorten the systems development life cycle while providing continuous monitoring to ensure the delivery of secure software.
+DevSecOps is the practice of integrating security into the software delivery lifecycle instead of treating it as a separate step at the end. The goal is to build, test, ship, and operate software with security checks built into the workflow.
 
-- [DevSecOps](https://www.redhat.com/en/topics/devops/what-is-devsecops)
+In practice, DevSecOps usually includes:
 
-# MORE INFO COMING SOON
+- scanning dependencies and container images
+- checking infrastructure and configuration for misconfigurations
+- shifting security review earlier into CI/CD pipelines
+- keeping feedback fast so teams can fix issues before release
+
+Good DevSecOps is not about adding more gates everywhere. It is about making secure defaults, useful automation, and fast feedback part of normal engineering work.
+
+### What's next?
+
+- [DevSecOps overview from Red Hat](https://www.redhat.com/en/topics/devops/what-is-devsecops)

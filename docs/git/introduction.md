@@ -7,9 +7,16 @@ keywords: ["Git", "Version Control", "Software Development"]
 slug: "/git"
 ---
 
-Git is a distributed version control system that is used to track changes in source code during software development. It is designed to coordinate work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows.
+Git is a distributed version control system used to track changes in files, especially source code. It helps individuals and teams work on the same project without losing history, overwriting each other's work, or guessing what changed.
+
+In practice, Git helps you:
+
+- keep a history of your work
+- create branches to try changes safely
+- review changes before merging them
+- roll back when something goes wrong
 
 ### What's next?
 
-- [commands](./commands.md) - Learn about the commands that you can use with Git.
+- [Commands](./commands.md) - Learn the Git commands you will use most often.
 - [Learning Resources](./learning-resources.md) - Learn more about Git with these resources.

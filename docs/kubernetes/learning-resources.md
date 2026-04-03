@@ -14,3 +14,8 @@ slug: "/kubernetes/resources"
 - [Kubernetes official docs](https://kubernetes.io/docs/home/)
 - [Kubernetes Basic Concepts - Blog](https://spacelift.io/blog/kubernetes-tutorial)
 - [Kubernetes in Action](https://www.manning.com/books/kubernetes-in-action)
+
+## Read next
+
+- [Kubernetes Introduction](./introduction.md) - Review the cluster model and resource basics.
+- [Kubernetes Playground](./playground.md) - Practice these concepts in the browser.

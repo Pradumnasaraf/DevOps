@@ -10,3 +10,8 @@ slug: "/gitops/resources"
 - [What is GitOps - TechWorld with Nana](https://youtu.be/f5EpcWp0THw)
 - [ArgoCD Guide: Full Tutorial for Beginers](https://youtu.be/JLrR9RV9AFA)
 - [OpenGitOps](https://opengitops.dev/)
+
+## Read next
+
+- [GitOps Introduction](./introduction.md) - Review the GitOps workflow and principles.
+- [ArgoCD Introduction](../argocd/introduction.md) - Continue with a common GitOps tool.

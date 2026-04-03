@@ -1,11 +1,56 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+.topicsSection {
+  margin: 3rem 0;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.header {
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  margin-bottom: 0.4rem;
+}
+
+.description {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  max-width: 44rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  display: block;
+  padding: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.card:hover {
+  text-decoration: none;
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-hover-overlay);
+}
+
+.cardTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.cardDescription {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

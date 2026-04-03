@@ -8,3 +8,8 @@ slug: "/networking/resources"
 ---
 
 - [Computer Networking](https://youtu.be/IPvYjXCsTg8)
+
+## Read next
+
+- [Networking Introduction](./introduction.md) - Review the core networking concepts first.
+- [Networking Commands](./commands.md) - Practice the commands used for troubleshooting.

@@ -11,3 +11,8 @@ Kubernetes Playground is a web-based Kubernetes environment that allows you to l
 
 - [labs.play-with-k8s.com](https://labs.play-with-k8s.com/)
 - [killercoda.com/playgrounds](https://killercoda.com/playgrounds)
+
+## Read next
+
+- [Kubernetes Introduction](./introduction.md) - Review the concepts before trying them in a playground.
+- [Kubernetes Commands](./commands.md) - Use these commands while practicing in the browser.

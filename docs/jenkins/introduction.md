@@ -7,11 +7,11 @@ keywords: ["Jenkins", "Continuous Integration", "Continuous Deployment"]
 slug: "/jenkins"
 ---
 
-Jenkins is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
+Jenkins is an open-source automation server. It helps automate software delivery tasks such as building, testing, and deploying applications. It is commonly used for CI/CD pipelines.
 
 ## Jenkinsfile - Pipeline as Code
 
-Insted of configuring the pipeline in the Jenkins UI, we can define the entire pipeline in a Jenkinsfile and check it into source control. The file name is case sensitive and must be named `Jenkinsfile`.
+Instead of configuring a pipeline only in the Jenkins UI, we can define it in a `Jenkinsfile` and store it in source control. The filename is case-sensitive and should be exactly `Jenkinsfile`.
 
 **This pipeline can be written in two ways:**
 
@@ -36,7 +36,7 @@ node {
 
 ### Declarative Pipeline
 
-Declarative Pipeline is a new way of defining the entire pipeline using a simple and easy to understand structure.
+Declarative Pipeline defines the pipeline in a more structured and readable format.
 
 ```Jenkinsfile
 pipeline {
@@ -44,7 +44,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh npm install
+                sh 'npm install'
                 echo 'Building..'
             }
         }
@@ -64,13 +64,13 @@ pipeline {
 
 - **Pipeline**: The top-level directive that defines the entire pipeline.
 - **Agent**: The agent directive defines where the entire pipeline, or a specific stage, will execute in the Jenkins environment.
-- **Stages**: The stages directive defines the different stages in pipeline.
+- **Stages**: The `stages` directive defines the different stages in the pipeline.
 - **Stage**: The stage directive defines a single stage in a pipeline.
 - **Steps**: The steps directive defines the steps to be executed in a stage.
 
 Post Step:
 
-The post section is used to define actions to be taken after the completion of the pipeline. It can be used to send notifications, sccess/failure messages, etc.
+The `post` section is used to define actions that should happen after the pipeline finishes, such as notifications or success and failure messages.
 
 ```Jenkinsfile
 stages{}
@@ -89,7 +89,7 @@ post{
 
 When:
 
-The when directive is used to control the flow of the pipeline based on the conditions. It can be used to skip stages, or entire pipelines, based on the conditions.
+The `when` directive controls whether a stage should run based on conditions.
 
 ```Jenkinsfile
 when{
@@ -117,11 +117,11 @@ http://<host>/env-vars.html
 http://localhost:8080/env-vars.html
 ```
 
-### Buils Tools
+### Build Tools
 
 The tools directive is used to define the tools required for the pipeline. It can be used to define the JDK, Maven and Gradle tools.
 
-With the 1st approach we can directly use the tools and its commands in the pipeline.
+With the first approach, we can define the tools directly and use their commands in the pipeline.
 
 ```jenkinsfile
 tools {
@@ -130,7 +130,7 @@ tools {
 }
 ```
 
-We can also follow wrapper approach to define the tools.
+We can also use wrapper-based steps to define the tools.
 
 ```jenkinsfile
 stage('Build') {
@@ -154,7 +154,7 @@ Note: The tools must be installed in Jenkins. To install the tools, go to `Manag
 
 ### Parameters
 
-The parameters directive is used to define the parameters required for the pipeline. It can be used to define the parameters like string, boolean, choice, etc. we can check the parameters in the UI by clicking on the `Build with Parameters` button.
+The `parameters` directive defines inputs for the pipeline, such as string, boolean, or choice values. In the Jenkins UI, these appear under `Build with Parameters`.
 
 ```jenkinsfile
 parameters {
@@ -176,7 +176,7 @@ stage('Build') {
 
 ### Triggers
 
-The triggers directive is used to define the triggers for the pipeline. Common way are, poll, github webhooks, etc.
+The `triggers` directive is used to define how the pipeline should start. Common triggers include polling and GitHub webhooks.
 
 <img width="1486" alt="Screenshot 2023-01-08 at 12 40 23 AM" src="https://user-images.githubusercontent.com/51878265/211166876-04dfe987-20ae-4a76-8314-27ccf3e636e4.png"></img>
 
@@ -184,7 +184,7 @@ The triggers directive is used to define the triggers for the pipeline. Common w
 
 #### Replay
 
-The replay option is used to re-run the pipeline. It is useful to test withou making/committing any changes to the code.
+The replay option is used to re-run the pipeline. It is useful when you want to test changes without committing them first.
 
 <img width="1511" alt="Screenshot 2023-01-07 at 2 18 28 PM" src="https://user-images.githubusercontent.com/51878265/211167100-f413eff3-d984-4ef2-a4a5-996b43051d04.png"></img>
 

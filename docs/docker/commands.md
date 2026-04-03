@@ -7,11 +7,11 @@ keywords: ["Docker", "Containerization", "DevOps"]
 slug: "/docker/commands"
 ---
 
-### Docker Basic
+### Docker Basics
 
-- To check Docker vesrion
+- Check the Docker version
 
-```
+```bash
 docker version
 ```
 
@@ -21,21 +21,21 @@ docker version
 docker images
 ```
 
-- Pull/Download the image from the Docker registry to local machine.
+- Pull or download an image from a registry to your local machine.
 
 ```bash
 docker pull <image name>
 //Eg: docker pull nginx
 ```
 
-- To run an container (It will 1st pull the image if not present in the local sytem)
-  - NOTE: When we just provide the name of the image it will pull the latest one, i.e `nginx:latest`. We can also specify the version `nginx:1.14`
-  - Additioanly we can use flags
+- Run a container. Docker will pull the image first if it is not available locally.
+  - NOTE: If you only provide the image name, Docker uses the default tag, usually `latest`. You can also specify a version such as `nginx:1.14`.
+  - Common flags:
   
      - `--name <name> `- To give a name to the container.
      - `-p <Host port:container port>`- To forward the port.
      - `-d` - To run in detached mode
-     - `-it` - For interactive envirnoment
+     - `-it` - For an interactive environment
      - `-e` - For environment variable
 
 ```bash
@@ -145,7 +145,7 @@ docker image prune -all
 
 ### Docker Network
 
-- Check list of avilable networks.
+- Check the list of available networks.
 
 ```bash
 docker network ls
@@ -157,7 +157,7 @@ docker network ls
 docker network inspect <network-name>
 ```
 
-- Run a container on a certian network/own careted network 
+- Run a container on a specific or user-created network.
 
 ```
 docker run --network <network-name> <image-name>
@@ -193,7 +193,7 @@ docker inspect  <image-name/id>
 docker history <image-name/id>
 ```
 
-- Create a our own image with an existing image.
+- Create your own tagged image from an existing image.
 
 ```
 docker image tag <image-name:tag> <new-image-name:tag>
@@ -203,12 +203,12 @@ docker image tag ubuntu:18.04 pradumna/ubuntu:example
 
 ### Docker Volume
 
-- Create bind mount
-  - Help to sync our local files with help of Docker container.
+- Create a bind mount.
+  - This helps you sync local files with a container.
   
 
-- To sync our local machine changes with help of Docker volume (Bind mount)
-    - `- v` is use to define volume, also we give another `-v` flag to override the changes so that it will not chnage in container.
+- Sync local changes into a container with a bind mount.
+    - `-v` is used to define the mount. You can also mount a second path as read-only when needed.
 
 ```bash
 docker run -v <path-to-folder-on-local-machine>:<path-to-folder-on-container> -p <host-port>:<container-port> -d --name docker-node docker-node
@@ -218,17 +218,17 @@ docker
 ```bash
 docker run -v <path-to-folder-on-local-machine>:<path-to-folder-on-container> -v <path-to-file/folder-on-container> -p <local-machine-port>:<container-port> -d --name docker-node docker-node
 ```
-To make it read only so that when you add some files inside it, the container will not get created on your local machine use `-v port:port:ro`
+To make the mount read-only, add `:ro` at the end of the mount definition.
 
-- docker  volume command for mounting the docker socket to the docker container for accessing the host's docker daemon for performing the continuous integration in jenkins while using docker as a agent.. 
+- Mount the Docker socket into a container when you need that container to talk to the host Docker daemon, for example in some Jenkins setups.
 ```bash
 docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker-image:version bin/bash
 ```
 
 ### Docker Compose
 
-- Run docker compose file.
-  Note: By default it finds for the file name `docker-compose.yaml`, to give file with other naming use `-f <file-name.yaml>` command
+- Run a Docker Compose project.
+  Note: If you do not pass `-f`, Docker looks for `compose.yaml` or `docker-compose.yaml` in the working directory.
 
 ```bash
 docker compose up -d
@@ -238,27 +238,27 @@ docker compose up -d
 docker compose down
 ```
 
-- To rebuilt the new Image with thew new changes
+- Rebuild the image with new changes.
 
 ```bash
 docker compose up --build
 ```
 
-- Override the existing of compose file
+- Combine multiple Compose files.
 
 ```bash
-docker compose -f docker-compose.yaml  -f docker-compose.dev.yaml
+docker compose -f compose.yaml -f compose.dev.yaml
 ```
 
 ###  Docker Swarm and Services
 
-- Initalize swarm
+- Initialize Swarm
 
 ```bash
 docker swarm init
 ```
 
-- Check all the node available
+- Check all available nodes
 
 ```bash
 docker node ls
@@ -286,7 +286,7 @@ docker network create -d overlay backend
 docker service create -p 8080:80 --name vote --replicas 2 nginx
 ```
 
-- To get all task containers running on different node 
+- Get all task containers running across nodes
 
 ```bash
 docker service ps <service-name/id>
@@ -339,13 +339,13 @@ docker stack ls
 
 **STACK -> SERVICES -> TASKS -> CONTAINERS**
 
-- To check which services are running inside a staacks
+- Check which services are running inside a stack
 
 ```
 docker stack services <stack name>
 ```
 
-- To check taks are running inside a stack
+- Check which tasks are running inside a stack
 
 ```
 docker stack ps <stack name> 
@@ -362,8 +362,8 @@ docker stack ps <stack name>
 - Run the command with the container creation
 
 ```bash
-doc run <image-name> <command>
-// Eg: `doc run ubuntu:16.04 echo hey`
+docker run <image-name> <command>
+// Eg: `docker run ubuntu:16.04 echo hey`
 ```
 
 
@@ -374,3 +374,9 @@ Step 1 - create Dockerfile
 Step 2 - docker build -t myimage:1.0 <path-of-dockerfile> (-t for tag)
 Step 3 - docker run myimage:1.0
 ```
+
+## Read next
+
+- [Docker Introduction](./introduction.md) - Review the core Docker concepts behind these commands.
+- [Learning Resources](./learning-resources.md) - Continue with courses and videos for deeper practice.
+- [Other Resources](./other-resources.md) - Explore sample Dockerfiles and Compose files.

@@ -56,7 +56,7 @@ jobs:
 
 ### Check and Build Go Project
 
-This workflow will check if the code is getting built and formatted correctly. It will also check for linting issues in the code. Can be useful to check incoming PRs.
+This workflow checks whether the code builds correctly, is properly formatted, and passes linting. It is useful for incoming pull requests.
 
 ```yaml
 name: CI
@@ -294,3 +294,9 @@ jobs:
       - name: Docker Push
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ steps.package-version.outputs.current-version}}
 ```
+
+## Read next
+
+- [GitHub Actions Introduction](./introduction.md) - Review workflow syntax, jobs, and events.
+- [Learning Resources](./learning-resources.md) - Continue with official docs and longer tutorials.
+- [Other Resources](./other-resources.md) - Browse reusable workflow files.

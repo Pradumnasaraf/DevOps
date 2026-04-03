@@ -9,7 +9,9 @@ slug: "/docker"
 
 ### Overview of Docker
 
-Docker is an open-source platform designed to simplify the development, deployment, and management of applications in a containerized environment, also known as Docker containers. Docker containers are a lightweight and portable way to package and run applications, enabling developers to package their applications with all the required dependencies and configurations in a single package that can be easily moved between any environment. Docker containers are simply the running instance of a Docker image.
+Docker is an open-source platform for building, shipping, and running containerized applications. In day-to-day use, you usually build an image, run that image as one or more containers, and use registries, networks, volumes, and Compose files to manage the rest of the workflow.
+
+A Docker image is a packaged blueprint. A container is a running instance of that image.
 
 ### Why You Should Consider Using Docker
 
@@ -25,7 +27,7 @@ Docker is an open-source platform designed to simplify the development, deployme
 
 - Images are made up of app binaries, dependencies, and metadata. They don't contain a full OS.
 - Images are a combination of multiple layers.
-- Each image has its unique ID and a tag for a different version.
+- Each image has a unique ID, and tags help identify versions or variants.
 
 ![Screenshot from 2022-11-02 11-57-19](https://user-images.githubusercontent.com/51878265/199414178-d59e8780-c140-4bf1-b27e-7e8f1c723afb.png)
 
@@ -74,13 +76,13 @@ The .dockerignore file is used to specify files and directories that are not cop
 
 ### Docker Network
 
-To connect to our created containers, Docker provides several network drivers. The available default drivers are bridge, host, and null.
+Docker provides multiple network drivers. For local learning and day-to-day usage, the most common built-in drivers are `bridge`, `host`, and `none`.
 
-- Bridge network creates a virtual network that allows containers to communicate with each other using IP addresses. We need to create a custom bridge network to enable DNS resolution between containers. Only containers connected to the same custom bridge network can communicate with each other directly. It doesn't work with the default bridge network.
+- A `bridge` network lets containers communicate on the same Docker host. User-defined bridge networks are usually preferred because they provide automatic DNS-based service discovery between containers.
 
-- Host network uses the host machine's network stack inside the container. We can use this network for applications that require high network performance. We don't need to expose ports here.
+- A `host` network shares the host machine's network stack with the container. It is useful in specific performance-sensitive cases, and it removes the need for Docker port publishing.
 
-- Using Null network driver disables the networking for the container.
+- A `none` network disables networking for the container.
 
 ![docker network](https://user-images.githubusercontent.com/37767537/223677649-babf850a-a87f-46bd-bb32-425801f05b2e.png)
 
@@ -92,19 +94,19 @@ docker network create <network-name>
 
 ### Docker Volumes
 
-We need volumes to persist our data, like databases and user info, because containers can go up and down, and we need some way to preserve our data.
+We use volumes to persist data outside the container lifecycle. This matters for stateful applications like databases, uploaded files, and any data that should survive container replacement.
 
-We attach a volume during runtime:
+We can attach a named volume during runtime:
 
 ```bash
-docker run -v /path/in/container
+docker run -v app-data:/var/lib/postgresql/data postgres:16
 ```
 
 **Named Volume**
 We can also name the volume; otherwise, it will generate an ID and be hard to track:
 
 ```bash
-docker run -v <volume name>:</path in container> <image name>
+docker run -v <volume-name>:<path-in-container> <image-name>
 docker run -v myvolume:/src/public nginx
 ```
 
@@ -130,7 +132,8 @@ volumes:
 
 - Compose helps us define and run multi-container Docker applications and configure relationships between containers.
 - It also saves the hassle of entering the commands from the CLI.
-- We have to write the configs in the YAML file, by default the file name is `docker-compose.yml`. We can run/stop by `docker compose up/down`.
+- Compose files are written in YAML. Modern Docker looks for `compose.yaml` by default, while `docker-compose.yaml` is still widely recognized for backward compatibility.
+- The `docker compose` CLI is the current interface for working with Compose projects.
 
 The Skeleton of Docker Compose:
 
@@ -174,6 +177,11 @@ If any container depends on another container:
 depends_on:
   - mysql-primary
 ```
+
+Useful references:
+
+- [Docker Compose CLI reference](https://docs.docker.com/reference/cli/docker/compose/)
+- [Docker bridge network driver](https://docs.docker.com/engine/network/drivers/bridge/)
 
 ### Docker Swarm
 

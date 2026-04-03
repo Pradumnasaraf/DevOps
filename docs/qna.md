@@ -9,7 +9,7 @@ Having questions or doubts about DevOps is totally reasonable and normal. Here a
 
 ### Do I need to know programming to learn DevOps?
 
-Yes, you need to know programming to learn DevOps. DevOps is a combination of software development (Dev) and information technology operations (Ops). You need to know programming to automate the process of software delivery and infrastructure changes.
+You do not need to be an application developer before you start, but basic scripting and problem-solving skills help a lot. In practice, most DevOps work involves reading code, writing small scripts, working with configuration, and understanding how applications behave in production.
 
 ### What are the prerequisites to learn DevOps?
 
@@ -17,7 +17,7 @@ It's good to have knowledge of one programming language, databases, operating sy
 
 ### Do I need to know Linux to learn DevOps?
 
-Yes, you need to know Linux to learn DevOps. Linux is the most popular operating system used in the DevOps world. You need to know Linux commands and bash scripting. In most places, you will be writing Linux commands only.
+Linux basics are high leverage because many servers, containers, CI environments, and cloud workloads run on Linux. You do not need expert-level Linux knowledge on day one, but you should get comfortable with the command line, files, processes, networking basics, and shell scripting.
 
 ### Do I need to learn all the tools in DevOps?
 
@@ -29,7 +29,7 @@ You can start learning DevOps by understanding the basics of DevOps, the DevOps 
 
 ### Is DevOps hard to learn?
 
-No, DevOps is not hard to learn. Yes, it's a vast field with many tools available, but you can start by understanding the basics of DevOps, the DevOps lifecycle, networking concepts, Linux commands, and Git. Then, start learning the tools in DevOps. You can start with one tool and then learn others.
+It is not easy because the field is broad, but it becomes manageable when you learn in layers. Focus on fundamentals first, then add one tool at a time. The difficulty usually comes from trying to learn every tool at once, not from any single concept.
 
 ### Can a beginner learn DevOps?
 
@@ -41,7 +41,7 @@ There is no fixed time to learn DevOps. It depends on your current knowledge, ho
 
 ### Do I need to know cloud to learn DevOps?
 
-Yes, you need to know about the cloud to learn DevOps. Cloud is an essential part of DevOps. You need to know how to deploy your applications on the cloud, manage your infrastructure on the cloud, and monitor your applications on the cloud. It's not a prerequisite, and you can learn about the cloud while learning DevOps.
+Cloud knowledge becomes important quickly because many teams deploy and operate software on AWS, Azure, or Google Cloud. It is useful, but not a prerequisite. You can start with local environments and core concepts, then add cloud services once the fundamentals make sense.
 
 ### What resources are available to learn DevOps?
 

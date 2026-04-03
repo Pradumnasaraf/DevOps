@@ -7,7 +7,7 @@ keywords: ["Kubernetes", "Containerization", "DevOps"]
 slug: "/kubernetes/commands"
 ---
 
-> KUBECTL COMMANDS
+## kubectl Commands
 
 - To check the version:
 
@@ -26,7 +26,7 @@ kubectl config view
 
 ```bash
 kubectl run <pod name> --image <image name>
-kubectl run myngix --image nginx
+kubectl run mynginx --image nginx
 ```
 
 - To create a deployment
@@ -49,7 +49,7 @@ kubectl scale deployment mynginx --replicas 2
 kubectl get all
 ```
 
-- To get the get details from the a particular namespace
+- To get details from a particular namespace
 
 ```bash
 kubectl get all -n <namespace name>
@@ -79,13 +79,13 @@ kubectl get pods
 kubectl get pods -o wide
 ```
 
-- To check all the running node.
+- To check all the running nodes
 
 ```bash
 kubectl get nodes
 ```
 
-- To check all the replicaset
+- To check all ReplicaSets
 
 ```bash
 kubectl get replicaset
@@ -127,12 +127,12 @@ kubectl delete pod --field-selector="status.phase==Failed"
 kubectl logs <pod-name>
 ```
 
-- To check logs or sh/bash of a container inside a pod. That if pods have multiple container an we have enter inside a container
+- To open a shell in a specific container or inspect logs in a multi-container Pod
 
 ```bash
-kube exec -it <pod-name> -c <container-name> -- <bash command>
-kube exec -it multi-container -c nginx-container -- curl localhost
-kube exec -it multi-container -c nginx-container -- sh
+kubectl exec -it <pod-name> -c <container-name> -- <bash command>
+kubectl exec -it multi-container -c nginx-container -- curl localhost
+kubectl exec -it multi-container -c nginx-container -- sh
 kubectl logs multi-container -c nginx-container
 ```
 
@@ -143,10 +143,10 @@ kubectl exec -it <pod name> -- sh
 kubectl exec -it nginx -- sh
 ```
 
-- Get a deep details/state chnages about a pod 
+- Get detailed state and event changes for a Pod
 
 ```bash
-kube describe pod <pod -name>
+kubectl describe pod <pod-name>
 ```
 
 - To watch the pods (watch refresh every few seconds)
@@ -154,10 +154,10 @@ kube describe pod <pod -name>
 kubectl get pods -w
 ```
 
-- To check the cluster are avilable
+- To check the available cluster contexts
 
 ```
-kube config get-contexts
+kubectl config get-contexts
 ```
 
 - We can create namespace by
@@ -167,7 +167,7 @@ kubectl create namespace <name>
 kubectl create namespace dev
 ```
 
-- To do a dry nun and get the output as Yaml
+- To do a dry run and get the output as YAML
 
 ```bash
 kubectl create namespace test-name --dry-run=client -oyaml
@@ -204,7 +204,7 @@ kubectl get pv
 kubectl get pvc
 ```
 
-- To chnage default/active namespace
+- To change the default or active namespace
 
 ```bash
 kubectl config set-context --current --namespace=<namespace name>
@@ -215,3 +215,9 @@ kubectl config set-context --current --namespace=<namespace name>
 ```bash 
 kubectl get all -n <namespace name>
 ```
+
+## Read next
+
+- [Kubernetes Introduction](./introduction.md) - Review the concepts behind Pods, Deployments, and namespaces.
+- [Learning Resources](./learning-resources.md) - Continue with courses, docs, and longer tutorials.
+- [Playground](./playground.md) - Practice these commands in a browser-based cluster.

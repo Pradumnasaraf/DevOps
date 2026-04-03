@@ -7,8 +7,14 @@ title: Feedback & Suggestions
 
 Hey learner, practitioner, or expert in DevOps,
 
-Thank you so much for checking out this project/website. I ([Pradumna](https://x.com/pradumna_Saraf)) know that this project/website is not perfect and there are many things that can be improved. You might have encountered some errors or outdated information.
+Thank you for checking out this project. I ([Pradumna](https://x.com/pradumna_Saraf)) know the site is always a work in progress. Some pages will inevitably need updates as vendor docs, defaults, CLIs, and best practices change.
 
-I am always open to feedback and suggestions. If you have any, please feel free to share them. You can raise a [Pull Request](https://github.com/Pradumnasaraf/DevOps) if the changes are minor. If you are unsure about the changes or if it's something major, please first raise an [Issue](https://github.com/Pradumnasaraf/DevOps/issues/new/choose) on the GitHub repo. I will try to incorporate your feedback and suggestions as much as possible.
+If you notice a broken link, outdated command, confusing explanation, or a better way to teach a concept, please share it. You can open a [Pull Request](https://github.com/Pradumnasaraf/DevOps) for small fixes. If the change is larger or you want to discuss the direction first, open an [Issue](https://github.com/Pradumnasaraf/DevOps/issues/new/choose).
 
-Thanks for your time and support.
+The most helpful reports usually include:
+
+- the page URL or doc path
+- what looks incorrect or unclear
+- the corrected example or an official source when available
+
+Thanks for helping keep the site useful.
