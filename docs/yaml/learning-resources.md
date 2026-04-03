@@ -13,3 +13,8 @@ slug: "/yaml/resources"
 - [Yaml Tutorial - TechWorld with Nana](https://youtu.be/1uFVr15xDGg)
 - [Complete YAML Course](https://youtu.be/IA90BTozdow)
 - [YAML: The Missing Battery in Python](https://realpython.com/python-yaml/) 
+
+## Read next
+
+- [YAML Introduction](./introduction.md) - Revisit the syntax and data structure basics.
+- [Tools](./tools.md) - Validate and format YAML with the listed tools.

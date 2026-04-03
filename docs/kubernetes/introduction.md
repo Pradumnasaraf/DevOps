@@ -57,7 +57,7 @@ It is a specification and libraries for writing plugins to configure network int
 
 ### CSI - Container Storage Interface
 
-It is a standard for exposing arbitrary block and file storage systems to containerized workloads on Kubernetes. It is used to provide persistent storage to the containers. It is a standard interface between Kubernetes and storage providers. It is used to provide persistent storage to the containers. Popular choices are Rook, OpenEBS, etc.
+CSI is the standard interface between Kubernetes and storage providers. It lets Kubernetes work with different block and file storage systems for persistent workloads. Popular choices in the ecosystem include Rook and OpenEBS.
 
 Custom Resource Definition (CRD) lets you define your own resource types in Kubernetes and extend the API.
 
@@ -188,7 +188,7 @@ spec:
 
 ### Probes
 
-Probes are used to check the health of the container. There are three types of probes:
+Probes are used to check the health of a container. Kubernetes supports three main probe types:
 
 - **Startup Probe**: It is used to check if the container is started. It is used to delay the liveness and readiness probes until the container is started.
 - **Readiness Probe**: It is used to check if the container is ready to serve traffic. If the readiness probe fails, the container will not receive traffic. It is used to delay the traffic until the container is ready.

@@ -18,3 +18,8 @@ slug: "/git/resources"
    ```bash
    git push --help
    ```
+
+## Read next
+
+- [Git Introduction](./introduction.md) - Revisit the core Git concepts first.
+- [Git Commands](./commands.md) - Practice the commands you will use most often.

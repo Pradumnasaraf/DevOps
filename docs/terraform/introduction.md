@@ -1843,4 +1843,4 @@ variable "ami" {
 
 Now if we create a new workspace like `ProjectA` and run the `terraform apply` command, it will use the `ami-0c55b159cbfafe1f0` AMI. If we create a new workspace like `ProjectB` and run the `terraform apply` command, it will use the `ami-oe4b3bfb4c0e9b2` AMI. We can use the `terraform workspace list` command to list the workspaces and the `terraform workspace select` command to select a workspace.
 
-The way terraform manages the the state files for different workspaces is that it creates a separate directory for each workspace and stores the state file in that directory. And all the directories are named as `terraform.tfstate.d/<workspace_name>`.
+The way Terraform manages the state files for different workspaces is by creating a separate directory for each workspace and storing the state file in that directory. Those directories are named `terraform.tfstate.d/<workspace_name>`.

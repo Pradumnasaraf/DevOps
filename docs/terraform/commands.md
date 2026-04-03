@@ -331,3 +331,7 @@ aws iam attach-group-policy --group-name <group-name> --policy-arn <policy-arn>
 aws iam attach-group-policy --group-name developers --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
 ```
 
+## Read next
+
+- [Terraform Introduction](./introduction.md) - Review the Terraform workflow and state concepts first.
+- [Learning Resources](./learning-resources.md) - Continue with official docs and deeper guides.

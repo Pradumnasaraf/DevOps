@@ -61,7 +61,7 @@ on:
 
 #### Trigger Filters
 
-- We can trigger the workflow when only when certain files are changed.
+- We can trigger the workflow only when certain files are changed.
 
 ```yaml
 on:
@@ -70,7 +70,7 @@ on:
       - "src/index.js"
 ```
 
-- We can trigger the workflow when only when certain files with an extension are changed.
+- We can trigger the workflow only when certain file types are changed.
 
 ```yaml
 on:
@@ -83,7 +83,7 @@ on:
       - "**.js"
 ```
 
-- We can trigger the workflow when only when certain files in a directory are changed.
+- We can trigger the workflow only when files in a specific directory are changed.
 
 ```yaml
 on:
@@ -289,4 +289,4 @@ jobs:
 
 - [Scenarios](./scenarios.md) - A collection of GitHub Actions workflow files I use and created to help you understand the concepts better.
 - [Learning Resources](./learning-resources.md) - A list of resources to learn more about GitHub Actions.
-- [other Resources](./other-resources.md) - A list of other resources that you can refer to learn more about GitHub Actions.
+- [Other Resources](./other-resources.md) - A list of extra resources that you can use to learn more about GitHub Actions.

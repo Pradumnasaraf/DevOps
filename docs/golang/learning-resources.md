@@ -16,4 +16,8 @@ slug: "/golang/resources"
 - [Codeacademy Free course](https://www.codecademy.com/learn/learn-go)
 - [Gophercises](https://gophercises.com/)
 
+## Read next
+
+- [Golang Introduction](./introduction.md) - Review the basics and core language concepts.
+- [Other Resources](./other-resources.md) - Browse more Go concepts and example apps.
 

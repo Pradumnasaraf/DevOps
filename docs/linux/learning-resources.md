@@ -9,3 +9,8 @@ slug: "/linux/resources"
 
 - [Linux kernel source tree](https://github.com/torvalds/linux)
 - [Linux & Docker Fundamentals - Kubesimplify](https://www.youtube.com/live/EUu1E_YKGTw?feature=share)
+
+## Read next
+
+- [Linux Introduction](./introduction.md) - Review the basics of Linux and the filesystem layout.
+- [Linux Commands](./commands.md) - Practice the commands you will use often.

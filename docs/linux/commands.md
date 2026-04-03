@@ -7,41 +7,40 @@ keywords: ["Linux", "Operating System", "Kernel"]
 slug: "/linux/commands"
 ---
 
-- `whereis` - Find the path of that executable file.
+- `whereis` - Find the path of an executable file.
 
-### List operation
-- `ls` - Shows list.
-    - `-a` - Hidden file.
-    - `-l` - Permission.
-    - `-R` - Show sub dir.
+### List operations
+- `ls` - Show files and directories.
+    - `-a` - Include hidden files.
+    - `-l` - Show permissions and detailed info.
+    - `-R` - Show subdirectories recursively.
 
-### Changing dir operation
-- `cd <folder-name>` - Change Dir.
-- `cd ..` -   Go one Directory back.
-- `cd` -    Go to home.
-- `cd ../<foldername>` - Open a previous dir folder.
-- `cd <path>` - Open a dir with the path.
+### Changing directories
+- `cd <folder-name>` - Change directory.
+- `cd ..` - Go one directory back.
+- `cd` - Go to the home directory.
+- `cd ../<foldername>` - Open a folder in the previous directory.
+- `cd <path>` - Open a directory by path.
 
-### File/Folder Ope.
+### File and folder basics
 - `mkdir <new-dir-name>` - Create a new folder.
 - `mkdir -p test/test1/test2` - Create a dir between two directories.
-- `touch <new-file-name>` - create a blank file.
+- `touch <new-file-name>` - Create a blank file.
 - `pwd` - Present working directory.
 - `cat <filename>` - Display file content.
 - `cat > <new-file-name>` - Create a file.
-- `dd if=/dev/zero of=bos_dosya bs=4G count=1`- create empty file with zeros
+- `dd if=/dev/zero of=bos_dosya bs=4G count=1` - Create an empty file filled with zeros.
 - `cat >> <filename>` - Append the file
 - `cat  <filename1> >> <filename2>` - Append the content of the file filename1 at the end of the file `<filename2>` .
 - `cat <filename> <filename2> ` - Display 2 files at a time.
 - `cat <filename> <filename2> > <newfile-name>` - Merge both of file content in a single one.
 - `cat <file-name> | tr > <new-file-name>` - Translate the file.
-- `cut -c  1-2 <filename>` - cut the file column wise
+- `cut -c 1-2 <filename>` - Cut the file column-wise.
 - `echo "Hello" >> <file-name>`
-- `man <commad name>` - Know about the command usages and options.
-- `man <commad name>` - know about the command.
+- `man <command name>` - Show command usage and options.
 
-### File/Folder operation
-- `cp <file-name> <new-fie-name>` - Make a copy of a file in the current location.
+### File and folder operations
+- `cp <file-name> <new-file-name>` - Make a copy of a file in the current location.
 - `mv <file-name> <dir-path>` - Move a file from one dir to another.
 - `mv <file-name> <new-fie-name>` - Rename a file.
 - `mv -R <dir-name> <dir-path>` - Move Dir
@@ -54,14 +53,14 @@ slug: "/linux/commands"
 - `locate <file>` - To find out the file.  
 - `find <file/folder-name>` - Find a file/folder.
 - `find <dir-name>` - Find files inside the dir
-- `find .-type d` - Show only dir.
-    - `.-type f` - show only files.
-    - `.-type f -name "*.txt"` - Show only files with that specific name.
-    - `.-type f -iname "*.txt"` - Show only files with that specific name - not case sensitive (i)
-    - `.-type f -mmin -20` - Show files which modify less than 20 min ago.
-    - `.-type f -mmin +20` - show files which modify more than 20 min ago.
-    - `.-type f -maxdepth 2` - Will only show 1 folder deep.
-    - `.-size +1k` - will only show file/folder with size of 1kb
+- `find . -type d` - Show only directories.
+    - `-type f` - Show only files.
+    - `-type f -name "*.txt"` - Show only files with that specific name.
+    - `-type f -iname "*.txt"` - Show only files with that specific name, case-insensitive.
+    - `-type f -mmin -20` - Show files modified less than 20 minutes ago.
+    - `-type f -mmin +20` - Show files modified more than 20 minutes ago.
+    - `-maxdepth 2` - Show matches only two levels deep.
+    - `-size +1k` - Show files or folders larger than 1 KB.
 
 
 ### System commands
@@ -76,7 +75,7 @@ slug: "/linux/commands"
 - `df` - Check the capacity and storage details.
     - `m` - In megabyte  or 
     - `hg` - In gigabyte.
-- `du` - Disk usages capcity 
+- `du` - Disk usage and capacity details
     - `-h` (human readable)
 - `echo` - Get a output of a string
 - `echo $PATH` - Check the path variable
@@ -85,7 +84,7 @@ slug: "/linux/commands"
 - `!<command-name>` - Run the previous command
 - `git add .; git commit -m "message"` - Run multiple commands at a time
 - `sort <file-name>"` - sort the file
-- `job` - show the jobs
+- `jobs` - Show background jobs
 - `wget <url>` - download the file from the URL
 - `top` - what processes are running
 - `kill <process-id>` -stop that process
@@ -99,7 +98,7 @@ slug: "/linux/commands"
 - `free` - free memory 
 - `vmstat` - virtual memory
 - `lsof` - list all the open file
-- `xdg-open <file-fath>` - open the folder (graphical window) of a file/folder with path.
+- `xdg-open <file-path>` - Open a file or folder in the graphical file manager.
 - `xdg-open .` - open the folder of the current directory.
 - `vi ~/.bashrc` - set your Alias
 - `echo -n 'username' | base64` - encode the username to base64
@@ -117,7 +116,7 @@ slug: "/linux/commands"
 - `chmod u=rwx,g=rxw,o=rwx <file-name>` READ, WRITE AND EXECUTE
 - `chmod 777 <file-name>` - 4- Read, 2- Write, 1 - Execute
 - `find . -perm 777 ` - shows files with all permissions(rwx)
-- `grep <keyword> <file-name>` - To search if the keyword is presnt in the file or not
+- `grep <keyword> <file-name>` - Search whether the keyword is present in the file.
 - `grep -w <keyword> <file-name>` - To search if the keyword is present in the file or not (complete word)
 - `grep -i <keyword> <file-name>` - To search if the keyword is present in the file or not (not case sens)
 - `grep -n <keyword> <file-name>` - To search if the keyword is present in the file or not (Line number)
@@ -138,4 +137,9 @@ history
 - `echo "google.com" && {echo "facebook.com"; eco "pradumnasaraf.co"}` 
 - `echo "google.com" || echo "pingfacebook.com"` - second will only run if first is not successful
 - `rm -r !(file.txt)` - delete all files except file.txt
-- `printevnv` - to print all th env.
+- `printenv` - Print all environment variables.
+
+## Read next
+
+- [Linux Introduction](./introduction.md) - Review the Linux basics and filesystem layout.
+- [Learning Resources](./learning-resources.md) - Continue with Linux-focused videos and references.

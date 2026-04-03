@@ -434,20 +434,25 @@ slug: "/git/commands"
   git diff
   ```
 
-- repo's remote url
+- Remote URLs
 
   ```bash
   git remote -v
   ```
 
-- repo's remote url
+- Branches
 
   ```bash
   git branch # The active branch is prefixed with *
   ```
 
-- repo's remote url
+- Tags
 
   ```bash
   git tag
   ```
+
+## Read next
+
+- [Git Introduction](./introduction.md) - Review the core Git concepts behind these commands.
+- [Learning Resources](./learning-resources.md) - Continue with tutorials, docs, and practice tools.

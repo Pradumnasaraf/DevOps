@@ -294,3 +294,9 @@ jobs:
       - name: Docker Push
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ steps.package-version.outputs.current-version}}
 ```
+
+## Read next
+
+- [GitHub Actions Introduction](./introduction.md) - Review workflow syntax, jobs, and events.
+- [Learning Resources](./learning-resources.md) - Continue with official docs and longer tutorials.
+- [Other Resources](./other-resources.md) - Browse reusable workflow files.

@@ -26,5 +26,11 @@ jobs:
       - name: Check README links
         run: npm run check:readme-links
 
+      - name: Check docs links
+        run: npm run check:doc-links
+
+      - name: Check content quality
+        run: npm run check:content-quality
+
       - name: Build docs site
         run: npm run build
