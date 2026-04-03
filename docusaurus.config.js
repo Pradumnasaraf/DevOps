@@ -34,7 +34,6 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           routeBasePath: '/',
-          showLastUpdateTime: true,
           editUrl:
             'https://github.com/Pradumnasaraf/DevOps/edit/main/',
         },
