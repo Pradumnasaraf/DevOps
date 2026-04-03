@@ -1,6 +1,6 @@
 {
   "name": "devops",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "scripts": {
     "check:content-quality": "node scripts/check-content-quality.mjs",
     "check:doc-links": "node scripts/check-doc-links.mjs",
