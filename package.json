@@ -2,6 +2,7 @@
   "name": "devops",
   "version": "2.6.2",
   "scripts": {
+    "check:readme-links": "node scripts/check-readme-links.mjs",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
