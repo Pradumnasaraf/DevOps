@@ -9,7 +9,7 @@ slug: "/terraform/commands"
 
 1. Terraform Init
 
-It is used to initialize a working directory containing Terraform configuration files. 
+It is used to initialize a working directory containing Terraform configuration files.
 
 ```bash
 terraform init
@@ -17,7 +17,7 @@ terraform init
 
 2. Terraform Plan
 
-It is used to create an execution plan. It shows what Terraform will do when you call apply. 
+It is used to create an execution plan. It shows what Terraform will do when you run `apply`.
 
 ```bash
 terraform plan
@@ -33,13 +33,13 @@ terraform apply
 
 4. Terraform Validate
 
-We can run this command before applying the changes to check whether the configuration is syntactically valid and internally consistent. 
+We can run this command before applying changes to check whether the configuration is syntactically valid and internally consistent.
 
 ```bash
 terraform validate
 ```
 
-It will print the exact in the console if there is any error in the configuration file.
+If there is an error, Terraform prints the details in the console.
 
 5. Terraform Format
 
@@ -51,7 +51,7 @@ terraform fmt
 
 6. Terraform Show
 
-It is used to provide human-readable output of current state of the resources. 
+It is used to provide a human-readable view of the current state.
 
 ```bash
 terraform show
@@ -87,13 +87,13 @@ terraform output
 
 9. Terraform Refresh
 
-It is used to update the state file according to the real-world infrastructure. 
+It is used to reconcile the state with the real infrastructure.
 
 ```bash
 terraform plan
 ```
 
-or 
+or
 
 ```bash
 terraform apply -refresh-only
@@ -153,7 +153,7 @@ When we move the resource in the state file (technically renaming), we have to m
 
 15. Terraform State Pull
 
-It is used to pull the state and output it to the console. 
+It is used to pull the state and print it to the console.
 
 ```bash
 terraform state pull
@@ -330,5 +330,4 @@ aws iam list-attached-group-policies --group-name developers
 aws iam attach-group-policy --group-name <group-name> --policy-arn <policy-arn>
 aws iam attach-group-policy --group-name developers --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
 ```
-
 

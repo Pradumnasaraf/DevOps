@@ -7,21 +7,21 @@ keywords: ["GitOps", "Kubernetes", "Continuous Delivery"]
 slug: "/gitops"
 ---
 
-GitOps is a way of managing Kubernetes clusters using Git as the source of truth.
+GitOps is a way of managing infrastructure and applications by using Git as the source of truth. In a Kubernetes setup, that usually means the desired cluster state lives in a Git repository, and an agent in the cluster applies or reconciles that state.
 
 ### Benefits of GitOps
 
-- History of changes to the cluster is stored in Git 
-- Rollback to a previous version of the cluster is easy
-- Changes to the cluster can be reviewed before they are applied
-- Changes to the cluster can be tested before they are applied
-- Changes to the cluster can be automated
+- The history of changes is stored in Git.
+- Rolling back to a previous state is easier.
+- Changes can be reviewed before they are applied.
+- Changes can be tested before they reach the cluster.
+- Synchronization can be automated.
 
 ### GitOps Tools
 
-- [ArgoCD](../argocd/introduction.md) is a git controller that can be used to deploy applications to a Kubernetes cluster. 
+- [Argo CD](../argocd/introduction.md) is a GitOps controller that can be used to deploy applications to a Kubernetes cluster.
 
 ### What's next?
 
 - [Learning Resources](./learning-resources.md) - Learn more about GitOps with these resources.
-- [ArgoCD](../argocd/introduction.md) - Learn more about ArgoCD.
+- [Argo CD](../argocd/introduction.md) - Learn more about Argo CD.

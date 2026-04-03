@@ -7,11 +7,11 @@ keywords: ["Linux", "Operating System", "Open Source"]
 slug: "/linux"
 ---
 
-### Overview of Linux and Why it is so popular?
+### Overview of Linux and Why It Is So Popular
 
-Linux is an open-source operating system (OS) that runs on a computer and controls all of the other software and hardware on the computer. Initially, Linux was built on the Unix operating system, which was created many decades ago as a platform for scientific and academic computing. It is used on a wide range of devices, including servers, desktop computers, laptops, cloud computing, and Mobile devices.
+Linux is an open-source operating system that manages hardware and provides the foundation for software to run. It is heavily influenced by Unix ideas and is used across servers, laptops, cloud platforms, networking devices, and embedded systems.
 
-As Linux is open-source software so anyone can access its source code and make changes to it. Other than this Linux is known for its Security features. It has a large community of users and developers who are constantly working to identify and fix security vulnerabilities. Also, Linux is well known for its Customizability allowing users to modify and configure it in order to meet their specific needs.
+Linux is widely used because it is open source, stable, flexible, and well suited for automation. It is also known for strong community support, broad tooling, and the ability to tailor systems for different use cases.
 
 ### Linux Architecture Components
 
@@ -35,8 +35,7 @@ The main architectural components that work together to form a complete Linux OS
 
 ### Linux Distributions
 
-Linux distributions, also known as "distros," are different versions of the Linux operating system that are built 
-and packaged with specific versions of the architectural components, the package management system used, the graphical user interface, and the tools and applications included in it.
+Linux distributions, or distros, are packaged versions of Linux that combine the kernel with package managers, system tools, and often a desktop environment or server-focused defaults.
 
 Examples of Linux distros include Ubuntu, Fedora, Debian, CentOS, Mint, Red Hat Enterprise Linux (RHEL), etc.
 
@@ -44,7 +43,7 @@ Examples of Linux distros include Ubuntu, Fedora, Debian, CentOS, Mint, Red Hat 
 
 The Linux file system is the way that the operating system organizes and stores files and directories on a computer's hard drive or other storage devices. It consists of a hierarchical structure where files and directories are arranged in a tree-like format starting from the root directory (represented by "/"). Each file and directory has a unique location within the file system hierarchy, and these locations can be referred to using a path similar to how file paths work in other operating systems.
 
-There are several types of file systems available for use in Linux including below:
+There are several file systems commonly used with Linux, including:
 
 - Ext4: This is the most widely used file system in Linux and it is known for its high performance, reliability, and scalability. It is a journaling file system meaning that it keeps track of changes made to the file system in a log that helps to ensure that data is not lost in the event of a system failure.
 
@@ -81,7 +80,7 @@ In Linux, the file system is organized into a hierarchical structure, with the r
 - /usr - contains user utilities and libraries as well as data shared by multiple users
 - /var - contains variable data such as log files, mail spools, and database files
 
-These subdirectories may vary between different Linux distributions but the basic structure will remain the same. It is strongly recommended to explore each subdirectory separately to understand more about it.
+These subdirectories may vary slightly between Linux distributions, but the overall structure stays fairly consistent. Exploring them one by one is one of the best ways to get comfortable with Linux.
 
 ![Linux-2](https://user-images.githubusercontent.com/37767537/226103260-c51190cf-3e9a-47e9-abe8-6b131227572d.png)
 

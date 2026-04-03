@@ -8,22 +8,24 @@ slug: "/networking"
 
 ---
 
+Networking basics matter in DevOps because almost every system depends on moving data between services, hosts, and users. The goal is not to memorize everything at once, but to understand the main concepts well enough to reason about how applications communicate.
+
 ### OSI Layer
 
 <p align="center"><img alt="OSI" src="https://user-images.githubusercontent.com/51878265/206166710-cafe1502-ea85-433d-b4bd-6124f8110992.png"></img></p>
 
 ### TCP
 
-TCP is a connection-oriented protocol. This means that it first establishes a link between the source and destination before it sends data. TCP is a preferred protocol when data integrity is critical, such as in any transactional system. Eg: email and file transfer
+TCP is a connection-oriented protocol. It establishes a connection before sending data, which makes it a good fit when reliability matters more than raw speed. Common examples include web traffic, email, and file transfers.
 
 ### UDP
 
-UDP in turn is not connection-oriented. UDP starts transmitting data immediately, without waiting for connection confirmation from the receiving side. Even though some data loss can happen, UDP is most often used in cases where speed is more important than perfect transmissions, such as in voice or video streaming.
+UDP is not connection-oriented. It sends data without waiting for connection confirmation from the receiver. Some packets may be lost, but UDP is useful when low latency matters more than perfect delivery, such as in voice, video, or gaming traffic.
 
 
 ### Ports
 
-A virtual point where network connections start and end. So that multiple applications can communicate easily.
+A port is a logical endpoint used by applications to send and receive network traffic. Ports allow multiple services to communicate on the same machine without getting mixed together.
 
 <p align="center"><img alt="Tcp port" src="https://user-images.githubusercontent.com/51878265/206188329-c5b10491-d39e-40ca-8369-1a9965559857.png"></img></p>
 
@@ -31,10 +33,10 @@ A virtual point where network connections start and end. So that multiple applic
 |Port Number| Process | Uses |
 |:--:|:--:|:--:|
 |80 | HTTP | |
-|443| HTTPs| |
-|3306| MySQl | |
+|443| HTTPS| |
+|3306| MySQL | |
 
-To check which ports the system are using
+To check which ports the system is using:
 
 ```bash
 netstat -a -b
@@ -42,13 +44,13 @@ netstat -a -b
 
 ### URL (Uniform Resource Locator)
 
-A unique identifier is used to locate a resource on the Internet. Lilke HTML, JS files.
+A URL is a unique identifier used to locate a resource on the internet, such as an HTML page, image, or API endpoint.
 
 ### URL Breakdown
 
 <p align="center"><img src="https://user-images.githubusercontent.com/51878265/206189760-ea426560-0d3c-4c5f-a8c4-b4f7c9d6f106.png"></img></p>
 
-- Generally, the URL doesn't contains a port number in the string because it is by default. For eg, `google.com` or `google.com:443`
+- A URL often omits the port when the default port is implied. For example, `https://google.com` usually means port `443`.
 
 
 ### IP Address

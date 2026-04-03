@@ -7,21 +7,23 @@ keywords: ["Golang", "Programming Language", "Go"]
 slug: "/golang"
 ---
 
-Golang (or Go) is statically typed, compiled programming language designed at Google. It is syntactically similar to C, but with memory safety, garbage collection, structural typing, and CSP-style concurrency.
+Go (often called Golang) is a statically typed, compiled programming language designed at Google. It is known for a simple syntax, fast compilation, built-in concurrency support, and a strong standard library.
 
-In Golang, everything is a package. A package is a collection of source files in the same directory that are compiled together. A package can be imported by other packages. `main` is a special package that defines a standalone executable program, not a library.
+In Go, code is organized into packages. A package is a collection of source files in the same directory that are compiled together. The special package `main` defines an executable program.
 
 ## Installation
 
-- [Download](https://golang.org/dl/) and install Go
+- [Download](https://golang.org/dl/) and install Go.
   
-- Garbage collected
-- Multithreading
-- concurrency
+Some reasons people like Go:
+
+- Garbage collection
+- Simple concurrency model
+- Fast compilation
 
 ## Packages
 
-Module is a collection of related Go packages that are versioned together as a single unit.
+A module is a collection of related Go packages that are versioned together as a single unit.
 
 - fmt - formatted I/O with functions analogous to C's printf and scanf.
 - os - provides a platform-independent interface to operating system functionality.
@@ -32,18 +34,25 @@ Module is a collection of related Go packages that are versioned together as a s
 - encoding/json - implements encoding and decoding of JSON.
 
 
-## Hello World - Running a program
+## Hello World
 
 ```go
-package main // package declaration
+package main
 
-import "fmt" // import fmt package
-
-import ( "fmt" "os") // import multiple packages
+import "fmt"
 
 func main() {
-fmt.Println("Hello, World!")
+    fmt.Println("Hello, World!")
 }
+```
+
+If you need multiple imports:
+
+```go
+import (
+    "fmt"
+    "os"
+)
 ```
 
 We can run and compile the program using the following command:
@@ -56,15 +65,15 @@ $ go run hello.go
 
 Go modules are a dependency management system that makes dependency version information explicit and easier to manage. Go modules are the future of dependency management in Go.
 
-`go mod init github.com/username/repo` - creates a new module, initializing the go.mod file that describes it.
+`go mod init github.com/username/repo` creates a new module and initializes the `go.mod` file.
 
-- `go mod tidy` - command will add any missing modules necessary to build the current module's packages and dependencies. It will also remove any unused modules that don't provide any relevant packages. It will update the go.mod file and the go.sum file.
+- `go mod tidy` adds missing dependencies and removes unused ones. It updates both `go.mod` and `go.sum`.
 
-- `go mod verify` - command will verify dependencies have expected content.
+- `go mod verify` checks that downloaded dependencies match the expected content.
 
 - `go list -m all` - command will list all modules needed to build the current module, as well as indirect and test dependencies.
 
-- `go get` - command will add dependencies to current module and install them.
+- `go get` adds or updates dependencies in the current module.
 
 - `go list -m -versions <module name>` - command will list all available versions of a module.
 
@@ -78,7 +87,7 @@ It is a file that contains the expected cryptographic checksums of the content o
 
 ## Go Path
 
-Go path is an environment variable that specifies the location of your workspace. It is used to find the location of your Go code.
+`GOPATH` is an environment variable that points to a Go workspace. It matters less than it used to before Go modules, but you will still see it in older tooling and setups.
 
 ## Build
 
@@ -88,7 +97,7 @@ We can build a program using the following command:
 $ go build hello.go
 ```
 
-we can also build for different platforms using the following command:
+We can also build for different platforms using the following command:
 
 ```bash
 $ GOOS=linux GOARCH=amd64 go build hello.go

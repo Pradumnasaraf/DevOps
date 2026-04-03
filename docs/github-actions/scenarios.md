@@ -56,7 +56,7 @@ jobs:
 
 ### Check and Build Go Project
 
-This workflow will check if the code is getting built and formatted correctly. It will also check for linting issues in the code. Can be useful to check incoming PRs.
+This workflow checks whether the code builds correctly, is properly formatted, and passes linting. It is useful for incoming pull requests.
 
 ```yaml
 name: CI

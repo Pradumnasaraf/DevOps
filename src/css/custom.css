@@ -40,6 +40,29 @@
   border-radius: 8px;
 }
 
+.theme-edit-this-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  background: var(--ifm-hover-overlay);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.theme-edit-this-page::before {
+  content: 'Improve this page';
+  color: var(--ifm-font-color-base);
+}
+
+.theme-edit-this-page:hover {
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
 .table-of-contents {
   border-left: 1px solid var(--ifm-color-emphasis-200);
 }
