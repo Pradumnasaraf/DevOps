@@ -228,7 +228,7 @@ docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker-image:version
 ### Docker Compose
 
 - Run docker compose file.
-  Note: By default it finds for the file name `docker-compose.yaml`, to give file with other naming use `-f <file-name.yaml>` command
+  Note: If you do not pass `-f`, Docker looks for `compose.yaml` or `docker-compose.yaml` in the working directory.
 
 ```bash
 docker compose up -d
@@ -247,7 +247,7 @@ docker compose up --build
 - Override the existing of compose file
 
 ```bash
-docker compose -f docker-compose.yaml  -f docker-compose.dev.yaml
+docker compose -f compose.yaml -f compose.dev.yaml
 ```
 
 ###  Docker Swarm and Services

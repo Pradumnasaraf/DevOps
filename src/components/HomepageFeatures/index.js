@@ -1,63 +1,51 @@
-import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-const FeatureList = [
+const topics = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: 'Docker',
+    href: '/docker',
+    description: 'Containers, images, Compose, and packaging fundamentals.',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: 'Kubernetes',
+    href: '/kubernetes',
+    description: 'Architecture, workloads, services, and day-to-day cluster concepts.',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: 'GitHub Actions',
+    href: '/github-actions',
+    description: 'Workflow basics, runners, triggers, and reusable automation patterns.',
+  },
+  {
+    title: 'Terraform',
+    href: '/terraform',
+    description: 'Infrastructure as code, providers, plans, and dependency management.',
   },
 ];
 
-function Feature({Svg, title, description}) {
-  return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
-
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
+    <section className={styles.topicsSection}>
+      <div className={styles.header}>
+        <Heading as="h2" className={styles.title}>
+          Explore Core Topics
+        </Heading>
+        <p className={styles.description}>
+          Start with the areas most people reach for first, then expand into the rest of the
+          library from the sidebar.
+        </p>
+      </div>
+      <div className={styles.grid}>
+        {topics.map((topic) => (
+          <Link key={topic.title} className={styles.card} to={topic.href}>
+            <Heading as="h3" className={styles.cardTitle}>
+              {topic.title}
+            </Heading>
+            <p className={styles.cardDescription}>{topic.description}</p>
+          </Link>
+        ))}
       </div>
     </section>
   );

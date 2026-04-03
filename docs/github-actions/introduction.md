@@ -7,7 +7,7 @@ keywords: ["GitHub Actions", "DevOps", "CI/CD"]
 slug: "/github-actions"
 ---
 
-GitHub Actions is a feature that allows you to automate your software development workflows. You can write individual tasks, called actions, and combine them to create a custom workflow. Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub.
+GitHub Actions lets you automate software workflows directly inside a GitHub repository. You define workflows in YAML files, trigger them from events such as `push`, `pull_request`, or `workflow_dispatch`, and run jobs on GitHub-hosted or self-hosted runners.
 
 ### Overview
 
@@ -17,24 +17,28 @@ GitHub Actions is a feature that allows you to automate your software developmen
 
 - **Jobs** - A job is a set of steps that execute on the same runner. Runner is a server that has the GitHub Actions runner application installed.
 
-- **Steps** - A step is an individual task that can run commands or actions like `actions/checkout@v2`. Each step in a job executes on the same runner, allowing for direct file sharing.
+- **Steps** - A step is an individual task that can run shell commands or reusable actions like `actions/checkout@v4`. Each step in a job executes on the same runner, so files are available across steps in that job.
 
 > Summary: The workflow is a set of jobs and each job is a set of steps. Each step can be an action or a shell command.
 
-Basic worflow file.
+Basic workflow file:
 
 ```yaml
-name: CI # name of the workflow
+name: CI
 
-on: [push] # triggers the workflow on push or pull request events but only for the master branch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build: # name of the job
-    runs-on: ubuntu-latest # runs-on is the type of machine to run the job on - runner
-    steps: # steps are the individual tasks that make up a job
-      - uses: actions/checkout@v2
-      - name: Run a one-line script # name is the name of the step
-        run: echo Hello, world!
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo "Hello, world!"
 ```
 
 - **Action** - An action is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task.
@@ -97,27 +101,24 @@ on:
 
 ### Services
 
-Services are external resources that can be used in a workflow. We can use services like `redis` or `postgres` in our workflow. We can run a service in a container and use it in our workflow. We can also use custom images.
+Services are containers that GitHub Actions starts for a job. They are useful for integration tests that need supporting dependencies such as Redis or Postgres.
 
 ```yaml
 services:
   redis:
-    image: redis # Docker image
+    image: redis:7
     ports:
-      - 6379:6379 # port mapping
+      - 6379:6379
 
-  mongodb:
-    image: mongo
+  postgres:
+    image: postgres:16
+    env:
+      POSTGRES_PASSWORD: postgres
     ports:
-      - 27017:27017
-
-  sqlite:
-    image: sqlite
-    ports:
-      - 3306:3306
+      - 5432:5432
 ```
 
-### Using ouput from one step in another step
+### Using output from one step in another step
 
 We can use the output from one step in another step using the `id` keyword.
 
@@ -128,11 +129,13 @@ jobs:
     steps:
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=version::1.0.0
+        run: echo "version=1.0.0" >> "$GITHUB_OUTPUT"
 
       - name: Use the version
-        run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
+        run: echo ${{ steps.get_version.outputs.version }} # steps.<step_id>.outputs.<output_name>
 ```
+
+GitHub now recommends environment files such as `GITHUB_OUTPUT` instead of the deprecated `::set-output` command.
 
 ### Jobs
 
@@ -176,7 +179,7 @@ The `github` context is available to you in any workflow or action you create on
 
 ### Environment variables
 
-We can set environment variables in the workflow file using the `env` keyword. WE
+We can set environment variables in the workflow file using the `env` keyword.
 
 ```yaml
 env:
@@ -198,18 +201,18 @@ jobs:
 
 ### Matrix
 
-Matrix is helpful when we want to run a job on multiple versions of a tool.For eg. we want to run a job on multiple versions of Node.js. We can use the `matrix` keyword to run a job on multiple versions of a tool. We can also use the `matrix` keyword to run a job on multiple operating systems.
+Matrix is helpful when we want to run the same job on multiple versions of a tool or across multiple operating systems.
 
 ```yaml
 jobs:
   example_matrix:
     strategy:
       matrix:
-        os: [ubuntu-22.04, ubuntu-20.04]
-        version: [14, 16, 18]
+        os: [ubuntu-22.04, ubuntu-24.04]
+        version: [20, 22]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.version }}
 ```
@@ -225,17 +228,23 @@ jobs:
     outputs:
       url: ${{ steps.deploy-preview.outputs.url }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: deploy-preview
-        run: echo "url=preview_url" >> $GITHUB_OUTPUT
+        run: echo "url=preview_url" >> "$GITHUB_OUTPUT"
 
-    data:
-      runs-on: ubuntu-latest
-      needs: deploy
-      steps:
-        - name: load json files
-          run: echo ${{ needs.deploy.outputs.url }}
+  data:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Load preview URL
+        run: echo ${{ needs.deploy.outputs.url }}
 ```
+
+Useful references:
+
+- [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+- [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)
+- [Workflow commands and `GITHUB_OUTPUT`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands)
 
 ## Artifacts
 

@@ -7,7 +7,7 @@ keywords: ["Terraform", "Infrastructure as Code", "HashiCorp"]
 slug: "/terraform"
 ---
 
-Terraform is an open source infrastructure as code software tool created by HashiCorp. It allows users to define and provision infrastructure using a declarative configuration language. Terraform manages infrastructure across multiple cloud providers and on-premises environments. It uses a simple syntax called HashiCorp Configuration Language (HCL) to define the infrastructure components and their dependencies.
+Terraform is an infrastructure as code tool created by HashiCorp. It lets you define infrastructure in configuration files, compare the desired state with the real environment, and apply changes in a controlled way. Terraform works across many cloud providers, SaaS platforms, and on-premises systems through provider plugins.
 
 ## Challenges with traditional infra
 
@@ -24,7 +24,7 @@ To solve these challenges, organizations are adopting Infrastructure as Code (Ia
 
 ## Infrastructure as Code (IaC)
 
-Infrastructure as Code (IaC) is the practice of managing infrastructure using code and automation. With IaC, infrastructure configurations are defined in code files that can be version-controlled. In the Iac tooling space we have 3 types of tools:
+Infrastructure as Code (IaC) is the practice of managing infrastructure using code and automation. With IaC, infrastructure configurations are defined in version-controlled files. In the IaC tooling space, you will usually see three broad categories:
 
 - **Configuration Management Tools**: Tools like Ansible, Chef, and Puppet are used to automate the configuration of servers and applications.
 - **Server Templating Tools**: Tools like Packer and Docker are used to create machine images that can be deployed across different environments.
@@ -34,7 +34,7 @@ Infrastructure as Code (IaC) is the practice of managing infrastructure using co
 
 ## Why Terraform?
 
-Terraform is a popular Infrastructure as Code tool that allows you to define and provision infrastructure using a declarative configuration language. With Terraform we can deploy infrastructure across multiple cloud providers like AWS, Azure, Google Cloud, and on-premises environments. And it supports a variety of providers like Cloudflare, Grafana, Auth0, and more.
+Terraform is popular because it uses a consistent workflow across many providers. You write configuration, initialize the working directory, review an execution plan, and then apply changes. HashiCorp's documentation describes providers as plugins that let Terraform interact with cloud platforms and other APIs.
 
 ![Terraform Providers](https://github.com/user-attachments/assets/e4fa9895-4cff-4b2d-b637-f1c97b38d599)
 
@@ -51,9 +51,9 @@ resource "aws_instance" "example" {
 }
 ```
 
-It start by creating a configuration file and then work in three phases, **init** to initialize the working directory, **plan** to create an execution plan, and **apply** to apply the changes (more info below)
+The usual workflow is to write configuration first and then move through `terraform init`, `terraform plan`, and `terraform apply`.
 
-Each object the Terraform manages is called a **resource**. Resources are defined in Terraform configuration files, and Terraform uses providers to interact with APIs of cloud providers and services. If any of resources go out of sync with the desired state, Terraform can update the resources to match the desired state.
+Each object Terraform manages is called a **resource**. Resources are declared in configuration files, and providers expose the resource types and data sources available for a given platform or API.
 
 ### Terraform benefits
 
@@ -81,12 +81,12 @@ Syntax:
 
 It consists of blocks, arguments, and expressions. Blocks contains information about the infrastructure platform and resources within that platform we want to create. Arguments are key-value pairs that define the configuration settings for a block. Expressions are used to reference variables, functions, and other resources within the configuration.
 
-For example if want to create a file locally with some content, we can define the following configuration:
+For example, if you want to create a file locally with some content, you can define the following configuration:
 
 ```hcl
 # local.tf
 resource "local_file" "pet" {
-  filename = "/root/pets.txt"
+  filename = "./pets.txt"
   content  = "We love pets!"
 }
 ```
@@ -117,7 +117,7 @@ resource "aws_s3_bucket" "example" {
 
 ### Terraform Workflow
 
-To deploy a resource using Terraform, there is four step process:
+To deploy resources with Terraform, a common workflow looks like this:
 
 1. **Configuration**: Define the infrastructure components and their dependencies in Terraform configuration files.
 2. **Initialization**: Initialize the working directory with `terraform init` command to download the necessary providers and modules.
@@ -175,7 +175,12 @@ To destroy the resources created by Terraform, we can run `terraform destroy` co
 
 ### Terraform Providers
 
-Terraform uses plugin based architecture to interact with cloud providers and services. Providers are responsible for understanding API interactions and exposing resources for managing infrastructure. Terraform supports a wide range of providers like AWS, Azure, Google Cloud, Kubernetes, Docker, and more. When we do `terraform init`, it downloads the necessary providers and modules. A list of available providers can be found on the [Terraform Registry](https://registry.terraform.io/browse/providers).
+Terraform uses a plugin-based architecture to interact with cloud providers and services. Providers are responsible for understanding API interactions and exposing resource types and data sources. When you run `terraform init`, Terraform downloads the providers and modules needed for the current configuration. A list of available providers can be found on the [Terraform Registry](https://registry.terraform.io/browse/providers).
+
+Useful references:
+
+- [Terraform `init` command reference](https://developer.hashicorp.com/terraform/cli/commands/init)
+- [Provider block reference](https://developer.hashicorp.com/terraform/language/providers/configuration)
 
 There are three types of providers:
 
@@ -1503,7 +1508,7 @@ unset TF_LOG
 
 ## Terraform Import
 
-So, there will not always be the case that every resource is being created and managed by Terraform. Sometimes we have to import it. Terraform import is used to import existing resources into Terraform state. It is used to import resources that were created outside of Terraform. For example some resources were created manually or using the AWS Management Console or using another Iac tool like Ansible or CloudFormation.
+So, there will not always be the case that every resource is being created and managed by Terraform. Sometimes we have to import it. Terraform import is used to import existing resources into Terraform state. It is used to import resources that were created outside of Terraform. For example some resources were created manually or using the AWS Management Console or using another IaC tool like Ansible or CloudFormation.
 
 ![Terraform Import](https://github.com/user-attachments/assets/2aee6966-4b1e-4c36-af55-a0b65f3c342c)
 
@@ -1839,4 +1844,3 @@ variable "ami" {
 Now if we create a new workspace like `ProjectA` and run the `terraform apply` command, it will use the `ami-0c55b159cbfafe1f0` AMI. If we create a new workspace like `ProjectB` and run the `terraform apply` command, it will use the `ami-oe4b3bfb4c0e9b2` AMI. We can use the `terraform workspace list` command to list the workspaces and the `terraform workspace select` command to select a workspace.
 
 The way terraform manages the the state files for different workspaces is that it creates a separate directory for each workspace and stores the state file in that directory. And all the directories are named as `terraform.tfstate.d/<workspace_name>`.
-

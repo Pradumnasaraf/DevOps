@@ -18,15 +18,16 @@
     "@docusaurus/preset-classic": "^3.9.2",
     "@mdx-js/react": "^3.1.1",
     "clsx": "^2.1.1",
-    "glob": "^13.0.0",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "rimraf": "^6.1.2"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/types": "^3.9.2"
+  },
+  "overrides": {
+    "serialize-javascript": "7.0.5"
   },
   "browserslist": {
     "production": [

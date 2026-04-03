@@ -7,7 +7,9 @@ keywords: ["Kubernetes", "Container Orchestration", "DevOps"]
 slug: "/kubernetes"
 ---
 
-## Kubernetes Components - architecture
+Kubernetes is an open-source platform for running containerized workloads and services. Its core strength is declarative configuration plus automation around scheduling, rollout, scaling, networking, and recovery.
+
+## Cluster Architecture
 
 ![Kube-component](https://user-images.githubusercontent.com/51878265/197317939-d7e8ecbb-912c-4223-b64a-1c46cbac255f.png)
 
@@ -20,29 +22,34 @@ slug: "/kubernetes"
 
 ## Cluster
 
-Cluster is collection of nodes. The nodes can be grouped into two categories, Control Plane and Data Plane. The Control Plane is responsible for runining all the Kubernetes components. The Data Plane is responsible for running the application (our application).
+A cluster is a collection of machines, called nodes, that work together to run workloads. At a high level, you can think of a cluster as two main parts:
+
+- **Control Plane**: makes decisions about the cluster and manages its desired state.
+- **Data Plane**: runs the application workloads.
 
 ## Control Plane
 
-Control Plane is the brain of the Kubernetes cluster. It is responsible for managing the cluster. It contains the Control plane nodes. And each control plane node contains the following components:
+The control plane is responsible for managing the cluster. Control plane nodes run components that store state, expose the API, and coordinate scheduling and reconciliation:
 
-- **API Server**: It is the entry point for all the REST commands used to control the cluster. It is the only component that communicates with the etcd.
-- **Etcd**: It stores the current state of the cluster. It's like a cluster brain.
-- **Scheduler**: Decide which worker node will be best to deploy the next pods, after examining the resources and other paras. It does not schedule the pods, it just decides.
-- **Controller Manager**: Detect the current state of the cluster and keep the desired state of pods running. Follow requests when some things need to change/added to a worker node
-- **Cloud Controller Manager**: It Communicates with the cloud provider's API to create, delete, and update the resources.  
+- **API Server**: Entry point for cluster operations. Clients, controllers, and tooling talk to the API server.
+- **etcd**: Stores the cluster's state and configuration data.
+- **Scheduler**: Chooses which node should run a newly created Pod.
+- **Controller Manager**: Runs reconciliation loops that move actual cluster state toward the desired state.
+- **Cloud Controller Manager**: Integrates Kubernetes with cloud provider APIs when the cluster is running in the cloud.
 
 ## Data Plane
 
-Data Plane is responsible for running the application. It contains the worker nodes. And each worker node contains the following components:
+The data plane consists of worker nodes that actually run application workloads.
 
-- **Kubelet**: It is an agent that runs on each node in the cluster. It makes sure that the containers are running in a pod.
-- **Kube Proxy**: Maintains network rules on the node, that allow network communication to your Pods from network sessions inside or outside of your cluster.
-- **Container Runtime** - Like Docker, ContainerD, etc. Which runs the container
+- **Kubelet**: Agent on each node that makes sure Pods are running as described.
+- **kube-proxy**: Maintains networking rules so traffic can reach Pods and Services.
+- **Container runtime**: Runs containers on the node. Common CRI-compatible runtimes include `containerd` and `CRI-O`.
 
 ## CRI - Container Runtime Interface
 
-It is a plugin interface that enables kubelet to use a wide variety of container runtimes, without the need to recompile the kubelet binary. It is a standard interface between Kubernetes and container runtimes. Previously, Docker was the default container runtime for Kubernetes and their was component called `dockershim` which was used to communicate with Docker. But it was removed in Kubernetes 1.20. and Docker is no longer the default container runtime. Now, the default container runtime is ContainerD. Popular choices are ContainerD, CRI-O, etc.
+CRI is the standard interface between kubelet and container runtimes. It allows Kubernetes to work with different runtimes without recompiling kubelet.
+
+Historically, many clusters used Docker through a compatibility layer called `dockershim`. Dockershim was removed in Kubernetes 1.24, so modern clusters typically use CRI-compatible runtimes such as `containerd` or `CRI-O` directly.
 
 ## CNI - Container Network Interface
 
@@ -52,7 +59,13 @@ It is a specification and libraries for writing plugins to configure network int
 
 It is a standard for exposing arbitrary block and file storage systems to containerized workloads on Kubernetes. It is used to provide persistent storage to the containers. It is a standard interface between Kubernetes and storage providers. It is used to provide persistent storage to the containers. Popular choices are Rook, OpenEBS, etc.
 
-Custom Resource Definition - It allows you to define your own resources in Kubernetes. It extends the Kubernetes API. 
+Custom Resource Definition (CRD) lets you define your own resource types in Kubernetes and extend the API.
+
+Useful references:
+
+- [Kubernetes Concepts](https://kubernetes.io/docs/concepts/)
+- [Container Runtime Interface (CRI)](https://kubernetes.io/docs/concepts/containers/cri/)
+- [Dockershim removal in Kubernetes 1.24](https://kubernetes.io/blog/2021/11/12/are-you-ready-for-dockershim-removal/)
 
 ## Imperative Vs Declarative
 
@@ -73,17 +86,17 @@ spec: # The desired state of the object
 
 ## Namespaces
 
-Isolated environment, we can group resources separately like a database. Also, great for running different versions of the app. By default, we have a namespace called `default`. We can create a new namespace by creating a YAML file.
+Namespaces are a logical way to group resources inside a cluster. They are useful for separating teams, applications, or environments such as `dev`, `staging`, and `prod`.
 
-NOTE: By default namespaces DO NOT provide any security and Networking Boundary. It is just a logical separation of resources.
+NOTE: Namespaces do not automatically provide security or network isolation by themselves. They are a logical boundary, not a complete security boundary.
 
-We can create a namespace either by CLI or by 
+We can create a namespace either from the CLI:
 
 ```bash
 kubectl create namespace <namespace-name>
 ```
 
-or in a declarative way vy creating a YAML file and then applying it.
+or declaratively with a YAML manifest:
 
 ```yaml
 apiVersion: v1
@@ -92,7 +105,7 @@ metadata:
   name: non-default-namespace
 ```
 
-We can apply it by 
+We can apply it with:
 
 ```bash
 kubectl apply -f <filename>.yaml
@@ -104,13 +117,17 @@ Some useful commands for namespaces
 kubectl get namespaces # To get all the namespaces
 ```
 
-We can also switch the namespace by 
+We can also switch the default namespace in the current context:
+
+```bash
+kubectl config set-context --current --namespace=<namespace-name>
+```
 
 ## Pods
 
 The "smallest deployable unit" in Kubernetes. It is a group of one or more containers, with shared storage/network, and a specification for how to run the containers. It is the basic building block of Kubernetes.
 
-It's not recommended to create a pod directly, instead, we should create a deployment, which will create a pod for us. But we can create a pod by 
+It's usually better to create a higher-level workload like a Deployment, which manages Pods for you. But you can create a Pod directly for learning or troubleshooting:
 
 ```bash
 kubectl run <pod-name> --image=<image-name>
@@ -122,7 +139,7 @@ Or by creating in a declarative way by creating a YAML file and then applying it
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ngix-pod
+  name: nginx-pod
   namespace: my-namespace
 spec:
   containers:

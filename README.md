@@ -21,7 +21,7 @@
 - [Commands](docs/kubernetes/commands.md)
 - [Sample Apps](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/kubernetes/apps)
 - [Manifest Files](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/kubernetes/k8s-resources-type)
-- [Tools](docs/kubernetes/tools.md)
+- [Tools](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/kubernetes/tools)
 - [Playground](docs/kubernetes/playground.md)
 - [Other Resources](docs/kubernetes/other-resources.md)
 
@@ -34,7 +34,7 @@
 - [Workflows](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/github-actions/Workflows)
 - [Scenarios](docs/github-actions/scenarios.md)
 - [Other Resources](docs/github-actions/other-resources.md)
-- 
+
 ## Linux
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/209197882-51406a8f-04ff-4c53-a362-ac32ae8566ad.png" height="100" alt="linux"> 
@@ -71,11 +71,11 @@
 
 <img align="right" src="https://user-images.githubusercontent.com/51878265/213385507-52f03107-388c-4992-9b5e-c89de6906e37.png" height="100" alt="network"> 
 
-- [Notes](docs/go/introduction.md)
-- [Learning Resources](docs/go/learning-resources.md)
+- [Notes](docs/golang/introduction.md)
+- [Learning Resources](docs/golang/learning-resources.md)
 - [Concepts](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/golang/concepts)
 - [Practice App](https://github.com/Pradumnasaraf/DevOps/tree/main/docs/golang/apps)
-- [Other Resources](docs/go/other-resources.md)
+- [Other Resources](docs/golang/other-resources.md)
 
 ## Helm
 
