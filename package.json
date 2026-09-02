@@ -30,7 +30,9 @@
     "@docusaurus/types": "^3.9.2"
   },
   "overrides": {
-    "serialize-javascript": "7.0.5"
+    "serialize-javascript": "7.0.5",
+    "nanoid": "3.3.18",
+    "qs": "6.16.0"
   },
   "browserslist": {
     "production": [
