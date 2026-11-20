@@ -4,7 +4,10 @@
 
 ## Docker
 
-<img align="right" src="https://user-images.githubusercontent.com/51878265/200594916-47ba8a4c-fb94-4953-b179-dfb542df9499.png" height="100" alt="docker"> 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/docker-dark.png">
+  <img align="right" src=".github/assets/docker-light.png" height="80" alt="docker">
+</picture>
 
 - [Notes](docs/docker/introduction.md)
 - [Learning Resources](docs/docker/learning-resources.md)
